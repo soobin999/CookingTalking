@@ -36,7 +36,7 @@ public void configure(WebSecurity web) throws Exception{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http .authorizeRequests() //페이지 권한 설정
-                    .antMatchers("/login","/index","/join").permitAll()
+                    .antMatchers("/login","/index","/join","ingrSelect").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user/mypage").hasRole("MEMBER")
                     .anyRequest().authenticated()

@@ -24,6 +24,15 @@ public class RecipeServiceImpl implements RecipeService{
 		List<String> ingrNameList = recipeDAO.getIngrName(chosungList[cs], chosungList[cs+1]);
 		return ingrNameList;
 	}
+	
+	@Override
+	public String searched(IngrVO ingrVO) {
+		if (ingrVO.getIngrName() != null) {
+			return ingrVO.getIngrName();
+		} else {
+			return "일치하는 재료가 없습니다";
+		}
+	}
 
 	@Override
 	public List<RecipeDTO> allSelectRecipeList(RecipeDTO recipe) {
