@@ -11,7 +11,7 @@ import com.cook.talk.model.dao.AdIngrDAO;
 
 @Controller
 public class adIngrController {
-	@Autowired
+	@Autowired(required = false)
 	AdIngrDAO adingrDAO;
 
 	@GetMapping("/admin/allSelectIngr") // 재료 뿌리기
@@ -20,7 +20,6 @@ public class adIngrController {
 
 		return "admin/adIngrList2";
 	}
-	
 
 	@PostMapping("/admin/searchIngr") // 재료 찾기
 	public String searchIngr(Model model, IngrVO ingrVO) {

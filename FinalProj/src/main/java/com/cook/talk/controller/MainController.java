@@ -38,7 +38,7 @@ public class MainController {
 		return "/admin/complain";
 	}
 
-	@GetMapping("/admin")
+	@GetMapping("/adminMain")
 	public String selectqna(Model model) {
 		model.addAttribute("qnaList", qnADao.selectQna());
 
