@@ -1,18 +1,15 @@
 package com.cook.talk.model.dao;
 import java.util.Optional;
 
-import javax.xml.ws.ServiceMode;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.UserVO;
 
 
 @Mapper
-
-
-@ServiceMode
-
+@Service
 public interface UserDAO {
 	
 	
