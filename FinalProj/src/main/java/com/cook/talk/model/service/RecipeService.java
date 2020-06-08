@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.dto.RecipeDTO;
 
 @Service
@@ -26,6 +27,9 @@ public interface RecipeService {
 	
 	//레시피 상세조회+조회수 증가
 	public RecipeDTO getRecipeView();
+
+	//재료 검색하기 in 냉파
+	public String searched(IngrVO ingrVO);
 	
 }
 
