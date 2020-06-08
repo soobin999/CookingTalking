@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
+
+</head>
+<body>
+	<h3>Login with UserId and Password</h3>
+	<form action="/loginSuccess" method="post">
+
+
+
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+
+		<table>
+			<tbody>
+				<tr>
+					<td>ID:</td>
+					<td><input type="text" name="userId" value=""></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="userPw"></td>
+				</tr>
+
+				<tr>
+					<td colspan="2"><button name="submit" type="submit"
+							value="login" class="btn btn-block btn-primary text-light">로그인</button></td>
+
+				</tr>
+
+			</tbody>
+		</table>
+
+
+	</form>
+</body>
+</html>

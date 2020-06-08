@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border=1>
+<thead></thead>
+<tbody>
+<tr th:each="chef:${chefDetail}">
+<td th:text="${chef.nickName}"></td>
+<td th:text="${chef.userPic}"></td>
+<td th:text="${chef.rcpUploads}"></td>
+<td th:text="${chef.followers}"></td>
+<td th:text="${chef.rcpViews}"></td>
+
+</tr>
+</tbody>
+</table>
+</body>
+</html>
