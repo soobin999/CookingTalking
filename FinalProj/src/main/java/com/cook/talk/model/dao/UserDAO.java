@@ -28,7 +28,7 @@ public interface UserDAO {
 
 	public UserVO findUserById(String id);
 
-	void save(UserVO userVO) throws Exception;
+	void join(UserVO userVO) throws Exception;
 
 	public int login(UserVO user);
 

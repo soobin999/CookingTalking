@@ -74,35 +74,6 @@ iframe
 			<li><a href="/admin/admin.html">고객센터</a></li>
 		</ul>
 	</div>
-	<!-- 여기서 내용이 들어가는 자리 -->
-	<table>
-		<thead>
-			<tr>
-				<th>문의사항제목</th>
-				<th>문의 내용</th>
-				<th>문의 날짜</th>
-				<th>답변 내용</th>
-				<th>유저</th>
-				<th>답변 유무</th>
-			</tr>
-			<tr>
-				<th th:each="qnaList:${qnaList}"></th>
-				<td th:text="${qnaList.qnaTitle}">문의 내용</td>
-				<td th:text="${qnaList.qnaCont}">문의 날짜</td>
-				<td th:text="${qnaList.qnaDate}">답변 내용</td>
-				<td th:text="${qnaList.answer}">답변 유무</td>
-				<td th:text="${qnaList.userId}">유저</td>
-				<td th:text="${qnaList.userId}">유저</td>
-				
-				
-			</tr>
-
-		</thead>
-
-
-	</table>
-
-
 
 	<br>
 	<br>
@@ -116,12 +87,6 @@ iframe
 	<br>
 	<br>
 
-
-
-
-
-
-	<!-- 여기까지 내용이 들어가는 자리 -->
 	<div class="footer st2" style='background: #ff5100'>
 		<div class="container text-center">
 			<img src="img/footer_logo.png">
