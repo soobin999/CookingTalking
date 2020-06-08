@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cook.talk.model.dao.RecipeDAO">
+
+	<sql id="recipedtoColumns">
+		rcpCode, nickName, rcpTitle, rcpDate, rcpViews, rcpExpl, video, rcpPic,
+		personnel, cookTime, level, registerStatus, cookType,
+		cookSituation, cookMethod, ingrCat, userIngr, ingrWeigh, cookOrder, cookCont,
+		cookPic, rcpCom, rcpComDate, tag
+	</sql>
+	
+	<select id="getIngrName" parameterType="String" resultType="ingrVO">
+	SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
+	<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
+	</select>
+
+	<select id="getRecipeList" parameterType="recipeDto">
+		SELECT * FROM recipe.recipedto;
+	</select>
+
+		
+	<update id="insertRecipe" parameterType="recipeDto">
+	UPDATE INTO recipe.recipedto (<include refid="recipedtoColumns" /> ) 
+	VALUES (#{rcpCode}, #{nickName}, #{rcpDate}, 0, #{rcpTitle}, #{rcpExpl} )
+
+	</update>
+
+
+</mapper>

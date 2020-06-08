@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>냉장고 파먹기(정민)</title>
+</head>
+<body>
+	<!-- 냉장고 파먹기 재료 검색창 -->
+	<form>
+	<input type="text" title="재료를 검색하세요" id="ingrSearchInRefri"
+		name="ingrSearchInRefri" class="" placeholder="재료 검색">
+		<button type="button" class="" id="btnIngrSearch">검색</button>
+	<script src="/js/recipe.js"></script>
+	</form>
+	
+	<!-- 재료 리스트 가져오기 -->
+	<table>
+	<tbody>
+	<tr th:each="ingrs : ${ingrs}">
+		<td th:text="${ingrs.ingrName}"></td>
+	</tr>
+	</tbody>
+	</table>
+	
+	<!-- 선택한 재료 담는 곳 -->
+	<div class="" id="selectedIngr" data-area="selectedIngr" value=""></div>
+
+	
+</body>
+</html>

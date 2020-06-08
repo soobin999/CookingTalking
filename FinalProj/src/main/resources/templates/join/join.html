@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="title">
+<h1>My</h1>
+</div>
+<div class ="content">
+<form th:action="@{/join}" th:object="${join_form}" method="post">
+<!-- form이 어떤 url로 연결되는지에 대한 것  -->
+<input type="email" th:field="*{id}"/><br>
+<input type="password" th:field="*{pw}"/><br>
+<input type="text" th:field="*{nickName}"/><br>
+
+<input type="date" th:field="*{birth}"/><br>
+<input type="radio" th:field="*{gender}"/><br>
+<input type="submit" value="회원가입"/><br>
+</form>
+</div>
+
+</body>
+</html>
