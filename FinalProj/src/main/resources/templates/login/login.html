@@ -14,22 +14,17 @@
 </head>
 <body>
 	<h3>Login with UserId and Password</h3>
-	<form action="/loginSuccess" method="post">
-
-
-
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
+	<form action="/login" method="post">
 
 		<table>
 			<tbody>
 				<tr>
 					<td>ID:</td>
-					<td><input type="text" name="userId" value=""></td>
+					<td><input type="text" name="username" value=""></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input type="password" name="userPw"></td>
+					<td><input type="password" name="password"></td>
 				</tr>
 
 				<tr>
@@ -40,8 +35,6 @@
 
 			</tbody>
 		</table>
-
-
 	</form>
 </body>
 </html>

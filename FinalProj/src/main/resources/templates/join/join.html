@@ -2,24 +2,47 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
 <body>
-<div class="title">
-<h1>My</h1>
-</div>
-<div class ="content">
-<form th:action="@{/join}" th:object="${join_form}" method="post">
-<!-- form이 어떤 url로 연결되는지에 대한 것  -->
-<input type="email" th:field="*{id}"/><br>
-<input type="password" th:field="*{pw}"/><br>
-<input type="text" th:field="*{nickName}"/><br>
+	<!-- <div class="title"> -->
+	<h1>회원가입</h1>
+	<hr>
+	<!-- </div> -->
+	<!-- <div class ="content"> -->
+	<form th:action="@{/join}" method="post" >
+		<div>
+			<input type="email" name="userId" 
+				placeholder="이메일 @까지 입력해주세요" /><br> <span
+				th:text="${valid_email}"></span>
+		</div>
+		<!-- form th:action="@{/join}" th:object="${join_form}" method="post" onsubmit="return checkAll()"> -->
 
-<input type="date" th:field="*{birth}"/><br>
-<input type="radio" th:field="*{gender}"/><br>
-<input type="submit" value="회원가입"/><br>
-</form>
-</div>
+
+		<div>
+			<input type="password" name="userPw" 
+				placeholder="영문+숫자 조합 8~16자리" /><br> <span
+				th:text="${valid_password}"></span>
+		</div>
+
+		<div>
+			<input type="text" name="nickName" 
+				placeholder="닉네임" /><br> <span th:text="${valid_nickName}"></span>
+		</div>
+
+		<div>
+			<input type="date" name="birth"  /><br>
+		</div>
+
+		<div>
+			<input type="radio"  /><br>
+		</div>
+
+		<div>
+			<button>가입</button>
+		</div>
+	</form>
+
 
 </body>
 </html>
