@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cook.talk.model.dao.ChefDAO;
+import com.cook.talk.model.dao.QnADAO;
 import com.cook.talk.model.service.MainService;
 
 @Controller
@@ -16,6 +17,9 @@ public class MainController {
 	private ChefDAO chef;
 	@Autowired(required = false)
 	private MainService mainService;
+	@Autowired(required = false)
+	private QnADAO qnADao;
+
 	@GetMapping("/index")
 	public String index(Model model) {
 		return "/main/index";
@@ -25,7 +29,7 @@ public class MainController {
 	public String loginIndex(Model model, String expl) {
 		System.out.println(mainService.recipeList("R-000001"));
 		model.addAttribute("rcpList", mainService.recipeList("R-000001"));
-		
+
 		return "/main/loginIndex";
 	}
 
@@ -33,4 +37,12 @@ public class MainController {
 	public String qnaGo() {
 		return "/admin/complain";
 	}
+
+	@GetMapping("/admin")
+	public String selectqna(Model model) {
+		model.addAttribute("qnaList", qnADao.selectQna());
+
+		return "admin/adminMain";
+	}
+
 }
