@@ -25,6 +25,13 @@
 				placeholder="영문+숫자 조합 8~16자리" /><br> <span
 				th:text="${valid_password}"></span>
 		</div>
+		<div>
+			<td>비밀번호 확인</td> <input type="password" name="userPw2"
+				placeholder="비밀번호 확인" /><br> <span th:text="${void_password2}"></span>
+
+
+		</div>
+
 
 		<div>
 			<td>닉네임</td> <input type="text" name="nickName" placeholder="닉네임" /><br>
@@ -82,7 +89,22 @@
 function checkExistData(value,dataName){
 	if(value ==""){
 		alert(dataName +"입력해주세요")
-	}
+return false;
+		}
+return true;
+}
+function checkuserId(id){
+	if (!checkExistData(id, "아이디를"))
+        return false;
+
+    var idRegExp = /^[a-zA-z0-9]{4,12}$/; //아이디 유효성 검사
+    if (!idRegExp.test(id)) {
+        alert("아이디는 이메일 형식으로 입력해주세요  ");
+        form.userId.value = "";
+        form.userId.focus();
+        return false;
+
+
 }
 
 

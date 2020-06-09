@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.cook.talk.model.service.UserService;
@@ -29,24 +31,32 @@ public PasswordEncoder passwordEncoder() {
 }//PasswordEncoder: BCryptPasswordEncoder는 시큐리티에서 제공하는 비밀번호 암호화 객체 -BEAN으로 등록.
 @Override
 public void configure(WebSecurity web) throws Exception{
-	web.ignoring().antMatchers("/css/**","/js/**","/img/**","/lib/**");
+	web.ignoring().antMatchers("/css/**","/js/**","/img/**","/lib/**","/res/**");
 }//configure를 오버라이딩하여 시큐리티 설정을 잡아준다.
 //WebSecurity는 FilterChainProxy를 생성하는 필터.
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http .authorizeRequests() //페이지 권한 설정
-                    .antMatchers("/login","/index","/join","ingrSelect").permitAll()
-                    .antMatchers("/admin").hasRole("ADMIN")
-                    .antMatchers("/user/mypage").hasRole("MEMBER")
-                    .anyRequest().authenticated()
-                    
-                    .and()//로그인 설정 
+                  
+                    .antMatchers("/user/mypage").hasRole("Role_MEMBER")
+                    .antMatchers("/admin/**").hasRole("Role_ADMIN")
+                    .antMatchers("/login","/index","/join","/**/ingrSelect").permitAll();
+                 
+        //접근 가능 
+                 //  .anyRequest().authenticated();
+                // .antMatchers("/**").authenticated();
+                   //인증 필요로 함. 
+        			
+                    http
+                    //.and()//로그인 설정 
                     .csrf()
-                    .disable()
+                    .disable();
+                 
+                    http
                     .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/index")
+                    .defaultSuccessUrl("/index",true)
                     .permitAll()
                     
                     .and()
@@ -57,7 +67,9 @@ public void configure(WebSecurity web) throws Exception{
     // .defaultSuccessUrl("/main");
     }
 
-      
+  
+    
+    
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
           //spring Security에서 모든 인증은 AuthenticationManager를 통해 이루어지며 
