@@ -21,16 +21,11 @@ public class adUserController {
 		return "admin/adUser";
 	}
 
-	@GetMapping("/admin/deleteUserID") // 모든 회원정보 뿌려주기 위해
-	public void deleteUserID(UserVO userId) {
-		aduserDAO.deleteUserID(userId);
-
-	}
-
 	@PostMapping("/admin/updateUserNickName") // 닉네임 업데이트
-	public String updateUserNickName(Model model, UserVO nickName) {
-
-		return "admin/adUser";
+	public String updateUserNickName(UserVO nickName) {
+		System.out.println(nickName);
+		aduserDAO.updateUserNickName(nickName);
+		return "admin/adminMain";
 	}
 
 	@PostMapping("/admin/searchUserByEmail") // 회원 아이디를 통해 찾기
