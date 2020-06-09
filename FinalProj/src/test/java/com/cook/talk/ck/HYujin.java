@@ -36,7 +36,7 @@ public class HYujin {
 	      user.setNickName("요리하하");
 	      user.setBirth(new Date(1994 - 06 - 05));
 	      user.setGender(true);
-	      user.setAccess(true);
+	      user.setAccess(0);
 	      user.setAuth(0);
 
 	      userDao.join(user);

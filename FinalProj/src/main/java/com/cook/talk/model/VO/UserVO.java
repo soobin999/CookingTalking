@@ -22,7 +22,7 @@ public class UserVO {
 	private Date birth;
 	private int auth;
 	private boolean gender;
-	private boolean access;
+	private int access;
 	private String userPic;
 	private int rcpUploads;
 	private int followers;
