@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest
 @Slf4j
 public class HYujin {
+<<<<<<< HEAD
 
 	   @Autowired
 	   UserDAO userDao;
@@ -45,3 +46,34 @@ public class HYujin {
 	}
 
 	      
+=======
+	@Autowired
+	UserDAO userDao;
+		
+	@Autowired
+	BCryptPasswordEncoder hhaa;
+	@Test
+	public void find() {
+		log.info(userDao.findUserById("abc@naver.com").toString());
+	}
+
+	@Test
+	public void save() throws Exception {
+
+
+		UserVO user = new UserVO();
+		user.setUserId("jyj@naver.com");
+		user.setUserPw(hhaa.encode("1234"));
+		user.setNickName("오늘의 요리왕");
+		user.setBirth(new Date(1994 - 06 - 05));
+		user.setGender(true);
+		user.setAccess(true);
+		user.setAuth(0);
+
+		userDao.join(user);
+
+	}
+}
+
+		
+>>>>>>> faa118054e49c85004c708b98cb433ba5e2105aa
