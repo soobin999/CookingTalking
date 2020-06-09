@@ -10,13 +10,13 @@
 
 </head>
 <body>
-	<h2>회원정보 보이기, 수정하기</h2>
+	<h2>회원정보 보이기, 수정하기, 삭제하기</h2>
 	<div id="basic">
-
-		<table border="1" id="IngrTable">
+		<table border="1" id="AduserId">
 
 			<thead>
 				<tr>
+					<th>삭제</th>
 					<th>유저 아이디</th>
 					<th>유저 닉네임</th>
 					<th>유저 생일</th>
@@ -30,10 +30,9 @@
 			</thead>
 			<tbody>
 				<tr th:each="userList:${UserList}">
-					<td><input type="checkbox" name="delete_user_ids"
-						value="${data.user_id}" /></td>
-
-					<td th:text="${userList.userId}">유저 아이디</td>
+					<td><button th:class="button" th:value='${userList.userId}'>삭제하기</button></td>
+					<td><input type="text" name="update_id"
+						th:value="${userList.userId}" onKeypress="update_Id()"></td>
 					<td th:text="${userList.nickName}">유저 닉네임</td>
 					<td th:text="${userList.birth}">유저 생일</td>
 					<td th:text="${userList.gender}">유저 성별</td>
@@ -45,40 +44,78 @@
 				</tr>
 			</tbody>
 		</table>
-
 	</div>
-	
-	
+
+
+
+	<script th:inline="javascript">
+		$(".button").click(function() {
+			/*          alert($(this).attr('value')); */
+			var id = $(this).attr('value');
+
+			if (confirm("삭제하겠니?")) {
+				$.ajax({
+					url : './admin/deleteUserID',
+					data : {
+						userId : id
+					},
+					method : "POST",
+				}).done(function(response) {
+					$('#basic').load("admin/adUser");
+				});
+			} else {
+				return false;
+			}
+
+		});
+	</script>
+
 	<script>
-	//자바 스크립트 ajax 실행해야합니다. https://onecutwook.tistory.com/5
-	function deleteReport(){
-        var cnt = $("input[name='reportChkBxRow']:checked").length;
-        var arr = new Array();
-        $("input[name='reportChkBxRow']:checked").each(function() {
-            arr.push($(this).attr('id'));
-        });
-        if(cnt == 0){
-            alert("선택된 글이 없습니다.");
-        }
-        else{
-            $.ajax = {
-                type: "POST"
-                url: "OOOO.do"
-                data: "RPRT_ODR=" + arr + "&CNT=" + cnt,
-                dataType:"json",
-                success: function(jdata){
-                    if(jdata != 1) {
-                        alert("삭제 오류");
-                    }
-                    else{
-                        alert("삭제 성공");
-                    }
-                },
-                error: function(){alert("서버통신 오류");}
-            };
-        }
-    }
+		function update_Id() {
+			alert("두드려라 열릴것이다.")
+			var id = $(this).attr('value');
+			if (confirm("유저 아이디를 변경 하시겠습니까?")) {
+				$.ajax({
+					url : './admin/updateUserNickName',
+					data:{ userId:id},
+					type: "post",
+				})done.(function(response){
+					$('#basic').load("admin/adUser");
+				});
+
+				}else{
+					
+					return false;
+				}
+			});
+	</script>
+
+	<!-- 
+		/*  $.ajax(){
+		 	url:'/admin/deleteUserID',
+		 	data:id,
+		 	type:'post',
+		 	success: function(data){
+		 		alert : "삭제가 되었습니다."
+		 		
+		 	}
+		 }
+		}); */ -->
+	<!-- 폼태그 넣어서 쉉하려고햇음	<form action="searchIngr" methodd="POST">
+		<input type="text" name="searchIngrList" class=""
+			placeholder="재료명 입력" style="width: 25%">
+	</form>
 	
-	 </script>
+			if(confirm($(this).attr('value') + "를 삭제하시겠습니까?"))
+	
+	<td th:text="${userList.userId}">
+	<input type="text" size="20"
+		style="width: 100%;">유저 아이디</td>
+		
+		<td><input type="text" name="update_id"
+			th:value="${userList.userId}" onKeypress="update_Id()"></td>
+		
+		"javascript:if(event.keyCode==13){update_Id()}"
+		-->
 </body>
 </html>
