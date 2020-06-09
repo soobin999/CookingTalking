@@ -35,8 +35,9 @@ public void configure(WebSecurity web) throws Exception{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http .authorizeRequests() //페이지 권한 설정
-                    .antMatchers("/login","/index").permitAll()
+        http .authorizeRequests()
+        //페이지 권한 설정
+                    .antMatchers("/login","/index", "/ingrSelect").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user/mypage").hasRole("MEMBER")
                     .anyRequest().authenticated()
@@ -54,7 +55,7 @@ public void configure(WebSecurity web) throws Exception{
                    .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                    .logoutSuccessUrl("/user/logout/result");
                    http.csrf().disable();
-    // .defaultSuccessUrl("/main");
+                   //.defaultSuccessUrl("/main");
     }
 
       
