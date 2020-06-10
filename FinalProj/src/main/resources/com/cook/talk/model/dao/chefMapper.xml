@@ -5,15 +5,15 @@
 <mapper namespace="com.cook.talk.model.dao.ChefDAO">
 
 <resultMap id="chefDTO" type="chefDTO">
-<result column="rcpViews" property=""/>
+<result column="rcpViews" property="rcpViews"/>
 <association property="userVO">
 <result column="nickName" property="nickName"/>
 <result column="userPic" property="userPic"/>
 <result column="followers" property="followers"/> 
 </association>
 </resultMap>
-	<select id="selectChefDetail" resultType="chefDTO">
-		select us.nickName,us.userPic,us.rcpUploads,us.followers,sum(rcpViews) as rcpviews
+	<select id="selectChefDetail" resultMap="chefDTO">
+		select us.nickName,us.userPic,us.rcpUploads,us.followers,sum(rcpViews) as rcpViews
 			   from user as us,rcp 
 			   where us.userId=rcp.userId and us.userId=#{userId}
 	</select>
@@ -24,7 +24,7 @@
 	<select id="selectRecipe" resultType="recipeVO">
 		select rcpTitle,rcpPic from rcp where userId = #{userId}
 	</select>
-	<select id="allSelectChef" resultType="chefDTO">
+	<select id="allSelectChef" resultMap="chefDTO">
 		select us.nickName,us.userPic,us.rcpUploads,us.followers, sum(rcpViews) as rcpview
 			   from user as us, rcp 
 			   where us.userId=rcp.userId

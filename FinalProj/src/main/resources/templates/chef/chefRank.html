@@ -6,13 +6,14 @@
 </head>
 <body>
 <table border=1>
-<thead></thead>
+<thead> chef Rank</thead>
 <tbody>
-<tr th:each="chef:${chefDetail}">
-<td th:text="${chef.nickName}"></td>
-<td th:text="${chef.userPic}"></td>
-<td th:text="${chef.rcpUploads}"></td>
-<td th:text="${chef.followers}"></td>
+<tr th:each="chef,index:${chefList}">
+<td th:text="${index.index}+1"></td>
+<td th:text="${chef.userVO.nickName}"></td>
+<td th:text="${chef.userVO.userPic}"></td>
+<td th:text="${chef.userVO.rcpUploads}"></td>
+<td th:text="${chef.userVO.followers}"></td>
 <td th:text="${chef.rcpViews}"></td>
 
 </tr>
