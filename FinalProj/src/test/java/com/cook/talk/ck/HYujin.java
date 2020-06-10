@@ -16,31 +16,30 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class HYujin {
 
-	   @Autowired
-	   UserDAO userDao;
-	      
-	   @Autowired
-	   BCryptPasswordEncoder hhaa;
-	   @Test
-	   public void find() {
-	      log.info(userDao.findUserById("abc@naver.com").toString());
-	   }
+	@Autowired
+	UserDAO userDao;
 
-	   @Test
-	   public void save() throws Exception {
+	@Autowired
+	BCryptPasswordEncoder hhaa;
 
-
-	      UserVO user = new UserVO();
-	      user.setUserId("haha@naver.com");
-	      user.setUserPw(hhaa.encode("1234"));
-	      user.setNickName("요리하하");
-	      user.setBirth(new Date(1994 - 06 - 05));
-	      user.setGender(true);
-	      user.setAccess(true);
-	      user.setAuth(0);
-
-	      userDao.join(user);
-
-	   }
+	@Test
+	public void find() {
+		log.info(userDao.findUserById("abc@naver.com").toString());
 	}
 
+	@Test
+	public void save() throws Exception {
+
+		UserVO user = new UserVO();
+		user.setUserId("admin@naver.com");
+		user.setUserPw(hhaa.encode("1234"));
+		user.setNickName("관리자");
+		user.setBirth(new Date(1994 - 06 - 05));
+		user.setGender(true);
+		user.setAccess(true);
+		user.setAuth(0);
+
+		userDao.join(user);
+
+	}
+}

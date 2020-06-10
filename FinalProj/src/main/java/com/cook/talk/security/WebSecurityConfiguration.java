@@ -11,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFilter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.cook.talk.model.service.UserService;
@@ -39,14 +37,17 @@ public void configure(WebSecurity web) throws Exception{
     protected void configure(HttpSecurity http) throws Exception {
         http .authorizeRequests() //페이지 권한 설정
                   
-                    .antMatchers("/user/mypage").hasRole("Role_MEMBER")
-                    .antMatchers("/admin/**").hasRole("Role_ADMIN")
-                    .antMatchers("/login","/index","/join","/**/ingrSelect").permitAll();
+				/*
+				 * .antMatchers("/user/mypage").hasRole("Role_MEMBER")
+				 * .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
+				 */
+                    .antMatchers("/login","/index","/join","/**/ingrSelect",
+                    		"/adminMain").permitAll();
                  
         //접근 가능 
                  //  .anyRequest().authenticated();
                 // .antMatchers("/**").authenticated();
-                   //인증 필요로 함. 
+                //인증 필요로 함. 
                  
                     http
                     //.and()//로그인 설정 
@@ -63,7 +64,7 @@ public void configure(WebSecurity web) throws Exception{
                    .logout()
                    .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                    .logoutSuccessUrl("/user/logout/result");
-                   http.csrf().disable();
+                   
     // .defaultSuccessUrl("/main");
     }
 
