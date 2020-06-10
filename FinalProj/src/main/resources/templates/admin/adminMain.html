@@ -19,7 +19,7 @@
 	</div>
 	<div id="basic">
 
-		<table border="1" id="qnaListTable">
+		<table border="1" id="mainTable">
 			<thead>
 				<tr>
 					<th>문의사항제목</th>
@@ -46,46 +46,49 @@
 
 	<script>
 		function adUserList() {
-			$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
-				url : './admin/adUser', // url: 요청할 URL 주소
-				// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
-				type : "GET",
+			$('#mainTable').remove();
+			$('#basic').load("admin/adUser");
 
-				success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
-					alert("회원정보를 불러왔습니다.");
-					$('#qnaListTable').remove();
-					$('#basic').load("admin/adUser");
+			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
+					url : './admin/adUser', // url: 요청할 URL 주소
+					// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
+					type : "GET",
 
-				},
-				error : function() {
-					alert("실패");
-				}
-			});
+					success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
+						alert("회원정보를 불러왔습니다.");
+
+					},
+					error : function() {
+						alert("실패");
+					}
+				}); */
 
 		};
 		//고객요청함 불러오기
 		function adQnaList() {
-			$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
-				url : './admin/adQnaList', // url: 요청할 URL 주소
-				// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
-				type : "GET",
+			$('#mainTable').remove();
+			$('#basic').load("admin/adQnaList");
+			/* 		$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
+						url : './admin/adQnaList', // url: 요청할 URL 주소
+						// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
+						type : "GET",
 
-				success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
-					alert("고객요청함을 불러왔습니다.");
-					$('#qnaListTable').remove();
-					$('#basic').load("admin/adQnaList");
+						success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
+							alert("고객요청함을 불러왔습니다.");
 
-				},
-				error : function() {
-					alert("실패");
-				}
-			});
+						},
+						error : function() {
+							alert("실패");
+						}
+					}); */
 
 		};
 		//재료 추가함 불러오기 		
 		function adIngrList() {
-			$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
-				url : './admin/allSelectIngr', // mapping 한 주소
+			$('#mainTable').remove();
+			$('#basic').load("admin/adIngrList2");
+			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
+				url : './admin/adIngrList2', // mapping 한 주소
 				// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
 				type : "GET",
 
@@ -98,7 +101,7 @@
 				error : function() {
 					alert("실패");
 				}
-			});
+			}); */
 
 		};
 	</script>

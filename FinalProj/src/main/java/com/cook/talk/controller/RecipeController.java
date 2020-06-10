@@ -1,5 +1,7 @@
 package com.cook.talk.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +43,11 @@ public class RecipeController {
 		return "refrigerator/ingrSelect";
 	}
 
+	@GetMapping("/rcmmRecipe")
+	public String rcmmRecipe(Model model){
+		return "refrigerator/rcmmRecipe";
+	}
+	
 	@GetMapping(value = "recipe/recipeView")
 	public String recipeView(Model model) {
 		return "recipe/recipeView";
@@ -55,4 +62,5 @@ public class RecipeController {
 	public String deleteRecipe(Model model) {
 		return "recipe/deleteRecipe";
 	}
+	
 }

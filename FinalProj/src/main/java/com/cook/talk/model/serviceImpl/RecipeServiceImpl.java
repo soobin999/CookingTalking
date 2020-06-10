@@ -28,12 +28,15 @@ public class RecipeServiceImpl implements RecipeService{
 	@Override
 	public String searched(IngrVO ingrVO) {
 		if (ingrVO.getIngrName() != null) {
+			ingrVO.getIngrName();
 			return ingrVO.getIngrName();
 		} else {
-			return "일치하는 재료가 없습니다";
+			return "일치하는 재료 없어요";
 		}
-	}
 
+	}
+	 
+	
 	@Override
 	public List<RecipeDTO> allSelectRecipeList(RecipeDTO recipe) {
 		return null;
@@ -63,6 +66,10 @@ public class RecipeServiceImpl implements RecipeService{
 		return null;
 	}
 
-
+	@Override
+	public List<String> getSearchedIngrName(String ingrName) {
+		// TODO Auto-generated method stub
+		return recipeDAO.getSearchedIngrName(ingrName);
+	}
 
 }
