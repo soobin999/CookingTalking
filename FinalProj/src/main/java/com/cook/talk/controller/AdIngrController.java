@@ -10,15 +10,15 @@ import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.dao.AdIngrDAO;
 
 @Controller
-public class adIngrController {
+public class AdIngrController {
 	@Autowired(required = false)
 	AdIngrDAO adingrDAO;
 
-	@GetMapping("/admin/allSelectIngr") // 재료 뿌리기
+	@GetMapping("/admin/adIngrList2") // 재료 뿌리기
 	public String allSelectIngr(Model model) {
 		model.addAttribute("IngrList", adingrDAO.allSelectIngr());
 
-		return "admin/adIngrList2";
+		return "admin/adIngrList2"; //data를 처리한다. 페이지 이동이 아닌, 
 	}
 
 	@PostMapping("/admin/searchIngr") // 재료 찾기

@@ -29,11 +29,11 @@ private Handler handler;
 
 @Bean
 public PasswordEncoder passwordEncoder() {
-	return new BCryptPasswordEncoder();
+   return new BCryptPasswordEncoder();
 }//PasswordEncoder: BCryptPasswordEncoder는 시큐리티에서 제공하는 비밀번호 암호화 객체 -BEAN으로 등록.
 @Override
 public void configure(WebSecurity web) throws Exception{
-	web.ignoring().antMatchers("/css/**","/js/**","/img/**","/lib/**","/res/**");
+   web.ignoring().antMatchers("/css/**","/js/**","/img/**","/lib/**","/res/**");
 }//configure를 오버라이딩하여 시큐리티 설정을 잡아준다.
 //WebSecurity는 FilterChainProxy를 생성하는 필터.
 
@@ -43,13 +43,19 @@ public void configure(WebSecurity web) throws Exception{
                   
                     .antMatchers("/user/mypage").hasRole("Role_MEMBER")
                     .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
-                 .antMatchers("/login","/index","/join","/**/ingrSelect").permitAll();
-                 
+				
+                    .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank","/loginIndex").permitAll()
+                    .antMatchers("/admin").hasRole("ADMIN")
+                    .antMatchers("/user/mypage").hasRole("MEMBER")
+                    .anyRequest().authenticated();
+                    
+                    
+
         //접근 가능 
                  //  .anyRequest().authenticated();
                 // .antMatchers("/**").authenticated();
                 //인증 필요로 함. 
-        			
+
                     http
                     //.and()//로그인 설정 
                     .csrf()
@@ -75,12 +81,11 @@ public void configure(WebSecurity web) throws Exception{
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
           //spring Security에서 모든 인증은 AuthenticationManager를 통해 이루어지며 
-        	//AuthenticationManager를 생성하기 위해서는 AuthenticationManagerBuilder를 사용.
-        	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+           //AuthenticationManager를 생성하기 위해서는 AuthenticationManagerBuilder를 사용.
+           auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
         }
 
       
     }
 
     
-

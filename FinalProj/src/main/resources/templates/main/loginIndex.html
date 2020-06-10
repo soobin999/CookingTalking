@@ -13,8 +13,7 @@
 <title>쿠킹토킹</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
-
+<link rel="stylesheet" type="text/css" href="css/soobin.css">
 
 <style type="text/css">
 iframe
@@ -27,7 +26,7 @@ iframe
 }
 </style>
 </head>
-<body>
+<body onload="slider.init();">
 	<div class="gnb_top_wrap">
 		<div class="gnb_top">
 			<h1>
@@ -73,22 +72,36 @@ iframe
 			<li><a href="/admin/admin.html">고객센터</a></li>
 		</ul>
 	</div>
-	<table border=1>
-		<thead>
-			<tr>
-				<th>title</th>
-				<th>pic</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="rcpList : ${rcpList}">
-				<td th:text="${rcpList.rcpTitle}"></td>
-				<td th:text="${rcpList.rcpPic}"></td>
-			</tr>
-		</tbody>
-	</table>
-
-
+	<br><br><br><br><br>
+	
+	<div th:id="center">
+	<div th:id="slider">
+	<div th:class="slide" th:each="rcpList : ${rcpList}">
+	<img class="diapo" th:src="${rcpList.rcpPic}" alt="">
+	<div th:class="text">
+	<span th:class="title" th:value="${rcpTitle}"></span><br>
+		|smenu1|smenu2|smenu3|smenu4|
+	</div>
+	
+	</div>
+	</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<div th:class="recommand">
+	<h3 th:class="slidertitle">추천 레시피</h3>
+<div th:each="rcpList : ${rcpList}">
+<div th:class="secon">
+<div th:text="${rcpList.rcpPic}"></div>
+<div th:text="${rcpList.rcpTitle}">
+</div>
+</div>
+</div>
+</div>
 	<br>
 	<br>
 	<br>
@@ -97,6 +110,27 @@ iframe
 	<br>
 	<br>
 	<br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br><br>
 	<br>
 	<br>
 	<br>
@@ -117,5 +151,6 @@ iframe
 
 		</div>
 	</div>
+<script src="/js/soobin.js"></script>
 </body>
 </html>

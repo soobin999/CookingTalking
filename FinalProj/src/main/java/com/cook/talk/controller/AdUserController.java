@@ -1,35 +1,31 @@
 package com.cook.talk.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dao.AdUserDAO;
+import com.cook.talk.model.dto.UserDTO;
 
 @Controller
-public class adUserController {
+public class AdUserController {
 	@Autowired(required = false)
 	private AdUserDAO aduserDAO;
 
 	@GetMapping("/admin/adUser") // 모든 qna 뿌려주기 위해
 	public String allSelectUserId(Model model) {
-		model.addAttribute("UserList", aduserDAO.allSelectUserId());
-
-		return "admin/adUser";
-	}
-
-	@GetMapping("/admin/deleteUserID") // 모든 회원정보 뿌려주기 위해
-	public void deleteUserID(UserVO userId) {
-		aduserDAO.deleteUserID(userId);
-
-	}
-
-	@PostMapping("/admin/updateUserNickName") // 닉네임 업데이트
-	public String updateUserNickName(Model model, UserVO nickName) {
-
+		List<UserDTO> users = aduserDAO.allSelectUserId();
+		model.addAttribute("UserList", users);
+		System.out.println(users);
 		return "admin/adUser";
 	}
 

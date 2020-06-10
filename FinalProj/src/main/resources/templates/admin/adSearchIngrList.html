@@ -41,30 +41,8 @@
 			</table>
 		</div>
 	</div>
-	<div id="basic">
 
-		<table border="1" id="IngrTable">
 
-			<thead>
-				<tr>
-					<th>재료 사진</th>
-					<th>재료 이름</th>
-					<th>재료 제철</th>
-					<th>재료 칼로리</th>
-					<th>재료 보관온도</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="Ingr:${IngrList}">
-					<td th:text="${Ingr.ingrPic}">재료 사진</td>
-					<td th:text="${Ingr.ingrName}">재료 이름</td>
-					<td th:text="${Ingr.ingrSeason}">재료 제철</td>
-					<td th:text="${Ingr.ingrCalorie}">재료 칼로리</td>
-					<td th:text="${Ingr.ingrTemper}">재료 보관온도</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
 
 	<!-- <script>
 //ajax로 테이블리스트 생성

@@ -2,6 +2,8 @@ package com.cook.talk.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,13 +21,32 @@ public class AdminRestController {
 	private QnADAO qnaDAO;
 
 	@Autowired(required = false)
-	private AdUserDAO adUserDAO;
+	private AdUserDAO aduserDAO;
 
 	@Autowired(required = false)
 	private AdRecipeDAO adRecipeDAO;
 
 	@Autowired(required = false)
 	private AdIngrDAO adIngrDAO;
+
+	@PostMapping("/admin/deleteUserID") // 모든 회원정보 뿌려주기 위해 public String
+	public String deleteUserID(UserVO userId) {
+		System.out.println(userId);
+		aduserDAO.deleteUserID(userId);
+		System.out.println("아 되자 제발" + userId);
+
+		return "삭제되었습니다";
+
+	}
+
+	@PostMapping("/admin/updateUserNickName") // 닉네임 업데이트
+	public String updateUserNickName(@ModelAttribute("userVO") UserVO nickName
+			) {
+		System.out.println(nickName);
+		aduserDAO.updateUserNickName(nickName);
+		System.out.println(nickName+"로 변경하자 ");
+		return "수정되었습니다.";
+	}
 
 	@PostMapping("/admin/complain")
 	public void complain() {
