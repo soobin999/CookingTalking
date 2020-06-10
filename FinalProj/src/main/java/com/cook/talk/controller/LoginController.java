@@ -1,21 +1,40 @@
 package com.cook.talk.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.elasticsearch.client.security.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cook.talk.model.VO.UserVO;
+import com.cook.talk.model.dao.UserDAO;
+import com.cook.talk.model.dto.UserDTO;
+import com.cook.talk.model.service.UserService;
+
+import lombok.AllArgsConstructor;
+import net.bytebuddy.asm.Advice.Return;
+
+@AllArgsConstructor
 
 @Controller
 public class LoginController {
+	@Autowired
+	private UserVO userVO;
+	@Autowired
+	private UserDAO userDAO;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, HttpServletRequest req) {
@@ -23,6 +42,10 @@ public class LoginController {
 		return "/login/login";
 	}
 
+	@RequestMapping("goJoin")
+	public String goJoin() {
+		return "join";
+	}
 
 	@PostMapping("/login/find_pw")
 	public String find_pw() {
@@ -69,6 +92,52 @@ public class LoginController {
 			}
 		}
 		return "/user/login";
+
+	}
+
+	private UserService userService;
+
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String join(UserVO userVO) {
+		return "join/join";
+	}// 화면
+
+	@PostMapping("/join")
+	public String execJoin(@Valid UserVO userVO, Errors errors, Model model) {
+		userService.joinUser(userVO);
+		if (errors.hasErrors()) {
+			UserDTO userDTO = new UserDTO();
+			model.addAttribute("userDTO", userDTO);
+			userVO.setUserId(userDTO.getUserId());
+			userVO.setUserPw(userVO.getUserPw());
+
+		}
+		return "redirect:/index";
+
+	}
+
+	@PostMapping("/join2")
+	public String execJoin(@Valid UserDTO userDTO, Errors errors, Model model) {
+		// @Valid 입력데이터가 dto클래스로 캡슐화 되어 넘어올때 유효성을 체크하라는 어노테이션이다 /dto의 어노테니션 기준으로 체크
+
+		if (errors.hasErrors()) {
+			// 회원가입 실패시, 입력 데이터를 유지
+			model.addAttribute("userDTO", userDTO);
+			// errors.hasErrors() // 유효성 통과 못한 필드와 메세지 핸들링 유효성 검사에 실패한 필드가 있는지 확인.
+			UserVO userVO = new UserVO();
+			userVO.setUserId(userDTO.getUserId());
+			userVO.setUserPw(userDTO.getUserPw());
+			userService.joinUser(userVO);
+			return "redirect:/login/login";
+		}
+
+		Map<String, String> validatorResult = userService.validateHandling(errors);
+		for (String key : validatorResult.keySet()) {
+			model.addAttribute(key, validatorResult.get(key));
+
+		}
+
+		return "/join/join";
 
 	}
 

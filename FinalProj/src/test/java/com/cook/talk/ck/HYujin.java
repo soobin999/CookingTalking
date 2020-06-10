@@ -30,12 +30,12 @@ public class HYujin {
 
 
 		UserVO user = new UserVO();
-		user.setUserId("jyj@naver.com");
-		user.setUserPw(hhaa.encode("1234"));
-		user.setNickName("오늘의 요리왕");
+		user.setUserId("grand@naver.com");
+		user.setUserPw(hhaa.encode("0000"));
+		user.setNickName("하나하나");
 		user.setBirth(new Date(1994 - 06 - 05));
 		user.setGender(true);
-		user.setAccess(true);
+		user.setAccess(1);
 		user.setAuth(0);
 
 		userDao.join(user);
