@@ -40,23 +40,16 @@ public class AdminRestController {
 
 	}
 
-	@PostMapping("/admin/updateUserNickName") // 닉네임 업데이트
-	public String updateUserNickName(Model model, UserVO nickName) {
-		System.out.println(nickName);
-		aduserDAO.updateUserNickName(nickName);
-		return "admin/adUser";
-	}
+	/*
+	 * @PostMapping("/admin/updateUserNickName") // 닉네임 업데이트 public String
+	 * updateUserNickName(Model model, UserVO nickName) {
+	 * System.out.println(nickName); aduserDAO.updateUserNickName(nickName); return
+	 * "admin/adUser"; }
+	 */
 
 	@PostMapping("/admin/complain")
 	public void complain() {
 		// insertReply(String UserID);
-	}
-
-	@PostMapping("/admin/adUser")
-	public void adUser() {
-		// deleteUserId(UserDTO userID);
-		// searchUserByEmail(UserDTO userEmail);
-		//
 	}
 
 	@PostMapping("/admin/adRecipe")

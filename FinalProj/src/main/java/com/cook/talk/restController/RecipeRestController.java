@@ -23,10 +23,10 @@ public class RecipeRestController {
 	@Autowired(required = false)
 	RecipeService recipeService;
 
-	@RequestMapping(value = "/chosung", method = RequestMethod.GET)
-	public List<String> chosung(IngrVO ingrVO, HttpSession session, int cs) {
+	@RequestMapping(value = "/chosung", method = RequestMethod.POST)
+	public List<String> chosung(IngrVO ingrVO, int cs) {
 
-		// 재료 리스트
+		// 초성별 재료리스트
 		List<String> ingrs = recipeService.ingrNameList(cs);
 
 		return ingrs;
@@ -35,13 +35,8 @@ public class RecipeRestController {
 
 	@RequestMapping(value = "/searched", method = RequestMethod.POST)
 	public List<String> searched(String ingrName) {
-		
-		//recipeService.searched(ingrName);
-//		recipeService.getSearchedIngrName(ingrName);
-		//ingrName.getIngrName();
-		//System.out.println("ingrVO" + ingrName);
+
 		return recipeService.getSearchedIngrName(ingrName);
-		//return recipeService.searched(ingrName);
 	}
 
 }
