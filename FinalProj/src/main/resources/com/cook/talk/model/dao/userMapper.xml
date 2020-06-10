@@ -5,24 +5,38 @@
 <mapper namespace="com.cook.talk.model.dao.UserDAO">
 
 <select id="findUserById" parameterType="String" resultType="com.cook.talk.model.VO.UserVO">
-SELECT userId, userPw, nickName, birth, user.auth, gender, access, userPic, rcpUploads FROM user where userId=#{id}
+SELECT * FROM user where userId=#{id}
 </select>
 
-<insert id="join" parameterType="UserDTO">
+<insert id="join" parameterType="com.cook.talk.model.VO.UserVO">
 insert into user(userId, userPw, nickName, birth, gender, access, user.auth, userPic, rcpUploads) 
 values (#{userId}, #{userPw}, #{nickName}, #{birth}, #{gender}, #{access}, #{auth}, #{userPic}, #{rcpUploads})
 </insert>
+<select id="idCheck" parameterType="String" resultType="com.cook.talk.model.dao.UserDAO">
+select count(*) form user where userId=#{userId}
+</select>
+
+<select id="userNickCheck" parameterType="String" resultType="com.cook.talk.model.dao.UserDAO">
+select count(*) form user where nickName=#{nickName}
+</select>
+
 
 <insert id="login">
-SELECT userId, userPw FROM user
-
-
+insert into user(userId, userPw, nickName, birth, gender)
+values (#{userId}, #{userPw}, #{nickName}, #{birth}, #{gender})
 </insert>
 
-
-
 <select id="fina_by_string_id" parameterType="String" resultType="UserDTO">
-SELECT * FROM USERINFO WHERE userId=#{userId}
+SELECT * FROM USER WHERE userId=#{userId}
 </select>
+
+<update id="updateUser" parameterType="com.cook.talk.model.VO.UserVO">
+update user set userPw=${userPw},nickName={nickName} where user userId=#{userId}
+</update>
+
+<delete id="deleteUser" parameterType="com.cook.talk.model.VO.UserVO">
+delete from user where userId=#{userId}
+</delete>
+
 </mapper>        
 
