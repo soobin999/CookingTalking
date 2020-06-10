@@ -30,8 +30,10 @@ import lombok.AllArgsConstructor;
 public class UserService implements UserDetailsService {
 	private UserDAO userDAO;
 
+	
+	
+	
 	// 회원가입시 유효성 체크
-
 	public Map<String, String> validateHandling(Errors errors) {
 		Map<String, String> validatorResult = new HashMap<>();
 
@@ -64,15 +66,13 @@ public class UserService implements UserDetailsService {
 		// 입력한 아이디 값을 통해 디비에서 값을 읽어오는것. 디비에있으면userDto 객체에 로그인 정보 담는다.
 
 		UserVO userEntity = userDAO.findUserById(username);
-		
 		System.out.println(userEntity);
-		
-		List<GrantedAuthority> authorities = new ArrayList<>();
 
+		List<GrantedAuthority> authorities = new ArrayList<>();
 		if ((userEntity.getUserId()).equals(username)) {
 			authorities.add(new SimpleGrantedAuthority(userEntity.getAuth() == 0 ? Role.MEMBER.getValue() : null));
 
-			// authorities.add(new SimpleGrantedAuthority 롤 부여코드  
+			// authorities.add(new SimpleGrantedAuthority 롤 부여코드
 		} else {
 			authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
 

@@ -1,11 +1,10 @@
 package com.cook.talk.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cook.talk.model.VO.QnAVO;
@@ -40,12 +39,14 @@ public class AdminRestController {
 
 	}
 
-	/*
-	 * @PostMapping("/admin/updateUserNickName") // 닉네임 업데이트 public String
-	 * updateUserNickName(Model model, UserVO nickName) {
-	 * System.out.println(nickName); aduserDAO.updateUserNickName(nickName); return
-	 * "admin/adUser"; }
-	 */
+	@PostMapping("/admin/updateUserNickName") // 닉네임 업데이트
+	public String updateUserNickName(@ModelAttribute("userVO") UserVO nickName
+			) {
+		System.out.println(nickName);
+		aduserDAO.updateUserNickName(nickName);
+		System.out.println(nickName+"로 변경하자 ");
+		return "수정되었습니다.";
+	}
 
 	@PostMapping("/admin/complain")
 	public void complain() {

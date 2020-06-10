@@ -2,19 +2,18 @@ package com.cook.talk.model.VO;
 
 import java.sql.Date;
 
+import lombok.Builder;
 
 //import lombok.AllArgsConstructor;
 
-
 import lombok.Data;
 
-
 import org.apache.ibatis.type.Alias;
+import org.springframework.context.annotation.Configuration;
 
 @Alias("userVO")
+@Configuration
 @Data
-
-
 public class UserVO {
 	private String userId;
 	private String userPw;
@@ -27,6 +26,4 @@ public class UserVO {
 	private int rcpUploads;
 	private int followers;
 
-	
-	
 }

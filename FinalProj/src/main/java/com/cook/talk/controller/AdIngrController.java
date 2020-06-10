@@ -10,7 +10,7 @@ import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.dao.AdIngrDAO;
 
 @Controller
-public class adIngrController {
+public class AdIngrController {
 	@Autowired(required = false)
 	AdIngrDAO adingrDAO;
 

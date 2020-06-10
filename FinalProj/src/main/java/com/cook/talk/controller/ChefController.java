@@ -15,7 +15,9 @@ public class ChefController {
 
 	@GetMapping("/chefRank")
 	public String chefRank(Model model,String status) {
+		status="rcpUploads";
 		model.addAttribute("chefList", chefDAO.allSelectChef(status));
+		System.out.println( chefDAO.allSelectChef(status));
 		return "/chef/chefRank";
 	}
 
@@ -26,6 +28,11 @@ public class ChefController {
 		model.addAttribute("follow",chefDAO.selectFollow(userId, chefId));
 		model.addAttribute("chefInfo",chefDAO.selectRecipe(chefId));
 		model.addAttribute("chefDetail",chefDAO.selectChefDetail(chefId));
+		System.out.println(chefDAO.selectFollow(userId, chefId));
+		System.out.println();
+		System.out.println(chefDAO.selectRecipe(chefId));
+		System.out.println();
+		System.out.println(chefDAO.selectChefDetail(chefId));
 		return "/chef/chefInfo";
 	}
 	
