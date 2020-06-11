@@ -11,9 +11,11 @@ $(function() {
 				data : {cs :value},
 				/*dataType : 'JSON',*/
 				success : function(data){
-					console.log(data)
-					/*$('#ingrList').text();*/
+					console.log(data);
+					$('#ingrList').text(data);
 					/*console.log(('#ingrList').text());*/
+					
+					
 				},
 				error : function(){
 					alert("Chosung Error");
@@ -24,8 +26,8 @@ $(function() {
 	  $('#ingrSearchInRefri').on('change', ingrSearch);
 	  $('#btnIngrSearch').on('click', ingrSearch);
 /*	selectedIngr();
-	enterkey();  도대체 여기는 왜자꾸 콘솔에서 에러 뜨냐구.. 
-	chosung();*/
+	enterkey();  도대체 여기는 왜자꾸 콘솔에서 에러 뜨냐구.. */
+	
 })
 
 /* 엔터쳤을 때 페이지이동 없이 처리하기 위해  but 지금 엔터키 안먹힘*/
@@ -46,11 +48,11 @@ function ingrSearch() {
 			type : "POST",
 			url : "/searched",
 			data : {ingrName : key},
-			dataType : 'JSON',
+			/*dataType : 'JSON',*/
 			success : function(data) {
 				var result = $('#searchedIngr');
 				$.each(data, function(index, value){
-					var list = '<p>' + value + '</p>';
+					var list = '<button>' + value + '</button><br>';
 					if(index == 0) result.html(list);
 					else result.append(list);
 				});

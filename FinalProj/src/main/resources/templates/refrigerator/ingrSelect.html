@@ -24,9 +24,8 @@ $(document).ready(function(){
 		<ul id="searchedIngr"></ul> <!-- 검색한 재료가 나오는 영역 -->
 
 		<!-- chosung -->	
-		<!-- chosung int cs를 못 받아오는 것 같습니다 ㅠㅠ 수빈양.. -->
-		<button class="chosung" id="r" th:value="0">ㄱ</button>
-		<button class="chosung" id="s" th:value="1">ㄴ</button>
+		<button class="chosung" th:value="0">ㄱ</button>
+		<button class="chosung" th:value="1">ㄴ</button>
 		<button class="chosung" th:value="2">ㄷ</button>
 		<button class="chosung" th:value="3">ㄹ</button>
 		<button class="chosung" th:value="4">ㅁ</button>
@@ -41,15 +40,15 @@ $(document).ready(function(){
 		<button class="chosung" th:value="13">ㅎ</button>
 
 
-	</form><!-- <!-- form tag가 두개 --> -->
+	</form>
 	<!-- 재료 리스트 가져오기 -->
+	<form>
 	<div class="result-area" id="ingrList">
 			<table>
 			<tbody th:id="result">
 			
 				<tr th:each="ingrs : ${ingrs}">
-				<td><button th:class="button" th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}" data-area=""></button></td>
-					<!-- <td th:text="${ingrs.ingrName}"></td> -->
+				<td><button th:class="ingrButton" th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}" data-area=""></button></td>
 				</tr>
 			</tbody>
 		</table>
