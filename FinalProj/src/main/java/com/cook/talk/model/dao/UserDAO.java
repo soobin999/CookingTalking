@@ -1,4 +1,5 @@
 package com.cook.talk.model.dao;
+
 import java.util.Optional;
 
 
@@ -7,32 +8,33 @@ import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.UserVO;
 
-
 @Mapper
+
 @Service
+
+
+
 public interface UserDAO {
-	
-	
-	public void insertUser(UserVO user);
 
 
-	public int userIdCheck(String userId);
-
-
+	public int idCheck(String userId);
+	//아이디 중복체크 
 	public int userNickCheck(String nickName);
-
-	public int updateUser(UserVO user);
+	//닉네임 중복 체크 
+	public int updateUser(UserVO userVO);
 
 	public UserVO findUserById(String id);
 
-	void join(UserVO userVO) throws Exception;
+	public void join(UserVO user) throws Exception;
 
-	public int login(UserVO user);
+	public int login(UserVO userVO);
 
 	public Optional<UserVO> findByEmail(String userEmail);
 
 	public static void setPassword(String encode) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
+
 }

@@ -10,15 +10,16 @@
 
 </head>
 <body>
-	<h2>회원정보 보이기, 수정하기</h2>
+	<h2>회원정보 보이기, 수정하기, 삭제하기</h2>
 	<div id="basic">
-
-		<table border="1" id="IngrTable">
+		<table border="1" id="AduserId">
 
 			<thead>
 				<tr>
+					<th>삭제</th>
 					<th>유저 아이디</th>
 					<th>유저 닉네임</th>
+					<!-- <th>유저 닉네임 수정하기</th> -->
 					<th>유저 생일</th>
 					<th>유저 성별</th>
 					<th>유저 or 관리자</th>
@@ -29,56 +30,171 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="userList:${UserList}">
-					<td><input type="checkbox" name="delete_user_ids"
-						value="${data.user_id}" /></td>
+		
+				<tr th:each="user : ${UserList}">
+					<td><button th:class="delete_btn" th:value='${user.userId}'>삭제하기</button></td>
 
-					<td th:text="${userList.userId}">유저 아이디</td>
-					<td th:text="${userList.nickName}">유저 닉네임</td>
-					<td th:text="${userList.birth}">유저 생일</td>
-					<td th:text="${userList.gender}">유저 성별</td>
-					<td th:text="${userList.access}">유저 or 관리자 확인</td>
-					<td th:text="${userList.auth}">인증 확인</td>
-					<td th:text="${userList.userPic}">유저 프로필 사진</td>
-					<td th:text="${userList.rcpUploads}">레시피 업로드 개수</td>
-					<td th:text="${userList.followers}">유저 팔로워 수</td>
+
+					<td>
+					<input type="text" id="enter_update_ID"
+						name="userId" th:value="${user.userId}" readonly>
+					</td>
+					<td><input type="text" id="enter_update_nickName"
+						name="nickName" th:value="${user.nickName}">
+						 <!-- 	 <input type="text"		name="nickName" th:value="${user.nickName}"> -->
+						<!-- <input type="submit" th:value="${user.nickName}">Submit --></td>
+					<td th:text="${user.birth}">유저 생일</td>
+					<td th:text="${user.gender}">유저 성별</td>
+					<td th:text="${user.access}">유저 or 관리자 확인</td>
+					<td th:text="${user.auth}">인증 확인</td>
+					<td th:text="${user.userPic}">유저 프로필 사진</td>
+					<td th:text="${user.rcpUploads}">레시피 업로드 개수</td>
+					<td th:text="${user.followers}">유저 팔로워 수</td>
 				</tr>
 			</tbody>
 		</table>
-
 	</div>
-	
-	
 	<script>
-	//자바 스크립트 ajax 실행해야합니다. https://onecutwook.tistory.com/5
-	function deleteReport(){
-        var cnt = $("input[name='reportChkBxRow']:checked").length;
-        var arr = new Array();
-        $("input[name='reportChkBxRow']:checked").each(function() {
-            arr.push($(this).attr('id'));
-        });
-        if(cnt == 0){
-            alert("선택된 글이 없습니다.");
-        }
-        else{
-            $.ajax = {
-                type: "POST"
-                url: "OOOO.do"
-                data: "RPRT_ODR=" + arr + "&CNT=" + cnt,
-                dataType:"json",
-                success: function(jdata){
-                    if(jdata != 1) {
-                        alert("삭제 오류");
-                    }
-                    else{
-                        alert("삭제 성공");
-                    }
-                },
-                error: function(){alert("서버통신 오류");}
-            };
-        }
-    }
+		
+	</script>
+
+	<script type="text/javascript"> 
+	//하아 개빡치네 ㅋㅋㅋㅋㅋㅋ 업데이트 메서드까지는 다녀오는데 그 이후에 값을 받아오지 못합니다.... AdUserController에 method
+		var nickName = document.getElementById("enter_update_nickName");
+		var userId = document.getElementById("enter_update_ID");
+		var ENTER_KEY = 13;
+		console.log(userId);
+		nickName.addEventListener("keyup", function(event) {
+			if (event.keyCode === ENTER_KEY) {
+				event.preventDefault();
+				alert(nickName.value + "로 변경되었습니다.");
+				console.log(userId);
+				console.log(nickName);
+				//userID값도 넣어주어야 됩니다.
+				 $.ajax({
+					url : './admin/updateUserNickName',
+					data : {
+						userId : userId.value,
+						nickName : nickName.value	
+					},
+					method : "POST",
+				}).done(function(response) {
+					$('#basic').load("admin/adUser");
+				});
+				 
+				
+			} else {
+				return false;
+			}
+		});
+	</script>
+
+
+
+	<!-- <script type="text/javascript">
+		var enterInPut = document.getElementById("enter_update_nickName");
+		var ENTER_KEY = 13;
+		enterInPut.addEventListener("enter")
+	</script> -->
+	<script th:inline="javascript">
+		$(".delete_btn").click(function() {
+			/*          alert($(this).attr('value')); */
+			var id = $(this).attr('value');
+
+			if (confirm($(this).attr('value') + "를 삭제 하시겠습니까?")) {
+				$.ajax({
+					url : './admin/deleteUserID',
+					data : {
+						userId : id
+					},
+					method : "POST",
+				}).done(function(response) {
+					$('#basic').load("admin/adUser");
+				});
+			} else {
+				return false;
+			}
+
+		});
+	</script>
+	<script>
+		$(".update_btn").click(function() {
+			/*          alert($(this).attr('value')); */
+			var nick = $(this).attr('value');
+
+			if (confirm($(this).attr('value') + "수정하시겠습니까?")) {
+				$.ajax({
+					url : './admin/updateUserNickName',
+					data : {
+						nickName : nick
+					},
+					method : "POST",
+				}).done(function(response) {
+					$('#basic').load("admin/adUser");
+				});
+			} else {
+				return false;
+			}
+
+		});
+	</script>
+
+
+	<script>
+		/* 	function update_Id() {
+
+				var nick = ${'input selector'}.val();
+				/* 	var nick = $(this).attr('value'); 
+
+				console.log(nick); */
+		/* if (confirm("유저 아이디를 변경 하시겠습니까?")) {
+			$.ajax({
+				url : './admin/updateUserNickName',
+				data : {
+					nickName : nick
+				},
+				type : "post",
+				success : function(result) {
+					$('#basic').load("admin/adUser");
+
+				}
+			});
+
+		} else {
+
+			return false;
+		}
+		}; */
+	</script>
+
+	<!--<input onKeyPress="javascript:if(event.keyCode==13){update_Id()}"
+						type="text" th:class="cnt" th:value="${userList.nickName}">-->
+	<!-- 
+		/*  $.ajax(){
+		 	url:'/admin/deleteUserID',
+		 	data:id,
+		 	type:'post',
+		 	success: function(data){
+		 		alert : "삭제가 되었습니다."
+		 		
+		 	}
+		 }
+		}); */ -->
+	<!-- 폼태그 넣어서 쉉하려고햇음	<form action="searchIngr" methodd="POST">
+		<input type="text" name="searchIngrList" class=""
+			placeholder="재료명 입력" style="width: 25%">
+	</form>
 	
-	 </script>
+			if(confirm($(this).attr('value') + "를 삭제하시겠습니까?"))
+	
+	<td th:text="${userList.userId}">
+	<input type="text" size="20"
+		style="width: 100%;">유저 아이디</td>
+		
+		<td><input type="text" name="update_id"
+			th:value="${userList.userId}" onKeypress="update_Id()"></td>
+		
+		"javascript:if(event.keyCode==13){update_Id()}"
+		-->
 </body>
 </html>

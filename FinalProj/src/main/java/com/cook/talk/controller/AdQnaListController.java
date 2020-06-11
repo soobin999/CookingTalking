@@ -11,7 +11,7 @@ import com.cook.talk.model.dao.QnADAO;
 import com.cook.talk.model.service.MainService;
 
 @Controller
-public class adQnaListController {
+public class AdQnaListController {
 
 	@Autowired(required = false)
 	private QnADAO qnADao;

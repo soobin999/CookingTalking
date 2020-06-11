@@ -7,12 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dto.UserDTO;
+
 @Mapper
 public interface AdUserDAO {
 	public List<UserDTO> allSelectUserId();
+
 	public void deleteUserID(UserVO userId);
-	public void updateUserNickName(UserVO nickName);
+
+	/* public boolean deleteUserID(); */
+
+	public void updateUserNickName(UserVO userVO);
+
 	public void searchUserByEmail(UserVO userEmail);
 
 }
-	

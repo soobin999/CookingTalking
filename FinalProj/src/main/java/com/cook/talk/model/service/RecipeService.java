@@ -13,18 +13,17 @@ public interface RecipeService {
 	//재료 이름 리스트
 	public List<String> ingrNameList(int cs);
 
+	//재료 검색하기 in 냉파
+	public String searched(IngrVO ingrVO);
+
+	
+	public List<String> getSearchedIngrName(String ingrName);
 	
 	
 	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
-	
 
-
-	//재료 검색하기 in 냉파
-	public String searched(IngrVO ingrVO);
-
-	
 }
 
 

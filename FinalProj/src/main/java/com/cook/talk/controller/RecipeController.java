@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
@@ -31,18 +30,19 @@ public class RecipeController {
 		return "refrigerator/ingrSelect";
 	}
 
+	@GetMapping("/rcmmRecipe")
+	public String rcmmRecipe(Model model){
+		return "refrigerator/rcmmRecipe";
+	}	
 	
 	
-	
-	
-	
-	@GetMapping(value = "/list")
+	@GetMapping(value = "/newlist")
 	public String getRecipeList(Model model) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();
 		model.addAttribute("recipeList", recipeList);
 		for( RecipeDTO dto: recipeList )
 		log.info("list==>"+dto);
-		return "recipe/list";
+		return "recipe/newlist";
 	}	
 	
 	
