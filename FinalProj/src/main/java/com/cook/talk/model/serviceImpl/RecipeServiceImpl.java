@@ -52,5 +52,11 @@ public class RecipeServiceImpl implements RecipeService{
 		List<RecipeDTO> recipeList = recipeDAO.getRecipeList();
 		return recipeList;
 	}
+	
+	@Override
+	public int recipeCount() {
+		int recipeCount = recipeDAO.recipeCount();
+		return recipeCount();
+	}
 
 }

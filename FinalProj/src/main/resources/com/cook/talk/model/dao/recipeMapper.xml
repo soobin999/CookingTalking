@@ -53,9 +53,12 @@
 	<select id="getRecipeList" resultMap="recipeDTO">
 	SELECT rcpCode, rcpTitle, nickname, rcpDate, rcpPic
 	FROM recipe.recipedto
-	ORDER BY rcpDate DESC;	
+	ORDER BY rcpDate DESC
 	</select>	
-		
+	
+	<select id="recipeCount" resultType="int">
+	SELECT count(*) from rcp
+	</select>	
 
 <!-- <select id="getIngrName1" parameterType="String" resultType="String">
 	SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}

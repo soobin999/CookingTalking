@@ -36,14 +36,14 @@ public class RecipeController {
 	}	
 	
 	
-	@GetMapping(value = "/newlist")
+	@GetMapping(value = "recipe/newList")
 	public String getRecipeList(Model model) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();
 		model.addAttribute("recipeList", recipeList);
-		for( RecipeDTO dto: recipeList )
-		log.info("list==>"+dto);
-		return "recipe/newlist";
-	}	
-	
+		model.addAttribute("recipeCount", recipeDAO.recipeCount());
+		for (RecipeDTO dto : recipeList)
+			log.info("list==>" + dto);
+		return "recipe/newList";
+	}
 	
 	}

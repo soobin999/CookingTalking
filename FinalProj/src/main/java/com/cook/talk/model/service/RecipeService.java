@@ -23,6 +23,9 @@ public interface RecipeService {
 	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
+	
+	//레시피 총갯수
+	public int recipeCount();
 
 }
 

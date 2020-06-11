@@ -44,7 +44,7 @@ public void configure(WebSecurity web) throws Exception{
                     .antMatchers("/user/mypage").hasRole("Role_MEMBER")
                     .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
             
-                    .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank","/loginIndex").permitAll()
+                    .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank","/loginIndex","recipe/**").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user/mypage").hasRole("MEMBER")
                     .anyRequest().authenticated();
