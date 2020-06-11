@@ -56,7 +56,6 @@
 		<!-- validation -->
 
 		<dependency>
-
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.0.0.GA</version>
