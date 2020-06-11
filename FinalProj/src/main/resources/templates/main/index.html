@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -10,7 +10,7 @@
 <meta name="google-site-verification"
 	content="3eLg1zfxeZ_oO6oOOsvIxbtcW-FtDsViPVm7-CYOl8w">
 <title>쿠킹토킹</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
 
@@ -66,11 +66,11 @@ iframe
 	<div class="gnb_nav text-center" style='background: #FF8000'>
 		<ul class="gnb_nav_ea10">
 			<li><a href="/index.html" class="active">홈</a></li>
-			<li><a href="/recipe/list.html">레시피</a></li>
-			<li><a href="/chef/chef_list.html">냉장고파먹기</a></li>
-			<li><a href="/talk/list.html">토크</a></li>
-			<li><a href="/chef/chef_list.html">쉐프</a></li>
-			<li><a href="/admin/admin.html">고객센터</a></li>
+			<li><a href="/recipe">레시피</a></li>
+			<li><a href="/ingrSelect">냉장고파먹기</a></li>
+			<li><a href="/talk">토크</a></li>
+			<li><a href="/chefRank">쉐프</a></li>
+			<li><a href="/adminMain">고객센터</a></li>
 		</ul>
 	</div>
 <!-- header End -->
@@ -91,13 +91,13 @@ iframe
 			<img src="img/footer_logo.png">
 			<ul class="btm_stats">
 
-				<li><a href="/chef/apply.html" style="color: #fff;"><span>
-				<div><img src="img/btn_icon1.png">
-							</div></span>총 쉐프수</a><b>1</b></li>
+				<li><a href="/chef/apply.html" style="color: #fff;"><span><div>
+								<img src="img/btn_icon1.png" th:each='total:${total}'>
+							</div></span>총 쉐프수</a><b th:text='${total.totalChef}'></b></li>
 				<li><a href="/recipe/list.html" style="color: #fff;"><span><img
-							src="img/btn_icon2.png"></span>총 레시피수</a><b>1</b></li>
-				<li><span><img src="img/btn_icon3.png"></span>월 방문자수<b>1</b></li>
-				<li><span><img src="img/btn_icon4.png"></span>총 레시피 조회수<b>1</b></li>
+							src="img/btn_icon2.png"></span>총 레시피수</a><b th:text='${total.totalRecipe}'></b></li>
+				<li><span><img src="img/btn_icon3.png"></span>월 방문자수<b th:text='${total.totalTalk}'></b></li>
+				<li><span><img src="img/btn_icon4.png"></span>총 레시피 조회수<b th:text='${total.totalSearch}'></b></li>
 			</ul>
 
 		</div>

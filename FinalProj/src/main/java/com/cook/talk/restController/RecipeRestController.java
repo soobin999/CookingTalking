@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cook.talk.model.dao.RecipeDAO;
@@ -27,9 +25,9 @@ public class RecipeRestController {
 		return ingrs;
 	}
 
-	@RequestMapping(value = "/searched", method = RequestMethod.POST)
+	@PostMapping("/searched")
 	public List<String> searched(String ingrName) {
-
+		System.out.println(ingrName);
 		return recipeService.getSearchedIngrName(ingrName);
 	}
 
