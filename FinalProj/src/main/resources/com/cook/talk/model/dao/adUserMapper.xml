@@ -18,7 +18,7 @@
 		update user
 		set
 		nickName = #{nickName}
-		where userId = #{userId}
+		where userId=#{userId}
 	</update>
 
 

@@ -23,6 +23,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 @Autowired
 private UserService userDetailsService;
+
+@Autowired
+private Handler handler;
+
 @Bean
 public PasswordEncoder passwordEncoder() {
    return new BCryptPasswordEncoder();
@@ -36,7 +40,10 @@ public void configure(WebSecurity web) throws Exception{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http .authorizeRequests() //페이지 권한 설정
-
+                  
+                    .antMatchers("/user/mypage").hasRole("Role_MEMBER")
+                    .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
+            
                     .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank","/loginIndex").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user/mypage").hasRole("MEMBER")
@@ -44,12 +51,11 @@ public void configure(WebSecurity web) throws Exception{
                     
                     
 
-                 
         //접근 가능 
                  //  .anyRequest().authenticated();
                 // .antMatchers("/**").authenticated();
                 //인증 필요로 함. 
-                 
+
                     http
                     //.and()//로그인 설정 
                     .csrf()
@@ -58,7 +64,7 @@ public void configure(WebSecurity web) throws Exception{
                     http
                     .formLogin()
                     .loginPage("/login")
-                    .defaultSuccessUrl("/index",true)
+                    .defaultSuccessUrl("/index")
                     .permitAll()
                     
                     .and()
