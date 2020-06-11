@@ -41,7 +41,7 @@
 		</association>
 	
 		<association property="typeCatVO" javaType="TypeCatVO">
-			<result column="cookSituaton" property="cookSituaton" />
+			<result column="cookSituaton" property="cookSituation" />
 			<result column="cookMethod" property="cookMethod" />
 			<result column="cookType" property="cookType" />
 		</association>
@@ -52,21 +52,17 @@
 	CREATE View RecipeDTO AS
 	SELECT rcp.rcpCode, rcp.rcpTitle, user.nickname, rcp.rcpDate, rcp.rcpViews, 
 	rcp.rcpExpl, rcp.video, rcp.rcpPic, rcp.personnel, rcp.cookTime, rcp.level,
-	typecat.cookType, typecat.cookSituation, typecat.cookMethod, 
-	rcpingr.userIngr, rcpingr.ingrWeigh,
-	rcporder.cookOrder, rcporder.cookCont, rcporder.cookPic
-	FROM rcp, typecat, user, rcporder, rcpingr, user
+	typecat.cookType, typecat.cookSituation, typecat.cookMethod
+	FROM rcp, user, typecat
 	WHERE rcp.typeCode = typeCat.typeCode
 	AND rcp.userId = user.userId
-	AND rcp.rcpCode = rcporder.rcpCode
-	AND rcp.rcpCode = rcpingr.rcpCode
-	</select>
-
-
-	<select id="getRecipeList" resultMap="recipeDTO">
-	SELECT * FROM RecipeDTO
 	</select>
 	
+	<select id="getRecipeList" resultMap="recipeDTO">
+	SELECT rcpCode, rcpTitle, nickname, rcpDate, rcpPic
+	FROM recipe.recipedto
+	ORDER BY rcpDate DESC;	
+	</select>	
 		
  
 

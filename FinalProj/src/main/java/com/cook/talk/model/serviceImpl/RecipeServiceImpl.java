@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
-import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
@@ -25,8 +24,18 @@ public class RecipeServiceImpl implements RecipeService{
 		List<String> ingrNameList = recipeDAO.getIngrName(chosungList[cs], chosungList[cs+1]);
 		return ingrNameList;
 	}
-	
 
+	@Override
+	public String searched(IngrVO ingrVO) {
+		if (ingrVO.getIngrName() != null) {
+			return ingrVO.getIngrName();
+		} else {
+			return "일치하는 재료가 없습니다";
+		}
+	}
+
+	
+	
 
 	@Override
 	public List<RecipeDTO> getRecipeList() {

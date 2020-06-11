@@ -7,14 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.cook.talk.model.VO.RecipeVO;
+
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
 
-import jdk.internal.jline.internal.Log;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class RecipeController {
 	
@@ -32,12 +32,18 @@ public class RecipeController {
 	}
 
 	
+	
+	
+	
+	
 	@GetMapping(value = "/list")
 	public String getRecipeList(Model model) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();
 		model.addAttribute("recipeList", recipeList);
-		System.out.println("list==>"+recipeList);
+		for( RecipeDTO dto: recipeList )
+		log.info("list==>"+dto);
 		return "recipe/list";
-	}
+	}	
+	
 	
 	}
