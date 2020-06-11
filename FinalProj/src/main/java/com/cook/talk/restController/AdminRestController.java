@@ -53,13 +53,6 @@ public class AdminRestController {
 		// insertReply(String UserID);
 	}
 
-	@PostMapping("/admin/adUser")
-	public void adUser() {
-		// deleteUserId(UserDTO userID);
-		// searchUserByEmail(UserDTO userEmail);
-		//
-	}
-
 	@PostMapping("/admin/adRecipe")
 	public void adRecipe() {
 	}

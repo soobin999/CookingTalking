@@ -5,20 +5,20 @@ import java.util.Optional;
 import javax.xml.ws.ServiceMode;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.SqlSession;
 
 import com.cook.talk.model.VO.UserVO;
 
 @Mapper
-
 @ServiceMode
 
 public interface UserDAO {
 
+	public int userIdCheck(String userId);
+	
+	public int userNickNameCheck(String nickName);
 
-	public int idCheck(String userId);
-	//아이디 중복체크 
-	public int userNickCheck(String nickName);
-	//닉네임 중복 체크 
+	// 닉네임 중복 체크
 	public int updateUser(UserVO userVO);
 
 	public UserVO findUserById(String id);
@@ -33,6 +33,5 @@ public interface UserDAO {
 		// TODO Auto-generated method stub
 
 	}
-
 
 }

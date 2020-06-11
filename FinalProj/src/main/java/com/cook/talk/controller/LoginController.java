@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dao.UserDAO;
 import com.cook.talk.model.dto.UserDTO;
 import com.cook.talk.model.service.UserService;
+import com.cook.talk.model.serviceImpl.UserServiceImpl;
 
 import lombok.AllArgsConstructor;
 import net.bytebuddy.asm.Advice.Return;
@@ -35,7 +35,8 @@ public class LoginController {
 	private UserVO userVO;
 	@Autowired
 	private UserDAO userDAO;
-
+	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, HttpServletRequest req) {
 		model.addAttribute("message", req.getServletContext());
@@ -92,34 +93,27 @@ public class LoginController {
 			}
 		}
 		return "/user/login";
-
 	}
 
-	private UserService userService;
+	private UserServiceImpl userServiceImpl;
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join(UserVO userVO) {
 		return "join/join";
-	}// 화면
+	}// 화면보여주는 것.
 
+	
 	@PostMapping("/join")
 	public String execJoin(@Valid UserVO userVO, Errors errors, Model model) {
-		userService.joinUser(userVO);
-		if (errors.hasErrors()) {
-			UserDTO userDTO = new UserDTO();
-			model.addAttribute("userDTO", userDTO);
-			userVO.setUserId(userDTO.getUserId());
-			userVO.setUserPw(userVO.getUserPw());
-
-		}
+		userServiceImpl.joinUser(userVO);
 		return "redirect:/index";
 
-	}
+	}// 기능
 
+	
 	@PostMapping("/join2")
 	public String execJoin(@Valid UserDTO userDTO, Errors errors, Model model) {
 		// @Valid 입력데이터가 dto클래스로 캡슐화 되어 넘어올때 유효성을 체크하라는 어노테이션이다 /dto의 어노테니션 기준으로 체크
-
 		if (errors.hasErrors()) {
 			// 회원가입 실패시, 입력 데이터를 유지
 			model.addAttribute("userDTO", userDTO);
@@ -127,14 +121,13 @@ public class LoginController {
 			UserVO userVO = new UserVO();
 			userVO.setUserId(userDTO.getUserId());
 			userVO.setUserPw(userDTO.getUserPw());
-			userService.joinUser(userVO);
+			userServiceImpl.joinUser(userVO);
 			return "redirect:/login/login";
 		}
-
-		Map<String, String> validatorResult = userService.validateHandling(errors);
+		
+		Map<String, String> validatorResult = UserServiceImpl.validateHandling(errors);
 		for (String key : validatorResult.keySet()) {
 			model.addAttribute(key, validatorResult.get(key));
-
 		}
 
 		return "/join/join";

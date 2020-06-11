@@ -5,16 +5,18 @@
 <mapper namespace="com.cook.talk.model.dao.UserDAO">
 
 <select id="findUserById" parameterType="String" resultType="com.cook.talk.model.VO.UserVO">
-SELECT * FROM user where userId=#{id}
+SELECT * FROM user where userId=#{userId}
 </select>
 
-<insert id="join" parameterType="com.cook.talk.model.VO.UserVO">
+<insert id="join" parameterType="com.cook.talk.security.Join">
 insert into user(userId, userPw, nickName, birth, gender, access, user.auth, userPic, rcpUploads) 
 values (#{userId}, #{userPw}, #{nickName}, #{birth}, #{gender}, #{access}, #{auth}, #{userPic}, #{rcpUploads})
 </insert>
-<select id="idCheck" parameterType="String" resultType="com.cook.talk.model.dao.UserDAO">
-select count(*) form user where userId=#{userId}
+
+<select id="userIdCheck" parameterType="java.lang.String" resultType="Integer">
+		SELECT COUNT(*) FROM user WHERE userId=#{userId}
 </select>
+
 
 <select id="userNickCheck" parameterType="String" resultType="com.cook.talk.model.dao.UserDAO">
 select count(*) form user where nickName=#{nickName}
