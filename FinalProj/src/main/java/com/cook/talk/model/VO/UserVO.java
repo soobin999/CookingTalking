@@ -13,6 +13,8 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("userVO")
 @Data
+
+
 public class UserVO {
 	private String userId;
 	private String userPw;
@@ -25,4 +27,6 @@ public class UserVO {
 	private int rcpUploads;
 	private int followers;
 
+	
+	
 }

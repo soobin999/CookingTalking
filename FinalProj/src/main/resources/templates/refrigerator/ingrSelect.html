@@ -5,15 +5,19 @@
 <title>냉장고 파먹기(정민)</title>
 </head>
 <body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/js/recipe.js"></script>
+	
 	<!-- 냉장고 파먹기 재료 검색창 -->
-	<form>
-	<input type="text" title="재료를 검색하세요" id="ingrSearchInRefri"
+	<form onsubmit="return false">
+	<input type="text" onsubmit="return false" title="재료를 검색하세요" id="ingrSearchInRefri"
 		name="ingrSearchInRefri" class="" placeholder="재료 검색">
 		<button type="button" class="" id="btnIngrSearch">검색</button>
-	<script src="/js/recipe.js"></script>
+		<ul id="searchedIngr"></ul><!-- 검색한 재료가 나오는 영역 -->
 	</form>
 	
 	<!-- 재료 리스트 가져오기 -->
+	<div id="ingrList">
 	<table>
 	<tbody>
 	<tr th:each="ingrs : ${ingrs}">
@@ -21,10 +25,9 @@
 	</tr>
 	</tbody>
 	</table>
-	
+	</div>
 	<!-- 선택한 재료 담는 곳 -->
 	<div class="" id="selectedIngr" data-area="selectedIngr" value=""></div>
-
 	
 </body>
 </html>
