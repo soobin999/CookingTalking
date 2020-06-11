@@ -38,8 +38,6 @@ function ingrSearch1(){
 					});
 						list=list+'</div>';
 						result.append(list);
-					
-					
 				},
 				/*	$('#ingrList').text();
 					console.log(('#ingrList').text());*/
