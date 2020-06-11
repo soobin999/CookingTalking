@@ -22,10 +22,8 @@ public class RecipeRestController {
 
 	@PostMapping("/chosung")
 	public List<String> chosung(int cs) {
-		System.out.println(cs);
 		// 초성별 재료리스트
 		List<String> ingrs = recipeService.ingrNameList(cs);
-		System.out.println(ingrs);
 		return ingrs;
 	}
 
