@@ -40,11 +40,12 @@ public class AdminRestController {
 	}
 
 	@PostMapping("/admin/updateUserNickName") // 닉네임 업데이트
-	public String updateUserNickName(@ModelAttribute("userVO") UserVO nickName
+	public String updateUserNickName(@ModelAttribute UserVO userVO
 			) {
-		System.out.println(nickName);
-		aduserDAO.updateUserNickName(nickName);
-		System.out.println(nickName+"로 변경하자 ");
+		System.out.println(userVO.getUserId());
+		System.out.println(userVO);
+		System.out.println(userVO.getNickName());
+		aduserDAO.updateUserNickName(userVO);
 		return "수정되었습니다.";
 	}
 

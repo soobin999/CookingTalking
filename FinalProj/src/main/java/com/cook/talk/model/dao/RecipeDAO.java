@@ -33,6 +33,6 @@ public interface RecipeDAO {
 	//레시피 삭제
 	public String deleteRecipe(RecipeDTO recipe);
 	
-	
+	public List<String> getIngrName1(String chosung1, String chosung2);
 	
 }

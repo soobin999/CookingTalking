@@ -16,7 +16,7 @@ public interface AdUserDAO {
 
 	/* public boolean deleteUserID(); */
 
-	public void updateUserNickName(UserVO nickName);
+	public void updateUserNickName(UserVO userVO);
 
 	public void searchUserByEmail(UserVO userEmail);
 

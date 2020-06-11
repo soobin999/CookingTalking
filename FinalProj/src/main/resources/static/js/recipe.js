@@ -3,15 +3,17 @@ $(function() {
 		    $(this).hide();
 		  });*/
 	  $(".chosung").click(function(){
-		  var value = $('#ingrList').val();
+		  var value = $(this).attr('value');
+		  console.log(value);
 			$.ajax({
 				type : "POST",
 				url : "/chosung",
-				data : {ingrList :value},
-				dataType : 'JSON',
+				data : {cs :value},
+				/*dataType : 'JSON',*/
 				success : function(data){
-					$('#ingrList').text();
-					console.log(('#ingrList').text());
+					console.log(data)
+					/*$('#ingrList').text();*/
+					/*console.log(('#ingrList').text());*/
 				},
 				error : function(){
 					alert("Chosung Error");

@@ -42,9 +42,9 @@ public void configure(WebSecurity web) throws Exception{
         http .authorizeRequests() //페이지 권한 설정
                   
                     .antMatchers("/user/mypage").hasRole("Role_MEMBER")
-                    .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
+				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
 				
-                    .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank","/loginIndex").permitAll()
+                    .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank","/loginIndex","/adminMain/**","/admin/**","/chosung").permitAll()
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user/mypage").hasRole("MEMBER")
                     .anyRequest().authenticated();

@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Data
 public class UserVO {
+	
+	
 	private String userId;
 	private String userPw;
 	private String nickName;
