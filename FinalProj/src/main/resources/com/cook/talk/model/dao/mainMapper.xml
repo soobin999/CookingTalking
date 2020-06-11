@@ -11,4 +11,9 @@
 			rcpCode= #{rcpCode}
 		</foreach>
 	</select>
+	
+	<select id="totalSelect" resultType="MainDTO">
+	select (select count(*) from user) as totalChef ,(select count(*) from rcp) as totalRecipe ,(select count(*) from search) as totalSearch ,
+(select  count(*) from talk) as totalTalk from user limit 1
+	</select>
 </mapper>
