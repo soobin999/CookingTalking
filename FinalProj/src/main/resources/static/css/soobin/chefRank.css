@@ -8,3 +8,18 @@ table{
 	text-align:'center';
 	
 } 
+.parent{
+	display:flex;
+}
+.forWidth{
+	width:10%;
+	margin:0 auto;
+	flex:1;
+	overflow:hidden;
+	text-align:center;
+}
+.slsl{
+	width:1000px;
+	margin:auto;
+	
+}

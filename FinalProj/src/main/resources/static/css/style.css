@@ -9148,3 +9148,72 @@ box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.40);}
 .common_sp_caption_rv_box {display: table-cell;width:100%;}
 .common_sp_caption_rv_img {display: table-cell; vertical-align: top; padding:0 0 0 6px;}
 .common_sp_caption_rv_img img {border-radius:3px;}
+
+
+
+/*관리자 고객요청함 페이지 */
+.accordion-row {
+  cursor: pointer;
+}
+
+.accordion {
+  display: none;
+  width: 100%;
+}
+
+.accordion-content {
+  display: none;
+}
+
+
+/* Only used to remove undeeded padding added by bootstrap */
+table.table.table-hover>tbody>tr>td {
+  padding: 0;
+}
+.qna_title{
+	float:left;
+	width: 25%;
+	
+}
+.qna_comment{
+	width:
+}
+.qna_date{
+	float:left;
+	width: 25%;
+}
+.qna_reply{
+	
+}
+.qna_user{
+	float:left;
+	width: 25%;
+}
+.qna_OX{
+	float:left;
+	width: 25%;
+}
+.result_Title{
+	float : left;
+		width: 25%;
+	
+}
+.result_Comment{
+	float : left;
+		width: 25%;
+}
+.result_Date{
+	float : left;
+		width: 25%;
+}
+.result_answer{
+	float : left;
+		width: 25%;
+}
+.result_userId{
+	float : left;
+		width: 25%;
+}
+
+
+

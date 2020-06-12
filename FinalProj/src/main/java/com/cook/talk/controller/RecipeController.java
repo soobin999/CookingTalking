@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
 
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class RecipeController {
 	
@@ -22,20 +23,6 @@ public class RecipeController {
 	@Autowired
 	RecipeDAO recipeDAO;
 
-	
-	
-	@GetMapping(value = "recipe/newlist")
-	public String getRecipeList(Model model, RecipeDTO recipe) {
-//		List<RecipeDTO> getRecipeList = RecipeService.allSelectRecipeList(recipe);
-//		model.addAttribute("getRecipeList", getRecipeList);
-		return "recipe/newlist";
-	}
-	
-	@PostMapping(value = "recipe/insertRecipe")
-	public String insertRecipeView(Model model) {
-		return "recipe/insertRecipe";
-	}	
-	
 	@GetMapping("/ingrSelect")
 	public String refrigeratorSearch(Model model) {
 		model.addAttribute("ingrs", recipeDAO.getIngrName("가", "나"));
@@ -46,21 +33,17 @@ public class RecipeController {
 	@GetMapping("/rcmmRecipe")
 	public String rcmmRecipe(Model model){
 		return "refrigerator/rcmmRecipe";
+	}	
+	
+	
+	@GetMapping(value = "recipe/newList")
+	public String getRecipeList(Model model) {
+		List<RecipeDTO> recipeList = recipeService.getRecipeList();
+		model.addAttribute("recipeList", recipeList);
+		model.addAttribute("recipeCount", recipeDAO.recipeCount());
+		for (RecipeDTO dto : recipeList)
+			log.info("list==>" + dto);
+		return "recipe/newList";
 	}
 	
-	@GetMapping(value = "recipe/recipeView")
-	public String recipeView(Model model) {
-		return "recipe/recipeView";
 	}
-	
-	@PostMapping(value = "recipe/updateRecipe")
-	public String updateRecipe(Model model) {
-		return "recipe/updateRecipe";
-	}
-	
-	@GetMapping(value = "recipe/deleteRecipe")
-	public String deleteRecipe(Model model) {
-		return "recipe/deleteRecipe";
-	}
-	
-}

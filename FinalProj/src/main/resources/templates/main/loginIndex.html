@@ -2,19 +2,14 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="-1">
-<meta property="fb:pages" content="1567451316868458">
 <meta name="title" content="title">
 <meta name="keywords" content="">
 <meta name="google-site-verification"
 	content="3eLg1zfxeZ_oO6oOOsvIxbtcW-FtDsViPVm7-CYOl8w">
 <title>쿠킹토킹</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/soobin.css">
-
+<link rel="stylesheet" type="text/css" href="css/soobin/index.css">
 <style type="text/css">
 iframe
 #_hjRemoteVarsFrame {
@@ -26,7 +21,7 @@ iframe
 }
 </style>
 </head>
-<body onload="slider.init();">
+<body>
 	<div class="gnb_top_wrap">
 		<div class="gnb_top">
 			<h1>
@@ -64,77 +59,187 @@ iframe
 	</div>
 	<div class="gnb_nav text-center" style='background: #FF8000'>
 		<ul class="gnb_nav_ea10">
-			<li><a href="/index.html" class="active">홈</a></li>
-			<li><a href="/recipe/list.html">레시피</a></li>
-			<li><a href="/chef/chef_list.html">냉장고파먹기</a></li>
+			<li><a href="/index" class="active">홈</a></li>
+			<li><a href="/recipe">레시피</a></li>
+			<li><a href="/chef">냉장고파먹기</a></li>
 			<li><a href="/talk/list.html">토크</a></li>
 			<li><a href="/chef/chef_list.html">쉐프</a></li>
 			<li><a href="/admin/admin.html">고객센터</a></li>
 		</ul>
 	</div>
-	<br><br><br><br><br>
-	
-	<div th:id="center">
-	<div th:id="slider">
-	<div th:class="slide" th:each="rcpList : ${rcpList}">
-	<img class="diapo" th:src="${rcpList.rcpPic}" alt="">
-	<div th:class="text">
-	<span th:class="title" th:value="${rcpTitle}"></span><br>
-		|smenu1|smenu2|smenu3|smenu4|
-	</div>
-	
-	</div>
-	</div>
-	</div>
-	
-	
-	
-	
-	
-	
-	<div th:class="recommand">
-	<h3 th:class="slidertitle">추천 레시피</h3>
-<div th:each="rcpList : ${rcpList}">
-<div th:class="secon">
-<div th:text="${rcpList.rcpPic}"></div>
-<div th:text="${rcpList.rcpTitle}">
-</div>
-</div>
-</div>
-</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br>
 
+<br>
+<br>
+<br>
+<br>
+	<div class="container">
+		<div class="row">
+			<div class="well">
+			<h4>추천 레시피</h4>
+				<div id="myCarousel" class="carousel slide">
+					<div class="carousel-inner">
+						<div class="item active" >
+							<div class="row" >
+								<div class="col-md-3" th:each='num:${#numbers.sequence(0,3)}'>
+									<div class="thumbnail">
+										<img src="http://placehold.it/300x200/" alt="Slide0">
+										<div class="caption">
+											<h3>ss</h3>
+											<p th:text='${rcpList[num].rcpTitle}'></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="item" >
+							<div class="row" >
+								<div class="col-md-3" th:each='num:${#numbers.sequence(4,7)}' >
+									<div class="thumbnail">
+										<img src="http://placehold.it/300x200/" alt="Slide1">
+										<div class="caption">
+											<h3>ss</h3>
+											<p th:text='${rcpList[num].rcpTitle}'></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="item" >
+							<div class="row" >
+								<div class="col-md-3" th:each='num:${#numbers.sequence(7,9)}' >
+									<div class="thumbnail">
+										<img src="http://placehold.it/300x200/" alt="Slide1">
+										<div class="caption">
+											<h3>ss</h3>
+											<p th:text='${rcpList[num].rcpTitle}'></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+
+					</div>
+					<a class="left carousel-control" href="#myCarousel"
+						data-slide="prev"><i class="fa fa-chevron-left fa-2x"></i></a> <a
+						class="right carousel-control" href="#myCarousel"
+						data-slide="next"><i class="fa fa-chevron-right fa-2x"></i></a>
+
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="container">
+		<div class="row">
+			<div class="well">
+			<h4>추천 레시피</h4>
+				<div id="myCarousel" class="carousel slide">
+					<div class="carousel-inner">
+						<div class="item active" >
+							<div class="row">
+								<div class="col-md-3" th:each='num:${#numbers.sequence(0,3)}'>
+									<div class="thumbnail">
+										<img src="http://placehold.it/300x200/" alt="Slide0">
+										<div class="caption">
+											<h3>ss</h3>
+											<p th:text='${rcpList[num].rcpTitle}'></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="item" >
+							<div class="row" >
+								<div class="col-md-3" th:each='num:${#numbers.sequence(4,7)}' >
+									<div class="thumbnail">
+										<img src="http://placehold.it/300x200/" alt="Slide1">
+										<div class="caption">
+											<h3>ss</h3>
+											<p th:text='${rcpList[num].rcpTitle}'></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="item" >
+							<div class="row">
+								<div class="col-md-3" th:each='num:${#numbers.sequence(7,9)}' >
+									<div class="thumbnail">
+										<img src="http://placehold.it/300x200/" alt="Slide1">
+										<div class="caption">
+											<h3>ss</h3>
+											<p th:text='${rcpList[num].rcpTitle}'></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+
+					</div>
+					<a class="left carousel-control" href="#myCarousel"
+						data-slide="prev"><i class="fa fa-chevron-left fa-2x"></i></a> <a
+						class="right carousel-control" href="#myCarousel"
+						data-slide="next"><i class="fa fa-chevron-right fa-2x"></i></a>
+
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<input th:type='hidden' th:value='${rcpList}' th:id='hiddenData'>
 	<div class="footer st2" style='background: #ff5100'>
 		<div class="container text-center">
 			<img src="img/footer_logo.png">
@@ -151,6 +256,9 @@ iframe
 
 		</div>
 	</div>
-<script src="/js/soobin.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="/js/soobin/index.js"></script>
+	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+
 </body>
 </html>

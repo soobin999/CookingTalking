@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class RcpComVO {
 
-	private String rcpcom;
+	private String rcpCom;
 	private Date rcpComDate;
 }

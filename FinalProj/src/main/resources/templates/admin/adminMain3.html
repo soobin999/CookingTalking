@@ -20,32 +20,35 @@
 	</div>
 	<div id="basic">
 
-		<div>
-			<div class="">
-				<div class="qna_title">문의사항제목</div>
-				<div class="qna_date">문의 날짜</div>
-				<div class="qna_user">유저</div>
-				<div class="qna_OX">답변 유무</div>
-			</div>
-			
-			<div th:each="qna:${qnaList}">
-				<div class ="result_Title" th:text="${qna.qnaTitle}">문의 사항 제목</div>
-<!-- 				<div class ="result_Comment" th:text="${qnaList.qnaCont}">문의 내용</div> -->
-				<div class ="result_Date" th:text="${qna.qnaDate}">문의 날짜</div>
-				<div class ="result_userId" th:text="${qna.userId}">유저</div>
-				<div>답변유무</div>
-
-			</div>
-
-		</div>
-
-
+		<table border="1" id="mainTable">
+			<thead>
+					<tr>
+					<th>문의사항제목</th>
+					<th>문의 내용</th>
+					<th>문의 날짜</th>
+					<th>답변 내용</th>
+					<th>유저</th>
+					<th>답변 유무</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="accordion-row" th:each="qnaList:${qnaList}">
+					<td>tr1 td1</td>
+					<td>tr1 td2</td>
+					<td>tr1 td3</td>
+				</tr>
+				<tr class="accordion">
+					<td colspan="3">
+						<div class="accordion-content">tr1 accordion-content</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 
 
 	<script>
 		$(".accordion-row").on("click", function() {
-
 			var accordionRow = $(this).next(".accordion");
 			if (!accordionRow.is(":visible")) {
 				accordionRow.show().find(".accordion-content").slideDown();
@@ -72,7 +75,7 @@
 
 		function adUserList() {
 			$('#mainTable').remove();
-			$('#basic').load("admin/adUser");
+			$('#qna_Comment').load("admin/adUser");
 
 			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
 					url : './admin/adUser', // url: 요청할 URL 주소
@@ -111,7 +114,7 @@
 		//재료 추가함 불러오기 		
 		function adIngrList() {
 			$('#mainTable').remove();
-			$('#basic').load("admin/adIngrList");
+			$('#basic').load("admin/adIngrList2");
 			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
 				url : './admin/adIngrList2', // mapping 한 주소
 				// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터

@@ -15,17 +15,17 @@ Chef Rank
 <th>순위</th><th>닉네임</th><th>이미지</th><th>레시피수</th><th>팔로워수</th><th>조회수</th>
 </tr>
 </thead>
-<tbody>
-<tr th:each="chef,index:${chefList}">
-<td th:text="${index.index}+1"></td>
-<td th:text="${chef.userVO.nickName}"></td>
-<td th:text="${chef.userVO.userPic}"></td>
-<td th:text="${chef.userVO.rcpUploads}"></td>
-<td th:text="${chef.userVO.followers}"></td>
-<td th:text="${chef.rcpViews}"></td>
-
-</tr>
-</tbody>
 </table>
+<div th:class="slsl">
+<div th:each="chef,index:${chefList}" class='parent'>
+<div th:text="${index.index}+1"   th:class='forWidth'></div>
+<div th:text="${chef.userVO.nickName}" th:onclick='location.href="/chefInfo"'  th:class='forWidth'></div>
+<div th:text="${chef.userVO.userPic}" th:onclick='location.href="/chefInfo"' th:class='forWidth'></div>
+<div th:text="${chef.userVO.rcpUploads}" th:class='forWidth'></div>
+<div th:text="${chef.userVO.followers}" th:class='forWidth'></div>
+<div th:text="${chef.rcpViews}" th:class='forWidth'></div>
+</div>
+</div>
+
 </body>
 </html>

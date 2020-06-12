@@ -11,10 +11,11 @@ import lombok.ToString;
 @Data
 public class IngrVO {
 
-	private String rcpIngrCode;
+	private String rcpingrCode;
 	private String ingrPic;
 	private String ingrName;
 	private String ingrSeason;
 	private String ingrCalorie;
 	private String ingrTemper;
+
 }
