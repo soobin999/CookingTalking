@@ -14,12 +14,10 @@
 		SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE CONCAT('%',#{ingrName},'%')
 	</select> -->
 	
-
-<!-- <select id="getIngrName1" parameterType="String" resultType="String">
-	SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
-	<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
-	</select> -->
-	
+	<select id="getIngrName1" parameterType="String" resultType="String">
+		SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
+		<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
+</select>	
 
 
 	<resultMap id="recipeDTO" type="RecipeDTO">
@@ -78,10 +76,10 @@
 	</select>
 	
 	
-	
 <!-- 	<insert id="insertRecipe" parameterType="String">
 	select SUBSTRING_INDEX(rcpCode, '-', -1)+1,  from member2 order by member_id desc limit 1
 	</insert> -->
+
 
 
 
