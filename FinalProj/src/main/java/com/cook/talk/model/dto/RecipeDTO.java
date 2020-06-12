@@ -19,6 +19,5 @@ public class RecipeDTO {
 	
 	@Autowired(required = false)
 	private TypeCatVO typeCatVO;
-	
-	private String tag;
+
 }

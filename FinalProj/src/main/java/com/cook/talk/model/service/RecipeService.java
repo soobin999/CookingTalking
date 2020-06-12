@@ -26,6 +26,8 @@ public interface RecipeService {
 	
 	//레시피 총갯수
 	public int recipeCount();
+	
+	public 
 
 }
 
