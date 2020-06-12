@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <title>냉장고 파먹기(정민)</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/recipe.js"></script>
+
 <!-- <script>
 $(document).ready(function(){
   $(".a").click(function(){
@@ -26,24 +25,26 @@ $(document).ready(function(){
 
 		<!-- chosung -->	
 		<!-- chosung int cs를 못 받아오는 것 같습니다 ㅠㅠ 수빈양.. -->
-		<button class="chosung" id="r" value="r">ㄱ</button>
-		<button class="chosung" id="s">ㄴ</button>
-		<button class="chosung">ㄷ</button>
-		<button class="chosung">ㄹ</button>
-		<button class="chosung">ㅁ</button>
-		<button class="chosung">ㅂ</button>
-		<button class="chosung">ㅅ</button>
-		<button class="chosung">ㅇ</button>
-		<button class="chosung">ㅈ</button>
-		<button class="chosung">ㅊ</button>
-		<button class="chosung">ㅋ</button>
-		<button class="chosung">ㅌ</button>
-		<button class="chosung">ㅎ</button>
+		<button class="chosung" id="r" th:value="0">ㄱ</button>
+		<button class="chosung" id="s" th:value="1">ㄴ</button>
+		<button class="chosung" th:value="2">ㄷ</button>
+		<button class="chosung" th:value="3">ㄹ</button>
+		<button class="chosung" th:value="4">ㅁ</button>
+		<button class="chosung" th:value="5">ㅂ</button>
+		<button class="chosung" th:value="6">ㅅ</button>
+		<button class="chosung" th:value="7">ㅇ</button>
+		<button class="chosung" th:value="8">ㅈ</button>
+		<button class="chosung" th:value="9">ㅊ</button>
+		<button class="chosung" th:value="10">ㅋ</button>
+		<button class="chosung" th:value="11">ㅍ</button>
+		<button class="chosung" th:value="12">ㅌ</button>
+		<button class="chosung" th:value="13">ㅎ</button>
 
 
-	</form>
+	</form><!-- <!-- form tag가 두개 --> -->
 	<!-- 재료 리스트 가져오기 -->
-	<div class="result-area" id="ingrList">
+	<div th:id='aaaaaa'></div>
+	<div th:class="result-area" th:id="ingrList">
 			<table>
 			<tbody th:id="result">
 			
@@ -61,5 +62,9 @@ $(document).ready(function(){
 	</div>
 	<form action="/rcmmRecipe">
 		<button type="submit" class="" id="goToRcmmRecipe">레시피 검색하러 가기</button></form>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+		
+	<script src="/js/recipe.js"></script>
 </body>
 </html>

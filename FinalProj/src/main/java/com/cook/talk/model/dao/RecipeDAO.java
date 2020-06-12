@@ -20,19 +20,13 @@ public interface RecipeDAO {
 	
 	//검색한 애 불러오기
 	public List<String> getSearchedIngrName(String ingrName);
-
+	
+	public List<String> getIngrName1(String chosung1, String chosung2);
+	
 	//레시피 목록 조회
-	public List<RecipeDTO> allSelectRecipeList();
-	
-	//레시피 등록
-	public String insertRecipe(RecipeDTO recipe);
-	
-	//레시피 수정
-	public String updateRecipe(RecipeDTO recipe);
+	public List<RecipeDTO> getRecipeList() ;
 
-	//레시피 삭제
-	public String deleteRecipe(RecipeDTO recipe);
-	
-	
+	//레시피 총갯수
+	public int recipeCount();
 	
 }

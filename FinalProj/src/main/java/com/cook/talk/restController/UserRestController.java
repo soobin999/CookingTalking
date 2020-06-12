@@ -17,33 +17,33 @@ import com.cook.talk.model.service.UserService;
 
 public class UserRestController {
 
-	@Autowired
-	UserDAO userDAO;
-	@Autowired
-	UserService userServce;
+   @Autowired
+   UserDAO userDAO;
+   @Autowired
+   UserService userServce;
 
-	@RequestMapping("/idCheck.do")
-	@ResponseBody
-	public int idCheck(@RequestBody String userId) {
-		int count=0;
-		count=userDAO.userIdCheck(userId);
-		System.out.println(userId);
-		return count;
+   @RequestMapping("/idCheck.do")
+   @ResponseBody
+   public int idCheck(@RequestBody String userId) {
+      int count=0;
+      count=userDAO.userIdCheck(userId);
+      System.out.println(userId);
+      return count;
 
-	}
+   }
 
-	@RequestMapping(value = "/nickNameCheck", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-	@ResponseBody
-	public Map<String, Boolean> nickNameCheck(String user_nickName) {
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		int check_num = userDAO.userNickNameCheck(user_nickName);
+   @RequestMapping(value = "/nickNameCheck", method = RequestMethod.POST, produces = "application/json; charset=utf8")
+   @ResponseBody
+   public Map<String, Boolean> nickNameCheck(String user_nickName) {
+      Map<String, Boolean> map = new HashMap<String, Boolean>();
+      int check_num = userDAO.userNickNameCheck(user_nickName);
 
-		if (check_num > 0)
-			map.put("check", false);
-		else
-			map.put("check", true);
+      if (check_num > 0)
+         map.put("check", false);
+      else
+         map.put("check", true);
 
-		return map;
-	}
+      return map;
+   }
 
 }
