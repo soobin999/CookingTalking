@@ -3,10 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/soobin/chefRank.css}">
 </head>
 <body>
-<table border=1>
-<thead> chef Rank</thead>
+<table>
+<thead > 
+<tr>
+Chef Rank
+</tr>
+<tr>
+<th>순위</th><th>닉네임</th><th>이미지</th><th>레시피수</th><th>팔로워수</th><th>조회수</th>
+</tr>
+</thead>
 <tbody>
 <tr th:each="chef,index:${chefList}">
 <td th:text="${index.index}+1"></td>
