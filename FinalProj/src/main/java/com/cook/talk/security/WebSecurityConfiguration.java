@@ -35,6 +35,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
    }// configure를 오버라이딩하여 시큐리티 설정을 잡아준다.
 //WebSecurity는 FilterChainProxy를 생성하는 필터.
 
+
    @Override
    protected void configure(HttpSecurity http) throws Exception {
       http.authorizeRequests() // 페이지 권한 설정

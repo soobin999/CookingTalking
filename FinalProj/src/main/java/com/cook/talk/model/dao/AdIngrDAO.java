@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
+
 @Mapper
 public interface AdIngrDAO {
 
@@ -16,5 +17,7 @@ public interface AdIngrDAO {
 	public void insertIngr(IngrVO ingrVO);
 
 	public void deleteIngr(IngrVO ingrVO);
+
+	public int selectIngrRcpCode();
 
 }

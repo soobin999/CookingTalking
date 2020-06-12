@@ -7,8 +7,8 @@
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
 </head>
- <body>
-	<h3>Login with UserId and Password</h3>
+<body>
+	<h3>로그인</h3>
 	<form action="/login" method="post">
 		<table>
 			<tbody>
@@ -22,21 +22,26 @@
 				</tr>
 
 				<tr>
-					<td colspan="2"><button name="submit" type="submit"
-							class="btn btn-block btn-primary text-light">로그인</button></td>
+					<td colspan="2"></td>
 				</tr>
-			<tr>	<td colspan="1">
-				
+				<tr>
+					<td colspan="1">
 				</tr>
+
 			</tbody>
 		</table>
+
+		<button name="submit" type="submit"
+			class="btn btn-block btn-primary text-light">로그인</button>
+		<button name="submit" type="button"
+			class="btn btn-block btn-primary text-light">
+			<a th:href="@{/join}">회원가입</a>
+		</button>
 	</form>
-		<form action="gojoin">
-						<button name="submit" type="submit" value="join_page"
-							class="btn btn-block btn-primary text-light">회원가입</button>
-					</form>
+
+
 	<script>
-		script
+
 		type = "text/javascript" > $(document).ready(function(e) {
 			$('#login').click(function() {
 
@@ -60,16 +65,11 @@
 				location.href = "goJoin";
 			});
 
-<<<<<<< HEAD
 			</tbody>
 		
 			
 		</table>
 	</form>
-=======
-		});
-	</script>
 
->>>>>>> 1831a9403495d826027fff711c8fa8b1e90c5de1
 </body>
 </html>
