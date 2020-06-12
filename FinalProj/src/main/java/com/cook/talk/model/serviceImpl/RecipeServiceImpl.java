@@ -1,6 +1,6 @@
 package com.cook.talk.model.serviceImpl;
 
-import java.util.List;
+ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import com.cook.talk.model.service.RecipeService;
 @Service
 public class RecipeServiceImpl implements RecipeService{
 
-	@Autowired
+	@Autowired(required = false)
 	private RecipeDAO recipeDAO;
 	@Autowired(required = false)
 	private IngrVO ingrVO;
@@ -25,7 +25,7 @@ public class RecipeServiceImpl implements RecipeService{
 		List<String> ingrNameList = recipeDAO.getIngrName1(chosungList[cs], chosungList[cs+1]);
 		return ingrNameList;
 	}
-	
+
 	@Override
 	public String searched(IngrVO ingrVO) {
 		if (ingrVO.getIngrName() != null) {
@@ -35,42 +35,28 @@ public class RecipeServiceImpl implements RecipeService{
 			return "일치하는 재료 없어요";
 		}
 
-	}
-	 
-	
-	@Override
-	public List<RecipeDTO> allSelectRecipeList(RecipeDTO recipe) {
-		return null;
-	}
-	
-	@Override
-	public String deleteRecipe() {
-		// TODO Auto-generated method stub
-		return null;
+
 	}
 
-	@Override
-	public String insertRecipe(RecipeDTO recipe) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String updateRecipe(RecipeDTO recipe) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RecipeDTO getRecipeView() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<String> getSearchedIngrName(String ingrName) {
 		// TODO Auto-generated method stub
 		return recipeDAO.getSearchedIngrName(ingrName);
+	}
+	
+	
+
+	@Override
+	public List<RecipeDTO> getRecipeList() {
+		List<RecipeDTO> recipeList = recipeDAO.getRecipeList();
+		return recipeList;
+	}
+	
+	@Override
+	public int recipeCount() {
+		int recipeCount = recipeDAO.recipeCount();
+		return recipeCount();
 	}
 
 }
