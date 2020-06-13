@@ -13,8 +13,7 @@
 <title>쿠킹토킹</title>
 <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style type="text/css">
 iframe
@@ -25,9 +24,23 @@ iframe
 	opacity: 0 !important;
 	pointer-events: none !important;
 }
+footer{
+position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+	padding: 15px 0;
+
+	text-align: center;
+}
 </style>
 </head>
 <body>
+<header th:fragment='commonHeader'>
 	<div class="gnb_top_wrap">
 		<div class="gnb_top">
 			<h1>
@@ -73,19 +86,9 @@ iframe
 			<li><a href="/adminMain">고객센터</a></li>
 		</ul>
 	</div>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
+</header>
+	
+<footer th:fragment="commonFooter">
 	<div class="footer st2" style='background: #ff5100'>
 		<div class="container text-center">
 			<img src="img/footer_logo.png">
@@ -102,5 +105,6 @@ iframe
 
 		</div>
 	</div>
+	</footer>
 </body>
 </html>

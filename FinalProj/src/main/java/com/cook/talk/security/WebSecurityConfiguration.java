@@ -46,7 +46,7 @@ public void configure(WebSecurity web) throws Exception{
 				
                     .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
                     		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched").permitAll()
-                    .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
+				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
 				/*
 				 * .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank",
 				 * "/loginIndex").permitAll()
