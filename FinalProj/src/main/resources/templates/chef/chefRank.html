@@ -3,20 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/soobin/chefRank.css}">
 </head>
 <body>
-<table border=1>
-<thead></thead>
-<tbody>
-<tr th:each="chef:${chefDetail}">
-<td th:text="${chef.nickName}"></td>
-<td th:text="${chef.userPic}"></td>
-<td th:text="${chef.rcpUploads}"></td>
-<td th:text="${chef.followers}"></td>
-<td th:text="${chef.rcpViews}"></td>
-
+<table>
+<thead > 
+<tr>
+Chef Rank
 </tr>
-</tbody>
+<tr>
+<th>순위</th><th>닉네임</th><th>이미지</th><th>레시피수</th><th>팔로워수</th><th>조회수</th>
+</tr>
+</thead>
 </table>
+<div th:class="slsl">
+<div th:each="chef,index:${chefList}" class='parent'>
+<div th:text="${index.index}+1"   th:class='forWidth'></div>
+<div th:text="${chef.userVO.nickName}" th:onclick='location.href="/chefInfo"'  th:class='forWidth'></div>
+<div th:text="${chef.userVO.userPic}" th:onclick='location.href="/chefInfo"' th:class='forWidth'></div>
+<div th:text="${chef.userVO.rcpUploads}" th:class='forWidth'></div>
+<div th:text="${chef.userVO.followers}" th:class='forWidth'></div>
+<div th:text="${chef.rcpViews}" th:class='forWidth'></div>
+</div>
+</div>
+
 </body>
 </html>

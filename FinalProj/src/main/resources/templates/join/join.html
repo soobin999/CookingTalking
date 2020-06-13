@@ -5,43 +5,95 @@
 <title>회원가입</title>
 </head>
 <body>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/js/join.js"></script>
+
 	<!-- <div class="title"> -->
 	<h1>회원가입</h1>
 	<hr>
 	<!-- </div> -->
 	<!-- <div class ="content"> -->
-	<form th:action="@{/join}" method="post" >
-		<div>
-			<input type="email" name="userId" 
-				placeholder="이메일 @까지 입력해주세요" /><br> <span
-				th:text="${valid_email}"></span>
-		</div>
-		<!-- form th:action="@{/join}" th:object="${join_form}" method="post" onsubmit="return checkAll()"> -->
-
+	<form name=joinform th:action="@{/join}" method="post">
 
 		<div>
-			<input type="password" name="userPw" 
-				placeholder="영문+숫자 조합 8~16자리" /><br> <span
-				th:text="${valid_password}"></span>
-		</div>
+			<td>아이디</td> <input type="email" id="userId" name="userId"
+				placeholder="이메일 @까지 입력해주세요"> <input type="button"
+				id="id_btn" value="중복확인" /> </br>
 
-		<div>
-			<input type="text" name="nickName" 
-				placeholder="닉네임" /><br> <span th:text="${valid_nickName}"></span>
 		</div>
+		<tr>
+			<td colspan=3 id="idCheck"></td>
+		</tr>
 
-		<div>
-			<input type="date" name="birth"  /><br>
-		</div>
+		<label>비밀번호</label> <input type="password" name="userPw" id="userPw"
+			class="form-control" required placeholder="영문+숫자 조합 8~16자리" /> <br>
+		<label>재확인</label> <input type="password" name="userPw2" id="userPw2"
+			class="form-control" placeholder="비밀번호 확인" required /> <br>
+		<div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지
+			않습니다.</div>
+		<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+		<tr>
 
-		<div>
-			<input type="radio"  /><br>
-		</div>
+			<td>닉네임</td>
+			<input type="text" name="nickName" placeholder="닉네임" />
+			<br>
+			<span th:text="${valid_nickName}"></span>
+			</div>
 
-		<div>
-			<button>가입</button>
-		</div>
+			<div>
+				<td>생년월일</td> <input type="date" name="birth" /><br>
+			</div>
+			<div>
+				<td>성별</td> <input type="radio" name="gender" id="sex-1"
+					value="true" checked> 여성
+			</div>
+
+
+			<input type="radio" name="gender" id="sex-2" value="false" checked>
+			남성
+			</div>
+
+			<div>
+
+				<button type="button"
+					class="btn btn-secondary btn-large form-control">뒤로가기</button>
+				<button type="submit" id="join">회원가입</button>
+
+
+			</div>
 	</form>
+
+
+	<!-- <div class="echeck_font" id="idCheck"></div>
+			<span th:text="${valid_email}"></span>
+ <img id="id_check_sucess" style="display: none;">
+ <div>
+				<td>비밀번호</td> <input type="password" name="userPw"
+					placeholder="영문+숫자 조합 8~16자리" /><br> <span
+					th:text="${valid_password}"></span>
+ 
+		<div>
+			<td>비밀번호 확인</td> <input type="password" placeholder="비밀번호 확인" /><br>
+			<span th:text="${void_password2}"></span>
+
+
+		</div>
+ 
+ -->
+	<!-- form th:action="@{/join}" th:object="${join_form}" method="post" onsubmit="return checkAll()"> -->
+
+
+
+
+	<hr class="separator" />
+	<div>
+		<h1>CookingTalking</h1>
+		<p>@2020 All Rights Reserved.</p>
+	</div>
+
+
+
 
 
 </body>

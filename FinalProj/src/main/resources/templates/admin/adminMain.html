@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>건호 리스트 뿌리기</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -19,73 +20,100 @@
 	</div>
 	<div id="basic">
 
-		<table border="1" id="qnaListTable">
-			<thead>
-				<tr>
-					<th>문의사항제목</th>
-					<th>문의 내용</th>
-					<th>문의 날짜</th>
-					<th>답변 내용</th>
-					<th>유저</th>
-					<th>답변 유무</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="qnaList:${qnaList}">
-					<td th:text="${qnaList.qnaTitle}">문의 사항 제목</td>
-					<td th:text="${qnaList.qnaCont}">문의 내용</td>
-					<td th:text="${qnaList.qnaDate}">문의 날짜</td>
-					<td th:text="${qnaList.answer}">답변 내용</td>
-					<td th:text="${qnaList.userId}">유저</td>
-					<td>답변유무</td>
-				</tr>
-			</tbody>
-		</table>
+		<div>
+			<div class="">
+				<div class="qna_title">문의사항제목</div>
+				<div class="qna_date">문의 날짜</div>
+				<div class="qna_user">유저</div>
+				<div class="qna_OX">답변 유무</div>
+			</div>
+			
+			<div th:each="qna:${qnaList}">
+				<div class ="result_Title" th:text="${qna.qnaTitle}">문의 사항 제목</div>
+<!-- 				<div class ="result_Comment" th:text="${qnaList.qnaCont}">문의 내용</div> -->
+				<div class ="result_Date" th:text="${qna.qnaDate}">문의 날짜</div>
+				<div class ="result_userId" th:text="${qna.userId}">유저</div>
+				<div>답변유무</div>
+
+			</div>
+
+		</div>
+
+
 	</div>
 
 
 	<script>
-		function adUserList() {
-			$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
-				url : './admin/adUser', // url: 요청할 URL 주소
-				// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
-				type : "GET",
+		$(".accordion-row").on("click", function() {
 
-				success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
-					alert("회원정보를 불러왔습니다.");
-					$('#qnaListTable').remove();
-					$('#basic').load("admin/adUser");
+			var accordionRow = $(this).next(".accordion");
+			if (!accordionRow.is(":visible")) {
+				accordionRow.show().find(".accordion-content").slideDown();
+			} else {
+				accordionRow.find(".accordion-content").slideUp(function() {
+					if (!$(this).is(':visible')) {
+						accordionRow.hide();
+					}
+				});
+			}
+		});
 
-				},
-				error : function() {
-					alert("실패");
-				}
+		function slideComment() {
+			$(document).ready(function() {
+				$(".btn2").click(function() {
+					$("admin/adminMain3").load("admin/adminMain3").slideUp();
+				});
+				$(".btn1").click(function() {
+					$("adminMain3").load("admin/adminMain3").slideDown();
+				});
 			});
+
+		};
+
+		function adUserList() {
+			$('#mainTable').remove();
+			$('#basic').load("admin/adUser");
+
+			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
+					url : './admin/adUser', // url: 요청할 URL 주소
+					// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
+					type : "GET",
+
+					success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
+						alert("회원정보를 불러왔습니다.");
+
+					},
+					error : function() {
+						alert("실패");
+					}
+				}); */
 
 		};
 		//고객요청함 불러오기
 		function adQnaList() {
-			$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
-				url : './admin/adQnaList', // url: 요청할 URL 주소
-				// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
-				type : "GET",
+			$('#mainTable').remove();
+			$('#basic').load("admin/adQnaList");
+			/* 		$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
+						url : './admin/adQnaList', // url: 요청할 URL 주소
+						// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
+						type : "GET",
 
-				success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
-					alert("고객요청함을 불러왔습니다.");
-					$('#qnaListTable').remove();
-					$('#basic').load("admin/adQnaList");
+						success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
+							alert("고객요청함을 불러왔습니다.");
 
-				},
-				error : function() {
-					alert("실패");
-				}
-			});
+						},
+						error : function() {
+							alert("실패");
+						}
+					}); */
 
 		};
 		//재료 추가함 불러오기 		
 		function adIngrList() {
-			$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
-				url : './admin/allSelectIngr', // mapping 한 주소
+			$('#mainTable').remove();
+			$('#basic').load("admin/adIngrList");
+			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
+				url : './admin/adIngrList2', // mapping 한 주소
 				// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
 				type : "GET",
 
@@ -98,7 +126,7 @@
 				error : function() {
 					alert("실패");
 				}
-			});
+			}); */
 
 		};
 	</script>

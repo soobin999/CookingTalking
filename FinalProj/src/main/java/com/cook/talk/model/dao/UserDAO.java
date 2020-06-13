@@ -1,41 +1,37 @@
 package com.cook.talk.model.dao;
+
 import java.util.Optional;
 
-import javax.xml.ws.ServiceMode;
+//Simport javax.xml.ws.ServiceMode;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.SqlSession;
 
 import com.cook.talk.model.VO.UserVO;
 
-
 @Mapper
-
-
-@ServiceMode
+//@ServiceMode
 
 public interface UserDAO {
-	
-	
-	public void insertUser(UserVO user);
 
+   public int userIdCheck(String userId);
+   
+   public int userNickNameCheck(String nickName);
 
-	public int userIdCheck(String userId);
+   // 닉네임 중복 체크
+   public int updateUser(UserVO userVO);
 
+   public UserVO findUserById(String id);
 
-	public int userNickCheck(String nickName);
+   public void join(UserVO user) throws Exception;
 
-	public int updateUser(UserVO user);
+   public int login(UserVO userVO);
 
-	public UserVO findUserById(String id);
+   public Optional<UserVO> findByEmail(String userEmail);
 
-	void join(UserVO userVO) throws Exception;
+   public static void setPassword(String encode) {
+      // TODO Auto-generated method stub
 
-	public int login(UserVO user);
+   }
 
-	public Optional<UserVO> findByEmail(String userEmail);
-
-	public static void setPassword(String encode) {
-		// TODO Auto-generated method stub
-		
-	}
 }

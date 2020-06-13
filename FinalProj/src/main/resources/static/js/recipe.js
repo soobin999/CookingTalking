@@ -1,58 +1,160 @@
-$(function(){
+$(function() {
 	selectedIngr();
-	ingrSearch();
+	searchedIngr();
+	chosung();
 	$('#ingrSearchInRefri').on('change', ingrSearch);
-	$('#btnSearch').on('click',ingrSearch);
-	enterkey(); /*도대체 여기는 왜자꾸 콘솔에서 에러 뜨냐구..*/
+	$('#btnIngrSearch').on('click', ingrSearch);
+	enterkey();
+	 clickOffVer1();
+	 clickOffVer2();
 })
 
-/*엔터쳤을 때 페이지이동 없이 처리하기 위해*/
-function enterkey() {
-	if (event.keyCode == 13) {
-		ingrSearch();
-		event.preventDefault();
-	};
-}
+function chosung() {
 
-function ingrSearch(){
+	$(".chosung").click(function() {
+		var value = $(this).attr('value');
+		console.log(value);
+		
+		$.ajax({
+			type : "POST",
+			url : "/chosung",
+			data : {cs : value},
+			success : function(data) {
+				console.log(data);
+				var result = $('#chosungNum');
+				$('#searchedIngr').remove();
+				$('#ingrList').remove();
 
-	var key = $('#ingrSearchInRefri').val();
-	console.log("key:"+key);
-	
-	$.ajax({
-		type: "POST",
-		url: "/searched",
-		data: {ingrName:key},
-		dataType : 'TEXT',
-		success : function(data){
-			console.log(data);
-			$('#searchedIngr').text(data);
-		},
-		error: function(){
-			alert("Error");
-		}
+				var list = '<div id="ingrList">'
+				$.each(data, function(index, value) {
+					list = list + '<button>' + value + '</button>';
+				});
+				list = list + '</div>';
+				result.append(list);
+			},
+			error : function() {
+				alert("Chosung Error");
+			}
+		});
 	});
+}
+
+function enterkey() {
+	$('#ingrSearchInRefri').on('keydown',function(event){
+		var thirteen = event.keyCode;
+		if (thirteen == 13) {
+			ingrSearch();
+			event.preventDefault();
+		};
+	})
 	
 }
 
-function selectedIngr(){
-	$().on("click","", function(event){
-		var ingrName = $(event.target).text();
+
+function searchButtonClick(){
+	$('#btnIngrSearch').on('click', function(){
+		ingrSearch();
+	})
+
+function ingrSearch1(){
+	 $(".a").click(function(){
+		    $(this).hide();
+		  });
+	  $(".chosung").click(function(){
+		  var value = $(this).attr('value');
+		  console.log(value);
+			$.ajax({
+				type : "POST",
+				url : "/chosung",
+				data : {cs :value},
+				/*dataType : 'JSON',*/
+				success : function(data){
+					console.log(data);
+					
+					var result = $('#aaaaaa');
+					$('#ingrList').remove();
+					var list='<div id="ingrList">'
+					$.each(data, function(index, value){
+						list = list+'<button>' + value + '</button><br><br>';
+					});
+						list=list+'</div>';
+						result.append(list);
+				},
+				/*	$('#ingrList').text();
+					console.log(('#ingrList').text());*/
+				
+				error : function(){
+					alert("Chosung Error");
+				}
+			});
+		  });
+}
+
+function ingrSearch() {
+	
+		var key = $('#ingrSearchInRefri').val();
+		console.log("key:" + key);
 		
-		var target = $(event.target);
+		$.ajax({
+			type : "POST",
+			url : "/searched",
+			data : {ingrName : key},
+			success : function(data) {
+				
+				var result = $('#chosungNum');
+				$('#ingrList').remove();
+				var list='<div id="ingrList">';
+				$.each(data, function(index, value){
+					list = list+'<button>' + value + '</button>';
+				});
+				
+				result.append(list+'<div>');
+			},
+			error : function() {
+				alert("Search Error");
+			}
+		});
+}
+
+
+function selectedIngr() {
+	$('#chosungNum').on('click', function(){
+		console.log("choosing ingr from list");
+		var chosen = $(event.target);
+		console.log(chosen);
 		
-		if(target.hassClass()){
-			target.removeClass();
-			
-			$('#selectedIngr>?:contains('+ingrName+')').remove();
-			$('input[value"'+ingrName+'"]').remove();
-		} else{
-			$(this).addClass('');
-			$("#selectedIngr").append(
-					'<p>'+ingrName+'</p>'
-					+'<input type="hidden" name="ingrName" value="'+ingrName+'">'
-			)
-		}
+		$('#selectedIngr').append(chosen);
 		
+	})
+}
+
+function searchedIngr() {
+	$('#searchedIngr').on('click', function(){
+		console.log("choosing ingr from search");
+		var chosen = $(event.target);
+		console.log(chosen);
+		
+		$('#selectedIngr').append(chosen);
+		
+	})
+}
+
+function clickOffVer1(){
+	$('.selectedIngr').on('click', function(){
+		console.log("back to list on chosung");
+		var goBack = $(event.target);
+		
+		$('#chosungNum').append(goBack);
+	})
+	
+}
+
+function clickOffVer2(){
+	$('.selectedIngr').on('click', function(){
+		console.log("back to list on searching");
+		var goBack = $(event.target);
+		console.log(goBack);
+		
+		$('#searchedIngr').append(goBack);
 	})
 }

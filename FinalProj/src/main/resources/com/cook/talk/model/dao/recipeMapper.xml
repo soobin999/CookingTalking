@@ -4,28 +4,83 @@
 
 <mapper namespace="com.cook.talk.model.dao.RecipeDAO">
 
-	<sql id="recipedtoColumns">
-		rcpCode, nickName, rcpTitle, rcpDate, rcpViews, rcpExpl, video, rcpPic,
-		personnel, cookTime, level, registerStatus, cookType,
-		cookSituation, cookMethod, ingrCat, userIngr, ingrWeigh, cookOrder, cookCont,
-		cookPic, rcpCom, rcpComDate, tag
-	</sql>
 	
-	<select id="getIngrName" parameterType="String" resultType="ingrVO">
+<!-- 	<select id="getIngrName" parameterType="String" resultType="ingrVO">
 	SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
 	<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
 	</select>
 
-	<select id="getRecipeList" parameterType="recipeDto">
-		SELECT * FROM recipe.recipedto;
+	<select id="getSearchedIngrName" parameterType="String" resultType="String">
+		SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE CONCAT('%',#{ingrName},'%')
+	</select> -->
+	
+	<select id="getIngrName1" parameterType="String" resultType="String">
+		SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
+		<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
+</select>	
+
+
+	<resultMap id="recipeDTO" type="RecipeDTO">
+		<id property="rcpCode" column="rcpCode" />
+		<result property="nickName" column="nickName" />
+	
+		<association property="recipeVO" javaType="RecipeVO">
+			<result column="rcpCode" property="rcpCode" />
+			<result column="rcpTitle" property="rcpTitle" />
+			<result column="rcpPic"  property="rcpPic" />
+			<result column="personnel"  property="personnel" />
+			<result column="cookTime"  property="cookTime" />
+			<result column="level"  property="level" />
+			<result column="rcpDate"  property="rcpDate" />
+			<result column="video"  property="video" />
+			<result column="rcpViews" property="rcpViews" />
+			<result column="rcpExpl" property="rcpExpl" />
+		</association>
+	
+		<association property="typeCatVO" javaType="TypeCatVO">
+			<result column="cookSituaton" property="cookSituation" />
+			<result column="cookMethod" property="cookMethod" />
+			<result column="cookType" property="cookType" />
+		</association>
+	</resultMap>
+	
+	
+	<select id="createViewRecipeList">
+	CREATE View RecipeDTO AS
+	SELECT rcp.rcpCode, rcp.rcpTitle, user.nickname, rcp.rcpDate, rcp.rcpViews, 
+	rcp.rcpExpl, rcp.video, rcp.rcpPic, rcp.personnel, rcp.cookTime, rcp.level,
+	typecat.cookType, typecat.cookSituation, typecat.cookMethod
+	FROM rcp, user, typecat
+	WHERE rcp.typeCode = typeCat.typeCode
+	AND rcp.userId = user.userId
 	</select>
+	
+	<select id="getRecipeList" resultMap="recipeDTO">
+	SELECT rcpCode, rcpTitle, nickname, rcpDate, rcpPic
+	FROM RecipeDTO
+	ORDER BY rcpDate DESC
+	</select>	
+	
+	<select id="recipeView" resultMap="RecipeDTO">
+	SELECT rcpPic, rcpViews, nickname, rcpTitle, rcpExpl
+	FROM RecipeDTO
+	</select>
+	<select id="recipeView2" resultType="RcpOrderVO">
+	SELECT cookOrder, cookCont, cookPic FROM rcporder WHERE rcpCode=#{rcpCode}
+	</select>
+	<select id="recipeView3" resultType="RcpIngrVO">
+	SELECT ingrCat, userIngr, ingrWeigh FROM rcpingr WHERE rcpCode=#{rcpCode}
+	</select>
+	<select id="recipeView4" resultType="RcpIngrVO">
+	SELECT tag FROM tag WHERE rcpCode=#{rcpCode}
+	</select>
+	
+	
+<!-- 	<insert id="insertRecipe" parameterType="String">
+	select SUBSTRING_INDEX(rcpCode, '-', -1)+1,  from member2 order by member_id desc limit 1
+	</insert> -->
 
-		
-	<update id="insertRecipe" parameterType="recipeDto">
-	UPDATE INTO recipe.recipedto (<include refid="recipedtoColumns" /> ) 
-	VALUES (#{rcpCode}, #{nickName}, #{rcpDate}, 0, #{rcpTitle}, #{rcpExpl} )
 
-	</update>
 
 
 </mapper>

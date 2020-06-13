@@ -15,7 +15,9 @@ public class ChefController {
 
 	@GetMapping("/chefRank")
 	public String chefRank(Model model,String status) {
+		status="rcpUploads";
 		model.addAttribute("chefList", chefDAO.allSelectChef(status));
+		System.out.println( chefDAO.allSelectChef(status));
 		return "/chef/chefRank";
 	}
 

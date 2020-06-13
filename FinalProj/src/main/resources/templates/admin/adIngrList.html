@@ -15,15 +15,10 @@
 		<form action="searchIngr" method="POST">
 			<input type="text" name="searchIngrList" class=""
 				placeholder="재료명 입력" style="width: 25%">
-			<div class="btn search-IngrList" type="submit">검색하기</div>
+			<button class="btn search-IngrList" type="submit">검색하기</button>
 		</form>
 		<div class="overflow-auto" style="overflow-y: scroll; height: 560px">
-		<th:each items="${searchIngr}">
-		</div>
-		<div id="basic">
-
-			<table border="1" id="IngrTable">
-
+			<table>
 				<thead>
 					<tr>
 						<th>재료 사진</th>
@@ -34,18 +29,61 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="Ingr:${IngrList}">
-						<td th:text="${Ingr.ingrPic}">재료 사진</td>
-						<td th:text="${Ingr.ingrName}">재료 이름</td>
-						<td th:text="${Ingr.ingrSeason}">재료 제철</td>
-						<td th:text="${Ingr.ingrCalorie}">재료 칼로리</td>
-						<td th:text="${Ingr.ingrTemper}">재료 보관온도</td>
+					<tr th:each="searchIngr: ${searchIngr}">
+						<td th:text="${searchIngr:.ingrPic}">재료 사진</td>
+						<td th:text="${searchIngr:.ingrName}">재료 이름</td>
+						<td th:text="${searchIngr:.ingrSeason}">재료 제철</td>
+						<td th:text="${searchIngr:.ingrCalorie}">재료 칼로리</td>
+						<td th:text="${searchIngr:.ingrTemper}">재료 보관온도</td>
 					</tr>
 				</tbody>
+
 			</table>
 		</div>
+	</div>
+	<button ></button>
+	<button onclick="openWindowPop()">팝업창 열기</button>
+	<button onclick="openWindowPop()">팝업창 열기</button>
+	
+		<form action="delete_Ingr" method="POST">
+			<input type="text" name="searchIngrList" class=""
+				placeholder="재료명 입력" style="width: 25%">
+			<button class="btn search-IngrList" type="submit">검색하기</button>
+		</form>
+	<div id="basic">
 
-		<!-- <script>
+		<table border="1" id="IngrTable">
+
+			<thead>
+				<tr>
+					<th>재료 사진</th>
+					<th>재료 이름</th>
+					<th>재료 제철</th>
+					<th>재료 칼로리</th>
+					<th>재료 보관온도</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="Ingr:${IngrList}">
+				<td><input type="checkbox" id=""></td>
+					<td th:text="${Ingr.ingrPic}" >재료 사진</td>
+					<td th:text="${Ingr.ingrName}">재료 이름</td>
+					<td th:text="${Ingr.ingrSeason}">재료 제철</td>
+					<td th:text="${Ingr.ingrCalorie}">재료 칼로리</td>
+					<td th:text="${Ingr.ingrTemper}">재료 보관온도</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script>
+		function openWindowPop() {
+			var options = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no';
+			window.open('/admin/insertIngr', 'addIngr', options);
+		}
+		
+		
+	</script>
+	<!-- <script>
 //ajax로 테이블리스트 생성
 function loadData(code){
 $.ajax({
