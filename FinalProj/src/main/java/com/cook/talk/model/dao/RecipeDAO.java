@@ -23,10 +23,13 @@ public interface RecipeDAO {
 	
 	public List<String> getIngrName1(String chosung1, String chosung2);
 	
+	
 	//레시피 목록 조회
-	public List<RecipeDTO> getRecipeList() ;
+	public List<RecipeDTO> getRecipeList();
 
 	//레시피 총갯수
 	public int recipeCount();
+	
+
 	
 }

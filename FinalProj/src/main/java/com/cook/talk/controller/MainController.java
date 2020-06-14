@@ -23,7 +23,7 @@ public class MainController {
 	@Autowired(required = false)
 	private MainDAO maindao;
 
-	@GetMapping("/index")
+	@GetMapping("index")
 	public String index(Model model) {
 		System.out.println(maindao.totalSelect());
 		model.addAttribute("total",maindao.totalSelect());

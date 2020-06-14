@@ -16,4 +16,10 @@
 	select (select count(*) from user) as totalChef ,(select count(*) from rcp) as totalRecipe ,(select count(*) from search) as totalSearch ,
 (select  count(*) from talk) as totalTalk from user limit 1
 	</select>
+	<select id="recipeSearch" resultType='recipeVO'>
+		select rcpTitle, rcpPic from rcp 
+			   where rcpTitle LIKE CONCAT('%',#{searchWord},'%') 
+			   		 or rcpExpl LIKE CONCAT('%',#{searchWord},'%') 
+			   order by rcpViews;
+	</select>
 </mapper>

@@ -13,6 +13,11 @@
 	<select id="getSearchedIngrName" parameterType="String" resultType="String">
 		SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE CONCAT('%',#{ingrName},'%')
 	</select> -->
+	
+	<select id="getIngrName1" parameterType="String" resultType="String">
+		SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
+		<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
+</select>	
 
 
 	<resultMap id="recipeDTO" type="RecipeDTO">
@@ -52,18 +57,30 @@
 	
 	<select id="getRecipeList" resultMap="recipeDTO">
 	SELECT rcpCode, rcpTitle, nickname, rcpDate, rcpPic
-	FROM recipe.recipedto
+	FROM RecipeDTO
 	ORDER BY rcpDate DESC
 	</select>	
 	
-	<select id="recipeCount" resultType="int">
-	SELECT count(*) from rcp
-	</select>	
+	<select id="recipeView" resultMap="RecipeDTO">
+	SELECT rcpPic, rcpViews, nickname, rcpTitle, rcpExpl
+	FROM RecipeDTO
+	</select>
+	<select id="recipeView2" resultType="RcpOrderVO">
+	SELECT cookOrder, cookCont, cookPic FROM rcporder WHERE rcpCode=#{rcpCode}
+	</select>
+	<select id="recipeView3" resultType="RcpIngrVO">
+	SELECT ingrCat, userIngr, ingrWeigh FROM rcpingr WHERE rcpCode=#{rcpCode}
+	</select>
+	<select id="recipeView4" resultType="RcpIngrVO">
+	SELECT tag FROM tag WHERE rcpCode=#{rcpCode}
+	</select>
+	
+	
+<!-- 	<insert id="insertRecipe" parameterType="String">
+	select SUBSTRING_INDEX(rcpCode, '-', -1)+1,  from member2 order by member_id desc limit 1
+	</insert> -->
 
-<!-- <select id="getIngrName1" parameterType="String" resultType="String">
-	SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
-	<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
-	</select> -->
+
 
 
 </mapper>

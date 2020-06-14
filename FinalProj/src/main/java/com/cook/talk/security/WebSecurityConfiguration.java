@@ -36,48 +36,61 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //WebSecurity는 FilterChainProxy를 생성하는 필터.
 
 
-   @Override
-   protected void configure(HttpSecurity http) throws Exception {
-      http.authorizeRequests() // 페이지 권한 설정
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http .authorizeRequests() //페이지 권한 설정
+                  
+                    .antMatchers("/user/mypage").hasRole("Role_MEMBER")
+				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
+				
+                    .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
+                    		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched").permitAll()
+				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
+				/*
+				 * .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank",
+				 * "/loginIndex").permitAll()
+				 */
 
-            .antMatchers("/user/mypage")
-            .hasRole("Role_MEMBER")
-            .antMatchers("/admin/**", "/adminMain/**")
-            .hasRole("Role_ADMIN")
+                    .antMatchers("/admin").hasRole("ADMIN")
+                    .antMatchers("/user/mypage").hasRole("MEMBER")
+                    .anyRequest().authenticated();
+                    
+                    
 
-            .antMatchers("/login", "/index", "/join", "/ingrSelect", "/chefInfo", "/chefRank", "/loginIndex"
-                  ,"/idCheck.do","/recipe/**")
-            .permitAll()
-            .antMatchers("/admin")
-            .hasRole("ADMIN")
-            .antMatchers("/user/mypage")
-            .hasRole("MEMBER")
-            .anyRequest()
-            .authenticated();
+        //접근 가능 
+                 //  .anyRequest().authenticated();
+                // .antMatchers("/**").authenticated();
+                //인증 필요로 함. 
 
-      // 접근 가능
-      // .anyRequest().authenticated();
-      // .antMatchers("/**").authenticated();
-      // 인증 필요로 함.
+                    http
+                    //.and()//로그인 설정 
+                    .csrf()
+                    .disable();
+                 
+                    http
+                    .formLogin()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/index")
+                    .permitAll()
+                    
+                    .and()
+                   .logout()
+                   .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                   .logoutSuccessUrl("/user/logout/result");
+                   
+    // .defaultSuccessUrl("/main");
+    }
 
-      http
-            // .and()//로그인 설정
-            .csrf().disable();
+  
+    
+    
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+          //spring Security에서 모든 인증은 AuthenticationManager를 통해 이루어지며 
+           //AuthenticationManager를 생성하기 위해서는 AuthenticationManagerBuilder를 사용.
+           auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        }
 
-      http.formLogin().loginPage("/login").defaultSuccessUrl("/index").permitAll()
 
-            .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-            .logoutSuccessUrl("/user/logout/result");
-
-      // .defaultSuccessUrl("/main");
-   }
-
-   
-     @Override 
-     protected void configure(AuthenticationManagerBuilder auth) throws Exception { 
-        // spring Security에서 모든 인증은 AuthenticationManager를 통해 이루어지며 
-        // AuthenticationManager를 생성하기 위해서는 AuthenticationManagerBuilder를 사용.
-     auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()
-     ); }
     
 }
