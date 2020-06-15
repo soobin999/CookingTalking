@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 layout:decorator='~{layout/default}'>
@@ -18,12 +18,12 @@ layout:decorator='~{layout/default}'>
     </div>
 
   <div class="row">
-      <div class="col-xs-3" th:each=''>
+      <div class="col-xs-3" th:each='search:${searchRecipe}'>
         <a class="thumbnail" href="/recipe/6892442">
                         <span class="thumbnail_over"><img src="https://recipe1.ezmember.co.kr/img/thumb_over.png"></span>
             <img src="https://recipe1.ezmember.co.kr/cache/recipe/2018/07/12/211a169445837d4f72ab65c370acd4e61_m.jpg" style="width:275px; height:275px;">
           <div class="caption">
-            <h4 class="ellipsis_title2" th:text='rcpTitle'></h4>
+            <h4 class="ellipsis_title2" th:text='${search.rcpTitle}'></h4>
             <p th:text='nickName'>by 불량엄마소자매마미</p>
           </div>
         </a>
@@ -36,4 +36,4 @@ layout:decorator='~{layout/default}'>
     </div></div>
 </div>
 
-</html> -->
+</html>

@@ -12,4 +12,5 @@ public interface MainDAO {
 
 	public List<RecipeVO> recipeList(List<String> repCode);
 	public MainDTO totalSelect();
+	public List<RecipeVO> recipeSearch(String searchWord,String status);
 }

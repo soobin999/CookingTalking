@@ -9,14 +9,13 @@
 			</h1>
 			<div class="gnb_search">
 				<form th:id="frmTopRecipeSearch" th:method="get"
-					th:action="@{/recipeSearch}">
+					th:action="@{/recipeSearch}" >
 					<div th:class="input-group">
-						<input th:id="srhRecipeText" name="name" type="text"
+						<input th:id="srhRecipeText" name="searchWord" type="text"
 							class="form-control ui-autocomplete-input" placeholder=""
 							value="" style="ime-mode: active;" autocomplete="off"> <span
 							class="input-group-btn">
-							<button class="btn btn-default" type="button"
-								onclick="$('#frmTopRecipeSearch').submit();">
+							<button class="btn btn-default" th:type="submit">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</button>
 						</span>

@@ -5,21 +5,27 @@
 
 <mapper namespace="com.cook.talk.model.dao.MainDAO">
 
-	<select id="recipeList" parameterType="String" resultType="recipeVO">
+	<select id="recipeList" parameterType="String"
+		resultType="recipeVO">
 		select rcpTitle,rcpPic from rcp where
-		<foreach collection="list" item="rcpCode"  index="index"  separator="or" >
+		<foreach collection="list" item="rcpCode" index="index"
+			separator="or">
 			rcpCode= #{rcpCode}
 		</foreach>
 	</select>
-	
+
 	<select id="totalSelect" resultType="MainDTO">
-	select (select count(*) from user) as totalChef ,(select count(*) from rcp) as totalRecipe ,(select count(*) from search) as totalSearch ,
-(select  count(*) from talk) as totalTalk from user limit 1
+		select (select count(*) from user) as totalChef ,(select count(*) from rcp)
+		as totalRecipe ,(select count(*) from search) as totalSearch ,
+		(select count(*) from talk) as totalTalk from user limit 1
 	</select>
-	<select id="recipeSearch" resultType='recipeVO'>
-		select rcpTitle, rcpPic from rcp 
-			   where rcpTitle LIKE CONCAT('%',#{searchWord},'%') 
-			   		 or rcpExpl LIKE CONCAT('%',#{searchWord},'%') 
-			   order by rcpViews;
+	<select id="recipeSearch" resultType='recipeVO' parameterType="String">
+		select rcpTitle, rcpPic
+		from rcp
+		where rcpTitle LIKE CONCAT('%',#{searchWord},'%')
+		or rcpExpl LIKE CONCAT('%',#{searchWord},'%')
+		<choose>
+		<when test='status.equals("recommend")'>order by rcpViews</when>
+		</choose>
 	</select>
 </mapper>

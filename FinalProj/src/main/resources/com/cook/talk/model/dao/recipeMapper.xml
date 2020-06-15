@@ -61,10 +61,10 @@
 	ORDER BY rcpDate DESC
 	</select>	
 	
-	<select id="recipeView" resultMap="RecipeDTO">
+	<!-- <select id="recipeView" resultMap="RecipeDTO">
 	SELECT rcpPic, rcpViews, nickname, rcpTitle, rcpExpl
 	FROM RecipeDTO
-	</select>
+	</select> -->
 	<select id="recipeView2" resultType="RcpOrderVO">
 	SELECT cookOrder, cookCont, cookPic FROM rcporder WHERE rcpCode=#{rcpCode}
 	</select>
