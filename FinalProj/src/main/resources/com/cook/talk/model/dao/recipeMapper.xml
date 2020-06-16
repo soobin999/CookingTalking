@@ -5,15 +5,32 @@
 <mapper namespace="com.cook.talk.model.dao.RecipeDAO">
 
 	
-<!-- 	<select id="getIngrName" parameterType="String" resultType="ingrVO">
+	<select id="getIngrName" parameterType="String" resultType="ingrVO">
 	SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
 	<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
 	</select>
 
 	<select id="getSearchedIngrName" parameterType="String" resultType="String">
 		SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE CONCAT('%',#{ingrName},'%')
-	</select> -->
+	</select>
 
+	<select id="getIngrName1" parameterType="String" resultType="String">
+		SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
+		<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
+	</select>
+
+	<select id="getRcmmList" parameterType="String" resultType="recipeVO">
+		SELECT rcpTitle, rcpPic FROM recipe.rcp as r INNER JOIN recipe.rcpIngr AS ri
+		ON r.rcpCode = ri.rcpCode INNER JOIN recipe.ingr AS i ON i.rcpIngrCode = ri.rcpIngrCode
+		WHERE i.ingrName=#{selectedIngr};
+	</select>
+
+	<select id="countIngrInRcp" parameterType="int" resultType="int">
+		SELECT COUNT(rcpCode) FROM recipe.rcpIngr WHERE rcpCode = 'R-000083';
+	</select>
+
+	<select id="countIngrInMyRefri" parameterType="int" resultType="int">
+	</select>
 
 	<resultMap id="recipeDTO" type="RecipeDTO">
 		<id property="rcpCode" column="rcpCode" />
@@ -60,23 +77,14 @@
 	SELECT count(*) from rcp
 	</select>	
 
-<<<<<<< HEAD
 		
-	<update id="insertRecipe" parameterType="recipeDto">
+<!-- 	<update id="insertRecipe" parameterType="recipeDto">
 	UPDATE INTO recipe.recipedto (<include refid="recipedtoColumns" /> ) 
 	VALUES (#{rcpCode}, #{nickName}, #{rcpDate}, 0, #{rcpTitle}, #{rcpExpl} )
+	</update> -->
 
-	</update>
-	<select id="getIngrName1" parameterType="String" resultType="String">
-		SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
-		<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
-	</select>
-=======
-<!-- <select id="getIngrName1" parameterType="String" resultType="String">
-	SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
-	<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
-	</select> -->
 
->>>>>>> b9f8898dd416138ef0415e4f2ae11724b2651e27
+
+
 
 </mapper>

@@ -23,6 +23,8 @@ public interface RecipeDAO {
 	
 	public List<String> getIngrName1(String chosung1, String chosung2);
 	
+	public List<RecipeDTO> getRcmmList(String selectedIngr);
+	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList() ;
 

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
@@ -30,8 +32,11 @@ public class RecipeController {
 		return "refrigerator/ingrSelect";
 	}
 
-	@GetMapping("/rcmmRecipe")
-	public String rcmmRecipe(Model model){
+	@PostMapping("/rcmmRecipe")
+	public String rcmmRecipe(Model model, String selectedIngr, IngrVO ingrVO){
+		System.out.println("selectedIngr:"+selectedIngr);
+		model.addAttribute("rcmmList", recipeDAO.getRcmmList(selectedIngr));
+		System.out.println(recipeDAO.getRcmmList(selectedIngr));
 		return "refrigerator/rcmmRecipe";
 	}	
 	

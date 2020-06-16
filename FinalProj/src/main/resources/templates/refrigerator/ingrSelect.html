@@ -54,14 +54,16 @@
 	</form>
 	<!-- 선택한 재료 담는 곳 -->
 	---------------------------------------
-	<div th:class="selectedIngr" id="selectedIngr">
+
+	<div th:class="selectedIngr" id="selectedIngr" value=""></div>
 	
-	</div>
-	<form action="/rcmmRecipe">
-		<button type="submit" class="" id="goToRcmmRecipe">레시피 검색하러 가기</button></form>
+	<form th:action="@{/rcmmRecipe}" th:method="POST">
+		<!-- <p th:name="selectedIngr"> -->
+		<!-- <input type="hidden" name="selectedIngr"> -->
+		<button type="submit" th:class="goToRcmmRecipe" th:id="goToRcmmRecipe">레시피 검색하러 가기</button>
+	</form>
+	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		
-		
-	<script src="/js/recipe.js"></script>
+		<script src="/js/recipe.js"></script>
 </body>
 </html>

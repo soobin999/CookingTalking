@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
+import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
@@ -40,6 +41,13 @@ public class RecipeServiceImpl implements RecipeService{
 
 
 	@Override
+	public List<RecipeDTO> getRcmmList(String selectedIngr) {
+		List<RecipeDTO> getRcmmList = recipeDAO.getRcmmList(selectedIngr);
+		
+		return getRcmmList;
+	}
+	
+	@Override
 	public List<String> getSearchedIngrName(String ingrName) {
 		// TODO Auto-generated method stub
 		return recipeDAO.getSearchedIngrName(ingrName);
@@ -58,5 +66,8 @@ public class RecipeServiceImpl implements RecipeService{
 		int recipeCount = recipeDAO.recipeCount();
 		return recipeCount();
 	}
+
+
+
 
 }

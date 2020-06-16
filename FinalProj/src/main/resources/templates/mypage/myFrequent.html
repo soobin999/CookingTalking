@@ -20,22 +20,22 @@
 	<button onclick="myInquiry()">문의 사항</button>
 	</div>
 	
-	<div class="myRecipe">
-		<button onclick="myRecipe()">진행중인 레시피</button>
-		<button type="button" class="writtenRecipe" id="writtenRecipe">작성완료된 레시피</button>
+	<div id="myFrequent">
+		<button onclick="myFrequent()">팔로우</button>
+		<button type="button" class="scrapedRecipe" id="scrapedRecipe">스크랩한 레시피</button>
 	</div>
+	<div class="myFrequent">
 	<table>
 	<tbody>
-	<div class="myRecipeIng">
 <!-- 		<div class="myRecipeIng_img">레시피 사진</div>
 		<div class="myRecipeIng_title">레시피 제목</div> -->
-	</div>
 	
-	<tr th:each="myRecipeIng : ${myRecipeIng}">
-		<td class="" th:text=${myRecipeIng.rcpTitle}></td>
-		<td class="" th:text=${myRecipeIng.rcpPic}></td>
+	
+	<tr th:each="myFollow : ${myFollow}">
+		<td class="" th:text=${myFollow.followChef}></td>
 	</tr>
 	</tbody>
 	</table>
+	</div>
 </body>
 </html>

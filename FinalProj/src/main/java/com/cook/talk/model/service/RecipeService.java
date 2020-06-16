@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
+import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.dto.RecipeDTO;
 
 @Service
@@ -19,13 +20,18 @@ public interface RecipeService {
 	
 	public List<String> getSearchedIngrName(String ingrName);
 	
+	//public List<RecipeDTO> getRcmmList(String rcpTitle, String rcpPic);
 	
+	public List<RecipeDTO> getRcmmList(String selectedIngr);
 	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
 	
 	//레시피 총갯수
 	public int recipeCount();
+
+	/* List<RecipeDTO> getRcmmList(IngrVO ingrVO); */
+
 
 }
 
