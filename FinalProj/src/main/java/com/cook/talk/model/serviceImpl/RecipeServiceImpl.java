@@ -40,6 +40,13 @@ public class RecipeServiceImpl implements RecipeService{
 
 
 	@Override
+	public List<RecipeDTO> getRcmmList(String selectedIngr) {
+		List<RecipeDTO> getRcmmList = recipeDAO.getRcmmList(selectedIngr);
+		
+		return getRcmmList;
+	}
+	
+	@Override
 	public List<String> getSearchedIngrName(String ingrName) {
 		// TODO Auto-generated method stub
 		return recipeDAO.getSearchedIngrName(ingrName);
@@ -58,5 +65,14 @@ public class RecipeServiceImpl implements RecipeService{
 		int recipeCount = recipeDAO.recipeCount();
 		return recipeCount();
 	}
+
+
+//	public String insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag) {
+//	 int RcpNum = recipeDAO.selectRcpCode() +1;
+//	 recipe.setRcpCode("R-" + RcpNum);
+//	 recipeDAO.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
+//	 return "";
+//	}
+
 
 }
