@@ -5,14 +5,14 @@
 <mapper namespace="com.cook.talk.model.dao.RecipeDAO">
 
 	
-<!-- 	<select id="getIngrName" parameterType="String" resultType="ingrVO">
+	<select id="getIngrName" parameterType="String" resultType="ingrVO">
 	SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
 	<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
 	</select>
 
 	<select id="getSearchedIngrName" parameterType="String" resultType="String">
 		SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE CONCAT('%',#{ingrName},'%')
-	</select> -->
+	</select>
 	
 	<select id="getIngrName1" parameterType="String" resultType="String">
 		SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}

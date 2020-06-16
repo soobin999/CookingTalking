@@ -10,11 +10,13 @@
 			<div class="gnb_search">
 				<form th:id="frmTopRecipeSearch" th:method="get"
 					th:action="@{/recipeSearch}" >
-					<div th:class="input-group">
+					<div class="input-group ui-widget">
+					<label for="srhRecipeText"></label>
 						<input th:id="srhRecipeText" name="searchWord" type="text"
 							class="form-control ui-autocomplete-input" placeholder=""
 							value="" style="ime-mode: active;" autocomplete="off"> <span
 							class="input-group-btn">
+							
 							<button class="btn btn-default" th:type="submit">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</button>

@@ -5,7 +5,8 @@ layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
 <title id='pageTitle'>Insert title here</title>
-<th:block layout='css'>
+
+<th:block layout:fragment='css'>
 <link rel="stylesheet" type="text/css"
 	th:href="@{css/soobin/chefRank.css}">
 <link rel="stylesheet" type="text/css" href="css/soobin/font.css">
@@ -18,13 +19,15 @@ margin-left:50px
 }
 .container{
 width:1000px;
-border:1px solid gray;
 }
 #contents_area{
+border:1px solid grey;
 width:950px;
+left:8%;
 }
 </style>
 </th:block>
+<th:block layout:fragment="javascript">
 <script type="text/javascript">
 
 
@@ -59,6 +62,8 @@ width:950px;
 		curRtword = backRtword;
 	}
 </script>
+</th:block>
+</head>
 <div layout:fragment='content'>
 	<div class='container'>
 	<div id="contents_area" class="col-xs-9">
@@ -67,10 +72,9 @@ width:950px;
 		<ul class="nav nav-tabs3" style="position: relative;">
 			<li role="presentation" class="active"><a
 				href="/chef/chef_list.html">쉐프</a></li>
-			<li role="presentation"><a href="/chef/chef_list_follower.html">소식받는쉐프</a></li>
 			<div class="list_sort">
 				<div class="chef_search">
-					<input type="text" id="user_search_input" value=""
+					<input type="text" id="user_search_input" 
 						class="form-control" placeholder="쉐프 닉네임을 입력해 주세요."><span
 						class="glyphicon glyphicon-search"></span>
 					<button type="submit" onclick="searchUser()" class="btn search">검색</button>
@@ -156,4 +160,22 @@ width:950px;
 </div>
 </div>
 </div>
+<th:block layout:fragment="scriptCode">
+<script type="text/javascript">
+function searchUser(){
+	var nick=$('#user_search_input').val();
+	$.ajax({
+		data:{chefNick:nick},
+		url:'/chefsearch',
+		type:'POST',
+		success:function(data){
+			alert(data);
+		},
+		error:function(){
+			alert("error");
+		}
+	});
+}
+</script>
+</th:block>
 </html>
