@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.cook.talk.model.dao.ChefDAO;
 import com.cook.talk.model.dao.MainDAO;
 import com.cook.talk.model.dao.QnADAO;
 import com.cook.talk.model.service.MainService;
@@ -14,8 +13,6 @@ import com.cook.talk.model.service.MainService;
 @Controller
 public class MainController {
 
-	@Autowired(required = false)
-	private ChefDAO chef;
 	@Autowired(required = false)
 	private MainService mainService;
 	@Autowired(required = false)
@@ -48,6 +45,14 @@ public class MainController {
 		model.addAttribute("qnaList", qnADao.selectQna());
 
 		return "admin/adminMain";
+	}
+	
+	@GetMapping("/recipeSearch")
+	public String recipeSearch(Model model,String searchWord,String status) {
+		System.out.println(searchWord);
+		status="";
+		model.addAttribute("searchRecipe",maindao.recipeSearch(searchWord,status));
+		return "/recipe/recipeSearch";
 	}
 
 }

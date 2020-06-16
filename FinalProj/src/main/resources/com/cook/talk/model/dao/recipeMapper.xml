@@ -20,9 +20,6 @@
 </select>	
 
 
-
-
-
 	<resultMap id="recipeDTO" type="RecipeDTO">
 		<id property="rcpCode" column="rcpCode" />
 		<result property="nickName" column="nickName" />
@@ -66,10 +63,12 @@
 	SELECT count(*) from rcp
 	</select>
 	
+
 <!-- 	<select id="recipeView" resultMap="recipeDTO">
 	SELECT rcpPic, rcpViews, nickname, rcpTitle, rcpExpl
 	FROM recipe.recipedto
 	</select>	
+
 	<select id="recipeView2" resultType="RcpOrderVO">
 	SELECT cookOrder, cookCont, cookPic FROM rcporder WHERE rcpCode=#{rcpCode}
 	</select>

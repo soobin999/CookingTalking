@@ -5,15 +5,53 @@
 
 <mapper namespace="com.cook.talk.model.dao.MainDAO">
 
-	<select id="recipeList" parameterType="String" resultType="recipeVO">
+	<resultMap id="chefDTO" type="chefDTO">
+		<result column="rcpViews" property="rcpViews" />
+		<association property="userVO">
+			<result column="nickName" property="nickName" />
+			<result column="userPic" property="userPic" />
+			<result column="followers" property="followers" />
+		</association>
+	</resultMap>
+	<select id="recipeList" parameterType="String"
+		resultType="recipeVO">
 		select rcpTitle,rcpPic from rcp where
-		<foreach collection="list" item="rcpCode"  index="index"  separator="or" >
+		<foreach collection="list" item="rcpCode" index="index"
+			separator="or">
 			rcpCode= #{rcpCode}
 		</foreach>
 	</select>
-	
+
 	<select id="totalSelect" resultType="MainDTO">
-	select (select count(*) from user) as totalChef ,(select count(*) from rcp) as totalRecipe ,(select count(*) from search) as totalSearch ,
-(select  count(*) from talk) as totalTalk from user limit 1
+		select (select count(*) from
+		user) as totalChef ,(select count(*) from rcp)
+		as totalRecipe ,(select
+		count(*) from search) as totalSearch ,
+		(select count(*) from talk) as
+		totalTalk from user limit 1
+	</select>
+	<select id="recipeSearch" resultType='recipeVO'
+		parameterType="String">
+		select rcpTitle, rcpPic
+		from rcp
+		where rcpTitle LIKE
+		CONCAT('%',#{searchWord},'%')
+		or rcpExpl LIKE
+		CONCAT('%',#{searchWord},'%')
+		<choose>
+			<when test='status.equals("recommend")'>order by rcpViews</when>
+		</choose>
+	</select>
+
+	<select id="selectTitle" resultType="String">
+		select rcpTitle from rcp
+		where rcpTitle LIKE CONCAT('%',#{searchWord},'%') limit 10
+	</select>
+	<select id="selectChef" resultMap="chefDTO">
+		select
+		us.nickName as nickName,us.userPic as userPic,us.rcpUploads as rcpUploads,us.followers as followers,sum(rcpViews) as
+		rcpViews
+		from user as us,rcp
+		where us.userId=rcp.userId and us.userId LIKE CONCAT('%',#{chefNick},'%') group by us.userId
 	</select>
 </mapper>

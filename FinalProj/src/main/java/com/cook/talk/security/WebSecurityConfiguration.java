@@ -44,10 +44,23 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
 				
                     .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
-                    		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched","/recipe/**").permitAll()
-                    .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
+                  ,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched","/recipe/**")
+                    .permitAll()
+                    .antMatchers("/admin/**","/adminMain/**")
+                    .hasRole("Role_ADMIN")
             
-                    .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank","/loginIndex","/chosung", "/searched", "/rcmmRecipe").permitAll()
+                    .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank","/loginIndex","/chosung", "/searched", "/rcmmRecipe"
+                    		,"/adminMain/**","/admin/**","/chosung",
+                    		"/recipeSearch","/mail","/mailSender","/autoComplete","/chefsearch")
+                    .permitAll()
+                   
+			
+				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
+				/*
+				 * .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank",
+				 * "/loginIndex").permitAll()
+				 */
+
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user/mypage").hasRole("MEMBER")
                     .anyRequest().authenticated();

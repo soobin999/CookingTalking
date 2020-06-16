@@ -48,7 +48,8 @@ public class RecipeController {
 		model.addAttribute("recipeList", recipeList);
 		model.addAttribute("recipeCount", recipeDAO.recipeCount());
 		for (RecipeDTO dto : recipeList)
-			log.info("list==>" + dto);
+			System.out.println("list==>" + dto);
+			/* log.info("list==>" + dto); */
 		return "recipe/newList";
 	}
 	
@@ -72,8 +73,7 @@ public class RecipeController {
 //		recipeService.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
 //		return "redirect:getRecipeList";
 //	}
-	
-	
-	//List<RecipeVO> inserRecipeList = recipeService.insertRecipeList();
-	
+
+
+
 }
