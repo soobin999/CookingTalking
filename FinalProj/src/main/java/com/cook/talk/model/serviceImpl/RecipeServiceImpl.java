@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
-import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
@@ -68,6 +67,12 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 
+//	public String insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag) {
+//	 int RcpNum = recipeDAO.selectRcpCode() +1;
+//	 recipe.setRcpCode("R-" + RcpNum);
+//	 recipeDAO.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
+//	 return "";
+//	}
 
 
 }

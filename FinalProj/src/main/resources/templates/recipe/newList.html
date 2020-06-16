@@ -4,19 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>레시피 최신목록</title>
 </head>
-<style>
-p {
+<body th:align="center">
 
-text-align:center;
-
-}
-</style>
-<body>
-	<div class="recipeCount">
 	<p>총 <b><span th:text="${recipeCount}"></span></b>개의 레시피가 있습니다.</p>
-	</div>
-	
-	
+
 	<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
 	<tr>
 		<th>코드</th><th>제목</th>	<th>닉네임</th><th>등록일</th><th>대표사진</th>
@@ -27,8 +18,8 @@ text-align:center;
 	<td th:text="${recipe.nickName}">
 	<td th:text="${recipe.recipeVO.rcpDate}">
 	<td th:text="${recipe.recipeVO.rcpPic}">
-	
-
 	</table>	
+	<br>
+	<a th:href="@{recipe/insertRecipe}">레시피 등록</a>
 </body>
 </html>
