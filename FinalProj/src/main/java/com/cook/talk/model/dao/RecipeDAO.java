@@ -6,6 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
+import com.cook.talk.model.VO.RcpIngrVO;
+import com.cook.talk.model.VO.RcpOrderVO;
+import com.cook.talk.model.VO.RecipeVO;
+import com.cook.talk.model.VO.TagVO;
+import com.cook.talk.model.VO.TypeCatVO;
 import com.cook.talk.model.dto.RecipeDTO;
 
 @Service
@@ -29,6 +34,16 @@ public interface RecipeDAO {
 
 	//레시피 총갯수
 	public int recipeCount();
+	
+	//레시피 글보기
+//	public List<RecipeDTO> recipeView();
+	
+//	//레시피 글등록
+//	public void insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag);
+//
+//	//rcpCode 자동생성
+//	public int selectRcpCode();
+
 	
 
 	
