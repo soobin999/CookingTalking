@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserDetailsService {
 	public int joinUser(UserVO userVO) { // 비밀번호 암호화
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		userVO.setUserPw(passwordEncoder.encode(userVO.getUserPw()));
-		return userDAO.login(userVO);
+		return UserDAO.login(userVO);
 	}
 
 	@Override
