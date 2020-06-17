@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
-@Alias("talkVO")
+
 @Data
 public class TalkVO {
 
@@ -16,4 +16,5 @@ public class TalkVO {
 	private String talkVideo;//영상
 	private int talkLike;//좋아요 수
 	private int talkCom;//댓글 수 
+private String userId;
 }

@@ -23,7 +23,8 @@ Account accounts.findByEmail(username);
 //어카운트를 유저 디테일로 바꿔야한ㄴ다. 
 @Override
 public Collection<? extends GrantedAuthority> gETGrantedAuthorities{
-	authorities
+
+
 }
 return null;
 }
