@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="-1">
-<meta property="fb:pages" content="1567451316868458">
 <meta name="title" content="title">
-<meta name="keywords" content="">
-<meta name="google-site-verification"
-	content="3eLg1zfxeZ_oO6oOOsvIxbtcW-FtDsViPVm7-CYOl8w">
 <title>쿠킹토킹</title>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style type="text/css">
 iframe
@@ -25,13 +18,33 @@ iframe
 	opacity: 0 !important;
 	pointer-events: none !important;
 }
+footer{
+position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+	padding: 15px 0;
+
+	text-align: center;
+}
 </style>
 </head>
 <body>
+<header th:fragment='commonHeader'>
+</head>
+<body>
+<!-- header -->
+
+
+
 	<div class="gnb_top_wrap">
 		<div class="gnb_top">
 			<h1>
-				<a href="/index.html"><img src="img/logo.png" alt="로고"></a>
+				<a href="main/index"><img src="img/logo.png" alt="로고"></a>
 			</h1>
 			<div class="gnb_search">
 				<form id="frmTopRecipeSearch" method="get"
@@ -39,10 +52,11 @@ iframe
 					<div class="input-group">
 						<input id="srhRecipeText" name="q" type="text"
 							class="form-control ui-autocomplete-input" placeholder=""
-							value="" style="ime-mode: active;" autocomplete="off"> <span
-							class="input-group-btn">
+							value="" style="ime-mode: active;" autocomplete="off"> 
+							<span class="input-group-btn">
 							<button class="btn btn-default" type="button"
 								onclick="$('#frmTopRecipeSearch').submit();">
+								<i class="fas fa-search fa-lg"></i>
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</button>
 						</span>
@@ -50,15 +64,15 @@ iframe
 				</form>
 			</div>
 			<ul class="gnb_right">
-				<li><a href="/user/login.html"> <img
-						src="img/user_icon.png" alt="유저"></a></li>
+				<li><a href="/user/login.html"> 
+				<img src="img/user_icon.png" alt="유저"></a></li>
 				<li><a href="#"
-					style="display: block; width: 44px; height: 44px;"> <img
-						src="img/login_icon.png" alt="로그인"></a></li>
-				<li><a id="btnTopWrite" href="javascript:void(0)"
+					style="display: block; width: 44px; height: 44px;"> 
+					<img src="img/login_icon.png" alt="로그인"></a></li>
+				<li><a id="btnTopWrite" href="/recipe/insert"
 					data-toggle="tooltip" data-placement="top" title="레시피등록"
-					data-original-title="레시피등록"><img
-						src="img/recipe_write_icon.png"></a></li>
+					data-original-title="레시피등록">
+					<img src="img/recipe_write_icon.png"></a></li>
 			</ul>
 
 		</div>
@@ -66,14 +80,17 @@ iframe
 	<div class="gnb_nav text-center" style='background: #FF8000'>
 		<ul class="gnb_nav_ea10">
 			<li><a href="/index.html" class="active">홈</a></li>
-			<li><a href="/recipe/list.html">레시피</a></li>
-			<li><a href="/chef/chef_list.html">냉장고파먹기</a></li>
-			<li><a href="/talk/list.html">토크</a></li>
-			<li><a href="/chef/chef_list.html">쉐프</a></li>
-			<li><a href="/admin/admin.html">고객센터</a></li>
+			<li><a href="/recipe/newList">레시피</a></li>
+			<li><a href="/ingrSelect">냉장고파먹기</a></li>
+			<li><a href="/talk">토크</a></li>
+			<li><a href="/chefRank">쉐프</a></li>
+			<li><a href="/adminMain">고객센터</a></li>
 		</ul>
 	</div>
-
+</header>
+	
+<footer th:fragment="commonFooter">
+<!-- header End -->
 	<br>
 	<br>
 	<br>
@@ -85,22 +102,23 @@ iframe
 	<br>
 	<br>
 	<br>
-
+<!-- footer -->
 	<div class="footer st2" style='background: #ff5100'>
 		<div class="container text-center">
 			<img src="img/footer_logo.png">
 			<ul class="btm_stats">
-
-				<li><a href="/chef/apply.html" style="color: #fff;"><span><div>
-								<img src="img/btn_icon1.png">
-							</div></span>총 쉐프수</a><b>1</b></li>
-				<li><a href="/recipe/list.html" style="color: #fff;"><span><img
-							src="img/btn_icon2.png"></span>총 레시피수</a><b>1</b></li>
-				<li><span><img src="img/btn_icon3.png"></span>월 방문자수<b>1</b></li>
-				<li><span><img src="img/btn_icon4.png"></span>총 레시피 조회수<b>1</b></li>
+				<li><a href="/chef/apply.html" style="color: #fff;">
+				<span><img src="img/btn_icon1.png" th:each='total:${total}'>
+					</span>총 쉐프수</a><b th:text='${total.totalChef}'></b></li>
+				<li><a href="/recipe/list.html" style="color: #fff;">
+				<span><img src="img/btn_icon2.png"></span>총 레시피수</a><b th:text='${total.totalRecipe}'></b></li>
+				<li><span><img src="img/btn_icon3.png"></span>월 방문자수<b th:text='${total.totalTalk}'></b></li>
+				<li><span><img src="img/btn_icon4.png"></span>총 레시피 조회수<b th:text='${total.totalSearch}'></b></li>
 			</ul>
 
 		</div>
 	</div>
+	</footer>
+<!-- footer End -->
 </body>
 </html>

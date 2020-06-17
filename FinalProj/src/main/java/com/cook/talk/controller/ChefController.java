@@ -28,12 +28,7 @@ public class ChefController {
 		model.addAttribute("follow",chefDAO.selectFollow(userId, chefId));
 		model.addAttribute("chefInfo",chefDAO.selectRecipe(chefId));
 		model.addAttribute("chefDetail",chefDAO.selectChefDetail(chefId));
-		System.out.println(chefDAO.selectFollow(userId, chefId));
-		System.out.println();
-		System.out.println(chefDAO.selectRecipe(chefId));
-		System.out.println();
-		System.out.println(chefDAO.selectChefDetail(chefId));
-		return "/chef/chefInfo";
+		return "chef/chefInfo";
 	}
 	
 }

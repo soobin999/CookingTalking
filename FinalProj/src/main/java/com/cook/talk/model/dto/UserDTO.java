@@ -7,6 +7,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Repository;
+
 import com.cook.talk.model.VO.QnAVO;
 import com.cook.talk.model.VO.UserVO;
 
@@ -16,7 +21,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@Repository
 public class UserDTO {
+
+	
 	private Long id;
 
 	@NotEmpty(message = "닉네임은 필수 입력 값입니다.")
@@ -61,6 +69,8 @@ public class UserDTO {
 		// TODO Auto-generated method stub
 
 	}
+
+	
 }
 //데이터 전달 객체이므로 클라이언트 요청데이터가DTO클래스로 캡슐화 되게 한다 
 //즉 컨트롤러에서 서비스 계층간 데이터를 잔달해줌. 

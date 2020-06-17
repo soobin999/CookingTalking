@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>마이페이지(정민)</title>
+<style type="text/css"></style>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/js/mypage.js"></script>
+
+	<!-- 사진 및 계정 정보 -->
+	<a href="/userModify.html">회원 정보 수정</a>
+	
+	<div id="myPageMain">
+	<div class="myMenu">
+	<button onclick="myRecipe()">레시피</button>
+	<button onclick="myFrequent()">즐겨찾기</button>
+	<button onclick="myActivity()">활동</button>
+	<button onclick="myInquiry()">문의 사항</button>
+	</div>
+	
+	<div id="myRecipe">
+		<button onclick="myRecipe()">진행중인 레시피</button>
+		<button type="button" class="writtenRecipe" id="writtenRecipe">작성완료된 레시피</button>
+
+	</div>
+	</div>
+	<div class="myInq">
+	<table>
+	<tbody>
+<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
+		<div class="myRecipeIng_title">레시피 제목</div> -->
+
+	
+	<tr th:each="myInquiry : ${myInquiry}">
+		<td class="" th:text=${}></td>
+		<td class="" th:text=${}></td>
+	</tr>
+	</tbody>
+	</table>
+		</div>
+</body>
+</html>

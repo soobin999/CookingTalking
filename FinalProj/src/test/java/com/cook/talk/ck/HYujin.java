@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.cook.talk.model.VO.UserVO;
+import com.cook.talk.model.dao.TalkDAO;
 import com.cook.talk.model.dao.UserDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,15 +18,14 @@ import lombok.extern.slf4j.Slf4j;
 public class HYujin {
 	@Autowired
 	UserDAO userDao;
-		
+	@Autowired
+	TalkDAO talkDAO;
 	@Autowired
 	BCryptPasswordEncoder hhaa;
-	@Test
 	public void find() {
-		log.info(userDao.findUserById("abc@naver.com").toString());
+		log.info(userDao.findUserById("hahah@naver.com").toString());
 	}
 
-	@Test
 	public void save() throws Exception {
 
 
@@ -41,6 +41,12 @@ public class HYujin {
 		userDao.join(user);
 
 	}
+	
+	@Test
+	public void list() {
+		talkDAO.getTalkList().forEach(talk -> log.info(talk+""));
+	}
+	
 }
 
 		

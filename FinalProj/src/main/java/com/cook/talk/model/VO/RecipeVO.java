@@ -4,14 +4,13 @@ import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
-import com.cook.talk.model.dto.RecipeDTO;
-
 import lombok.Data;
 
 @Data
 @Alias("recipeVO")
 public class RecipeVO {
 
+	private String userId;
 	private String rcpCode;
 	private String rcpTitle;
 	private String rcpPic;
@@ -23,5 +22,6 @@ public class RecipeVO {
 	private boolean registerStatus;
 	private int rcpViews;
 	private String rcpExpl;
-	private RecipeDTO typeCat;
+	private String myIngrName;
+	private Date scrapDate;
 }

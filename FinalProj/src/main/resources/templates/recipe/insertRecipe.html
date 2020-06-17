@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>레시피 글등록</title>
+</head>
+<body th:align="center">
+<h2>레시피 등록</h2>
+<form th:action="insertRecipe" method="post">
+<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="제목" width="800px"></td>
+		<td><input name="rcpTitle" type="text" size="610px" placeholder="예) 소고기 미역국 끓이기"></td>
+	</tr>
+	<tr>
+		<td>
+		<input type="file" name="rcpPic" id="rcpPic" accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요">
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="요리소개" width="800px"></td>
+		<td><textarea name="rcpExpl" placeholder="이 레시피의 탄생배경을 적어주세요" 
+		style="height:100px; width:610px; resize:none;"></textarea></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="동영상" width="800px"></td>
+		<td><textarea name="rcpExpl" placeholder="동영상이 있으면 주소를 입력하세요." 
+		style="height:100px; width:610px; resize:none;"></textarea></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="종류별" width="800px"></td>
+		<td><input name="cookType" type="text" size="610px" placeholder="종류별"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="상황별" width="800px"></td>
+		<td><input name="cookSituation" type="text" size="610px" placeholder="상황별"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="방법별" width="800px"></td>
+		<td><input name="cookMethod" type="text" size="610px" placeholder="방법별"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="인원" width="800px"></td>
+		<td><input name="personnel" type="text" size="610px" placeholder="인원"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="시간" width="800px"></td>
+		<td><input name="cookTime" type="text" size="610px" placeholder="시간"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="난이도" width="800px"></td>
+		<td><input name="level" type="text" size="610px" placeholder="난이도"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="난이도" width="800px"></td>
+		<td><input name="level" type="text" size="610px" placeholder="난이도"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="재료" width="800px"></td>
+		<td><input name="level" type="text" size="610px" placeholder="재료"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="계량정보" width="800px"></td>
+		<td><input name="level" type="text" size="610px" placeholder="계량정보"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="계량정보" width="800px"></td>
+		<td><input name="level" type="text" size="610px" placeholder="계량정보"></td>
+	</tr>
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="조리내용" width="800px"></td>
+		<td><input name="level" type="text" size="610px" placeholder="조리내용"></td>
+	</tr>
+	
+	<tr>
+		<td bgcolor="#f8f8f8" th:text="태그" width="800px"></td>
+		<td><input name="level" type="text" size="610px" placeholder="태그"></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+		<input type="submit" value="완료">
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

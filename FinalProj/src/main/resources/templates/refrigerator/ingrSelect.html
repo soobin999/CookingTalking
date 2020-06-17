@@ -3,16 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>냉장고 파먹기(정민)</title>
+<style type="text/css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/recipe.js"></script>
-<!-- <script>
-$(document).ready(function(){
-  $(".a").click(function(){
-    $(this).hide();
-  });
-});
-</script> -->
+</style>
 </head>
 <body>
 
@@ -20,46 +13,57 @@ $(document).ready(function(){
 	<!-- 냉장고 파먹기 재료 검색창 -->
 	<form onsubmit="return false">
 		<input type="text" onsubmit="return false" title="재료를 검색하세요"
-			id="ingrSearchInRefri" name="ingrSearchInRefri" class="" placeholder="재료 검색">
+			id="ingrSearchInRefri" name="ingrSearchInRefri" class="" placeholder="재료 검색"
+			onkeypress="enterkey(event);">
 		<button type="button" class="" id="btnIngrSearch">검색</button>
-		<ul id="searchedIngr"></ul> <!-- 검색한 재료가 나오는 영역 -->
+		<ul id="searchedIngr" th:class="searchedIngr"></ul> <!-- 검색한 재료가 나오는 영역 -->
 
 		<!-- chosung -->	
-		<!-- chosung int cs를 못 받아오는 것 같습니다 ㅠㅠ 수빈양.. -->
-		<button class="chosung" id="r" value="r">ㄱ</button>
-		<button class="chosung" id="s">ㄴ</button>
-		<button class="chosung">ㄷ</button>
-		<button class="chosung">ㄹ</button>
-		<button class="chosung">ㅁ</button>
-		<button class="chosung">ㅂ</button>
-		<button class="chosung">ㅅ</button>
-		<button class="chosung">ㅇ</button>
-		<button class="chosung">ㅈ</button>
-		<button class="chosung">ㅊ</button>
-		<button class="chosung">ㅋ</button>
-		<button class="chosung">ㅌ</button>
-		<button class="chosung">ㅎ</button>
+		<button class="chosung" th:value="0">ㄱ</button>
+		<button class="chosung" th:value="1">ㄴ</button>
+		<button class="chosung" th:value="2">ㄷ</button>
+		<button class="chosung" th:value="3">ㄹ</button>
+		<button class="chosung" th:value="4">ㅁ</button>
+		<button class="chosung" th:value="5">ㅂ</button>
+		<button class="chosung" th:value="6">ㅅ</button>
+		<button class="chosung" th:value="7">ㅇ</button>
+		<button class="chosung" th:value="8">ㅈ</button>
+		<button class="chosung" th:value="9">ㅊ</button>
+		<button class="chosung" th:value="10">ㅋ</button>
+		<button class="chosung" th:value="11">ㅍ</button>
+		<button class="chosung" th:value="12">ㅌ</button>
+		<button class="chosung" th:value="13">ㅎ</button>
 
 
 	</form>
 	<!-- 재료 리스트 가져오기 -->
-	<div class="result-area" id="ingrList">
+
+	<form onsubmit="return false">
+
+	<div th:id="chosungNum">
+	<div th:class="result-area" th:id="ingrList">
 			<table>
 			<tbody th:id="result">
-			
 				<tr th:each="ingrs : ${ingrs}">
-				<td><button th:class="button" th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}" data-area=""></button></td>
-					<!-- <td th:text="${ingrs.ingrName}"></td> -->
+				<td><button th:class="ingrButton" th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}" data-area=""></button></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	</div>
 	</form>
 	<!-- 선택한 재료 담는 곳 -->
-	<div class="" id="selectedIngr" data-area="selectedIngr" value="">
+	---------------------------------------
+
+	<div th:class="selectedIngr" id="selectedIngr" value=""></div>
 	
-	</div>
-	<form action="/rcmmRecipe">
-		<button type="submit" class="" id="goToRcmmRecipe">레시피 검색하러 가기</button></form>
+	<form th:action="@{/rcmmRecipe}" th:method="POST">
+		<!-- <p th:name="selectedIngr"> -->
+		<!-- <input type="hidden" name="selectedIngr"> -->
+		<button type="submit" th:class="goToRcmmRecipe" th:id="goToRcmmRecipe">레시피 검색하러 가기</button>
+	</form>
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="/js/recipe.js"></script>
 </body>
 </html>

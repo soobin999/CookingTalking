@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>회원정보 로드하기</title>
+<title>회원정보 로드하기(adUser의 백업 파일본들)</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -30,15 +30,16 @@
 				</tr>
 			</thead>
 			<tbody>
-		
+
 				<tr th:each="user : ${UserList}">
 					<td><button th:class="delete_btn" th:value='${user.userId}'>삭제하기</button></td>
 
 
-					<td th:text="${user.userId}">유저 아이디</td>
-					<td><input type="text" id="enter_update_nickName"
-						name="nickName" th:value="${user.nickName}">
-						 <!-- 	 <input type="text"		name="nickName" th:value="${user.nickName}"> -->
+					<td><input type="text" th:class="C_enter_update_Id"
+						id="enter_update_ID" name="userId" th:value="${user.userId}"
+						readonly></td>
+					<td><input type="text"id="enter_update_nickName" name="nickName"
+						th:value="${user.nickName}"> <!-- 	 <input type="text"		name="nickName" th:value="${user.nickName}"> -->
 						<!-- <input type="submit" th:value="${user.nickName}">Submit --></td>
 					<td th:text="${user.birth}">유저 생일</td>
 					<td th:text="${user.gender}">유저 성별</td>
@@ -56,37 +57,35 @@
 	</script>
 
 	<script type="text/javascript">
-		var nickName = document.getElementById("enter_update_nickName");
+		var nickName = document.getElementById('enter_update_nickName');
+		
+		var userId = document.getElementById('enter_update_ID');
 		var ENTER_KEY = 13;
+		console.log(userId);
 		nickName.addEventListener("keyup", function(event) {
 			if (event.keyCode === ENTER_KEY) {
 				event.preventDefault();
 				alert(nickName.value + "로 변경되었습니다.");
-				
-				 $.ajax({
+				console.log(userId);
+				console.log(nickName);
+				//userID값도 넣어주어야 됩니다.
+				$.ajax({
 					url : './admin/updateUserNickName',
 					data : {
+						userId : userId.value,
 						nickName : nickName.value
 					},
 					method : "POST",
 				}).done(function(response) {
 					$('#basic').load("admin/adUser");
 				});
-				 
-				
+
 			} else {
 				return false;
 			}
 		});
 	</script>
 
-
-
-	<!-- <script type="text/javascript">
-		var enterInPut = document.getElementById("enter_update_nickName");
-		var ENTER_KEY = 13;
-		enterInPut.addEventListener("enter")
-	</script> -->
 	<script th:inline="javascript">
 		$(".delete_btn").click(function() {
 			/*          alert($(this).attr('value')); */
@@ -108,6 +107,8 @@
 
 		});
 	</script>
+
+
 	<script>
 		$(".update_btn").click(function() {
 			/*          alert($(this).attr('value')); */
