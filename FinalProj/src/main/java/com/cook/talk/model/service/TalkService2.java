@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.cook.talk.model.VO.TalkVO;
 
-public interface TalkService {
+public interface TalkService2 {
 	// 목록 가져오기
 	public List<TalkVO> getlist();
 

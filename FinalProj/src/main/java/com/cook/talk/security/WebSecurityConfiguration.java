@@ -40,15 +40,21 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http .authorizeRequests() //페이지 권한 설정
                   
+                 
+                    .antMatchers("/**/","/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
+                    		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage","/talk/**")
+                    .permitAll()//요청은 권한없이 접근 가능한 것 
+                  
                     .antMatchers("/user/mypage").hasRole("Role_MEMBER")
-				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
-				
-                    .antMatchers("/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
-                    		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage").permitAll()
+    				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
+    				
+                    
                     .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
+                    //관리자만 접근 
+                    
                     .antMatchers("/user/mypage").hasRole("MEMBER")
                     .anyRequest().authenticated();
-                    
+                    //인증된 사용자만 접근할수있음. 
                     
 
         //접근 가능 
