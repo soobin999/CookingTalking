@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- XHTML 문서를 위한 XML 네임스페이스를 명시하는 것으로, 생략해도 정상동작 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:insert="talk/header.html" id="header"></div>
+
+
+<a th:href="@{/post}">글쓰기</a>
+
+
+
+<div th:insert="talk/footer.html" id="footer"></div>
+
+</body>
+</html>
