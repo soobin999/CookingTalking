@@ -5,7 +5,6 @@ import java.util.Optional;
 //Simport javax.xml.ws.ServiceMode;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.session.SqlSession;
 
 import com.cook.talk.model.VO.UserVO;
 
@@ -25,7 +24,10 @@ public interface UserDAO {
 
    public void join(UserVO user) throws Exception;
 
-   public int login(UserVO userVO);
+   public static int login(UserVO userVO) {
+	// TODO Auto-generated method stub
+	return 0;
+}
 
    public Optional<UserVO> findByEmail(String userEmail);
 
@@ -33,5 +35,11 @@ public interface UserDAO {
       // TODO Auto-generated method stub
 
    }
+
+public static int getuserId(UserVO userVO) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+public void updateAccess(String userId);
 
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table border=1>
+<thead> chef Rank</thead>
+<tbody>
+<tr th:each="chef,index:${chefList}">
+<td th:text="${index.index}+1"></td>
+<td th:text="${chef.userVO.nickName}"></td>
+<td th:text="${chef.userVO.userPic}"></td>
+<td th:text="${chef.userVO.rcpUploads}"></td>
+<td th:text="${chef.userVO.followers}"></td>
+<td th:text="${chef.rcpViews}"></td>
+
+</tr>
+</tbody>
+</table>
+</body>
+</html>

@@ -2,66 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>냉장고 파먹기(정민)</title>
-<style type="text/css">
-
-</style>
+<title>마이페이지(정민)</title>
+<style type="text/css"></style>
 </head>
 <body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/js/mypage.js"></script>
 
-
-	<!-- 냉장고 파먹기 재료 검색창 -->
-	<form onsubmit="return false">
-		<input type="text" onsubmit="return false" title="재료를 검색하세요"
-			id="ingrSearchInRefri" name="ingrSearchInRefri" class="" placeholder="재료 검색"
-			onkeypress="enterkey(event);">
-		<button type="button" class="" id="btnIngrSearch">검색</button>
-		<ul id="searchedIngr" th:class="searchedIngr"></ul> <!-- 검색한 재료가 나오는 영역 -->
-
-		<!-- chosung -->	
-		<button class="chosung" th:value="0">ㄱ</button>
-		<button class="chosung" th:value="1">ㄴ</button>
-		<button class="chosung" th:value="2">ㄷ</button>
-		<button class="chosung" th:value="3">ㄹ</button>
-		<button class="chosung" th:value="4">ㅁ</button>
-		<button class="chosung" th:value="5">ㅂ</button>
-		<button class="chosung" th:value="6">ㅅ</button>
-		<button class="chosung" th:value="7">ㅇ</button>
-		<button class="chosung" th:value="8">ㅈ</button>
-		<button class="chosung" th:value="9">ㅊ</button>
-		<button class="chosung" th:value="10">ㅋ</button>
-		<button class="chosung" th:value="11">ㅍ</button>
-		<button class="chosung" th:value="12">ㅌ</button>
-		<button class="chosung" th:value="13">ㅎ</button>
-
-
-	</form>
-	<!-- 재료 리스트 가져오기 -->
-
-	<form onsubmit="return false">
-
-	<div th:id="chosungNum">
-	<div th:class="result-area" th:id="ingrList">
-			<table>
-			<tbody th:id="result">
-				<tr th:each="ingrs : ${ingrs}">
-				<td><button th:class="ingrButton" th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}" data-area=""></button></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	</div>
-	</form>
-	<!-- 선택한 재료 담는 곳 -->
-	---------------------------------------
-	<div th:class="selectedIngr" id="selectedIngr">
+	<!-- 사진 및 계정 정보 -->
+	<a href="/userModify.html">회원 정보 수정</a>
 	
+	<div id="myPageMain">
+	<div class="myMenu">
+	<button onclick="myRecipe()">레시피</button>
+	<button onclick="myFrequent()">즐겨찾기</button>
+	<button onclick="myActivity()">활동</button>
+	<button onclick="myInquiry()">문의 사항</button>
+	
+	
+	<div class="myBasic">
+		<button onclick="myRecipe()">진행중인 레시피</button>
+		<button type="button" class="writtenRecipe" id="writtenRecipe">작성완료된 레시피</button>
 	</div>
-	<form action="/rcmmRecipe">
-		<button type="submit" class="" id="goToRcmmRecipe">레시피 검색하러 가기</button></form>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		
-		
-	<script src="/js/recipe.js"></script>
+	</div>
+	<div class="myRecipeIng">
+	<table>
+	<tbody>
+<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
+		<div class="myRecipeIng_title">레시피 제목</div> -->
+	
+	
+	<tr th:each="myRecipeIng : ${myRecipeIng}">
+		<td class="" th:text=${myRecipeIng.rcpTitle}></td>
+		<td class="" th:text=${myRecipeIng.rcpPic}></td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	</div>
 </body>
 </html>

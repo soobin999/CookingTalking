@@ -10,6 +10,7 @@
 <result column="nickName" property="nickName"/>
 <result column="userPic" property="userPic"/>
 <result column="followers" property="followers"/> 
+<result column="rcpUploads" property="rcpUploads"/>
 </association>
 </resultMap>
 	<select id="selectChefDetail" resultMap="chefDTO">
@@ -25,14 +26,14 @@
 		select rcpTitle,rcpPic from rcp where userId = #{userId}
 	</select>
 	<select id="allSelectChef" resultMap="chefDTO">
-		select us.nickName,us.userPic,us.rcpUploads,us.followers, sum(rcpViews) as rcpview
+		select us.nickName as nickName,us.userPic as userPic,us.rcpUploads as rcpUploads,us.followers as followers, sum(rcpViews) as rcpviews
 			   from user as us, rcp 
 			   where us.userId=rcp.userId
-			   group by us.userId 
+			   group by us.nickName
 			   <choose>
-			   <when test='status.equals("rcpUploads")'>order by us.rcpUploads,us.followers,rcp.rcpviews</when>
-			   <when test='status.equals("followers")'>order by us.followers,us.rcpUploads,rcp.rcpviews</when>
-			   <when test='status.eqauls("rcpveiws")'>order by rcp.rcpViews,us.rcpUploads,us.followers</when>
+			   <when test='status.equals("rcpUploads")'>order by us.rcpUploads*1 desc,us.followers*1 desc,rcp.rcpviews*1 desc</when>
+			   <when test='status.equals("followers")'>order by us.followers*1 desc,us.rcpUploads*1 desc,rcp.rcpviews*1 desc</when>
+			   <when test='status.eqauls("rcpveiws")'>order by rcp.rcpViews*1 desc,us.rcpUploads*1 desc,us.followers*1 desc</when>
 			   </choose>
 	</select>
 </mapper>

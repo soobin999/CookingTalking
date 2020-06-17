@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cook.talk.model.dao.MypageDAO">
+
+	
+	<select id="getMyRecipeIng" parameterType="String" resultType="RecipeVO">
+	SELECT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' and registerStatus=0
+	</select>
+	
+	<select id="getMyRecipeWritten" parameterType="String" resultType="RecipeVO">
+	SELECT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' and registerStatus=1
+	</select>
+	
+	<select id="getMyFollow" parameterType="String" resultType="UserVO">
+	SELECT followChef FROM recipe.follow WHERE userId='kkk@naver.com'
+	</select>
+	
+	<select id="getMyScrapedRecipe" parameterType="String" resultType="RecipeVO">
+	SELECT rcpTitle, rcpPic, scrapDate FROM recipe.rcp WHERE userId='kkk@naver.com'
+	</select>
+	
+	
+	<select id="getMyTalk" parameterType="String" resultType="TalkVO">
+	SELECT talkCont FROM recipe.talk WHERE userId='kkk@naver.com'
+	</select>
+	
+	<select id="getMyCom" parameterType="String" resultType="TalkComVO">
+	SELECT talkCom, talkDate FROM recipe.talkCom WHERE userId='kkk@naver.com'
+	</select>
+	
+	<select id="getMyRcpCom" parameterType="String" resultType="TalkComVO">
+	SELECT rcpCom, rcpComDate FROM recipe.rcpcom WHERE userId='kkk@naver.com'
+	</select>	
+	
+	<insert id="rqMyInq">
+	INSERT INTO recipe.qna(qnaTitle, qnaCont) VALUES (#{qnaTitle}, #{qnaCont}) WHERE userId='kkk@naver.com'
+	</insert>
+	
+	<select id="getMyInq" parameterType="String" resultType="QnAVO">
+	SELECT qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
+	</select>
+	
+	
+</mapper>

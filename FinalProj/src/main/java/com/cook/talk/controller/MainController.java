@@ -49,6 +49,7 @@ public class MainController {
 	
 	@GetMapping("/recipeSearch")
 	public String recipeSearch(Model model,String searchWord,String status) {
+		System.out.println(searchWord);
 		status="";
 		model.addAttribute("searchRecipe",maindao.recipeSearch(searchWord,status));
 		return "/recipe/recipeSearch";

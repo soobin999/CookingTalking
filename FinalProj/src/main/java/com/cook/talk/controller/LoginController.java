@@ -1,6 +1,7 @@
 package com.cook.talk.controller;
 
-import java.util.HashMap;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,23 +10,26 @@ import javax.validation.Valid;
 
 import org.elasticsearch.client.security.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cook.talk.model.VO.UserVO;
+import com.cook.talk.model.dao.MainDAO;
 import com.cook.talk.model.dao.UserDAO;
 import com.cook.talk.model.dto.UserDTO;
-import com.cook.talk.model.service.UserService;
+import com.cook.talk.model.naver.NaverLoginBO;
+import com.cook.talk.model.service.EncryptionService;
 import com.cook.talk.model.serviceImpl.UserServiceImpl;
 
 import lombok.AllArgsConstructor;
-import net.bytebuddy.asm.Advice.Return;
 
 @AllArgsConstructor
 
@@ -35,14 +39,30 @@ public class LoginController {
    private UserVO userVO;
    @Autowired
    private UserDAO userDAO;
-   
+   @Autowired
+   EncryptionService encryption;
+   @Autowired
+   MainDAO maindao;
    
    @RequestMapping(value = "/login", method = RequestMethod.GET)
-   public String login(Model model, HttpServletRequest req) {
-      model.addAttribute("message", req.getServletContext());
+   public String login(Model model, HttpServletRequest req ,HttpSession session) {
+      
+	   String naverAuthUrl=NaverLoginBO.getAuthorizationUrl(session);
+	
+		//네이버 아이디로 인증 url를 생성하기 위해 메소드 호출 
+	   //생성한 인증 url를 view로 전달
+	   model.addAttribute("naver_url",naverAuthUrl);
+	   
+	   model.addAttribute("message", req.getServletContext());
+      System.out.println(naverAuthUrl);
+      
       return "/login/login";
    }
 
+   
+   
+   
+   
    @RequestMapping("goJoin")
    public String goJoin() {
       return "join";
@@ -68,12 +88,25 @@ public class LoginController {
       return "/login/login";
    }
 
-   @RequestMapping("/logout")
+   /*@RequestMapping("/logout")
    public String logout(HttpSession session) {
       session.removeAttribute("user");
       return "index";
+   }*/
+
+ //로그아웃
+   @RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+   public String logout(HttpSession session)throws IOException {
+   System.out.println("여기는 logout");
+   session.invalidate();
+   return "redirect:index";
    }
 
+   
+   
+   
+   
+   
    @GetMapping("/admin")
    public String adminPage(@AuthenticationPrincipal User user, Map<String, Object> model) {
       model.put("currentAdminId", user.getUsername());
@@ -104,8 +137,10 @@ public class LoginController {
 
    
    @PostMapping("/join")
-   public String execJoin(@Valid UserVO userVO, Errors errors, Model model) {
+   public String execJoin(@Valid UserVO userVO, Errors errors, Model model)  {
       userServiceImpl.joinUser(userVO);
+      System.out.println(userVO.getUserId());
+      encryption.encryption(userVO.getUserId());
       return "redirect:/index";
 
    }// 기능
@@ -133,5 +168,11 @@ public class LoginController {
       return "/join/join";
 
    }
-
+   @GetMapping("/loginConfirm/{accessCode}")
+   public String loginConfirm(@PathVariable String accessCode,Model model) {
+	   model.addAttribute("total",maindao.totalSelect());
+	   System.out.println(accessCode);
+	   encryption.Decrypt(accessCode);
+	   return "main/index";
+   }
 }

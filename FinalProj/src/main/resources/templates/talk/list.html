@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- XHTML 문서를 위한 XML 네임스페이스를 명시하는 것으로, 생략해도 정상동작 -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>게시글 목록</title>
+
+<!-- <script type="text/javascript">
+	$(document).readt(function() {
+		$("#btnWrite").click(function() {
+			location.href = "${path}/talk/wirte";
+		});
+	});
+</script> -->
+</head>
+ <body>
+	<button type="button" id=btnWrite>글쓰기</button>
+	<table border="1" width="600px">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>내용</th>
+				<th>아이디</th>
+				<th>날짜</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="talk : ${list}">
+				<td th:text="${talk.talkCode}"></td>
+				<td th:text="${talk.talkCont}"></td>
+				<td th:text="${talk.userId}"></td>
+				<td th:text="${talk.talkDate}"></td>
+			
+				<!-- <fmt:formatDate
+					value="${row.redate}" pattern="yyy-MM-dd HH:mm:ss" /> -->
+			</tr>
+		</tbody>
+		<!-- <a th:href="@{/post}">글쓰기</a>
+
+ -->		<!-- 	<div th:insert="talk/footer.html" id="footer"></div> -->
+	
+	</table>
+</body>
+</html>

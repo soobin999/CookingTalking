@@ -11,12 +11,16 @@ import lombok.Data;
 public class RecipeDTO {
 
 	private String rcpCode;
-	
+
+	/*
+	 * private String rcpTitle; private String rcpPic;
+	 */
+
 	@Autowired(required = false)
 	private RecipeVO recipeVO;
-	
+
 	private String nickName;
-	
+
 	@Autowired(required = false)
 	private TypeCatVO typeCatVO;
 

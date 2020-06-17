@@ -13,4 +13,6 @@ public interface QnADAO {
 	public void insertReply(QnAVO qna);
 	public List<QnAVO> selectQna();
 	
+	public int selectQnACode();
+	
 }

@@ -19,7 +19,9 @@ public interface RecipeService {
 	
 	public List<String> getSearchedIngrName(String ingrName);
 	
+	//public List<RecipeDTO> getRcmmList(String rcpTitle, String rcpPic);
 	
+	public List<RecipeDTO> getRcmmList(String selectedIngr);
 	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
@@ -27,7 +29,14 @@ public interface RecipeService {
 	//레시피 총갯수
 	public int recipeCount();
 	
+	//레시피 글보기
+//	public List<RecipeDTO> recipeView();
 	
+//	//레시피 글등록
+//	public String insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag);
+
+	/* List<RecipeDTO> getRcmmList(IngrVO ingrVO); */
+
 
 }
 

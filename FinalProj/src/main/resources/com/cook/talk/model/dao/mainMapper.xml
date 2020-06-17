@@ -5,6 +5,15 @@
 
 <mapper namespace="com.cook.talk.model.dao.MainDAO">
 
+	<resultMap id="chefDTO" type="chefDTO">
+		<result column="rcpViews" property="rcpViews" />
+		<association property="userVO">
+			<result column="nickName" property="nickName" />
+			<result column="userPic" property="userPic" />
+			<result column="followers" property="followers" />
+			<result column="rcpUploads" property="rcpUploads"/>
+		</association>
+	</resultMap>
 	<select id="recipeList" parameterType="String"
 		resultType="recipeVO">
 		select rcpTitle,rcpPic from rcp where
@@ -15,17 +24,37 @@
 	</select>
 
 	<select id="totalSelect" resultType="MainDTO">
-		select (select count(*) from user) as totalChef ,(select count(*) from rcp)
-		as totalRecipe ,(select count(*) from search) as totalSearch ,
-		(select count(*) from talk) as totalTalk from user limit 1
+		select (select count(*) from
+		user) as totalChef ,(select count(*) from rcp)
+		as totalRecipe ,(select
+		count(*) from search) as totalSearch ,
+		(select count(*) from talk) as
+		totalTalk from user limit 1
 	</select>
-	<select id="recipeSearch" resultType='recipeVO' parameterType="String">
+	<select id="recipeSearch" resultType='recipeVO'
+		parameterType="String">
 		select rcpTitle, rcpPic
 		from rcp
-		where rcpTitle LIKE CONCAT('%',#{searchWord},'%')
-		or rcpExpl LIKE CONCAT('%',#{searchWord},'%')
+		where rcpTitle LIKE
+		CONCAT('%',#{searchWord},'%')
+		or rcpExpl LIKE
+		CONCAT('%',#{searchWord},'%')
 		<choose>
-		<when test='status.equals("recommend")'>order by rcpViews</when>
+			<when test='status.equals("recommend")'>order by rcpViews</when>
 		</choose>
+	</select>
+
+	<select id="selectTitle" resultType="String">
+		select rcpTitle from rcp
+		where rcpTitle LIKE CONCAT('%',#{searchWord},'%') limit 10
+	</select>
+	<select id="selectChef" resultMap="chefDTO" parameterType="String">
+		select
+		us.nickName,us.userPic,us.rcpUploads,us.followers,sum(rcpViews) as
+		rcpViews
+		from user as us,rcp 
+		where us.userId=rcp.userId and us.nickName LIKE CONCAT('%',#{chefNick},'%') 
+		group by us.nickName 
+		order by us.rcpUploads*1 desc,us.followers*1 desc,rcp.rcpviews*1 desc
 	</select>
 </mapper>

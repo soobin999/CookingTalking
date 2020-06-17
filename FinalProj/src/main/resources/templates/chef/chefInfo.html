@@ -5,13 +5,12 @@ layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
 <title id='pageTitle'>안녕dd</title>
-<th:block layout='css'>
+<th:block layout:fragment='css'>
 <link rel="stylesheet" type="text/css" href="css/soobin/font.css">
 <style type="text/css">
 .container{
-background:white;
-border: 1px solid gray;
 width:1000px;
+background:white;
 }
 </style>
 </th:block>
@@ -45,11 +44,10 @@ width:1000px;
 
 <div class="my_tabs">
         <ul class="nav nav-tabs nav-justified" style="position:relative;">
-            <li role="presentation" class="active"><a href="/profile/recipe.html?uid=jun8707"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-            <li role="presentation"><a href="/profile/review.html?uid=jun8707"><span class="glyphicon glyphicon-star"></span>요리후기</a></li>
-            <li role="presentation"><a href="/profile/recipe_comment.html?uid=jun8707"><span class="glyphicon glyphicon-comment"></span>댓글</a></li>
-            <li role="presentation"><a href="/profile/talk.html?uid=jun8707"><span class="glyphicon glyphicon-user"></span>스토리</a></li>
-            <li role="presentation"><a href="/profile/shopreview.html?uid=jun8707"><span class="glyphicon glyphicon-shopping-cart"></span>쇼핑후기</a></li>
+            <li role="presentation" class="active"><a href="/profile/recipe.html?uid=jun8707"><i class="fas fa-utensils"></i> 레시피</a></li>
+            <li role="presentation"><a href="/profile/review.html?uid=jun8707"><i class="fas fa-star"></i>요리후기</a></li>
+            <li role="presentation"><a href="/profile/recipe_comment.html?uid=jun8707"><i class="fas fa-comments"></i>댓글</a></li>
+            <li role="presentation"><a href="/profile/talk.html?uid=jun8707"><i class="fas fa-user-friends"></i> 스토리</a></li>
         </ul>
     </div>
 
