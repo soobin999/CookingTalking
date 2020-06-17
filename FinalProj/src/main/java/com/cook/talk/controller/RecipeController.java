@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cook.talk.model.VO.RcpIngrVO;
@@ -15,17 +16,18 @@ import com.cook.talk.model.VO.TagVO;
 import com.cook.talk.model.VO.TypeCatVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
+import com.cook.talk.model.dto.RecipeShortDTO;
 import com.cook.talk.model.service.RecipeService;
 
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
-@Log
+@Slf4j
 @Controller
 public class RecipeController {
-	
+
 	@Autowired
 	RecipeService recipeService;
-	
+
 	@Autowired
 	RecipeDAO recipeDAO;
 
@@ -37,22 +39,20 @@ public class RecipeController {
 	}
 
 	@GetMapping("/rcmmRecipe")
-	public String rcmmRecipe(Model model){
+	public String rcmmRecipe(Model model) {
 		return "refrigerator/rcmmRecipe";
-	}	
-	
-	
+	}
+
 	@GetMapping("recipe/newList")
 	public String getRecipeList(Model model) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();
 		model.addAttribute("recipeList", recipeList);
 		model.addAttribute("recipeCount", recipeDAO.recipeCount());
 		for (RecipeDTO dto : recipeList)
-			System.out.println("list==>" + dto);
-			/* log.info("list==>" + dto); */
+		log.info("list==>" + dto);
 		return "recipe/newList";
 	}
-	
+
 //	@GetMapping("recipe/recipeView") 
 //	public void recipeView(@RequestParam("rcpCode") String rcpCode, Model model) {
 //		List<RecipeDTO> recipeView = recipeService.
@@ -62,18 +62,26 @@ public class RecipeController {
 //	  log.info("recipe/recipeView"); 
 //	  
 //}
-	 
-//	@GetMapping("recipe/insertRecipe")
-//	public String insertRecipeView() {	
-//		return "recipe/insertRecipe";
-//	}
-//	
-//	@PostMapping("recipe/insertRecipe")
-//	public String insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag) {
-//		recipeService.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
-//		return "redirect:getRecipeList";
-//	}
 
+	@GetMapping("recipe/insertRecipe")
+	public String insertRecipeView(@ModelAttribute RecipeShortDTO recipeShortDTO) {
 
+		return "recipe/insertRecipe";
+	}
+
+//	@PostMapping("recipe/insertRecipeProc2") 
+//	public String insertRecipeProc2(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr,
+//	  RcpOrderVO rcpOrder, TagVO tag) { 
+//		recipeService.insertRecipeProc2(recipe,typeCat, rcpIngr, rcpOrder, tag); 
+//	   return "redirect:getRecipeList"; 
+//		}
+
+	@PostMapping("recipe/insertRecipeProc")
+	public String insertRecipeProc(RecipeShortDTO recipeShortDTO) {
+		// recipeService.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
+		recipeService.insertRecipeProc(recipeShortDTO.getRecipeDTO2(), recipeShortDTO.getTypeCatDTO2(),
+				recipeShortDTO.getRcpIngrDTO2(), recipeShortDTO.getRcpOrderDTO2(), recipeShortDTO.getTagDTO2());
+		return "redirect:newList";
+	}
 
 }

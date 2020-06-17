@@ -6,15 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
-import com.cook.talk.model.VO.RcpIngrVO;
-import com.cook.talk.model.VO.RcpOrderVO;
-import com.cook.talk.model.VO.RecipeVO;
-import com.cook.talk.model.VO.TagVO;
-import com.cook.talk.model.VO.TypeCatVO;
 import com.cook.talk.model.dao.RecipeDAO;
+import com.cook.talk.model.dto.RcpIngrDTO2;
+import com.cook.talk.model.dto.RcpOrderDTO2;
 import com.cook.talk.model.dto.RecipeDTO;
+import com.cook.talk.model.dto.RecipeDTO2;
+import com.cook.talk.model.dto.TagDTO2;
+import com.cook.talk.model.dto.TypeCatDTO2;
 import com.cook.talk.model.service.RecipeService;
 
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
 public class RecipeServiceImpl implements RecipeService{
 
@@ -65,12 +68,47 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 //	@Override
-//	public String insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag) {
+//	public String insertRecipeProc(RecipeVO recipeVO, TypeCatVO typeCatVO, 
+//			RcpIngrVO rcpIngrVO, RcpOrderVO rcpOrderVO, TagVO tagVO) {
 //	 int RcpNum = recipeDAO.selectRcpCode() +1;
-//	 recipe.setRcpCode("R-" + RcpNum);
-//	 recipeDAO.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
-//	 return "";
+//	 recipeVO.setRcpCode("R-" + RcpNum);
+	// recipeDAO.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
+//	 System.out.println(recipeVO);
+	 // recipeDAO.insertRcpProc(recipeVO);
+	  
+//	  System.out.println(typeCatVO);
+	  //recipeDAO.insertTypecatProc(typeCatVO);
+	  
+//	  System.out.println(rcpIngrVO);
+	  //recipeDAO.insertRcpingrProc(rcpIngrVO);
+	  
+//	  System.out.println(rcpOrderVO);
+	  //recipeDAO.insertRcporderProc(rcpOrderVO);
+//	  
+//	  System.out.println(tagVO);
+	  //recipeDAO.insertTagProc(tagVO);
+	  
+	 
+	
+//	 return "?????";
 //	}
+
+	@Override
+	public void insertRecipeProc(RecipeDTO2 recipeDTO2, TypeCatDTO2 typeCatDTO2, RcpIngrDTO2 rcpIngrDTO2,
+			RcpOrderDTO2 rcpOrderDTO2, TagDTO2 tagDTO2) {
+		int RcpNum = recipeDAO.selectRcpCode() +1;
+		 recipeDTO2.setRcpCode("R-" + RcpNum);
+		 recipeDAO.insertRcpProc(recipeDTO2);
+		 System.out.println(recipeDTO2);
+		 recipeDAO.insertTypecatProc(typeCatDTO2);
+		 System.out.println(typeCatDTO2);
+		 recipeDAO.insertRcpingrProc(rcpIngrDTO2);
+		 System.out.println(rcpIngrDTO2);
+		 recipeDAO.insertRcporderProc(rcpOrderDTO2);
+		 System.out.println(rcpOrderDTO2);
+		 recipeDAO.insertTagProc(tagDTO2);
+		 log.info(tagDTO2);
+	}
 
 
 }
