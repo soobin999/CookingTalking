@@ -5,11 +5,23 @@
 <title>냉장고 파먹기(정민)</title>
 </head>
 <body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/js/recipe.js"></script>
 	
 	<!-- 추천 레시피 -->
-	
+	<table>
+	<thead>
+	<tr>
+	<th>레시피 제목</th>
+	<th>레시피 사진</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr th:each="rcmmList : ${rcmmList}">
+	<td th:text="${rcmmList.rcpTitle}"></td>
+	<td th:text="${rcmmList.rcpPic}"></td>
+	</tbody>
+	</table>
 	
 </body>
 </html>

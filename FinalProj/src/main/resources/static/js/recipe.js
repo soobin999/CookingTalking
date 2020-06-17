@@ -5,8 +5,8 @@ $(function() {
 	$('#ingrSearchInRefri').on('change', ingrSearch);
 	$('#btnIngrSearch').on('click', ingrSearch);
 	enterkey();
-	 clickOffVer1();
-	 clickOffVer2();
+	clickOffVer1();
+	clickOffVer2();
 })
 
 function chosung() {
@@ -27,7 +27,7 @@ function chosung() {
 
 				var list = '<div id="ingrList">'
 				$.each(data, function(index, value) {
-					list = list + '<button>' + value + '</button>';
+					list = list + '<button class="ingrButton" value="'+value+'">' + value + '</button>';
 				});
 				list = list + '</div>';
 				result.append(list);
@@ -55,40 +55,8 @@ function searchButtonClick(){
 	$('#btnIngrSearch').on('click', function(){
 		ingrSearch();
 	})
-
-function ingrSearch1(){
-	 $(".a").click(function(){
-		    $(this).hide();
-		  });
-	  $(".chosung").click(function(){
-		  var value = $(this).attr('value');
-		  console.log(value);
-			$.ajax({
-				type : "POST",
-				url : "/chosung",
-				data : {cs :value},
-				/*dataType : 'JSON',*/
-				success : function(data){
-					console.log(data);
-					
-					var result = $('#aaaaaa');
-					$('#ingrList').remove();
-					var list='<div id="ingrList">'
-					$.each(data, function(index, value){
-						list = list+'<button>' + value + '</button><br><br>';
-					});
-						list=list+'</div>';
-						result.append(list);
-				},
-				/*	$('#ingrList').text();
-					console.log(('#ingrList').text());*/
-				
-				error : function(){
-					alert("Chosung Error");
-				}
-			});
-		  });
 }
+
 
 function ingrSearch() {
 	
@@ -105,7 +73,7 @@ function ingrSearch() {
 				$('#ingrList').remove();
 				var list='<div id="ingrList">';
 				$.each(data, function(index, value){
-					list = list+'<button>' + value + '</button>';
+					list = list+'<button class="ingrButton" value="'+value+'">' + value + '</button>';
 				});
 				
 				result.append(list+'<div>');
@@ -124,6 +92,8 @@ function selectedIngr() {
 		console.log(chosen);
 		
 		$('#selectedIngr').append(chosen);
+		
+		sendRcmm();
 		
 	})
 }
@@ -145,6 +115,7 @@ function clickOffVer1(){
 		var goBack = $(event.target);
 		
 		$('#chosungNum').append(goBack);
+		/*$('#selectedIngr').remove();*/
 	})
 	
 }
@@ -156,5 +127,14 @@ function clickOffVer2(){
 		console.log(goBack);
 		
 		$('#searchedIngr').append(goBack);
+		/*$('#selectedIngr').remove();*/
 	})
 }
+
+function sendRcmm(){
+	var selectedIngr = $('.selectedIngr .ingrButton').val();
+	console.log(selectedIngr);
+	$('#myIngr').val(selectedIngr);
+}
+
+

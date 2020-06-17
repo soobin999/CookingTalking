@@ -9,19 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.cook.talk.model.VO.RcpIngrVO;
-import com.cook.talk.model.VO.RcpOrderVO;
-import com.cook.talk.model.VO.RecipeVO;
-import com.cook.talk.model.VO.TagVO;
-import com.cook.talk.model.VO.TypeCatVO;
+import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
-import com.cook.talk.model.dto.RecipeShortDTO;
 import com.cook.talk.model.service.RecipeService;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j;
 
-@Slf4j
+@Log4j
 @Controller
 public class RecipeController {
 
@@ -38,8 +33,13 @@ public class RecipeController {
 		return "refrigerator/ingrSelect";
 	}
 
-	@GetMapping("/rcmmRecipe")
-	public String rcmmRecipe(Model model) {
+	
+	@PostMapping("/rcmmRecipe")
+	public String rcmmRecipe(Model model, String selectedIngr, IngrVO ingrVO){
+		System.out.println("selectedIngr:"+selectedIngr);
+		model.addAttribute("rcmmList", recipeDAO.getRcmmList(selectedIngr));
+		System.out.println(recipeDAO.getRcmmList(selectedIngr));
+
 		return "refrigerator/rcmmRecipe";
 	}
 
@@ -64,7 +64,7 @@ public class RecipeController {
 //}
 
 	@GetMapping("recipe/insertRecipe")
-	public String insertRecipeView(@ModelAttribute RecipeShortDTO recipeShortDTO) {
+	public String insertRecipeView(@ModelAttribute RecipeDTO recipeDTO) {
 
 		return "recipe/insertRecipe";
 	}
@@ -77,10 +77,9 @@ public class RecipeController {
 //		}
 
 	@PostMapping("recipe/insertRecipeProc")
-	public String insertRecipeProc(RecipeShortDTO recipeShortDTO) {
-		// recipeService.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
-		recipeService.insertRecipeProc(recipeShortDTO.getRecipeDTO2(), recipeShortDTO.getTypeCatDTO2(),
-				recipeShortDTO.getRcpIngrDTO2(), recipeShortDTO.getRcpOrderDTO2(), recipeShortDTO.getTagDTO2());
+	public String insertRecipeProc(RecipeDTO recipeDTO) {
+		recipeService.insertRecipeProc(recipeDTO.getRecipeVO(), recipeDTO.getTypeCatVO(),
+				recipeDTO.getRcpIngrVO(), recipeDTO.getRcpOrderVO(), recipeDTO.getTagVO());
 		return "redirect:newList";
 	}
 

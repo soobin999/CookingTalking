@@ -31,5 +31,12 @@ public class RecipeDTO {
 	
 	@Autowired(required = false)
 	private TagVO tagVO;
+	
+	
+//	private RecipeDTO2 recipeDTO2;
+//	private TypeCatDTO2  typeCatDTO2;
+//	private RcpIngrDTO2 rcpIngrDTO2;
+//	private RcpOrderDTO2 rcpOrderDTO2;
+//	private TagDTO2 tagDTO2;
 
 }

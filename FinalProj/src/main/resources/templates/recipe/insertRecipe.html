@@ -6,94 +6,94 @@
 </head>
 <body>
 	<h2 style="text-align:center">레시피 등록</h2>
-	<form th:action="@{insertRecipeProc}" method="post" th:object="${recipeShortDTO}" action="#">
+	<form th:action="@{insertRecipeProc}" method="post" th:object="${recipeDTO}" action="#">
 		<table th:align="center" border="1" th:cellpadding="0"	th:cellspacing="0">
 
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="제목" width="100px">레시피 제목</td>
-				<td><input name="rcpTitle" th:field="*{recipeDTO2.rcpTitle}" type="text" size="100px" placeholder="예) 소고기 미역국 끓이기"></td>
+				<td><input name="rcpTitle" th:field="*{recipeVO.rcpTitle}" type="text" size="100px" placeholder="예) 소고기 미역국 끓이기"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="등록일" width="100px">등록일</td>
-				<td th:field="*{recipeDTO2.rcpDate}"></td>
+				<td th:field="*{recipeVO.rcpDate}"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="사진" width="100px">레시피 사진</td>
-				<td><input type="file" th:field="*{recipeDTO2.rcpPic}" name="rcpPic" id="rcpPic"
+				<td><input type="file" th:field="*{recipeVO.rcpPic}" name="rcpPic" id="rcpPic"
 					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" ></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="요리소개" width="100px">요리 소개</td>
-				<td><textarea name="rcpExpl" th:field="*{recipeDTO2.rcpExpl}" placeholder="이 레시피의 탄생배경을 적어주세요"
+				<td><textarea name="rcpExpl" th:field="*{recipeVO.rcpExpl}" placeholder="이 레시피의 탄생배경을 적어주세요"
 						style="size: 100px; margin: 0px; width: 335px; height: 76px;"></textarea></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="동영상" width="100px">동영상</td>
-				<td><textarea name="video" th:field="*{recipeDTO2.video}" placeholder="동영상이 있으면 주소를 입력하세요."
+				<td><textarea name="video" th:field="*{recipeVO.video}" placeholder="동영상이 있으면 주소를 입력하세요."
 						style="size: 100px; margin: 0px; width: 335px; height: 76px;"></textarea></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="종류별" width="100px">종류별</td>
-				<td><input name="cookType" th:field="*{TypeCatDTO2.cookType}" type="text" size="100px"
+				<td><input name="cookType" th:field="*{TypeCatVO.cookType}" type="text" size="100px"
 					placeholder="종류별"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="상황별" width="100px">상황별</td>
-				<td><input name="cookSituation" th:field="*{TypeCatDTO2.cookSituation}" type="text" size="100px"
+				<td><input name="cookSituation" th:field="*{TypeCatVO.cookSituation}" type="text" size="100px"
 					placeholder="상황별"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="방법별" width="100px">방법별</td>
-				<td><input name="cookMethod" th:field="*{TypeCatDTO2.cookMethod}" type="text" size="100px"
+				<td><input name="cookMethod" th:field="*{TypeCatVO.cookMethod}" type="text" size="100px"
 					placeholder="방법별"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="인원" width="100px">인원</td>
-				<td><input name="personnel" th:field="*{recipeDTO2.personnel}" type="text" size="100px"
+				<td><input name="personnel" th:field="*{recipeVO.personnel}" type="text" size="100px"
 					placeholder="인원"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="시간" width="100px">시간</td>
-				<td><input name="cookTime" th:field="*{recipeDTO2.cookTime}" type="text" size="100px"
+				<td><input name="cookTime" th:field="*{recipeVO.cookTime}" type="text" size="100px"
 					placeholder="시간"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="난이도" width="100px">난이도</td>
-				<td><input name="level" th:field="*{recipeDTO2.level}" type="text" size="100px"
+				<td><input name="level" th:field="*{recipeVO.level}" type="text" size="100px"
 					placeholder="난이도"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="재료" width="100px">재료</td>
-				<td><input name="ingrCat" th:field="*{RcpIngrDTO2.ingrCat}" type="text" size="100px"
+				<td><input name="ingrCat" th:field="*{RcpIngrVO.ingrCat}" type="text" size="100px"
 					placeholder="재료"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="선택한재료" width="100px">선택한재료</td>
-				<td><input name="userIngr" th:field="*{RcpIngrDTO2.userIngr}" type="text" size="100px"
+				<td><input name="userIngr" th:field="*{RcpIngrVO.userIngr}" type="text" size="100px"
 					placeholder="선택한재료"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="계량정보" width="100px">계량정보</td>
-				<td><input name="ingrWeigh" th:field="*{RcpIngrDTO2.ingrWeigh}" type="text" size="100px"
+				<td><input name="ingrWeigh" th:field="*{RcpIngrVO.ingrWeigh}" type="text" size="100px"
 					placeholder="계량정보"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="조리순서" width="100px">조리순서</td>
-				<td><input name="cookOrder" th:field="*{RcpOrderDTO2.cookOrder}" type="text" size="100px"
+				<td><input name="cookOrder" th:field="*{RcpOrderVO.cookOrder}" type="text" size="100px"
 					placeholder="조리순서"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="조리내용" width="100px">조리내용</td>
-				<td><input name="cookCont" th:field="*{RcpOrderDTO2.cookCont}" type="text" size="100px"
+				<td><input name="cookCont" th:field="*{RcpOrderVO.cookCont}" type="text" size="100px"
 					placeholder="조리내용"></td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="태그" width="100px">태그</td>
-				<td><input name="tag" th:field="*{TagDTO2.tag}" type="text" size="100px"
+				<td><input name="tag" th:field="*{TagVO.tag}" type="text" size="100px"
 					placeholder="태그"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit" value="완료">
+				<td colspan="2" align="center"><input type="submit" value="등록완료">
 				</td>
 			</tr>
 		</table>

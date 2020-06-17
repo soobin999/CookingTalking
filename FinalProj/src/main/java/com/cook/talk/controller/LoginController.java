@@ -1,5 +1,6 @@
 package com.cook.talk.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dao.UserDAO;
 import com.cook.talk.model.dto.UserDTO;
+import com.cook.talk.model.naver.NaverLoginBO;
 import com.cook.talk.model.service.UserService;
 import com.cook.talk.model.serviceImpl.UserServiceImpl;
 
@@ -38,11 +40,24 @@ public class LoginController {
    
    
    @RequestMapping(value = "/login", method = RequestMethod.GET)
-   public String login(Model model, HttpServletRequest req) {
-      model.addAttribute("message", req.getServletContext());
+   public String login(Model model, HttpServletRequest req ,HttpSession session) {
+      
+	   String naverAuthUrl=NaverLoginBO.getAuthorizationUrl(session);
+	
+		//네이버 아이디로 인증 url를 생성하기 위해 메소드 호출 
+	   //생성한 인증 url를 view로 전달
+	   model.addAttribute("naver_url",naverAuthUrl);
+	   
+	   model.addAttribute("message", req.getServletContext());
+      System.out.println(naverAuthUrl);
+      
       return "/login/login";
    }
 
+   
+   
+   
+   
    @RequestMapping("goJoin")
    public String goJoin() {
       return "join";
@@ -68,12 +83,25 @@ public class LoginController {
       return "/login/login";
    }
 
-   @RequestMapping("/logout")
+   /*@RequestMapping("/logout")
    public String logout(HttpSession session) {
       session.removeAttribute("user");
       return "index";
+   }*/
+
+ //로그아웃
+   @RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+   public String logout(HttpSession session)throws IOException {
+   System.out.println("여기는 logout");
+   session.invalidate();
+   return "redirect:index";
    }
 
+   
+   
+   
+   
+   
    @GetMapping("/admin")
    public String adminPage(@AuthenticationPrincipal User user, Map<String, Object> model) {
       model.put("currentAdminId", user.getUsername());

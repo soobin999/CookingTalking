@@ -10,12 +10,7 @@ import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TagVO;
 import com.cook.talk.model.VO.TypeCatVO;
-import com.cook.talk.model.dto.RcpIngrDTO2;
-import com.cook.talk.model.dto.RcpOrderDTO2;
 import com.cook.talk.model.dto.RecipeDTO;
-import com.cook.talk.model.dto.RecipeDTO2;
-import com.cook.talk.model.dto.TagDTO2;
-import com.cook.talk.model.dto.TypeCatDTO2;
 
 @Service
 public interface RecipeService {
@@ -29,7 +24,9 @@ public interface RecipeService {
 	
 	public List<String> getSearchedIngrName(String ingrName);
 	
+	//public List<RecipeDTO> getRcmmList(String rcpTitle, String rcpPic);
 	
+	public List<RecipeDTO> getRcmmList(String selectedIngr);
 	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
@@ -37,14 +34,14 @@ public interface RecipeService {
 	//레시피 총갯수
 	public int recipeCount();
 
-	public void insertRecipeProc(RecipeDTO2 recipeDTO2, TypeCatDTO2 typeCatDTO2, RcpIngrDTO2 rcpIngrDTO2,
-			RcpOrderDTO2 rcpOrderDTO2, TagDTO2 tagDTO2);
+	public void insertRecipeProc(RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
+			RcpOrderVO rcpOrderVO, TagVO tagVO);
 	
 	//레시피 글보기
 //	public List<RecipeDTO> recipeView();
-	
-	//레시피 글등록
-	//public String insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag);
+
+	/* List<RecipeDTO> getRcmmList(IngrVO ingrVO); */
+
 
 }
 

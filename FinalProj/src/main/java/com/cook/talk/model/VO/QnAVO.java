@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class QnAVO {
 
+	private String qnaCode;
 	private String qnaTitle;
 	private String qnaCont;
 	private Date qnaDate;
