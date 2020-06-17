@@ -8,7 +8,7 @@
 		select * from ingr
 		where
 		ingrName
-		like concat ('%',#{ingrName},'%')
+		LIKE CONCAT('%',#{ingrName},'%')
 	</select>
 
 	<select id="allSelectIngr" resultType="ingrVO">
@@ -25,15 +25,19 @@
 	</insert>
 
 	<select id="selectIngrRcpCode" resultType="int">
-		Select substring((select rcpingrCode from ingr order by rcpingrCode desc
+		Select
+		substring((select rcpingrCode from ingr order by rcpingrCode desc
 		limit 1), 3);
 	</select>
 
-	<delete id="deleteIngr" parameterType="ingrVO">
+	<delete id="deleteIngr" parameterType="String">
 		delete from ingr
 		where
-		rcpingrCode = #{rcpingrCode}
+		<foreach collection="list" item="rcpingrCode" index="index"
+			separator="or">
+			rcpingrCode = #{rcpingrCode}
+		</foreach>
 	</delete>
-
+ 
 </mapper>
 	

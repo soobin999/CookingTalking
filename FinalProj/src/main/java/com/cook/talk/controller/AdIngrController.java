@@ -27,12 +27,6 @@ public class AdIngrController {
 		return "admin/adIngrList"; // data를 처리한다. 페이지 이동이 아닌,
 	}
 
-	@PostMapping("/admin/searchIngr") // 재료 찾기
-	public String searchIngr(Model model, IngrVO ingrVO) {
-		model.addAttribute("searchIngrList", adingrDAO.searchIngr(ingrVO));
-
-		return "admin/adIngrList";
-	}
 
 	@GetMapping("/admin/insertIngr") // 재료 추가
 	public String insertIngr(@ModelAttribute IngrVO ingrVO, Model model) {
@@ -54,10 +48,6 @@ public class AdIngrController {
 		return "admin/addIngr";
 	}
 
-	@PostMapping("/admin/deleteIngr") // 재료 삭제
-	public void deleteIngr(Model model, IngrVO ingrVO) {
-		adingrDAO.deleteIngr(ingrVO);
-		
-	}
+
 
 }
