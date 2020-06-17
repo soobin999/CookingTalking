@@ -58,8 +58,7 @@
 	<div th:class="selectedIngr" id="selectedIngr" value=""></div>
 	
 	<form th:action="@{/rcmmRecipe}" th:method="POST">
-		<!-- <p th:name="selectedIngr"> -->
-		<!-- <input type="hidden" name="selectedIngr"> -->
+		<input type="hidden" id="myIngr" name="selectedIngr" value="${selectedIngr}">
 		<button type="submit" th:class="goToRcmmRecipe" th:id="goToRcmmRecipe">레시피 검색하러 가기</button>
 	</form>
 	

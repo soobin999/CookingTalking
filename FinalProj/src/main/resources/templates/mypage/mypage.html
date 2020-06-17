@@ -18,18 +18,19 @@
 	<button onclick="myFrequent()">즐겨찾기</button>
 	<button onclick="myActivity()">활동</button>
 	<button onclick="myInquiry()">문의 사항</button>
-	</div>
 	
-	<div class="myRecipe">
+	
+	<div class="myBasic">
 		<button onclick="myRecipe()">진행중인 레시피</button>
 		<button type="button" class="writtenRecipe" id="writtenRecipe">작성완료된 레시피</button>
 	</div>
+	</div>
+	<div class="myRecipeIng">
 	<table>
 	<tbody>
-	<div class="myRecipeIng">
 <!-- 		<div class="myRecipeIng_img">레시피 사진</div>
 		<div class="myRecipeIng_title">레시피 제목</div> -->
-	</div>
+	
 	
 	<tr th:each="myRecipeIng : ${myRecipeIng}">
 		<td class="" th:text=${myRecipeIng.rcpTitle}></td>
@@ -37,5 +38,7 @@
 	</tr>
 	</tbody>
 	</table>
+	</div>
+	</div>
 </body>
 </html>

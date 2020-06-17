@@ -27,7 +27,7 @@ function chosung() {
 
 				var list = '<div id="ingrList">'
 				$.each(data, function(index, value) {
-					list = list + '<button>' + value + '</button>';
+					list = list + '<button class="ingrButton" value="'+value+'">' + value + '</button>';
 				});
 				list = list + '</div>';
 				result.append(list);
@@ -73,7 +73,7 @@ function ingrSearch() {
 				$('#ingrList').remove();
 				var list='<div id="ingrList">';
 				$.each(data, function(index, value){
-					list = list+'<button>' + value + '</button>';
+					list = list+'<button class="ingrButton" value="'+value+'">' + value + '</button>';
 				});
 				
 				result.append(list+'<div>');
@@ -92,6 +92,8 @@ function selectedIngr() {
 		console.log(chosen);
 		
 		$('#selectedIngr').append(chosen);
+		
+		sendRcmm();
 		
 	})
 }
@@ -113,6 +115,7 @@ function clickOffVer1(){
 		var goBack = $(event.target);
 		
 		$('#chosungNum').append(goBack);
+		/*$('#selectedIngr').remove();*/
 	})
 	
 }
@@ -124,6 +127,14 @@ function clickOffVer2(){
 		console.log(goBack);
 		
 		$('#searchedIngr').append(goBack);
+		/*$('#selectedIngr').remove();*/
 	})
 }
+
+function sendRcmm(){
+	var selectedIngr = $('.selectedIngr .ingrButton').val();
+	console.log(selectedIngr);
+	$('#myIngr').val(selectedIngr);
+}
+
 
