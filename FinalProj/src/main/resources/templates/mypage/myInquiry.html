@@ -20,25 +20,19 @@
 	<button onclick="myInquiry()">문의 사항</button>
 	</div>
 	
-	<div id="myRecipe">
-		<button onclick="myRecipe()">진행중인 레시피</button>
-		<button type="button" class="writtenRecipe" id="writtenRecipe">작성완료된 레시피</button>
+	<div id="inqBasic">
+		<button onclick="myInquiry()">문의 하기</button>
+		<button type="button" class="myInquiryList" id="myInquiryList">나의 문의 사항</button>
 
 	</div>
 	</div>
-	<div class="myInq">
-	<table>
-	<tbody>
-<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
-		<div class="myRecipeIng_title">레시피 제목</div> -->
-
-	
-	<tr th:each="myInquiry : ${myInquiry}">
-		<td class="" th:text=${}></td>
-		<td class="" th:text=${}></td>
-	</tr>
-	</tbody>
-	</table>
-		</div>
+	<div class="myInq" th:method="POST">
+		<form th:action="@{/mypage/myInquiry}" id="insertMyInq"
+			class="insertMyInq" name="">
+			<input type="text" name="myInqTitle" class="myInqTitle" id="myInqTitle" placeholder="제목을 입력하세요"> 
+			<input type="text" name="myInqCont" class="myInqCont" id="myInqCont" placeholder="내용을 입력하세요">
+			<button type="submit">제출하기</button>
+		</form>
+	</div>
 </body>
 </html>
