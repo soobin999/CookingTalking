@@ -30,6 +30,7 @@
 
 			</tbody>
 		</table>
+	
 
 		<button name="submit" type="submit"
 			class="btn btn-block btn-primary text-light">로그인</button>
@@ -38,6 +39,10 @@
 			<a th:href="@{/join}">회원가입</a>
 		</button>
 	</form>
+<div id="naver_id_login" style="text-align:center"><a th:href="@{${naver_url}}">
+<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+</a></div>
+<!-- <div th:text="${naver_url}"></div> -->
 
 
 	<script>
@@ -50,9 +55,9 @@
 					alert("아이디를 입력해 주세요.");
 					$('#userId').focus();
 					return;
-				} else if ($.trim($('#userPW').val()) == '') {
+				} else if ($.trim($('#userPw').val()) == '') {
 					alert("패스워드를 입력해 주세요.");
-					$('#userPW').focus();
+					$('#userPw').focus();
 					return;
 				}
 

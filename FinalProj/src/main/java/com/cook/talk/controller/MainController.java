@@ -6,18 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.cook.talk.model.VO.UserVO;
-import com.cook.talk.model.dao.ChefDAO;
 import com.cook.talk.model.dao.MainDAO;
 import com.cook.talk.model.dao.QnADAO;
 import com.cook.talk.model.service.MainService;
-import com.cook.talk.model.service.MyPageService;
+import com.cook.talk.model.service.MypageService;
 
 @Controller
 public class MainController {
 
-	@Autowired(required = false)
-	private ChefDAO chef;
 	@Autowired(required = false)
 	private MainService mainService;
 	@Autowired(required = false)
@@ -26,7 +22,7 @@ public class MainController {
 	private MainDAO maindao;
 	
 	@Autowired(required = false)
-	private MyPageService myPageService;
+	private MypageService myPageService;
 
 	@GetMapping("/index")
 	public String index(Model model) {
@@ -55,13 +51,12 @@ public class MainController {
 		return "admin/adminMain";
 	}
 	
-	@GetMapping("/mypage")
-	public String mypage(Model model, UserVO userVO) {
-		
-		/* String id = userVO.getUserId(); */
-		myPageService.mypageLogin(userVO);
-		
-		return "/mypage/mypage";
+	@GetMapping("/recipeSearch")
+	public String recipeSearch(Model model,String searchWord,String status) {
+		System.out.println(searchWord);
+		status="";
+		model.addAttribute("searchRecipe",maindao.recipeSearch(searchWord,status));
+		return "/recipe/recipeSearch";
 	}
 
 }

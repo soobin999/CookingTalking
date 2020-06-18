@@ -22,4 +22,6 @@ public class RecipeVO {
 	private boolean registerStatus;
 	private int rcpViews;
 	private String rcpExpl;
+	private String myIngrName;
+	private Date scrapDate;
 }

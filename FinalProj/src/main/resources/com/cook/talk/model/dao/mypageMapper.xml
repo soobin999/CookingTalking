@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cook.talk.model.dao.MypageDAO">
+
+<!-- 	<resultMap id="ScrapDTO" type="ScrapDTO">
+		<id property="rcpCode" column="rcpCode"/>
+		<result property="" column=""/>
+		
+		<association property="recipeVO" javaType="recipeVO">
+			<result column="rcpCode" property="rcpCode"/>
+			<result column="rcpTitle" property="rcpTitle"/>
+		</association>
+		
+		<association property="userVO" javaType="userVO">
+			<result column="userId" property="userId"/>
+		</association>
+	</resultMap> -->
+
+	
+	<select id="getMyRecipeIng" parameterType="String" resultType="RecipeVO">
+	SELECT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' AND registerStatus=0
+	</select>
+	
+	<select id="getMyRecipeWritten" resultType="MypageDTO">
+	SELECT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' AND registerStatus=1
+	</select>
+	
+	<select id="getSearchMyFollow" parameterType="String" resultType="MypageDTO">
+	SELECT nickName FROM recipe.user AS u INNER JOIN recipe.follow AS f ON u.userId = f.followChef 
+	WHERE followChef LIKE CONCAT('%',#{followChef},'%')
+	</select>
+	
+<!-- 	<select id="getSearchMyScraped" resultMap="ScrapDTO">
+		SELECT rcpTitle, rcpTitle FROM recipe.scrapdto
+	</select> -->
+
+<!-- 	<select id="deleteMyRecipe" resultType="MypageDTO">
+	DELETE * FROM recipe.rcp WHERE userId = 'kkk@naver.com' AND rcpCode = #{qnaTitle}
+	</select> -->
+
+	<select id="getMyFollow" resultType="MypageDTO">
+	SELECT nickName FROM recipe.user AS u INNER JOIN recipe.follow AS f ON u.userId = f.followChef WHERE f.userId = 'kkk@naver.com' 
+	</select>
+	
+	<select id="getMyScrapedRecipe" parameterType="String" resultType="RecipeVO">
+	<!-- SELECT rcpTitle, rcpPic, scrapDate FROM recipe.scrap WHERE userId='kkk@naver.com' -->
+	SELECT rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
+	WHERE s.userId='kkk@naver.com'
+	</select>
+	
+	
+	<select id="getMyTalk" resultType="TalkVO">
+	SELECT talkCont FROM recipe.talk WHERE userId='kkk@naver.com'
+	</select>
+	
+	<select id="getSearchMyTalk" resultType="TalkVO">
+	SELECT talkCont FROM recipe.talk WHERE userId='kkk@naver.com' AND 
+	talkCont LIKE CONCAT('%', #{talkCont}, '%')
+	</select>
+	
+	<select id="getMyCom" resultType="TalkComVO">
+	SELECT talkCom, talkComDate FROM recipe.talkCom WHERE userId='kkk@naver.com'
+	</select>
+	
+	<select id="getMyRcpCom" resultType="MypageDTO">
+	SELECT rcpCom, rcpComDate FROM recipe.rcpcom WHERE userId='kkk@naver.com'
+	</select>	
+	
+	<insert id="rqMyInq" parameterType="String">
+	INSERT INTO recipe.qna(qnaTitle, qnaCont) VALUES (#{qnaTitle}, #{qnaCont}) WHERE userId='kkk@naver.com'
+	</insert>
+	
+	<select id="getmyInq" resultType="QnAVO">
+	SELECT qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
+	</select>
+	
+	
+</mapper>

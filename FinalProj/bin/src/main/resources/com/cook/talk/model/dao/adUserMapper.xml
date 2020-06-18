@@ -7,6 +7,7 @@
 	<select id="allSelectUserId" resultType="userVO">
 		select * from user
 	</select>
+<<<<<<< HEAD
 	<delete id="deleteUserID" parameterType="userVO">
 		delete from user 
 			   where userID=#{userID}
@@ -15,6 +16,20 @@
 		update user 
 		       set nickName = #{nickName} 
 		       where userID =#{userID}
+=======
+
+	<delete id="deleteUserID" parameterType="userVO">
+		delete from user
+		where
+		userId=#{userId}
+	</delete>
+
+	<update id="updateUserNickName" parameterType="userVO">
+		update user
+		set
+		nickName = #{nickName}
+		where userId = #{userId}
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 	</update>
 
 

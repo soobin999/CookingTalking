@@ -4,19 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>레시피 글보기</title>
 </head>
-<body>
-<!-- 	<div id="recipe_area" class="">
-		<div class="recipe_pic">
-			<div class="recipe_views_count">
-				
-			</div> recipe views count end
-			<div class="recipe_pic_2">
-				<img id="" alt="recipe_main_pic">
-			</div>recipe pic2 end
-		</div> recipe pic end
-		
-	</div>recipe area end 
-	<span class="recipe_hit_views" th:text="${rcpV.rcpViews}">조회수</span> -->
+<body th:align="center">
+
+	<span class="recipe_hit_views" th:text="${rcpV.rcpViews}">조회수</span>
 	
 	<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
 	<tr>
@@ -40,21 +30,31 @@
 	<td th:text="${rcpV.typeCatVO.cookSituation}"> 
 	<td th:text="${rcpV.typeCatVO.cookMethod}">	
 	
-	<td th:text="${rcpV.recipeVO.personnel}">
-	<td th:text="${rcpV.recipeVO.cookTime}">
-	<td th:text="${rcpV.recipeVO.level}">
+	<tr th:each="rcpV : ${recipeView}">
 	
-	<td th:text="${rcpV.rcpIngrVO.ingrCat}">
-	<td th:text="${rcpV.rcpIngrVO.userIngr}">
-	<td th:text="${rcpV.rcpIngrVO.ingrWeigh}"> 	
+	<td th:text="${recipeVO.personnel}">
+	<td th:text="${recipeVO.cookTime}">
+	<td th:text="${recipeVO.level}">
+	
+	<tr th:each="rcpV : ${recipeView}">
+	
+	<td th:text="${rcpIngrVO.ingrCat}">
+	<td th:text="${rcpIngrVO.userIngr}">
+	<td th:text="${rcpIngrVO.ingrWeigh}"> 	
+	
+	<tr th:each="rcpV : ${recipeView}">
 		
-	<td th:text="${rcpV.rcpOrderVO.cookOrder}">
-	<td th:text="${rcpV.rcpOrderVO.cookCont}">
-	<td th:text="${rcpV.rcpOrderVO.cookPic}">
+	<td th:text="${rcpOrderVO.cookOrder}">
+	<td th:text="${rcpOrderVO.cookCont}">
+	<td th:text="${rcpOrderVO.cookPic}">
 	
-	<td th:text="${rcpV.tagVO.tag}">
+	<tr th:each="rcpV : ${recipeView}">
+	<td th:text="${tagVO.tag}">
+	
+	<!-- rcpCom 도 select하기 -->
 	</tr>
 	</table>
-
+	<br>
+	<a th:href="@{recipe/newlist}">글목록</a>
 </body>
 </html>

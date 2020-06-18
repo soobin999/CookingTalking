@@ -30,7 +30,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserServiceImpl implements UserDetailsService {
 	
-	
+	@Autowired
 	private UserDAO userDAO;
 	
 
@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserDetailsService {
 	public int joinUser(UserVO userVO) { // 비밀번호 암호화
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		userVO.setUserPw(passwordEncoder.encode(userVO.getUserPw()));
+		System.err.println(userVO);
 		return userDAO.login(userVO);
 	}
 
@@ -66,7 +67,7 @@ public class UserServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// loadUserByUsername 상세 정보 조회 메서드 , 계정정보와 권한을 갖는 UserDetails 인터페이스를 반환
 		// 입력한 아이디 값을 통해 디비에서 값을 읽어오는것. 디비에있으면userDto 객체에 로그인 정보 담는다.
-		System.out.println("H유진 아이디:    " + username);	
+		System.out.println(" 아이디:    " + username);	
 		UserVO userEntity = userDAO.findUserById(username);
 		System.out.println(userEntity);
 
@@ -79,7 +80,4 @@ public class UserServiceImpl implements UserDetailsService {
 				authorities);
 		// 생성자의 각 매개변수는 순서대로 아이디, 비밀번호, 권한리스트.
 	}
-
-	
-
 }

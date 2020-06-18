@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>마이페이지(정민)</title>
+<style type="text/css"></style>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/js/mypage.js"></script>
+
+	<!-- 사진 및 계정 정보 -->
+		<div th:class="uploadPicOfUser">
+			<form action="" method="POST" enctype="multipart/form-data">
+				<input type="file" name="picOfUser" required>
+				<button type="submit">변경하기</button>
+			</form>
+		</div>
+	<a href="/userModify.html">회원 정보 수정</a>
+	
+	<div id="myPageMain">
+	<div class="myMenu">
+	<button onclick="myRecipe()">레시피</button>
+	<button onclick="myFrequent()">즐겨찾기</button>
+	<button onclick="myActivity()">활동</button>
+	<button onclick="myInquiry()">문의 사항</button>
+	</div>
+	
+	<div id="inqBasic">
+		<button onclick="myInquiry()">문의 하기</button>
+		<button onclick="myInquiryList()">나의 문의 사항</button>
+
+	</div>
+	</div>
+	<div class="myInq" th:method="POST">
+		<form th:action="@{/mypage/myInquiry}" id="insertMyInq"
+			class="insertMyInq" name="">
+			<input type="text" name="myInqTitle" th:class="myInqTitle" id="myInqTitle" placeholder="제목을 입력하세요"> 
+			<input type="text" name="myInqCont" th:class="myInqCont" id="myInqCont" placeholder="내용을 입력하세요">
+			<button type="submit" th:class="sendInq">제출하기</button>
+		</form>
+	</div>
+</body>
+</html>

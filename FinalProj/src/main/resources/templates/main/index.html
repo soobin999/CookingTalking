@@ -7,9 +7,40 @@
 <title>쿠킹토킹</title>
 <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style type="text/css">
+iframe
+#_hjRemoteVarsFrame {
+	display: none !important;
+	width: 1px !important;
+	height: 1px !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+}
+footer{
+position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+	padding: 15px 0;
+
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<header th:fragment='commonHeader'>
 </head>
 <body>
 <!-- header -->
+
+
+
 	<div class="gnb_top_wrap">
 		<div class="gnb_top">
 			<h1>
@@ -56,6 +87,9 @@
 			<li><a href="/adminMain">고객센터</a></li>
 		</ul>
 	</div>
+</header>
+	
+<footer th:fragment="commonFooter">
 <!-- header End -->
 	<br>
 	<br>
@@ -84,6 +118,7 @@
 
 		</div>
 	</div>
+	</footer>
 <!-- footer End -->
 </body>
 </html>

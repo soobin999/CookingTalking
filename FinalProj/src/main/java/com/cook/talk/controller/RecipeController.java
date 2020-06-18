@@ -7,18 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cook.talk.model.VO.RecipeVO;
+import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.java.Log;
 
-@Log4j 
+@Log
 @Controller
 public class RecipeController {
 	
@@ -36,9 +33,10 @@ public class RecipeController {
 	}
 
 	@PostMapping("/rcmmRecipe")
-	public String rcmmRecipe(Model model){
-		model.addAttribute("rcmmList", recipeDAO.getRcmmList());
-		log.info(recipeDAO.getRcmmList());
+	public String rcmmRecipe(Model model, String selectedIngr, IngrVO ingrVO){
+		System.out.println("selectedIngr:"+selectedIngr);
+		model.addAttribute("rcmmList", recipeDAO.getRcmmList(selectedIngr));
+		System.out.println(recipeDAO.getRcmmList(selectedIngr));
 		return "refrigerator/rcmmRecipe";
 	}	
 	
@@ -48,22 +46,32 @@ public class RecipeController {
 		model.addAttribute("recipeList", recipeList);
 		model.addAttribute("recipeCount", recipeDAO.recipeCount());
 		for (RecipeDTO dto : recipeList)
-			log.info("list==>" + dto);
+			System.out.println("list==>" + dto);
+			/* log.info("list==>" + dto); */
 		return "recipe/newList";
 	}
 	
-	/*
-	 * @GetMapping("recipe/recipeView") public void
-	 * recipeView(@RequestParam("rcpCode") String rcpCode, Model model) {
-	 * model.addAttribute("recipeView2", recipeService.recipeView2(rcpCode));
-	 * model.addAttribute("recipeView3", recipeService.recipeView3(rcpCode));
-	 * model.addAttribute("recipeView4", recipeService.recipeView4(rcpCode));
-	 * log.info("recipe/recipeView"); }
-	 */
-	@PostMapping("recipe/insertRecipe")
-	public String insertRecipe(RecipeVO recipe ) {
-		log.info("insert: "+recipe);		
-		return "recipe/insertRecipe";
-	}
-	
+//	@GetMapping("recipe/recipeView") 
+//	public void recipeView(@RequestParam("rcpCode") String rcpCode, Model model) {
+//		List<RecipeDTO> recipeView = recipeService.
+//	  model.addAttribute("recipeView2", recipeService.recipeView2(rcpCode));
+//	  model.addAttribute("recipeView3", recipeService.recipeView3());
+//	  model.addAttribute("recipeView4", recipeService.recipeView4());
+//	  log.info("recipe/recipeView"); 
+//	  
+//}
+	 
+//	@GetMapping("recipe/insertRecipe")
+//	public String insertRecipeView() {	
+//		return "recipe/insertRecipe";
+//	}
+//	
+//	@PostMapping("recipe/insertRecipe")
+//	public String insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag) {
+//		recipeService.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
+//		return "redirect:getRecipeList";
+//	}
+
+
+
 }

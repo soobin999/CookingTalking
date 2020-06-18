@@ -6,6 +6,7 @@
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<<<<<<< HEAD
 	
 	<!-- 추천 레시피 -->
 	<table>
@@ -23,6 +24,24 @@
 				</tbody>
 
 			</table>
+=======
+	<script src="/js/recipe.js"></script>
+	
+	<!-- 추천 레시피 -->
+	<table>
+	<thead>
+	<tr>
+	<th>레시피 제목</th>
+	<th>레시피 사진</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr th:each="rcmmList : ${rcmmList}">
+	<td th:text="${rcmmList.rcpTitle}"></td>
+	<td th:text="${rcmmList.rcpPic}"></td>
+	</tbody>
+	</table>
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 	
 </body>
 </html>

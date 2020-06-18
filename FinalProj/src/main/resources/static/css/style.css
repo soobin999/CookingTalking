@@ -9214,6 +9214,14 @@ table.table.table-hover>tbody>tr>td {
 	float : left;
 		width: 25%;
 }
+.adSelectPage {
+	float: left;
+	width: 25%;
+}
 
+.adSelectRcpPage {
+	float: left;
+	width: 25%;
+}
 
 

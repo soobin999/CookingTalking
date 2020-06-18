@@ -13,6 +13,7 @@
 	<select id="getSearchedIngrName" parameterType="String" resultType="String">
 		SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE CONCAT('%',#{ingrName},'%')
 	</select>
+<<<<<<< HEAD
 
 	<select id="getIngrName1" parameterType="String" resultType="String">
 		SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
@@ -27,6 +28,22 @@
 	
 	<select id="countIngrInRcp" parameterType="int" resultType="int">
 	SELECT COUNT(rcpCode) FROM recipe.rcpIngr WHERE rcpCode = 'R-000083';
+=======
+	
+	<select id="getIngrName1" parameterType="String" resultType="String">
+		SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
+		<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
+	</select>
+	
+	<select id="getRcmmList" parameterType="String" resultType="recipeVO">
+		SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.rcpIngr AS ri
+		ON r.rcpCode = ri.rcpCode INNER JOIN recipe.ingr AS i ON i.rcpIngrCode = ri.rcpIngrCode
+		WHERE i.ingrName=#{selectedIngr};
+	</select>
+
+	<select id="countIngrInRcp" parameterType="int" resultType="int">
+		SELECT COUNT(rcpCode) FROM recipe.rcpIngr WHERE rcpCode = 'R-000083';
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 	</select>
 
 	<select id="countIngrInMyRefri" parameterType="int" resultType="int">
@@ -55,8 +72,7 @@
 			<result column="cookType" property="cookType" />
 		</association>
 	</resultMap>
-	
-	
+		
 	<select id="createViewRecipeList">
 	CREATE View RecipeDTO AS
 	SELECT rcp.rcpCode, rcp.rcpTitle, user.nickname, rcp.rcpDate, rcp.rcpViews, 
@@ -69,28 +85,70 @@
 	
 <!-- 	<select id="getRecipeList" resultMap="recipeDTO">
 	SELECT rcpCode, rcpTitle, nickname, rcpDate, rcpPic
-	FROM RecipeDTO
+	FROM recipe.recipedto
 	ORDER BY rcpDate DESC
-	</select>	
+	</select>		
 	
+<<<<<<< HEAD
 	<select id="recipeView" resultMap="RecipeDTO">
 	SELECT rcpPic, rcpViews, nickname, rcpTitle, rcpExpl
 	FROM RecipeDTO
 	</select> -->
+=======
+	<select id="recipeCount" resultType="int">
+	SELECT count(*) from rcp
+	</select>
+	
+
+		
+<!-- 	<update id="insertRecipe" parameterType="recipeDto">
+	UPDATE INTO recipe.recipedto (<include refid="recipedtoColumns" /> ) 
+	VALUES (#{rcpCode}, #{nickName}, #{rcpDate}, 0, #{rcpTitle}, #{rcpExpl} )
+	</update> -->
+
+
+
+<!-- 	<select id="recipeView" resultMap="recipeDTO">
+	SELECT rcpPic, rcpViews, nickname, rcpTitle, rcpExpl
+	FROM recipe.recipedto
+	</select>	
+
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 	<select id="recipeView2" resultType="RcpOrderVO">
 	SELECT cookOrder, cookCont, cookPic FROM rcporder WHERE rcpCode=#{rcpCode}
 	</select>
 	<select id="recipeView3" resultType="RcpIngrVO">
 	SELECT ingrCat, userIngr, ingrWeigh FROM rcpingr WHERE rcpCode=#{rcpCode}
 	</select>
-	<select id="recipeView4" resultType="RcpIngrVO">
+	<select id="recipeView4" resultType="TagVO">
 	SELECT tag FROM tag WHERE rcpCode=#{rcpCode}
 	</select>
+	<select id=recipeView5" resultType="RcpComVO">  userVO에서 nickName 조인
+	SELECT rcpcom, rcpComDate FROM 
+	</select> -->
 	
 	
-<!-- 	<insert id="insertRecipe" parameterType="String">
-	select SUBSTRING_INDEX(rcpCode, '-', -1)+1,  from member2 order by member_id desc limit 1
+<!-- 	<select id="selectRcpCode" resultType="int">
+	 SELECT substring((SELECT rcpCode FROM rcp ORDER BY rcpCode DESC LIMIT 1), 3);	
+	</select>
+	<insert id="insertRecipeProc"> recipeVO
+	INSERT INTO rcp (rcpCode, rcpTitle, rcpExpl, video, rcpPic, personnel, cookTime, level)
+	VALUES (#{rcpCode}, #{rcpTitle}, #{rcpExpl}, #{video}, #{rcpPic}, #{personnel}, #{cookTime}, #{level})
+	</insert>
+	<insert id="insertRecipeProc"> TypeCatVO
+	INSERT INTO typecat (cookType, cookSituation, cookMethod)
+	VALUES (#{cookType}, #{cookSituation}, #{cookMethod})
+	</insert>
+	<insert id="insertRecipeProc"> rcpIngrVO 
+	INSERT INTO rcpingr (ingrCat, userIngr, ingrWeigh) VALUES (#{ingrCat}, #{userIngr}, #{ingrWeigh})
+	</insert>
+	<insert id="insertRecipeProc"> rcpOrderVO  
+	INSERT INTO rcporder (cookOrder, cookCont, cookPic) VALUES (#{cookCont}, #{cookPic})
+	</insert>	
+	<insert id="insertRecipeProc"> tagVO
+	INSERT INTO tag (tag) VALUES (#{tag})
 	</insert> -->
+
 
 
 
