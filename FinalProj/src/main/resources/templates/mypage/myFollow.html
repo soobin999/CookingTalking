@@ -10,6 +10,12 @@
 	<script src="/js/mypage.js"></script>
 
 	<!-- 사진 및 계정 정보 -->
+			<div th:class="uploadPicOfUser">
+			<form action="" method="POST" enctype="multipart/form-data">
+				<input type="file" name="picOfUser" required>
+				<button type="submit">변경하기</button>
+			</form>
+		</div>
 	<a href="/userModify.html">회원 정보 수정</a>
 	
 	<div id="myPageMain">
@@ -25,20 +31,29 @@
 	<div id="myFollow">
 		<button onclick="myFrequent()">팔로우</button>
 		<button onclick="myScraped()">스크랩한 레시피</button>
+		<!-- chef search -->
+		<form onsubmit="return false">
+		<input type="text" onsubmit="return false" title="쉐프검색" 
+		id="chefSearchInMy" name="chefSearchInMy" placeholder="쉐프를 검색하세요" 
+		onkeypress="enterkey(event);">
+		<button type="button" id="btnChefSearchInMy">검색</button>
+		</form>
 	</div>
-	<div th:class="myFrequent">
-	<table>
-	<tbody>
-<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
+		<div th:id="myFrequent">
+			<div th:class="myFrequent">
+				<table>
+					<tbody>
+						<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
 		<div class="myRecipeIng_title">레시피 제목</div> -->
-	
-	
-	<tr th:each="myFollow : ${myFollow}">
-		 <td  th:text=${myFollow.nickName}></td> 
-	</tr>
-	</tbody>
-	</table>
-	</div>
+
+
+						<tr th:each="myFollow : ${myFollow}">
+							<td th:text=${myFollow.nickName}></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

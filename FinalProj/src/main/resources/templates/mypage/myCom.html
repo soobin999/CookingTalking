@@ -10,6 +10,12 @@
 	<script src="/js/mypage.js"></script>
 
 	<!-- 사진 및 계정 정보 -->
+			<div th:class="uploadPicOfUser">
+			<form action="" method="POST" enctype="multipart/form-data">
+				<input type="file" name="picOfUser" required>
+				<button type="submit">변경하기</button>
+			</form>
+		</div>
 	<a href="/userModify.html">회원 정보 수정</a>
 	
 	<div id="myPageMain">
@@ -23,8 +29,24 @@
 	<div id="myRecipe">
 		<button onclick="myActivity()">내가 쓴 토크</button>
 		<button onclick="myCom()">내가 작성한 댓글</button>
+		<div class="sorting">
+		<form>
+		<select name="com">
+		<option value="all">-전체보기-</option>
+		<option value="onlyTalk">토크에 단 댓글</option>
+		<option value="onlyRcp">레시피에 단 댓글</option>
+		
+		</select>
+		</form>
+		</div>
+			<form onsubmit="return false">
+				<input type="text" onsubmit="return false" title="댓글검색"
+					id="comSearchInMy" name="comSearchInMy" placeholder="댓글을 검색하세요"
+					onkeypress="enterkey(event);">
+				<button type="button" id="btnComSearchInMy">검색</button>
+			</form>
 
-	</div>
+		</div>
 	</div>
 	<div class="myActivity">
 	<table>

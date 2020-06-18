@@ -13,16 +13,20 @@ import com.cook.talk.model.dto.MypageDTO;
 @Service
 @Mapper
 public interface MypageDAO {
+	
+	public void modifyUserPic(UserVO userVO);
 
 	public List<MypageDTO> getMyRecipeIng();
 	public List<MypageDTO> getMyRecipeWritten();
 	
 	public List<MypageDTO> getMyFollow();
 	public List<MypageDTO> getMyScrapedRecipe();
+	public List<String> getSearchMyFollow(String followChef);
 	
 	public List<MypageDTO> getMyTalk();
 	public List<TalkComVO> getMyCom();
 	public List<MypageDTO> getMyRcpCom();
+	public List<String> getSearchMyTalk(String talkCont);
 	
 	public String rqMyInq(String qnaTitle, String qnaCont);
 	public List<QnAVO> getmyInq();

@@ -10,6 +10,12 @@
 	<script src="/js/mypage.js"></script>
 
 	<!-- 사진 및 계정 정보 -->
+			<div th:class="uploadPicOfUser">
+			<form action="" method="POST" enctype="multipart/form-data">
+				<input type="file" name="picOfUser" required>
+				<button type="submit">변경하기</button>
+			</form>
+		</div>
 	<a href="/userModify.html">회원 정보 수정</a>
 	
 	<div id="myPageMain">
