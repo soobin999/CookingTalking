@@ -16,11 +16,8 @@ public class TalkServiceImpl implements TalkService {
 	TalkDAO talkDAO;
 
 	public void insertTalk(TalkVO talkVO) {
-
 		int talkNum = talkDAO.selectTalkCode() + 1;
-
 		talkVO.setTalkCode("T-" + talkNum);
-
 	}
 
 	@Override
@@ -46,5 +43,7 @@ public class TalkServiceImpl implements TalkService {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

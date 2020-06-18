@@ -30,7 +30,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserServiceImpl implements UserDetailsService {
 	
-	
+	@Autowired
 	private UserDAO userDAO;
 	
 
@@ -59,7 +59,8 @@ public class UserServiceImpl implements UserDetailsService {
 	public int joinUser(UserVO userVO) { // 비밀번호 암호화
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		userVO.setUserPw(passwordEncoder.encode(userVO.getUserPw()));
-		return UserDAO.login(userVO);
+		System.err.println(userVO);
+		return userDAO.login(userVO);
 	}
 
 	@Override
@@ -79,7 +80,4 @@ public class UserServiceImpl implements UserDetailsService {
 				authorities);
 		// 생성자의 각 매개변수는 순서대로 아이디, 비밀번호, 권한리스트.
 	}
-
-	
-
 }

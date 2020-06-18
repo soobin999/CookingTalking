@@ -1,24 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <!-- XHTML 문서를 위한 XML 네임스페이스를 명시하는 것으로, 생략해도 정상동작 -->
 <head>
 <meta charset="UTF-8">
+<title>글 등록</title>
+
+
+<script type="text/javascript">
+$(function(){
+	$(function insertCafe(){
+		$('#talk_insertBtn').on('click', function(){
+			var isCafe = cafeInsertCheck();
+			if(isCafe == 'false') {
+				alert('다시 입력해주세요');
+				return false;
+			} else alert('등록되었습니다.');
+		})
+	})
+	
+})
+	
+
+		
+	}
+</script>
+
+</head>
+<body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<div th:insert="talk/header.html" id="header"></div>
+	<!-- <div th:insert="talk/header.html" id="header"></div> -->
 
 
-	<form action="/post" method="post">
+	<form class="form-horizontal" th:action="@{/talk/insert.do}"
+		th:object="${talk}" method="post"
+		onsubmit="return registerBoard(this)">
+		<tr>
+			<th>내용</th>
+			<td><textarea cols="10" placeholder="내용을 입력하세요" name="content"></textarea>
+			<th>파일 첨부</th>
+			<td><input type="text" placeholder="사진을 선택하세요" name=""></td>
 
-		제목: <input type="text" name="title"><br> 작성자: <input
-			type="text" name="wirter"><br>
+			<td colspan="2"><input type="submit" value="등록"
+				onclick="talk_insertBtn"> <input type="button" value="취소"
+				onclick="">
+	</form>
 
-		<textarea name="content" value="등록"></textarea>
-        <input type="submit" value="등록">
-    </form>
+
+
+
 </body>
 </html>
+
 
 
 
