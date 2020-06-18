@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>마이페이지(정민)</title>
+<style type="text/css"></style>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/js/mypage.js"></script>
+
+	<!-- 사진 및 계정 정보 -->
+			<div th:class="uploadPicOfUser">
+			<form action="" method="POST" enctype="multipart/form-data">
+				<input type="file" name="picOfUser" required>
+				<button type="submit">변경하기</button>
+			</form>
+		</div>
+	<a href="/userModify.html">회원 정보 수정</a>
+	
+	<div id="mypageMain">
+	<div class="myMenu">
+	<button onclick="myRecipe()">레시피</button>
+	<button onclick="myFrequent()">즐겨찾기</button>
+	<button onclick="myActivity()">활동</button>
+	<button onclick="myInquiry()">문의 사항</button>
+	
+	
+	<div th:class="myRecipeBasic">
+		<button onclick="myRecipe()">진행중인 레시피</button>
+		<button onclick="myWritten()">작성완료된 레시피</button>
+	</div>
+	</div>
+	<div th:class="myWrittenMain">
+	<table>
+	<tbody>
+<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
+		<div class="myRecipeIng_title">레시피 제목</div> -->
+	
+	
+	<tr th:each="myWritten : ${myWritten}" th:class="myWritten" id="myWritten">
+		<!-- <td><button th:class="deleteBtnOfMyRcp" th:value='{myWritten.rcpTitle}'>삭제</button></td> -->
+		<!-- ↑ 버튼 활성화하면 에러남 -->
+		<td th:text=${myWritten.rcpTitle}></td>
+		<td th:text=${myWritten.rcpPic}></td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	</div>
+</body>
+</html>

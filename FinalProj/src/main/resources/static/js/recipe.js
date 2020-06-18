@@ -1,30 +1,30 @@
 $(function() {
-	selectedIngr();
-	searchedIngr();
-	chosung();
-	$('#ingrSearchInRefri').on('change', ingrSearch);
-	$('#btnIngrSearch').on('click', ingrSearch);
-	enterkey();
-	clickOffVer1();
-	clickOffVer2();
+
+   selectedIngr();
+   searchedIngr();
+   chosung();
+   $('#ingrSearchInRefri').on('change', ingrSearch);
+   $('#btnIngrSearch').on('click', ingrSearch);
+   enterkey();
+   clickOffVer1();
+   clickOffVer2();
 })
 
-function chosung() {
+/*function chosung() {
 
-	$(".chosung").click(function() {
-		var value = $(this).attr('value');
-		console.log(value);
-		
-		$.ajax({
-			type : "POST",
-			url : "/chosung",
-			data : {cs : value},
-			success : function(data) {
-				console.log(data);
-				var result = $('#chosungNum');
-				$('#searchedIngr').remove();
-				$('#ingrList').remove();
-
+   $(".chosung").click(function() {
+      var value = $(this).attr('value');
+      console.log(value);
+      
+      $.ajax({
+         type : "POST",
+         url : "/chosung",
+         data : {cs : value},
+         success : function(data) {
+            console.log(data);
+            var result = $('#chosungNum');
+            $('#searchedIngr').remove();
+            $('#ingrList').remove();
 				var list = '<div id="ingrList">'
 				$.each(data, function(index, value) {
 					list = list + '<button class="ingrButton" value="'+value+'">' + value + '</button>';
@@ -37,17 +37,17 @@ function chosung() {
 			}
 		});
 	});
-}
+}*/
 
 function enterkey() {
-	$('#ingrSearchInRefri').on('keydown',function(event){
-		var thirteen = event.keyCode;
-		if (thirteen == 13) {
-			ingrSearch();
-			event.preventDefault();
-		};
-	})
-	
+   $('#ingrSearchInRefri').on('keydown',function(event){
+      var thirteen = event.keyCode;
+      if (thirteen == 13) {
+         ingrSearch();
+         event.preventDefault();
+      };
+   })
+   
 }
 
 
@@ -59,7 +59,6 @@ function searchButtonClick(){
 
 
 function ingrSearch() {
-	
 		var key = $('#ingrSearchInRefri').val();
 		console.log("key:" + key);
 		
@@ -76,7 +75,7 @@ function ingrSearch() {
 					list = list+'<button class="ingrButton" value="'+value+'">' + value + '</button>';
 				});
 				
-				result.append(list+'<div>');
+				result.append(list+'</div>');
 			},
 			error : function() {
 				alert("Search Error");
@@ -99,14 +98,14 @@ function selectedIngr() {
 }
 
 function searchedIngr() {
-	$('#searchedIngr').on('click', function(){
-		console.log("choosing ingr from search");
-		var chosen = $(event.target);
-		console.log(chosen);
-		
-		$('#selectedIngr').append(chosen);
-		
-	})
+   $('#searchedIngr').on('click', function(){
+      console.log("choosing ingr from search");
+      var chosen = $(event.target);
+      console.log(chosen);
+      
+      $('#selectedIngr').append(chosen);
+      
+   })
 }
 
 function clickOffVer1(){

@@ -31,7 +31,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
    @Override
    public void configure(WebSecurity web) throws Exception {
-      web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/res/**","/encryption/**");
+      web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/res/**");
    }// configure를 오버라이딩하여 시큐리티 설정을 잡아준다.
 //WebSecurity는 FilterChainProxy를 생성하는 필터.
  
@@ -39,13 +39,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http .authorizeRequests() //페이지 권한 설정
-        .antMatchers("/**","/**/*","/login","/index","/join","/ingrSelect","/chefInfo","/chefRank/*"
-        		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage/**","/autoComplete","/recipeSearch").permitAll()
-        .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
+                  
                     .antMatchers("/user/mypage").hasRole("Role_MEMBER")
 				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
 				
-                    
+                    .antMatchers("/**/","/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
+                    		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage/**").permitAll()
+                    .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
                     .antMatchers("/user/mypage").hasRole("MEMBER")
                     .anyRequest().authenticated();
                     

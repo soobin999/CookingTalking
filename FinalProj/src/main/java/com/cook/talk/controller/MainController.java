@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.cook.talk.model.dao.MainDAO;
 import com.cook.talk.model.dao.QnADAO;
 import com.cook.talk.model.service.MainService;
+import com.cook.talk.model.service.MypageService;
 
 @Controller
 public class MainController {
@@ -20,6 +21,9 @@ public class MainController {
 	private QnADAO qnADao;
 	@Autowired(required = false)
 	private MainDAO maindao;
+	
+	@Autowired(required = false)
+	private MypageService myPageService;
 
 	@GetMapping("/index")
 	public String index(Model model) {
