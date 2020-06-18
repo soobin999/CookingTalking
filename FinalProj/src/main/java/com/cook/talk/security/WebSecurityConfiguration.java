@@ -14,7 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.cook.talk.model.serviceImpl.UserServiceImpl;
 
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 //@EnableWebSecurity=시큐리티 설정할 클래스라 정의 
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 

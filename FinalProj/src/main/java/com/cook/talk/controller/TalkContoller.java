@@ -1,25 +1,17 @@
 package com.cook.talk.controller;
-
-import javax.activation.CommandMap;
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.cook.talk.model.VO.TalkVO;
-import com.cook.talk.model.dto.TalkDTO;
 import com.cook.talk.model.service.TalkService;
-import com.cook.talk.model.serviceImpl.TalkServiceImpl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -63,9 +55,12 @@ public class TalkContoller {
 	/*@RequestMapping(value = "/insert", method = { RequestMethod.POST, RequestMethod.GET })
 
 	public String insert(TalkVO talkVO, RedirectAttributes rttr) {
+<<<<<<< HEAD
 		System.out.println(talkVO);
+=======
+>>>>>>> 56af16d43c2787599b5e647d4e7e1bda6e4f7737
 		service.insert(talkVO);
-		rttr.addFlashAttribute("result", talkVO.getTalkCode());
+	//	rttr.addFlashAttribute("result", talkVO.getTalkCode());
 		return "redirect:/talk/list";
 	}*/
 
