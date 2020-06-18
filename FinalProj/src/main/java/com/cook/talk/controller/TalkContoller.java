@@ -25,7 +25,6 @@ public class TalkContoller {
 //목록 
 	@GetMapping("/list")
 	public String list(Model model) {
-	//	log.info("list");
 		model.addAttribute("list", service.getTalkList());
 	return "talk/list";
 	}
@@ -33,9 +32,8 @@ public class TalkContoller {
 //등록
 	@PostMapping("/insert")
 	public String insert(TalkVO talkVO, RedirectAttributes rttr) {
-		log.info("insert:" + talkVO);
 		service.insert(talkVO);
-		rttr.addFlashAttribute("result", talkVO.getTalkCode());
+	//	rttr.addFlashAttribute("result", talkVO.getTalkCode());
 		return "redirect:/talk/list";
 	}
 
