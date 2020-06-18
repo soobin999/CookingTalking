@@ -48,7 +48,6 @@ public interface RecipeDAO {
 	public int selectTypeCode();
 	//rcpingr.connectcode 자동생성
 	public int selectConnectcode();
-	
 
 	//레시피 글등록
 	public void insertRecipeProc(RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
@@ -64,6 +63,22 @@ public interface RecipeDAO {
 	//레시피 삭제
 
 	
-
-	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

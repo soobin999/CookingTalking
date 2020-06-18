@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
+
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TypeCatVO;
 import com.cook.talk.model.VO.RcpIngrVO;
 import com.cook.talk.model.VO.RcpOrderVO;
-import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.VO.TagVO;
+
+import com.cook.talk.model.dao.RecipeDAO;
+
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
 
@@ -122,7 +125,8 @@ public class RecipeServiceImpl implements RecipeService {
 		tagVO.setRcpTagCode(recipeVO.getRcpCode());
 		recipeDAO.insertTagProc(tagVO);
 		log.info(tagVO);
-		
+	}
+}
 //		try {
 //
 //			// Get the file and save it somewhere
@@ -135,8 +139,5 @@ public class RecipeServiceImpl implements RecipeService {
 //			return "fail";
 //		}
 
-	}
 
 
-
-}

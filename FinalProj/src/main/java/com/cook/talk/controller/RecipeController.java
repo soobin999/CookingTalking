@@ -20,10 +20,10 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Controller
 public class RecipeController {
-	
+
 	@Autowired
 	RecipeService recipeService;
-	
+
 	@Autowired
 	RecipeDAO recipeDAO;
 
@@ -34,16 +34,17 @@ public class RecipeController {
 		return "refrigerator/ingrSelect";
 	}
 
+	
 	@PostMapping("/rcmmRecipe")
 	public String rcmmRecipe(Model model, String selectedIngr, IngrVO ingrVO){
 		System.out.println("selectedIngr:"+selectedIngr);
 		model.addAttribute("rcmmList", recipeDAO.getRcmmList(selectedIngr));
 		System.out.println(recipeDAO.getRcmmList(selectedIngr));
+
 		return "refrigerator/rcmmRecipe";
-	}	
+	}
 	
-	
-	
+
 	@GetMapping("recipe/newList")
 	public String getRecipeList(Model model) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();
@@ -51,10 +52,10 @@ public class RecipeController {
 		model.addAttribute("recipeCount", recipeDAO.recipeCount());
 		for (RecipeDTO dto : recipeList)
 		log.info("list==>" + dto);
-		
+
 		return "recipe/newList";
 	}
-	
+
 //	@GetMapping("recipe/recipeView") 
 //	public void recipeView(@RequestParam(value="rcpCode", required = false) String rcpCode, Model model) {
 //		//List<RecipeDTO> recipeView = recipeService.recipeView();
@@ -67,7 +68,6 @@ public class RecipeController {
 
 	@GetMapping("recipe/insertRecipe")
 	public String insertRecipeView(@ModelAttribute RecipeDTO recipeDTO) {
-		
 		return "recipe/insertRecipe";
 	}
 
@@ -78,8 +78,9 @@ public class RecipeController {
 		recipeService.insertRecipeProc(true,
 				 recipeDTO.getRecipeVO(), recipeDTO.getTypeCatVO(),
 				recipeDTO.getRcpIngrVO(), recipeDTO.getRcpOrderVO(), recipeDTO.getTagVO());
-		
-		return "redirect:newList";
+
+		return "recipe/insertRecipe";
 	}
+
 
 }

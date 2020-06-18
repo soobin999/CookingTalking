@@ -2,12 +2,13 @@ package com.cook.talk.model.dto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cook.talk.model.VO.RcpComVO;
+
 import com.cook.talk.model.VO.RcpIngrVO;
 import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TagVO;
 import com.cook.talk.model.VO.TypeCatVO;
+import com.cook.talk.model.VO.RcpComVO;
 
 import lombok.Data;
 
@@ -32,7 +33,8 @@ public class RecipeDTO {
 	
 	@Autowired(required = false)
 	private TagVO tagVO;
-	
+
 	@Autowired(required = false)
 	private RcpComVO rcpComVO;
+
 }

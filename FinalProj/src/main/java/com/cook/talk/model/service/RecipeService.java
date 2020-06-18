@@ -28,16 +28,18 @@ public interface RecipeService {
 	// 레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
 
-	// 레시피 총갯수
+	//레시피 총갯수
 	public int recipeCount();
+
+	
+	//레시피 글보기
+//	public List<RecipeDTO> recipeView();
 
 	// 레시피 글등록
 	public void insertRecipeProc(/* MultipartFile file */ 
 			boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
 			RcpOrderVO rcpOrderVO, TagVO tagVO);
 
-	// 레시피 글보기
-//		public String recipeView();
 
 	/* List<RecipeDTO> getRcmmList(IngrVO ingrVO); */
 

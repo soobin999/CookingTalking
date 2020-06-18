@@ -9,4 +9,5 @@ public class TypeCatVO {
 	private String cookSituation;
 	private String cookMethod;
 	private String cookType;
+
 }

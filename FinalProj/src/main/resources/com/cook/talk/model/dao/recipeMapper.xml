@@ -4,14 +4,19 @@
 
 <mapper namespace="com.cook.talk.model.dao.RecipeDAO">
 
-	
-	<select id="getIngrName" parameterType="String" resultType="ingrVO">
-	SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
-	<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
+
+	<select id="getIngrName" parameterType="String"
+		resultType="ingrVO">
+		SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
+		<if test='!chosung1.equals("하")'>AND
+			ingrName<![CDATA[<]]>#{chosung2}
+		</if>
 	</select>
 
-	<select id="getSearchedIngrName" parameterType="String" resultType="String">
-		SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE CONCAT('%',#{ingrName},'%')
+	<select id="getSearchedIngrName" parameterType="String"
+		resultType="String">
+		SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE
+		CONCAT('%',#{ingrName},'%')
 	</select>
 
 	<select id="getIngrName1" parameterType="String" resultType="String">
@@ -29,6 +34,7 @@
 		SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.rcpIngr AS ri
 		ON r.rcpCode = ri.rcpCode INNER JOIN recipe.ingr AS i ON i.rcpIngrCode = ri.rcpIngrCode
 		WHERE i.ingrName=#{selectedIngr};
+
 	</select>
 
 	<select id="countIngrInRcp" parameterType="int" resultType="int">
@@ -37,8 +43,6 @@
 
 	<select id="countIngrInMyRefri" parameterType="int" resultType="int">
 	</select>
-
-
 
 
 
@@ -72,7 +76,7 @@
 	<select id="createViewRecipeList">
 		CREATE View RecipeDTO AS
 		SELECT rcp.rcpCode, rcp.rcpTitle, user.nickname, rcp.rcpDate, rcp.rcpViews,
-		rcp.rcpExpl, rcp.video, rcp.rcpPic, rcp.personnel, rcp.cookTime, rcp.level,
+		rcp.rcpExpl, rcp.video, rcp.rcpPic, rcp.personnel, rcp.cookTime, rcp.level, 
 		rcp.registerStatus, typecat.cookType, typecat.cookSituation, typecat.cookMethod
 		FROM rcp, user, typecat
 		WHERE rcp.typeCode = typeCat.typeCode
@@ -151,9 +155,5 @@
 	<insert id="insertTagProc" parameterType="tagVO">
 		INSERT INTO rcpTagCode, tag (rcpTagCode, tag) VALUES (#{rcpTagCode}, #{tag})
 	</insert>
-
-
-
-
 
 </mapper>
