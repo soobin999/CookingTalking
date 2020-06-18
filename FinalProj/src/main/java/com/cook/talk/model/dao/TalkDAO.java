@@ -15,7 +15,7 @@ public interface TalkDAO {
 	public List<TalkVO> getTalkList();
 
 	//등록 
-	public void insert(TalkVO talkVO);
+	public int insert (TalkVO talkVO);
 
 	//삭제 
 	public boolean delete(String talkCode);
@@ -25,6 +25,8 @@ public interface TalkDAO {
 
 	
 	public  int selectTalkCode() ;
+
+
 	
 	
 

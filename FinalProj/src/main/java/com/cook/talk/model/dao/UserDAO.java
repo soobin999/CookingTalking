@@ -24,10 +24,7 @@ public interface UserDAO {
 
 	public void join(UserVO user) throws Exception;
 
-	public static int login(UserVO userVO) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public int login(UserVO userVO);
 
 	public Optional<UserVO> findByEmail(String userEmail);
 
@@ -41,6 +38,6 @@ public interface UserDAO {
 		return 0;
 	}
 
-public void updateAccess(String userId);
+	public void updateAccess(String userId);
 
 }
