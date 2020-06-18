@@ -24,7 +24,6 @@ import lombok.NoArgsConstructor;
 @Repository
 public class UserDTO {
 
-	
 	private Long id;
 
 	@NotEmpty(message = "닉네임은 필수 입력 값입니다.")
@@ -37,6 +36,7 @@ public class UserDTO {
 	@NotBlank(message = "비밀번호는 필수 입력 값입니다.")
 	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=\\S+$).{8,16}", message = "영문 +숫자 조합 8~16자리 ")
 	private String userPw;
+
 //숫자 적어도 1개, 영문 대문자 중에 하나, 공복제거 
 	@Builder
 	public UserDTO(String userId, String userPw, String nickName, Date birth, boolean gender) {
@@ -49,6 +49,7 @@ public class UserDTO {
 	}
 
 	private UserVO user;
+
 	private QnAVO qna;
 
 	private Date birth;
@@ -70,8 +71,6 @@ public class UserDTO {
 
 	}
 
-	
 }
 //데이터 전달 객체이므로 클라이언트 요청데이터가DTO클래스로 캡슐화 되게 한다 
 //즉 컨트롤러에서 서비스 계층간 데이터를 잔달해줌. 
-

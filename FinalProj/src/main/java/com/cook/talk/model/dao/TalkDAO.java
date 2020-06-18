@@ -14,21 +14,17 @@ public interface TalkDAO {
 	// 전체 목록
 	public List<TalkVO> getTalkList();
 
-	//등록 
-	public void insert(TalkVO talkVO);
+	// 등록
+	public int insert(TalkVO talkVO);
 
-	//삭제 
-	public boolean delete(String talkCode);
-	
-	//수정 
+	// 삭제
+	public int delete(String talkCode);
+
+	// 수정
 	public boolean update(TalkVO talkVO);
 
-	
-	public  int selectTalkCode() ;
-	
-	
+	public int selectTalkCode();
 
-	
-	
+	public TalkVO talkSearchById(String talkCode);
 
 }

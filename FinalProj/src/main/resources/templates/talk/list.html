@@ -6,16 +6,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 목록</title>
 
-<!-- <script type="text/javascript">
+ <script type="text/javascript">
 	$(document).readt(function() {
 		$("#btnWrite").click(function() {
 			location.href = "${path}/talk/wirte";
 		});
 	});
-</script> -->
+</script>
 </head>
- <body>
-	<button type="button" id=btnWrite>글쓰기</button>
+<body>
+		<button type="button" id=btnWrite  >글쓰기</button> 
+
+	<a th:href="@{/talk/insert}">글쓰기</a>
+
+
+
 	<table border="1" width="600px">
 		<thead>
 			<tr>
@@ -28,18 +33,19 @@
 		<tbody>
 			<tr th:each="talk : ${list}">
 				<td th:text="${talk.talkCode}"></td>
-				<td th:text="${talk.talkCont}"></td>
+		<td >	<a href="@{talk/talkDetail}" th:text="${talk.talkCont}"></td>
 				<td th:text="${talk.userId}"></td>
 				<td th:text="${talk.talkDate}"></td>
-			
+
 				<!-- <fmt:formatDate
 					value="${row.redate}" pattern="yyy-MM-dd HH:mm:ss" /> -->
 			</tr>
 		</tbody>
 		<!-- <a th:href="@{/post}">글쓰기</a>
 
- -->		<!-- 	<div th:insert="talk/footer.html" id="footer"></div> -->
-	
+
+		<!-- 	<div th:insert="talk/footer.html" id="footer"></div> -->
+
 	</table>
 </body>
 </html>

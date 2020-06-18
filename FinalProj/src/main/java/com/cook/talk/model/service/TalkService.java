@@ -1,7 +1,5 @@
 package com.cook.talk.model.service;
 
-
-
 import java.util.List;
 
 import com.cook.talk.model.VO.TalkVO;
@@ -19,4 +17,6 @@ public interface TalkService {
 	// 삭제
 	public boolean delete(String talkCode);
 
+	public TalkVO talkSearchById(String talkCode);
+	
 }

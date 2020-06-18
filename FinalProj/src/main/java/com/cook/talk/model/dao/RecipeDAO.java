@@ -17,18 +17,21 @@ import com.cook.talk.model.dto.RecipeDTO;
 @Mapper
 public interface RecipeDAO {
 
-	//재료 리스트 받아오기
+	//Call ingrNameList
 	public List<IngrVO> allSelectIngrList(IngrVO ingrVO);
 	
-	//재료 검색하는 곳
+	//Searching IngrName?
 	public List<String> getIngrName(String chosung1, String chosung2);
 	
-	//검색한 애 불러오기
+	//Call searched ingrName
 	public List<String> getSearchedIngrName(String ingrName);
 	
 	public List<String> getIngrName1(String chosung1, String chosung2);
 	
 	public List<RecipeDTO> getRcmmList(String selectedIngr);
+	
+	
+	
 	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
@@ -38,14 +41,44 @@ public interface RecipeDAO {
 	
 	//레시피 글보기
 //	public List<RecipeDTO> recipeView();
-	
-//	//레시피 글등록
-//	public void insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag);
-//
-//	//rcpCode 자동생성
-//	public int selectRcpCode();
+		
+	//rcpCode 자동생성
+	public int selectRcpCode();
+	//typeCode 자동생성
+	public int selectTypeCode();
+	//rcpingr.connectcode 자동생성
+	public int selectConnectcode();
 
-	
+	//레시피 글등록
+	public void insertRecipeProc(RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
+			RcpOrderVO rcpOrderVO, TagVO tagVO);
+	void insertRcpProc(RecipeVO recipeVO);
+	void insertTypecatProc(TypeCatVO typeCatVO);
+	void insertRcpingrProc(RcpIngrVO rcpIngrVO);
+	void insertRcporderProc(RcpOrderVO rcpOrderVO);
+	void insertTagProc(TagVO tagVO);
+
+			
+	//레시피 수정
+	//레시피 삭제
 
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
