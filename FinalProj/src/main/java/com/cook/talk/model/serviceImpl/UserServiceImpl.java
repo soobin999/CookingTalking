@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// loadUserByUsername 상세 정보 조회 메서드 , 계정정보와 권한을 갖는 UserDetails 인터페이스를 반환
 		// 입력한 아이디 값을 통해 디비에서 값을 읽어오는것. 디비에있으면userDto 객체에 로그인 정보 담는다.
-		System.out.println("H유진 아이디:    " + username);	
+		System.out.println(" 아이디:    " + username);	
 		UserVO userEntity = userDAO.findUserById(username);
 		System.out.println(userEntity);
 

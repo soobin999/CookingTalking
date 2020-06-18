@@ -4,42 +4,64 @@
 <meta charset="UTF-8">
 <title>건호 리스트 뿌리기</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
+<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
 
-	<div>
+	<div class="adSelectPage" id="adSelectPage">
 		<!-- 재료 리스트 가져오기 -->
 		<button onclick="adQnaList()">고객요청함</button>
+	</div>
+	<div class="adSelectPage" id="adSelectPage">
 		<button onclick="adUserList()">회원정보</button>
-		<button onclick="adRecipeList()">레시피</button>
+	</div>
+
+	<!-- 레시피 화명 이동 버튼 -->
+	<div class="adSelectRcpPage" id="adSelectPage">
+		<div class="w3-dropdown-hover">
+			<button class="w3-button w3-black">레시피</button>
+			<div class="w3-dropdown-content w3-bar-block w3-border">
+				<a href="#" class="w3-bar-item w3-button">레시피 리스트</a> <a href="#"
+					class="w3-bar-item w3-button">레시피 통계</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="adSelectPage" id="adSelectPage">
 		<button onclick="adIngrList()">재료페이지</button>
 	</div>
+	<br>
+	<br>
+	
+
 	<div id="basic">
 
+		<table border="1" id="mainTable">
 
-		<div>
-			<div class="">
-				<div class="qna_title">문의사항제목</div>
-				<div class="qna_date">문의 날짜</div>
-				<div class="qna_user">유저</div>
-				<div class="qna_OX">답변 유무</div>
+			<div>
+				<div class="123">
+					<div class="qna_title">문의사항제목</div>
+					<div class="qna_date">문의 날짜</div>
+					<div class="qna_user">유저</div>
+					<div class="qna_OX">답변 유무</div>
+				</div>
+
+				<div th:each="qna:${qnaList}">
+					<div class="result_Title" th:text="${qna.qnaTitle}">문의 사항 제목</div>
+					<!-- 				<div class ="result_Comment" th:text="${qnaList.qnaCont}">문의 내용</div> -->
+					<div class="result_Date" th:text="${qna.qnaDate}">문의 날짜</div>
+					<div class="result_userId" th:text="${qna.userId}">유저</div>
+					<div>답변유무</div>
+
+				</div>
+
 			</div>
-			
-			<div th:each="qna:${qnaList}">
-				<div class ="result_Title" th:text="${qna.qnaTitle}">문의 사항 제목</div>
-<!-- 				<div class ="result_Comment" th:text="${qnaList.qnaCont}">문의 내용</div> -->
-				<div class ="result_Date" th:text="${qna.qnaDate}">문의 날짜</div>
-				<div class ="result_userId" th:text="${qna.userId}">유저</div>
-				<div>답변유무</div>
-
-			</div>
-
-		</div>
-
+		</table>
 
 	</div>
 

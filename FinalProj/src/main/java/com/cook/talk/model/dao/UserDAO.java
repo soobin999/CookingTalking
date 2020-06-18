@@ -5,7 +5,6 @@ import java.util.Optional;
 //Simport javax.xml.ws.ServiceMode;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.session.SqlSession;
 
 import com.cook.talk.model.VO.UserVO;
 
@@ -41,5 +40,7 @@ public interface UserDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+public void updateAccess(String userId);
 
 }

@@ -40,5 +40,8 @@ update user set userPw=${userPw},nickName={nickName} where user userId=#{userId}
 delete from user where userId=#{userId}
 </delete>
 
+<update id="updateAccess" parameterType="String">
+update user set access=1 where userId=#{userId}
+</update>
 </mapper>        
 

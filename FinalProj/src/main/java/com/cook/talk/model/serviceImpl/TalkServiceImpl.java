@@ -24,9 +24,9 @@ public class TalkServiceImpl implements TalkService {
 	}
 
 	@Override
-	public List<TalkVO> getlist() {
+	public List<TalkVO> getTalkList() {
 		// TODO Auto-generated method stub
-		return null;
+		return talkDAO.getTalkList();
 	}
 
 	@Override
