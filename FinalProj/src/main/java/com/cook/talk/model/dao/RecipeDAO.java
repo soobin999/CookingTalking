@@ -12,17 +12,19 @@ import com.cook.talk.model.dto.RecipeDTO;
 @Mapper
 public interface RecipeDAO {
 
-	//재료 리스트 받아오기
+	//Call ingrNameList
 	public List<IngrVO> allSelectIngrList(IngrVO ingrVO);
 	
-	//재료 검색하는 곳
+	//Searching IngrName?
 	public List<String> getIngrName(String chosung1, String chosung2);
 	
-	//검색한 애 불러오기
+	//Call searched ingrName
 	public List<String> getSearchedIngrName(String ingrName);
 	
 	public List<String> getIngrName1(String chosung1, String chosung2);
 	
+	//RcmmRecipe
+	public List<RecipeDTO> getRcmmList();
 	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();

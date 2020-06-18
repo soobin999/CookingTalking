@@ -21,9 +21,10 @@ public class HYujin {
 	@Autowired
 	BCryptPasswordEncoder hhaa;
 	@Test
-	public void find() {
-		log.info(userDao.findUserById("hahah@naver.com").toString());
-	}
+	/*
+	 * public void find() {
+	 * log.info(userDao.findUserById("hahah@naver.com").toString()); }
+	 */
 
 	public void save() throws Exception {
 

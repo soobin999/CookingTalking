@@ -16,7 +16,7 @@ import com.cook.talk.model.service.RecipeService;
 public class MyPageServiceImpl implements MyPageService{
 
 	@Override
-	public String user(UserVO userVO) {
+	public String mypageLogin(UserVO userVO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

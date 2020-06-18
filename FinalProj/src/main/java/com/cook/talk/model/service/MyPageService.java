@@ -4,5 +4,5 @@ import com.cook.talk.model.VO.UserVO;
 
 public interface MyPageService {
 
-	public String user(UserVO userVO);
+	public String mypageLogin(UserVO userVO);
 }

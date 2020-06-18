@@ -15,11 +15,9 @@ public interface RecipeService {
 
 	//재료 검색하기 in 냉파
 	public String searched(IngrVO ingrVO);
-
-	
 	public List<String> getSearchedIngrName(String ingrName);
 	
-	
+	public List<RecipeDTO> getRcmmList(String rcpTitle, String rcpPic);
 	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();

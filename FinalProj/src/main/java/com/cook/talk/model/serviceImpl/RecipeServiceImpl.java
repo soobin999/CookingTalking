@@ -34,10 +34,16 @@ public class RecipeServiceImpl implements RecipeService{
 		} else {
 			return "일치하는 재료 없어요";
 		}
-
-
 	}
 
+	@Override
+	public List<RecipeDTO> getRcmmList(String rcpTitle, String rcpPic) {
+		List<RecipeDTO> getRcmmList = recipeDAO.getRcmmList();
+		
+		
+		return getRcmmList;
+	}
+	
 
 	@Override
 	public List<String> getSearchedIngrName(String ingrName) {
@@ -58,5 +64,7 @@ public class RecipeServiceImpl implements RecipeService{
 		int recipeCount = recipeDAO.recipeCount();
 		return recipeCount();
 	}
+
+
 
 }

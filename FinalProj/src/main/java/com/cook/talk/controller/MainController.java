@@ -6,10 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dao.ChefDAO;
 import com.cook.talk.model.dao.MainDAO;
 import com.cook.talk.model.dao.QnADAO;
 import com.cook.talk.model.service.MainService;
+import com.cook.talk.model.service.MyPageService;
 
 @Controller
 public class MainController {
@@ -22,6 +24,9 @@ public class MainController {
 	private QnADAO qnADao;
 	@Autowired(required = false)
 	private MainDAO maindao;
+	
+	@Autowired(required = false)
+	private MyPageService myPageService;
 
 	@GetMapping("/index")
 	public String index(Model model) {
@@ -48,6 +53,15 @@ public class MainController {
 		model.addAttribute("qnaList", qnADao.selectQna());
 
 		return "admin/adminMain";
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage(Model model, UserVO userVO) {
+		
+		/* String id = userVO.getUserId(); */
+		myPageService.mypageLogin(userVO);
+		
+		return "/mypage/mypage";
 	}
 
 }
