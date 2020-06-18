@@ -10,7 +10,7 @@ import com.cook.talk.model.VO.UserVO;
 @Mapper
 @Alias("qnADAO")
 public interface QnADAO {
-	public void insertReply(UserVO userId, QnAVO qna);
+	public void insertReply(QnAVO qna);
 	public List<QnAVO> selectQna();
 	
 	public int selectQnACode();
