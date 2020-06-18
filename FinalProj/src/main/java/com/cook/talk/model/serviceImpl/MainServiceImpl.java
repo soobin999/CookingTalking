@@ -48,4 +48,19 @@ public class MainServiceImpl implements MainService {
 		return main.recipeList(rcpCodeList);
 	}
 
+	@Override
+	public String followChef(String follow,String chefNick) {
+		String userId="hani@naver.com";
+		String result;
+		System.out.println(follow);
+			if(follow.equals("Follow")) {
+				main.followChef(userId, chefNick);
+				result="Follow완료";
+			}else {
+				main.unfollowChef( userId, chefNick);
+				result="Unfollow완료";
+			}
+		return result;
+	}
+
 }

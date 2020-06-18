@@ -23,7 +23,10 @@
 	</select>
 	
 	<select id="selectRecipe" resultType="recipeVO">
-		select rcpTitle,rcpPic from rcp where userId = #{userId}
+		select rcpTitle,rcpPic from rcp where userId = #{userId} limit #{page},20
+	</select>
+	<select id="recipeCount" resultType="int">
+		select count(*) from rcp where userId=#{userId}
 	</select>
 	<select id="allSelectChef" resultMap="chefDTO">
 		select us.nickName as nickName,us.userPic as userPic,us.rcpUploads as rcpUploads,us.followers as followers, sum(rcpViews) as rcpviews
@@ -33,7 +36,8 @@
 			   <choose>
 			   <when test='status.equals("rcpUploads")'>order by us.rcpUploads*1 desc,us.followers*1 desc,rcp.rcpviews*1 desc</when>
 			   <when test='status.equals("followers")'>order by us.followers*1 desc,us.rcpUploads*1 desc,rcp.rcpviews*1 desc</when>
-			   <when test='status.eqauls("rcpveiws")'>order by rcp.rcpViews*1 desc,us.rcpUploads*1 desc,us.followers*1 desc</when>
+			   <when test='status.equals("rcpViews")'>order by rcp.rcpViews*1 desc,us.rcpUploads*1 desc,us.followers*1 desc</when>
+			   <when test='status.equals("new")'>order by us.rcpUploads*1,us.followers*1,rcp.rcpviews*1</when>
 			   </choose>
 	</select>
 </mapper>

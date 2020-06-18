@@ -16,8 +16,10 @@ public interface ChefDAO {
 
 	public int selectFollow(String userId,String chefId);
 
-	public List<ChefDTO> selectRecipe(String userId);
+	public List<ChefDTO> selectRecipe(String userId,int page);
 
 	public List<ChefDTO> allSelectChef(String status);
+	
+	public int recipeCount(String userId);	
 
 }
