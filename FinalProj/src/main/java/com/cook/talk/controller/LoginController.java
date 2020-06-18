@@ -1,7 +1,7 @@
 package com.cook.talk.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,34 +10,42 @@ import javax.validation.Valid;
 
 import org.elasticsearch.client.security.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cook.talk.model.VO.UserVO;
+import com.cook.talk.model.dao.MainDAO;
 import com.cook.talk.model.dao.UserDAO;
 import com.cook.talk.model.dto.UserDTO;
 import com.cook.talk.model.naver.NaverLoginBO;
-import com.cook.talk.model.service.UserService;
+import com.cook.talk.model.service.EncryptionService;
 import com.cook.talk.model.serviceImpl.UserServiceImpl;
 
 import lombok.AllArgsConstructor;
-import net.bytebuddy.asm.Advice.Return;
 
 @AllArgsConstructor
 
 @Controller
 public class LoginController {
+
+
+
    @Autowired
    private UserVO userVO;
    @Autowired
    private UserDAO userDAO;
-   
+   @Autowired
+   EncryptionService encryption;
+   @Autowired
+   MainDAO maindao;
    
    @RequestMapping(value = "/login", method = RequestMethod.GET)
    public String login(Model model, HttpServletRequest req ,HttpSession session) {
@@ -54,7 +62,7 @@ public class LoginController {
       return "/login/login";
    }
 
-   
+  
    
    
    
@@ -132,8 +140,10 @@ public class LoginController {
 
    
    @PostMapping("/join")
-   public String execJoin(@Valid UserVO userVO, Errors errors, Model model) {
+   public String execJoin(@Valid UserVO userVO, Errors errors, Model model)  {
       userServiceImpl.joinUser(userVO);
+      System.out.println(userVO.getUserId());
+      encryption.encryption(userVO.getUserId());
       return "redirect:/index";
 
    }// 기능
@@ -161,5 +171,11 @@ public class LoginController {
       return "/join/join";
 
    }
-
+   @GetMapping("/loginConfirm/{accessCode}")
+   public String loginConfirm(@PathVariable String accessCode,Model model) {
+	   model.addAttribute("total",maindao.totalSelect());
+	   System.out.println(accessCode);
+	   encryption.Decrypt(accessCode);
+	   return "main/index";
+   }
 }

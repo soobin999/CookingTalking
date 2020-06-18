@@ -2,30 +2,33 @@ package com.cook.talk.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.TalkVO;
+import com.cook.talk.model.dto.TalkDTO;
 
-@Service
+@Mapper
 public interface TalkDAO {
 
-	// 게시글 작성
-	public void write(TalkVO talkVO) throws Exception;
+	// 전체 목록
+	public List<TalkVO> getTalkList();
 
-	// 상세보기
-	public TalkVO read(int talkCode) throws Exception;
+	//등록 
+	public void insert(TalkVO talkVO);
 
-	// 수정
-	public TalkVO update(TalkVO talkVO)throws Exception;
+	//삭제 
+	public boolean delete(String talkCode);
 	
-	//삭제
-	public void delete(int talkCode)throws Exception;
+	//수정 
+	public boolean update(TalkVO talkVO);
 
-	//전체 목록
-	public List<TalkVO> listAll() throws Exception;
+	
+	public  int selectTalkCode() ;
+	
+	
 
-	public void increaseViewconut(int talkCode)throws Exception;
-
+	
 	
 
 }

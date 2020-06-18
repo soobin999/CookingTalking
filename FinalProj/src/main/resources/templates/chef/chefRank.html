@@ -75,8 +75,9 @@ left:8%;
 			<div class="list_sort">
 				<div class="chef_search">
 					<input type="text" id="user_search_input" 
-						class="form-control" placeholder="쉐프 닉네임을 입력해 주세요."><span
-						class="glyphicon glyphicon-search"></span>
+						class="form-control" placeholder="쉐프 닉네임을 입력해 주세요.">
+						<span
+						class="glyphicon glyphicon-search fas fa-search"></span>
 					<button type="submit" onclick="searchUser()" class="btn search">검색</button>
 				</div>
 			</div>
@@ -102,7 +103,7 @@ left:8%;
 			<div class="dropdown clearfix pull-right">
 				<button class="btn btn-default dropdown-toggle" type="button"
 					id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
-					<span class="glyphicon glyphicon-calendar"></span>누적
+					<i class="far fa-calendar-alt"></i> 누적
 				</button>
 				<ul class="dropdown-menu" role="menu"
 					aria-labelledby="dropdownMenu1">
@@ -115,7 +116,7 @@ left:8%;
 			<div class="dropdown clearfix pull-right">
 				<button class="btn btn-default dropdown-toggle" type="button"
 					id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-					<span class="glyphicon glyphicon-align-justify"></span>소식받기순위
+					<i class="fas fa-list"></i> 소식받기순위
 				</button>
 				<ul class="dropdown-menu" role="menu"
 					aria-labelledby="dropdownMenu1">
@@ -169,7 +170,13 @@ function searchUser(){
 		url:'/chefsearch',
 		type:'POST',
 		success:function(data){
-			alert(data);
+			$('.list_lump').remove();
+			/* $('.chef_list4_in').append(); */
+			var aa=JSON.stringify(data);
+			console.log(aa);
+			for (var key in aa)
+			console.log(key);
+				/* $('.chef_list4_in').append() */
 		},
 		error:function(){
 			alert("error");
