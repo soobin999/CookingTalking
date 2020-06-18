@@ -37,11 +37,11 @@ $(function(){
 
 
 	<form class="form-horizontal" th:action="@{/talk/insert.do}"
-		th:object="${talk}" method="post"
+		th:object="${talkVO}" method="post"
 		onsubmit="return registerBoard(this)">
 		<tr>
 			<th>내용</th>
-			<td><textarea cols="10" placeholder="내용을 입력하세요" name="content"></textarea>
+			<td><textarea th:field="*{talkCont}" cols="10" placeholder="내용을 입력하세요" name="content"></textarea>
 			<th>파일 첨부</th>
 			<td><input type="text" placeholder="사진을 선택하세요" name=""></td>
 

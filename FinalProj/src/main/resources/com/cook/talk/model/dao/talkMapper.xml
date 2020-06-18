@@ -10,25 +10,28 @@ select * from talk<!--  ORDER BY talkCode DESC -->
 <!-- 게시글 작성 -->
 <insert id="insert" parameterType="com.cook.talk.model.VO.TalkVO">
 insert into talk (talkCode,talkCont, userId ,talkDate) values
-(#{talkCode},#{talkCont},#{userId},#{talkDate})
+(#{talkCode},#{talkCont},#{userId},(select curdate()))
 </insert>
 
+
 <!-- 게시글 상세보기  -->
-<select id="read" resultType="com.cook.talk.model.VO.TalkVO">
+<select id="talkSearchById" resultType="com.cook.talk.model.VO.TalkVO">
 select * from talk where talkCode=#{talkCode}
 </select>
 
 <!-- 게시글 수정 처리 -->
 <update id="update">
-update talk set talkCont=#{talkCont} where talkCode=#{talkCode}
+update talk 
+set 
+talkCont=#{talkCont} where talkCode=#{talkCode}
 </update>
 
 <delete id="delete">
-delete from talk where talkCont=#{talkCont}
+delete from talk where talkCodet=#{talkCode}
 </delete>
 
-	<select id= "insertTalk" resultType="int">
-	Select substring((select talkCode from talk order by talkCode desc
+	<select id="selectTalkCode" resultType="int">
+		select substring((select talkCode from talk order by talkCode desc
 		limit 1), 3);
 	</select>
 

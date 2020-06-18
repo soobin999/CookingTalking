@@ -10,11 +10,13 @@ public interface TalkService {
 
 	// 추가
 	public void insert(TalkVO talkVO);
-	
+
 	// 수정
 	public boolean update(TalkVO talkVO);
 
 	// 삭제
 	public boolean delete(String talkCode);
- 
+
+	public TalkVO talkSearchById(String talkCode);
+	
 }
