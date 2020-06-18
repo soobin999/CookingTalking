@@ -6,6 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
+import com.cook.talk.model.VO.RcpIngrVO;
+import com.cook.talk.model.VO.RcpOrderVO;
+import com.cook.talk.model.VO.RecipeVO;
+import com.cook.talk.model.VO.TagVO;
+import com.cook.talk.model.VO.TypeCatVO;
 import com.cook.talk.model.dto.RecipeDTO;
 
 @Service
@@ -25,6 +30,9 @@ public interface RecipeDAO {
 	
 	public List<RecipeDTO> getRcmmList(String selectedIngr);
 	
+	
+	
+	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
 
@@ -33,12 +41,27 @@ public interface RecipeDAO {
 	
 	//레시피 글보기
 //	public List<RecipeDTO> recipeView();
+		
+	//rcpCode 자동생성
+	public int selectRcpCode();
+	//typeCode 자동생성
+	public int selectTypeCode();
+	//rcpingr.connectcode 자동생성
+	public int selectConnectcode();
 	
-//	//레시피 글등록
-//	public void insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag);
-//
-//	//rcpCode 자동생성
-//	public int selectRcpCode();
+
+	//레시피 글등록
+	public void insertRecipeProc(RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
+			RcpOrderVO rcpOrderVO, TagVO tagVO);
+	void insertRcpProc(RecipeVO recipeVO);
+	void insertTypecatProc(TypeCatVO typeCatVO);
+	void insertRcpingrProc(RcpIngrVO rcpIngrVO);
+	void insertRcporderProc(RcpOrderVO rcpOrderVO);
+	void insertTagProc(TagVO tagVO);
+
+			
+	//레시피 수정
+	//레시피 삭제
 
 	
 
