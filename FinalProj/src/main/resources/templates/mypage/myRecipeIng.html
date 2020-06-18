@@ -9,30 +9,40 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/js/mypage.js"></script>
 
+	<div id="mypageMain">
 	<!-- 사진 및 계정 정보 -->
+	<div id="mypageSuvMain">
 	<a href="/userModify.html">회원 정보 수정</a>
 	
-	<div id="myPageMain">
 	<div class="myMenu">
 	<button onclick="myRecipe()">레시피</button>
 	<button onclick="myFrequent()">즐겨찾기</button>
 	<button onclick="myActivity()">활동</button>
 	<button onclick="myInquiry()">문의 사항</button>
-	</div>
 	
-	<div id="inqBasic">
-		<button onclick="myInquiry()">문의 하기</button>
-		<button onclick="myInquiryList()">나의 문의 사항</button>
-
+	
+	<div th:class="myRecipeBasic">
+		<button onclick="myRecipe()">진행중인 레시피</button>
+		<button onclick="myWritten()">작성완료된 레시피</button>
+	</div>
+	<div th:class="myWrittenMain"></div>
+	<div th:class="myFrequentMain"></div>
+	</div>
+	<div th:class="myRecipeIngMain">
+	<table>
+	<tbody>
+<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
+		<div class="myRecipeIng_title">레시피 제목</div> -->
+	
+	
+	<tr th:each="myRecipeIng : ${myRecipeIng}" th:class="myRecipeIng" id="myRecipeIng">
+		<td th:text=${myRecipeIng.rcpTitle}></td>
+		<td th:text=${myRecipeIng.rcpPic}></td>
+	</tr>
+	</tbody>
+	</table>
 	</div>
 	</div>
-	<div class="myInq" th:method="POST">
-		<form th:action="@{/mypage/myInquiry}" id="insertMyInq"
-			class="insertMyInq" name="">
-			<input type="text" name="myInqTitle" th:class="myInqTitle" id="myInqTitle" placeholder="제목을 입력하세요"> 
-			<input type="text" name="myInqCont" th:class="myInqCont" id="myInqCont" placeholder="내용을 입력하세요">
-			<button type="submit" th:class="sendInq">제출하기</button>
-		</form>
 	</div>
 </body>
 </html>

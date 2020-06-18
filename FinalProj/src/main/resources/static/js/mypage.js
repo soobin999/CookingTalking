@@ -4,88 +4,61 @@ $(function(){
 
 function myRecipe(){
 	
-	$('#myBasic').remove();
-	$('#myPageMain').load("mypage/mypage");
+	/*$('.mypageMain').remove();*/
+	$('#mypageMain').load("/mypage/myRecipeIng");
 }
 
 function myFrequent(){
-	$('#myBasic').remove();
-	$('#myPageMain').load("mypage/myFrequent");
+/*	$('.myRecipeBasic').remove();
+	$('.myWrittenMain').remove();
+	$('.myRecipeIngMain').remove();*/
+	$('#mypageSuvMain').remove();
+	$('#mypageMain').load("/mypage/myFollow");
+	console.log("myFrequent");
 }
 
 function myActivity(){
 	$('#myBasic').remove();
-	$('#myPageMain').load("mypage/myActivity");
+	$('#mypageMain').load("/mypage/myTalk");
+}
+
+function myCom(){
+	$('#myBasic').remove();
+	$('#mypageMain').load("/mypage/myCom");
+}
+
+function myInquiryList(){
+	$('#myBasic').remove();
+	$('#mypageMain').load("/mypage/myInquiryList");
 }
 
 function myInquiry(){
 	$('#myBasic').remove();
-	$('#myPageMain').load("mypage/myInquiry");
+	$('#mypageMain').load("/mypage/myInquiry");
 }
 
-function writtenRecipe(){
+function myWritten(){
+	$('#mypageMain').load("/mypage/myWritten");
+	console.log("myWritten");
+}
+
+function myScraped(){
+	$('#mypageMain').load("/mypage/myScraped");
+	console.log("myScraped");
+}
+
+function sendInq(){
 	
-	$(".writtenRecipe").click(function(){
+	$('.sendInq').click(function(){
 		
-		$.ajax({
-			type : "POST",
-			url : "/written",
-			data : 
-			success : function(){
-				$('#').remove();
-				
-				$.each(data, function(index, value){
-					
-				});
-				
-			},
-			error : function(){
-				alert("Written Recipe Error");
-			}
-		})
-	})
-}
-
-function myScrapedRecipe(){
-	$(".scrapedRecipe").click(function(){
+		var myInqTitle = $('.myInqTitle').val();
+		var myInqCont = $('.myInqCont').val();
 		
-		$.ajax({
-			type : "POST",
-			url : "/scraped",
-			data : 
-			success : function(){
-				$('#').remove();
-				
-				$.each(data, function(index, value){
-					
-				});
-			},
-			error : function(){
-				alert("Scraped Recipe Error");
-			}
-		})
-	})
-}
-
-fucntion myInqList(){
-	
-	$(".myInquiryList").click(function(){
-		
-		$(.ajax)({
-			type : "POST",
-			url : "/myInq",
-			data : 
-			succes : function(){
-				$('#').remove();
-				
-				$.each(data, function(index, value){
-					
-				});
-			},
-			error : function(){
-				alert("Inquiry List Error");
-			}
-		})
+		if(myInqTitle && myInqCont != null){
+			alert("정상적으로 접수되었습니다");
+		} else{
+			alert("제목과 내용 모두 입력해주세요");
+		}
 	})
 	
 }

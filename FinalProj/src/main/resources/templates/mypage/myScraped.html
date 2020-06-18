@@ -12,7 +12,7 @@
 	<!-- 사진 및 계정 정보 -->
 	<a href="/userModify.html">회원 정보 수정</a>
 	
-	<div id="myPageMain">
+	<div id="mypageMain">
 	<div class="myMenu">
 	<button onclick="myRecipe()">레시피</button>
 	<button onclick="myFrequent()">즐겨찾기</button>
@@ -22,20 +22,23 @@
 	
 	<div id="myFrequent">
 		<button onclick="myFrequent()">팔로우</button>
-		<button type="button" class="scrapedRecipe" id="scrapedRecipe">스크랩한 레시피</button>
+		<button onclick="myScraped()">스크랩한 레시피</button>
 	</div>
-	<div class="myFrequent">
+	<div th:class="myFrequent">
 	<table>
 	<tbody>
 <!-- 		<div class="myRecipeIng_img">레시피 사진</div>
 		<div class="myRecipeIng_title">레시피 제목</div> -->
 	
 	
-	<tr th:each="myFollow : ${myFollow}">
-		<td class="" th:text=${myFollow.followChef}></td>
+	<tr th:each="myScraped : ${myScraped}">
+		<td th:text=${myScraped.rcpTitle}></td>
+		<td th:text=${myScraped.rcpPic}></td>
+		<td th:text=${myScraped.scrapDate}></td>
 	</tr>
 	</tbody>
 	</table>
+	</div>
 	</div>
 </body>
 </html>

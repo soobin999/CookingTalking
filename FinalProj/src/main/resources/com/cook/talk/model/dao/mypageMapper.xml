@@ -6,39 +6,42 @@
 
 	
 	<select id="getMyRecipeIng" parameterType="String" resultType="RecipeVO">
-	SELECT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' and registerStatus=0
+	SELECT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' AND registerStatus=0
 	</select>
 	
-	<select id="getMyRecipeWritten" parameterType="String" resultType="RecipeVO">
-	SELECT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' and registerStatus=1
+	<select id="getMyRecipeWritten" resultType="MypageDTO">
+	SELECT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' AND registerStatus=1
 	</select>
+	<!-- SELECT followChef FROM recipe.follow WHERE userId='kkk@naver.com' -->
+	<select id="getMyFollow" resultType="MypageDTO">
 	
-	<select id="getMyFollow" parameterType="String" resultType="UserVO">
-	SELECT followChef FROM recipe.follow WHERE userId='kkk@naver.com'
+	SELECT nickName FROM recipe.user AS u INNER JOIN recipe.follow AS f ON u.userId = f.userId WHERE f.userId = 'kkk@naver.com' 
 	</select>
 	
 	<select id="getMyScrapedRecipe" parameterType="String" resultType="RecipeVO">
-	SELECT rcpTitle, rcpPic, scrapDate FROM recipe.rcp WHERE userId='kkk@naver.com'
+	<!-- SELECT rcpTitle, rcpPic, scrapDate FROM recipe.scrap WHERE userId='kkk@naver.com' -->
+	SELECT rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
+	WHERE s.userId='kkk@naver.com'
 	</select>
 	
 	
-	<select id="getMyTalk" parameterType="String" resultType="TalkVO">
+	<select id="getMyTalk" resultType="TalkVO">
 	SELECT talkCont FROM recipe.talk WHERE userId='kkk@naver.com'
 	</select>
 	
-	<select id="getMyCom" parameterType="String" resultType="TalkComVO">
-	SELECT talkCom, talkDate FROM recipe.talkCom WHERE userId='kkk@naver.com'
+	<select id="getMyCom" resultType="TalkComVO">
+	SELECT talkCom, talkComDate FROM recipe.talkCom WHERE userId='kkk@naver.com'
 	</select>
 	
-	<select id="getMyRcpCom" parameterType="String" resultType="TalkComVO">
+	<select id="getMyRcpCom" resultType="MypageDTO">
 	SELECT rcpCom, rcpComDate FROM recipe.rcpcom WHERE userId='kkk@naver.com'
 	</select>	
 	
-	<insert id="rqMyInq">
+	<insert id="rqMyInq" parameterType="String">
 	INSERT INTO recipe.qna(qnaTitle, qnaCont) VALUES (#{qnaTitle}, #{qnaCont}) WHERE userId='kkk@naver.com'
 	</insert>
 	
-	<select id="getMyInq" parameterType="String" resultType="QnAVO">
+	<select id="getmyInq" resultType="QnAVO">
 	SELECT qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
 	</select>
 	

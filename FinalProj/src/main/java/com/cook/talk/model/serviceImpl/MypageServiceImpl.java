@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.VO.QnAVO;
+import com.cook.talk.model.VO.TalkComVO;
 import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dao.MypageDAO;
 import com.cook.talk.model.dao.QnADAO;
@@ -62,8 +63,8 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public List<MypageDTO> getMyCom() {
-		List<MypageDTO> getMyCom = mypageDAO.getMyCom();
+	public List<TalkComVO> getMyCom() {
+		List<TalkComVO> getMyCom = mypageDAO.getMyCom();
 		return getMyCom;
 	}
 
@@ -82,8 +83,8 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public List<MypageDTO> getMyInq() {
-		List<MypageDTO> getMyInq = mypageDAO.getmyInq(); 
+	public List<QnAVO> getMyInq() {
+		List<QnAVO> getMyInq = mypageDAO.getmyInq(); 
 		return getMyInq;
 	}
 	

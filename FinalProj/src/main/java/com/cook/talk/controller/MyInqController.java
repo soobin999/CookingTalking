@@ -12,7 +12,7 @@ import com.cook.talk.model.dao.MypageDAO;
 import com.cook.talk.model.service.MypageService;
 
 @Controller
-public class MypageController {
+public class MyInqController {
 
 	@Autowired
 	MypageDAO mypageDAO;
@@ -20,25 +20,6 @@ public class MypageController {
 	@Autowired
 	MypageService mypageService;
 	
-	@GetMapping("/mypage/mypage")
-	//@GetMapping("/mypage/mypage")
-	public String mypage(Model model) {
-		model.addAttribute("myRecipeIng", mypageDAO.getMyRecipeIng());
-		return "/mypage/mypage";
-	}
-	
-	
-	@GetMapping("/mypage/myFrequent")
-	public String myFrequent(Model model) {
-		model.addAttribute("myFollow", mypageDAO.getMyFollow());	
-		return "/mypage/myFrequent";
-	}
-	
-	@GetMapping("/mypage/myActivity")
-	public String myActivity(Model model) {
-		model.addAttribute("myTalk", mypageDAO.getMyTalk());
-		return "/mypage/myActivity";
-	}
 	
 	@GetMapping("/mypage/myInquiry")
 	public String myInquiry(Model model, @ModelAttribute QnAVO qnAVO, String qnaTitle, String qnaCont) {
@@ -49,6 +30,13 @@ public class MypageController {
 	public String myInquiryProc(QnAVO qnAVO, String qnaTitle, String qnaCont) {
 		mypageService.rqMyInq(qnaTitle, qnaCont);
 		return "redirect:myInquiry";
+	}
+	
+	@GetMapping("/mypage/myInquiryList")
+	public String myInquiryList(Model model) {
+		
+		model.addAttribute("myInqList", mypageDAO.getmyInq());
+		return "/mypage/myInquiryList";
 	}
 	
 }

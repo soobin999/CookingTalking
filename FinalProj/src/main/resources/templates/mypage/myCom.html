@@ -20,19 +20,29 @@
 	<button onclick="myInquiry()">문의 사항</button>
 	</div>
 	
-	<div id="inqBasic">
-		<button onclick="myInquiry()">문의 하기</button>
-		<button onclick="myInquiryList()">나의 문의 사항</button>
+	<div id="myRecipe">
+		<button onclick="myActivity()">내가 쓴 토크</button>
+		<button onclick="myCom()">내가 작성한 댓글</button>
 
 	</div>
 	</div>
-	<div class="myInq" th:method="POST">
-		<form th:action="@{/mypage/myInquiry}" id="insertMyInq"
-			class="insertMyInq" name="">
-			<input type="text" name="myInqTitle" th:class="myInqTitle" id="myInqTitle" placeholder="제목을 입력하세요"> 
-			<input type="text" name="myInqCont" th:class="myInqCont" id="myInqCont" placeholder="내용을 입력하세요">
-			<button type="submit" th:class="sendInq">제출하기</button>
-		</form>
-	</div>
+	<div class="myActivity">
+	<table>
+	<tbody>
+<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
+		<div class="myRecipeIng_title">레시피 제목</div> -->
+
+	
+	<tr th:each="myCom : ${myCom}">
+		<td class="" th:text=${myCom.talkCom}></td>
+		<td class="" th:text=${myCom.talkComDate}></td>
+	</tr>
+		<tr th:each="myRcpCom : ${myRcpCom}">
+		<td class="" th:text=${myRcpCom.rcpCom}></td>
+		<td class="" th:text=${myRcpCom.rcpComDate}></td>
+	</tr>
+	</tbody>
+	</table>
+		</div>
 </body>
 </html>
