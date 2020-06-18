@@ -18,30 +18,28 @@ body {
 </th:block>
 
 <div layout:fragment='content'>
-	<div th:text="${follow}"></div>
 
 	<div class='container'>
 		<div class="chef_list4_in">
 			<div th:class="list_lump" th:each='chef,index:${chefDetail}'>
 				<div th:class="list_ranking2">
-					<p th:class="list_ranking2_num" th:text='${index.index}+1'></p>
 					<p th:class="list_ranking2_num2">
 						<span style="color: #fff;" class="glyphicon"></span>
 					</p>
 				</div>
 				<div class="list_mem3">
-					<a href="/profile/index.html?uid=20618485" class="mem_pic"><img
+					<a th:href="'/chefInfo/1/'+${chefDetail.userVO.nickName}" class="mem_pic"><img
 						src="http://placehold.it/70x70/"> <!-- ${chef.userVO.userPic} --></a>
 				</div>
 				<div class="list_cont4">
-					<b> <a href="/profile/index.html?uid=20618485"
+					<b> <a th:href="'/chefInfo/1/'+${chefDetail.userVO.nickName}"
 						th:class="info_name_f" th:text='${chef.userVO.nickName}'> </a>
 						<button type="button" class="btn btn-default btn-sm"
-							id="btnAddFriend" th:if="${follow == 1}">
+							id="btnAddFriend" th:if="${follow == 0}">
 							<span class="glyphicon glyphicon-plus" th:text="Follow"></span>
 						</button>
 						<button type="button" class="btn btn-default btn-sm"
-							id="btnRemoveFriend" th:if="${follow == 0}">
+							id="btnRemoveFriend" th:if="${follow == 1}">
 							<span class="glyphicon glyphicon-plus" th:text="UnFollow"></span>
 						</button>
 
@@ -78,7 +76,7 @@ body {
 						style="width: 200px; height: 130px;"> <!-- ${recipe.rcpTitle} -->
 						<div class="caption">
 							<h4 th:text='${recipe.rcpTitle}'>스테이크 덮밥 만들기</h4>
-							<p class="jq_elips" th:text='by+ 시크제이맘'></p>
+							<p class="jq_elips" th:text="'by '+ ${chefDetail.userVO.nickName}"></p>
 						</div>
 				</a></li>
 				<li th:each="num: ${#numbers.sequence(1,totalPage)}"><a
@@ -118,7 +116,7 @@ body {
 				},
 				type:'GET'
 			}).done(function(data){
-				if ($('.glyphicon').text() == 'UnFollowUnFollow') {
+				if ($('.glyphicon').text() == 'UnFollowUnFollow'||$('.glyphicon').text()=='UnFollow') {
 					$('.glyphicon').text('Follow');
 				} else {
 					$('.glyphicon').text('UnFollow');

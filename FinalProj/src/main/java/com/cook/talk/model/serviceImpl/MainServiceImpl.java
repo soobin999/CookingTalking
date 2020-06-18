@@ -50,10 +50,10 @@ public class MainServiceImpl implements MainService {
 
 	@Override
 	public String followChef(String follow,String chefNick) {
-		String userId="hani@naver.com";
+		String userId="zleda9@naver.com";
 		String result;
 		System.out.println(follow);
-			if(follow.equals("Follow")) {
+			if(follow.equals("Follow")||follow.equals("FollowFollow")) {
 				main.followChef(userId, chefNick);
 				result="Follow완료";
 			}else {
