@@ -33,12 +33,15 @@ public interface RecipeService {
 
 	
 	//레시피 글보기
-//	public List<RecipeDTO> recipeView();
+	public RecipeDTO getRecipeView(String rcpCode, String typeCode
+			/*String connectCode, String rcpTagCode*/);
+	
 
 	// 레시피 글등록
 	public void insertRecipeProc(/* MultipartFile file */ 
 			boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
 			RcpOrderVO rcpOrderVO, TagVO tagVO);
+
 
 
 	/* List<RecipeDTO> getRcmmList(IngrVO ingrVO); */

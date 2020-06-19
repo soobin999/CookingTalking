@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.dao.RecipeDAO;
@@ -56,18 +57,21 @@ public class RecipeController {
 		return "recipe/newList";
 	}
 
-//	@GetMapping("recipe/recipeView") 
-//	public void recipeView(@RequestParam(value="rcpCode", required = false) String rcpCode, Model model) {
-//		//List<RecipeDTO> recipeView = recipeService.recipeView();
-//		model.addAttribute("recipeView", recipeService.recipeView(rcpCode));
-//		model.addAttribute("rcpOrderView", recipeService.rcpOrderView(rcpCode));
-//		model.addAttribute("rcpIngrView", recipeService.rcpIngrView(rcpingrCode));
-//		model.addAttribute("tagView", recipeService.tagView());
-//	  log.info("recipe/recipeView"); 
-//}
+	@GetMapping("recipe/recipeView") 
+	public String getRecipeView(@RequestParam(value="rcpCode", required=false) String rcpCode, String typeCode, 
+			/*String connectCode, String rcpTagCode,*/ Model model) {
+		
+		model.addAttribute("recipeDTO", recipeService.getRecipeView(rcpCode, typeCode /*connectCode, rcpTagCode*/));
+	//	model.addAttribute("rcpOrderView", recipeService.rcpOrderView(rcpCode));
+	//	model.addAttribute("rcpIngrView", recipeService.rcpIngrView(rcpingrCode));
+	//	model.addAttribute("tagView", recipeService.tagView());
+		return "recipe/recipeView";
+		
+	//	log.info("recipe/recipeView"); 
+}
 
 	@GetMapping("recipe/insertRecipe")
-	public String insertRecipeView(@ModelAttribute RecipeDTO recipeDTO) {
+	public String insertRecipe(@ModelAttribute RecipeDTO recipeDTO) {
 		return "recipe/insertRecipe";
 	}
 
