@@ -113,7 +113,7 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public List<String> getSearchMyFollow(String followChef) {
+	public MypageDTO getSearchMyFollow(String followChef) {
 		if(followChef != null) {
 			return mypageDAO.getSearchMyFollow(followChef);
 		} else {

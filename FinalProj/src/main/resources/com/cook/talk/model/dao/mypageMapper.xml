@@ -29,7 +29,7 @@
 	
 	<select id="getSearchMyFollow" parameterType="String" resultType="MypageDTO">
 	SELECT nickName FROM recipe.user AS u INNER JOIN recipe.follow AS f ON u.userId = f.followChef 
-	WHERE followChef LIKE CONCAT('%',#{followChef},'%')
+	WHERE nickName LIKE CONCAT('%',#{followChef},'%')
 	</select>
 	
 <!-- 	<select id="getSearchMyScraped" resultMap="ScrapDTO">

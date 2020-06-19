@@ -36,15 +36,15 @@
 		<input type="text" onsubmit="return false" title="쉐프검색" 
 		id="chefSearchInMy" name="chefSearchInMy" placeholder="쉐프를 검색하세요" 
 		onkeypress="enterkey(event);">
-		<button type="button" id="btnChefSearchInMy">검색</button>
+		<button type="button" onclick="chefSearch();"id="btnChefSearchInMy">검색</button>
 		</form>
 	</div>
 		<div th:id="myFrequent">
 			<div th:class="myFrequent">
 				<table>
 					<tbody>
-						<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
-		<div class="myRecipeIng_title">레시피 제목</div> -->
+								<div class="myRecipeIng_img">레시피 사진</div>
+		<div class="myRecipeIng_title">레시피 제목</div>
 
 
 						<tr th:each="myFollow : ${myFollow}">
@@ -52,7 +52,8 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
+		
+ 	</div>
 		</div>
 	</div>
 </body>

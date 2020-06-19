@@ -34,17 +34,12 @@ function chefSearch(){
 	$.ajax({
 		type : "POST",
 		url : "/searchMyFollow",
-		data : {followChef : key},
+		data : { followChef : key
+			},
+			
 		success : function(data){
-			
-			var result = $('#myFrequent');
-			$('.myFrequent').remove();
-			var searchedChef = '<div th:class="myFrequent">';
-			$.each(data, function(index, value){
-				searchedChef = searchedChef+'<table><tbody><tr><td>'+value+'</td></tr></tbody></table>';
-			});
-			
-			result.append(searchedChef+'</div>');
+			console.log(data);
+			$('.myFrequent').append('<table><tbody><tr><td>'+data+'</td></tr></tbody></table>');
 		},
 		error : function(){
 			alert("ChefSearch Error");
