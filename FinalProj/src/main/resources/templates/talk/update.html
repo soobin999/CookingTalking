@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>게시판 수정</title>
+<script type="text/javascript">
+function update(){
+	var talkCont=@{#talkCont}.val();
+
+if(talkCont==""){
+	alret("내용을 입력해주세요");
+	$("#talkCont").focus();
+	return ;
+	
+}
+	var yn =comfirm("게시글을 수정하시겠습니까?")
+	if (yn){
+		$.ajax({
+		url:"talk/update",
+		data:$("#talk").serialize();,
+		dataType:"JSON",
+		async:ture,
+		type:"POST",
+		success: function(obj) {
+			updateTalkCallback(obj);
+			
+		},
+		error:function (xhr,status,error){}
+		});
+	}
+}
+function 	updateTalkCallback(obj){
+	if(obj!= null){
+		var result= obj.result;
+		if(result=="SUCCESS"){
+			alert("게시글이 수정되었습니다");
+			goTalklist();
+		}else{
+		alert("수정에 실패했습니다");		
+		
+		return;
+		}
+		}
+}
+
+</script>
+<body>
+	<div style="padding: 10px;"></div>
+	<div>
+		<h1>게시글 수정</h1>
+	</div>
+	<div>
+		<form role="form" th:object="${talkCodeVO}"
+			th:action="@{/talk/update}" method="post"></form>
+	</div>
+
+	<label for="writer" style="font-weight: bolder">작성자</label>
+	<input type="text" id="userId" name="userLd" th:value="${talk.userId}"
+		disabled="disabled">
+
+	<label for="content" style="font-weight: bolder">내용</label>
+	<textarea id="talkCont" name="talkCont" rows="15" cols="50">[[${detail.content}]]</textarea>
+	
+
+	<th>아이디</th>
+	<th>시간</th>
+	<th>댓글</th>
+	</tr>
+	</thead>
+
+
+	<tbody>
+		<tr th:each="talk : ${talkCode}" readonly="readonly">
+			<td th:text="${talk.talkCont}"></td>
+			<td th:text="${talk.userId}" readonly="readonly"></td>
+			<td th:text="${talk.talkDate}"></td>
+			<td th:text="${talk.talkCom}"></td>
+
+
+		</tr>
+
+		<button type="submit" id="update">수정</button>
+	</tbody>
+
+
+
+	</table>
+</body>
+</html>

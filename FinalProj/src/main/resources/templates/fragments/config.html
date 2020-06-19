@@ -5,21 +5,23 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'>
 <meta charset="UTF-8">
 
 <title th:include=':: #pageTitle'>안녕</title>
-<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/jquery-ui-1.11.4_201507011.css">
-<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/bootstrap_20200413.css">
-<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/ez_recipe_20200605.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/fragmentCss/bootstrap_20200413.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/fragmentCss/ez_recipe_20200605.css}">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-<th:block layout:fragment='css'></th:block>
+<!-- <th:block layout:fragment='css'></th:block> -->
 <th:block layout:fragment='script'></th:block>
 <style type="text/css">
 .gnb_search .btn{
 background: #FF8000;
 border:1px solid #FF8000;
+}
+.gnb_right li a img{
+	width:35px;
+	border-radious:none !important;
 }
 </style>
 </head>

@@ -16,9 +16,7 @@ public class MyActController {
 	
 	@Autowired
 	MypageService mypageService;
-	
 
-	
 	@GetMapping("/mypage/myTalk")
 	public String myActivity(Model model) {
 		model.addAttribute("myTalk", mypageDAO.getMyTalk());
@@ -27,8 +25,11 @@ public class MyActController {
 	
 	@GetMapping("/mypage/myCom")
 	public String myCom(Model model) {
-		model.addAttribute("myCom", mypageDAO.getMyCom());
-		model.addAttribute("myRcpCom", mypageDAO.getMyRcpCom());
+		model.addAttribute("myAllCom", mypageDAO.getAllMyCom());
+		/*
+		 * model.addAttribute("myTalkCom", mypageDAO.getMyTalkCom());
+		 * model.addAttribute("myRcpCom", mypageDAO.getMyRcpCom());
+		 */
 		return "/mypage/myCom";
 	}
 	

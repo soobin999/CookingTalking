@@ -33,7 +33,7 @@
 		<tbody>
 			<tr th:each="talk : ${list}">
 				<td th:text="${talk.talkCode}"></td>
-		<td >	<a href="@{talk/talkDetail}" th:text="${talk.talkCont}"></td>
+		<td >	<a th:href="@{/talk/detail/{talkCode}(talkCode=${talk.talkCode})}" th:text="${talk.talkCont}"></td>
 				<td th:text="${talk.userId}"></td>
 				<td th:text="${talk.talkDate}"></td>
 

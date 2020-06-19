@@ -3,10 +3,8 @@ package com.cook.talk.model.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.TalkVO;
-import com.cook.talk.model.dto.TalkDTO;
 
 @Mapper
 public interface TalkDAO {
@@ -21,10 +19,12 @@ public interface TalkDAO {
 	public int delete(String talkCode);
 
 	// 수정
-	public boolean update(TalkVO talkVO);
+	public int update(TalkVO talkVO);
 
+	//코드 증가
 	public int selectTalkCode();
-
-	public TalkVO talkSearchById(String talkCode);
+	
+	//보기 
+	public TalkVO detail(String talkCode);
 
 }

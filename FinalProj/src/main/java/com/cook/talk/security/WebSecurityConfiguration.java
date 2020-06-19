@@ -34,7 +34,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
       web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/res/**");
    }// configure를 오버라이딩하여 시큐리티 설정을 잡아준다.
 //WebSecurity는 FilterChainProxy를 생성하는 필터.
-
+ 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

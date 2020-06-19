@@ -70,20 +70,3 @@ public interface RecipeDAO {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
