@@ -85,11 +85,24 @@ public class MypageServiceImpl implements MypageService{
 		List<MypageDTO> getMyTalk = mypageDAO.getMyTalk();
 		return getMyTalk;
 	}
+	
+	@Override
+	public List<MypageDTO> getAllMyCom() {
+		List<MypageDTO> getAllMyCom = mypageDAO.getAllMyCom();
+		return getAllMyCom;
+	}
+	
+	@Override
+	public List<String> getSearchAllMyCom(String talkCom, String talkDate) {
+		List<String> getSearchAllMyCom = mypageDAO.getSearchAllMyCom(talkCom, talkDate);
+		return getSearchAllMyCom;
+	}
+
 
 	@Override
-	public List<TalkComVO> getMyCom() {
-		List<TalkComVO> getMyCom = mypageDAO.getMyCom();
-		return getMyCom;
+	public List<TalkComVO> getMyTalkCom() {
+		List<TalkComVO> getMyTalkCom = mypageDAO.getMyTalkCom();
+		return getMyTalkCom;
 	}
 
 	@Override
@@ -113,12 +126,8 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public MypageDTO getSearchMyFollow(String followChef) {
-		if(followChef != null) {
-			return mypageDAO.getSearchMyFollow(followChef);
-		} else {
-			return null;
-		}
+	public List<String> getSearchMyFollow(String followChef) {
+		return mypageDAO.getSearchMyFollow(followChef);
 	}
 
 	@Override
@@ -126,6 +135,13 @@ public class MypageServiceImpl implements MypageService{
 		return mypageDAO.getSearchMyTalk(talkCont);
 		
 	}
+
+	@Override
+	public List<String> getSearchMyScraped(String rcpTitle, String rcpPic) {
+		return mypageDAO.getSearchMyScraped(rcpTitle, rcpPic);
+	}
+
+
 	
 
 

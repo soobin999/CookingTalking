@@ -33,11 +33,12 @@
 				<input type="text" onsubmit="return false" title="쉐프검색"
 					id="scrapedSearchInMy" name="scrapedSearchInMy" placeholder="레시피를 검색하세요"
 					onkeypress="enterkey(event);">
-				<button type="button" id="btnScrapedSearchInMy">검색</button>
+				<button type="button" onclick="myScrapSearch();" id="btnScrapedSearchInMy">검색</button>
 			</form>
 		</div>
 
-	<div th:class="myFrequent">
+	<div id="myFrequent">
+	<div id="myScrapededMain">
 	<table>
 	<tbody>
 <!-- 		<div class="myRecipeIng_img">레시피 사진</div>
@@ -51,6 +52,7 @@
 	</tr>
 	</tbody>
 	</table>
+	</div>
 	</div>
 	</div>
 </body>
