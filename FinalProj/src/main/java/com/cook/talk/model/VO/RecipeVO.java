@@ -10,7 +10,6 @@ import lombok.Data;
 @Alias("recipeVO")
 public class RecipeVO {
 
-	private String userId;
 	private String rcpCode;
 	private String rcpTitle;
 	private String rcpPic;
@@ -22,6 +21,8 @@ public class RecipeVO {
 	private boolean registerStatus;
 	private int rcpViews;
 	private String rcpExpl;
+	private String userId;
+	private String typeCode;
 	private String myIngrName;
 	private Date scrapDate;
 }

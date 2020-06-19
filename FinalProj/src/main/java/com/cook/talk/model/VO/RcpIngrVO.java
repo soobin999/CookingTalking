@@ -9,6 +9,7 @@ public class RcpIngrVO {
 	private String ingrCat;
 	private String userIngr;
 	private String ingrWeigh;
+	private String rcpingrCode;
 	private String rcpCode;
 	
 }

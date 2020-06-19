@@ -73,11 +73,17 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	
-//	@Override
-//	public List<RecipeDTO> recipeView() {
-//		return recipeView();
-//	}		
+	@Override
+	public RecipeDTO getRecipeView(String rcpCode, String typeCode/*String connectCode, String rcpTagCode*/) {
+	//	recipeDAO.selectRcptpView(rcpCode, typeCode);
+/*		recipeDAO.selectRcpIngrView(rcpCode, connectCode);
+		recipeDAO.selectRcpOrderView(rcpCode);
+		recipeDAO.SelectTagView(rcpTagCode);*/	
+		
+		return recipeDAO.selectRcptpView(rcpCode, typeCode);		
+	}		
 
+	
 	@Override
 	public void insertRecipeProc(/*@RequestParam("rcpPic") MultipartFile file*/
 			boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO, 
@@ -86,41 +92,48 @@ public class RecipeServiceImpl implements RecipeService {
 //		String UPLOADED_FOLDER = "";
 //		log.info(file+"파일");
 		System.out.println("========");
+		
+		
 		// 1.typeCat테이블 레코드 생성
-		int tpNum = recipeDAO.selectTypeCode() +1;
-		typeCatVO.setTypeCode("TC-0000" +tpNum);
+		int tpcNum = recipeDAO.selectTypeCode() +1;
+		typeCatVO.setTypeCode("TC-0000" +tpcNum);
 		
 		recipeDAO.insertTypecatProc(typeCatVO);
 		log.info(typeCatVO);
+	
+//		recipeDAO.insertTypecatProc(typeCatVO);
+			
 		
-		//2. rcp테이블 생성
-		
+		//2. rcp테이블 생성		
 		int rcpNum = recipeDAO.selectRcpCode() +1;
-		recipeVO.setRcpCode("R-0000" +rcpNum);
-		//recipeVO.setTypeCode(typeCatVO.getTypeCode());
-		recipeVO.setRegisterStatus(registerStatus);
+		recipeVO.setRcpCode("R-000" +rcpNum);
+		
+		//생성한 typeCode를 가져와서 rcp테이블에 넣는다
+		recipeVO.setTypeCode(typeCatVO.getTypeCode()); 
+		//registerStatus의 값을 set한다
+		recipeVO.setRegisterStatus(registerStatus); 
 		
 		recipeDAO.insertRcpProc(recipeVO);
 		log.info(recipeVO);
 		
-		//3. rcporder 테이블 생성
 		
-		//4. rcpIngr 테이블 생성
-		
-	
-
-		int cnNum = recipeDAO.selectConnectcode() +1;
-		rcpIngrVO.setConnectCode("RM-000" +cnNum);
-		
-	
-		recipeDAO.insertTypecatProc(typeCatVO);
-		log.info(typeCatVO);
+		//3. rcpIngr 테이블 생성
+		int cncNum = recipeDAO.selectConnectcode() +1;
+		rcpIngrVO.setConnectCode("RM-000" +cncNum);
+		//rcpCode를 rcpIngr에 set한다
 		rcpIngrVO.setRcpCode(recipeVO.getRcpCode());
 		
 		recipeDAO.insertRcpingrProc(rcpIngrVO);
-		log.info(rcpIngrVO);
+		log.info(rcpIngrVO);		
+		
+		//4. rcporder 테이블 생성
+		//rcpCode를 rcpOrder에 set한다
+		rcpOrderVO.setRcpCode(recipeVO.getRcpCode());
+		
 		recipeDAO.insertRcporderProc(rcpOrderVO);
 		log.info(rcpOrderVO);
+		
+		//5. tag 테이블 생성
 		
 		tagVO.setRcpTagCode(recipeVO.getRcpCode());
 		recipeDAO.insertTagProc(tagVO);

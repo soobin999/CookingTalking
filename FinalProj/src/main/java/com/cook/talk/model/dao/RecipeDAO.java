@@ -40,7 +40,12 @@ public interface RecipeDAO {
 	public int recipeCount();
 	
 	//레시피 글보기
-//	public List<RecipeDTO> recipeView();
+	public RecipeDTO selectRcptpView(String rcpCode, String typeCode/* String connectCode, String rcpTagCode*/);
+	//RecipeDTO.selectRcptpView(rcpCode, typeCode);
+/*	RecipeDTO.selectRcpIngrView(connectCode, rcpCode);
+	RecipeDTO.selectRcpOrderView(rcpCode);
+	RecipeDTO.SelectTagView(rcpTagCode);*/
+		
 		
 	//rcpCode 자동생성
 	public int selectRcpCode();
