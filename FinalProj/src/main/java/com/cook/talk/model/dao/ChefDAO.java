@@ -12,12 +12,14 @@ import com.cook.talk.model.dto.ChefDTO;
 @Mapper
 public interface ChefDAO {
 
-	public ChefDTO selectChefDetail(String userId);
+	public ChefDTO selectChefDetail(String chefId);
 
 	public int selectFollow(String userId,String chefId);
 
-	public List<ChefDTO> selectRecipe(String userId);
+	public List<ChefDTO> selectRecipe(String chefId,int page);
 
 	public List<ChefDTO> allSelectChef(String status);
+	
+	public int recipeCount(String chefId);	
 
 }
