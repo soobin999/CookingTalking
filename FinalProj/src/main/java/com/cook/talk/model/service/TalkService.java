@@ -16,7 +16,8 @@ public interface TalkService {
 
 	// 삭제
 	public boolean delete(String talkCode);
-
-	public TalkVO talkSearchById(String talkCode);
+	
+	// 보기 
+	public TalkVO detail(String talkCode);
 	
 }

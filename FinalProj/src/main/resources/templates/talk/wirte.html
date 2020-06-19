@@ -8,22 +8,19 @@
 
 
 <script type="text/javascript">
-$(function(){
-	$(function insertCafe(){
-		$('#talk_insertBtn').on('click', function(){
-			var isCafe = cafeInsertCheck();
-			if(isCafe == 'false') {
-				alert('다시 입력해주세요');
-				return false;
-			} else alert('등록되었습니다.');
-		})
-	})
+$(document).ready(function){
+	$("btnSave").click(function){
+		var content=$("#talkCont").val();
+		if(content==""){
+			alret("내용을 입력하세요");
+			document.form.content.focus();
+			return;
+		}
+	document.}
 	
-})
-	
+}
 
 		
-	}
 </script>
 
 </head>
@@ -37,7 +34,7 @@ $(function(){
 
 
 	<form class="form-horizontal" th:action="@{/talk/insert.do}"
-		th:object="${talkVO}" method="post"
+		th:object="${talkVO}" method="post" name="form"
 		onsubmit="return registerBoard(this)">
 		<tr>
 			<th>내용</th>
@@ -46,7 +43,7 @@ $(function(){
 			<td><input type="text" placeholder="사진을 선택하세요" name=""></td>
 
 			<td colspan="2"><input type="submit" value="등록"
-				onclick="talk_insertBtn"> <input type="button" value="취소"
+				onclick="btnSave"> <input type="button" value="취소"
 				onclick="">
 	</form>
 

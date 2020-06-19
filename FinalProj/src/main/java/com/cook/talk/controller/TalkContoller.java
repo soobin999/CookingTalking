@@ -44,7 +44,6 @@ public class TalkContoller {
 	public String insert(@ModelAttribute TalkVO talkVO) {
 		String msg = "talk/wirte";
 		return msg;
-		// return "redirect:/talk/list";
 	}
 
 	// 등록 버튼
@@ -57,19 +56,14 @@ public class TalkContoller {
 
 	}
 
-//자세히 보기 
-
-	@RequestMapping("/detail/{talkCode}")
-	public String detail(HttpSession session, Model model, @PathVariable String talkCode) {
-		session.setAttribute("talkCode", talkCode);
-		model.addAttribute("talk", talkDAO.talkSearchById(talkCode));
-		// model.addAttribute("commentList",)
-		return "/talk/detail";
-
+	// 상세 페이지 이동
+	@RequestMapping(value = "/detail/{talkCode}", method = RequestMethod.GET)
+	public String detail(@PathVariable String talkCode, Model model) {
+		model.addAttribute("talkCode", talkservice.detail(talkCode));
+		return "talk/talkDetail";
 	}
 
 //수정 
-
 	@PostMapping("/update")
 	public String update(TalkVO talkVO, RedirectAttributes rttr) {
 		if (talkservice.update(talkVO)) {
@@ -77,6 +71,13 @@ public class TalkContoller {
 		}
 		return "redirect:/talk/list";
 	}
+//수정화면 이동 
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public String updateTalk(@RequestParam("talkVO") TalkVO talkVO, Model model) {
+		model.addAttribute("talkVO", talkservice.update(talkVO));
+		return "/talk/update";
+	}
+
 	/*
 	 * @RequestMapping(value = "/update", method = RequestMethod.POST) public String
 	 * update(TalkVO talkVO,RedirectAttributes rttr) { if
@@ -87,10 +88,12 @@ public class TalkContoller {
 	 */
 
 //삭제 
-	/*
-	 * @PostMapping("/delete") public String delete (@RequestParam("talkCode")
-	 * RedirectAttributes rttr) { if(talkservice.delete(talkCode)) {
-	 * rttr.addFlashAttribute("result","success"); } return "redirect:/talk/list"; }
-	 */
 
+	@PostMapping("/delete")
+	public String delete(@RequestParam("talkCode") String talkCode, RedirectAttributes rttr) {
+		if (talkservice.delete(talkCode)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/talk/list";
+	}
 }

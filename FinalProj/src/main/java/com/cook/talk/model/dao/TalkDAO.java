@@ -21,10 +21,12 @@ public interface TalkDAO {
 	public int delete(String talkCode);
 
 	// 수정
-	public boolean update(TalkVO talkVO);
+	public int update(TalkVO talkVO);
 
+	//코드 증가
 	public int selectTalkCode();
-
-	public TalkVO talkSearchById(String talkCode);
+	
+	//보기 
+	public TalkVO detail(String talkCode);
 
 }
