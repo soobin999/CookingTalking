@@ -40,7 +40,6 @@ public class RecipeController {
 		return "refrigerator/rcmmRecipe";
 	}	
 	
-	
 	@GetMapping("recipe/newList")
 	public String getRecipeList(Model model) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();

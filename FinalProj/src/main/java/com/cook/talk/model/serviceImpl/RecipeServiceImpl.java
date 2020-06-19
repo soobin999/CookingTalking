@@ -34,8 +34,6 @@ public class RecipeServiceImpl implements RecipeService{
 		} else {
 			return "일치하는 재료 없어요";
 		}
-
-
 	}
 
 
@@ -65,14 +63,6 @@ public class RecipeServiceImpl implements RecipeService{
 		int recipeCount = recipeDAO.recipeCount();
 		return recipeCount();
 	}
-
-
-//	public String insertRecipeProc(RecipeVO recipe, TypeCatVO typeCat, RcpIngrVO rcpIngr, RcpOrderVO rcpOrder, TagVO tag) {
-//	 int RcpNum = recipeDAO.selectRcpCode() +1;
-//	 recipe.setRcpCode("R-" + RcpNum);
-//	 recipeDAO.insertRecipeProc(recipe, typeCat, rcpIngr, rcpOrder, tag);
-//	 return "";
-//	}
 
 
 }

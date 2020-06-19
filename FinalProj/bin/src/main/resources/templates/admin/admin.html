@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" class>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -13,12 +14,8 @@
 <title>쿠킹토킹</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<<<<<<< HEAD
 
 
-=======
-<link rel="stylesheet" type="text/css" href="css/soobin.css">
->>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 
 <style type="text/css">
 iframe
@@ -31,11 +28,7 @@ iframe
 }
 </style>
 </head>
-<<<<<<< HEAD
 <body>
-=======
-<body onload="slider.init();">
->>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 	<div class="gnb_top_wrap">
 		<div class="gnb_top">
 			<h1>
@@ -81,23 +74,36 @@ iframe
 			<li><a href="/admin/admin.html">고객센터</a></li>
 		</ul>
 	</div>
-<<<<<<< HEAD
-	<table border=1>
+	<!-- 여기서 내용이 들어가는 자리 -->
+	<table>
 		<thead>
 			<tr>
-				<th>title</th>
-				<th>pic</th>
+				<th>문의사항제목</th>
+				<th>문의 내용</th>
+				<th>문의 날짜</th>
+				<th>답변 내용</th>
+				<th>유저</th>
+				<th>답변 유무</th>
 			</tr>
+			<tr>
+				<th th:each="qnaList:${qnaList}"></th>
+				<td th:text="${qnaList.qnaTitle}">문의 내용</td>
+				<td th:text="${qnaList.qnaCont}">문의 날짜</td>
+				<td th:text="${qnaList.qnaDate}">답변 내용</td>
+				<td th:text="${qnaList.answer}">답변 유무</td>
+				<td th:text="${qnaList.userId}">유저</td>
+				<td th:text="${qnaList.userId}">유저</td>
+				
+				
+			</tr>
+
 		</thead>
-		<tbody>
-			<tr th:each="rcpList : ${rcpList}">
-				<td th:text="${rcpList.rcpTitle}"></td>
-				<td th:text="${rcpList.rcpPic}"></td>
-			</tr>
-		</tbody>
+
+
 	</table>
 
 
+
 	<br>
 	<br>
 	<br>
@@ -106,71 +112,16 @@ iframe
 	<br>
 	<br>
 	<br>
-=======
-	<br><br><br><br><br>
-	
-	<div th:id="center">
-	<div th:id="slider">
-	<div th:class="slide" th:each="rcpList : ${rcpList}">
-	<img class="diapo" th:src="${rcpList.rcpPic}" alt="">
-	<div th:class="text">
-	<span th:class="title" th:value="${rcpTitle}"></span><br>
-		|smenu1|smenu2|smenu3|smenu4|
-	</div>
-	
-	</div>
-	</div>
-	</div>
-	
-	
-	
-	
-	
-	
-	<div th:class="recommand">
-	<h3 th:class="slidertitle">추천 레시피</h3>
-<div th:each="rcpList : ${rcpList}">
-<div th:class="secon">
-<div th:text="${rcpList.rcpPic}"></div>
-<div th:text="${rcpList.rcpTitle}">
-</div>
-</div>
-</div>
-</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
-	<br>
-	<br>
-	<br><br>
->>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 	<br>
 	<br>
 	<br>
 
+
+
+
+
+
+	<!-- 여기까지 내용이 들어가는 자리 -->
 	<div class="footer st2" style='background: #ff5100'>
 		<div class="container text-center">
 			<img src="img/footer_logo.png">
@@ -187,9 +138,5 @@ iframe
 
 		</div>
 	</div>
-<<<<<<< HEAD
-=======
-<script src="/js/soobin.js"></script>
->>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 </body>
 </html>

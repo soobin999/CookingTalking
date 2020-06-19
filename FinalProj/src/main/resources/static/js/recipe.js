@@ -1,5 +1,39 @@
 $(function() {
 <<<<<<< HEAD
+	selectedIngr();
+	searchedIngr();
+	  $(".chosung").click(function(){
+		  var value = $(this).attr('value');
+		  console.log(value);
+			$.ajax({
+				type : "POST",
+				url : "/chosung",
+				data : {cs :value},
+				/*dataType : 'JSON',*/
+				success : function(data) {
+					console.log(data);
+					var result = $('#chosungNum');
+					$('#searchedIngr').remove();
+					$('#ingrList').remove();
+
+					var list = '<div id="ingrList">'
+					$.each(data, function(index, value) {
+						list = list + '<button>' + value + '</button>';
+					});
+					list = list + '</div>';
+					result.append(list);
+				},
+				error : function(){
+					alert("Chosung Error");
+				}
+			});
+		  });
+	$('#ingrSearchInRefri').on('change', ingrSearch);
+	$('#btnIngrSearch').on('click', ingrSearch);
+	enterkey();
+	 clickOffVer1();
+	 clickOffVer2();
+=======
    selectedIngr();
    searchedIngr();
    chosung();
@@ -8,19 +42,10 @@ $(function() {
    enterkey();
    clickOffVer1();
    clickOffVer2();
-=======
-	selectedIngr();
-	searchedIngr();
-	chosung();
-	$('#ingrSearchInRefri').on('change', ingrSearch);
-	$('#btnIngrSearch').on('click', ingrSearch);
-	enterkey();
-	clickOffVer1();
-	clickOffVer2();
->>>>>>> 0a622bf528358b19ef79217f0c25dac6e8eb38f2
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 })
 
-function chosung() {
+/*function chosung() {
 
    $(".chosung").click(function() {
       var value = $(this).attr('value');
@@ -35,21 +60,6 @@ function chosung() {
             var result = $('#chosungNum');
             $('#searchedIngr').remove();
             $('#ingrList').remove();
-
-<<<<<<< HEAD
-            var list = '<div id="ingrList">'
-            $.each(data, function(index, value) {
-               list = list + '<button>' + value + '</button>';
-            });
-            list = list + '</div>';
-            result.append(list);
-         },
-         error : function() {
-            alert("Chosung Error");
-         }
-      });
-   });
-=======
 				var list = '<div id="ingrList">'
 				$.each(data, function(index, value) {
 					list = list + '<button class="ingrButton" value="'+value+'">' + value + '</button>';
@@ -62,8 +72,7 @@ function chosung() {
 			}
 		});
 	});
->>>>>>> 0a622bf528358b19ef79217f0c25dac6e8eb38f2
-}
+}*/
 
 function enterkey() {
    $('#ingrSearchInRefri').on('keydown',function(event){
@@ -78,45 +87,17 @@ function enterkey() {
 
 
 function searchButtonClick(){
-<<<<<<< HEAD
-   $('#btnIngrSearch').on('click', function(){
-      ingrSearch();
-   })
-=======
 	$('#btnIngrSearch').on('click', function(){
 		ingrSearch();
 	})
->>>>>>> 0a622bf528358b19ef79217f0c25dac6e8eb38f2
+<<<<<<< HEAD
+	
+=======
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 }
 
 
 function ingrSearch() {
-<<<<<<< HEAD
-   
-      var key = $('#ingrSearchInRefri').val();
-      console.log("key:" + key);
-      
-      $.ajax({
-         type : "POST",
-         url : "/searched",
-         data : {ingrName : key},
-         success : function(data) {
-            
-            var result = $('#chosungNum');
-            $('#ingrList').remove();
-            var list='<div id="ingrList">';
-            $.each(data, function(index, value){
-               list = list+'<button>' + value + '</button>';
-            });
-            
-            result.append(list+'<div>');
-         },
-         error : function() {
-            alert("Search Error");
-         }
-      });
-=======
-	
 		var key = $('#ingrSearchInRefri').val();
 		console.log("key:" + key);
 		
@@ -133,27 +114,16 @@ function ingrSearch() {
 					list = list+'<button class="ingrButton" value="'+value+'">' + value + '</button>';
 				});
 				
-				result.append(list+'<div>');
+				result.append(list+'</div>');
 			},
 			error : function() {
 				alert("Search Error");
 			}
 		});
->>>>>>> 0a622bf528358b19ef79217f0c25dac6e8eb38f2
 }
 
 
 function selectedIngr() {
-<<<<<<< HEAD
-   $('#chosungNum').on('click', function(){
-      console.log("choosing ingr from list");
-      var chosen = $(event.target);
-      console.log(chosen);
-      
-      $('#selectedIngr').append(chosen);
-      
-   })
-=======
 	$('#chosungNum').on('click', function(){
 		console.log("choosing ingr from list");
 		var chosen = $(event.target);
@@ -164,7 +134,6 @@ function selectedIngr() {
 		sendRcmm();
 		
 	})
->>>>>>> 0a622bf528358b19ef79217f0c25dac6e8eb38f2
 }
 
 function searchedIngr() {
@@ -179,25 +148,6 @@ function searchedIngr() {
 }
 
 function clickOffVer1(){
-<<<<<<< HEAD
-   $('.selectedIngr').on('click', function(){
-      console.log("back to list on chosung");
-      var goBack = $(event.target);
-      
-      $('#chosungNum').append(goBack);
-   })
-   
-}
-
-function clickOffVer2(){
-   $('.selectedIngr').on('click', function(){
-      console.log("back to list on searching");
-      var goBack = $(event.target);
-      console.log(goBack);
-      
-      $('#searchedIngr').append(goBack);
-   })
-=======
 	$('.selectedIngr').on('click', function(){
 		console.log("back to list on chosung");
 		var goBack = $(event.target);
@@ -214,10 +164,13 @@ function clickOffVer2(){
 		var goBack = $(event.target);
 		console.log(goBack);
 		
+<<<<<<< HEAD
+		$('#ingrList').append(goBack);
+=======
 		$('#searchedIngr').append(goBack);
 		/*$('#selectedIngr').remove();*/
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 	})
->>>>>>> 0a622bf528358b19ef79217f0c25dac6e8eb38f2
 }
 
 function sendRcmm(){

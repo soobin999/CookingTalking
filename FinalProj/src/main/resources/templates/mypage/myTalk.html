@@ -10,7 +10,7 @@
 	<script src="/js/mypage.js"></script>
 
 	<!-- 사진 및 계정 정보 -->
-		<div th:class="uploadPicOfUser">
+			<div th:class="uploadPicOfUser">
 			<form action="" method="POST" enctype="multipart/form-data">
 				<input type="file" name="picOfUser" required>
 				<button type="submit">변경하기</button>
@@ -26,19 +26,34 @@
 	<button onclick="myInquiry()">문의 사항</button>
 	</div>
 	
-	<div id="inqBasic">
-		<button onclick="myInquiry()">문의 하기</button>
-		<button onclick="myInquiryList()">나의 문의 사항</button>
-
-	</div>
-	</div>
-	<div class="myInq" th:method="POST">
-		<form th:action="@{/mypage/myInquiry}" id="insertMyInq"
-			class="insertMyInq" name="">
-			<input type="text" name="myInqTitle" th:class="myInqTitle" id="myInqTitle" placeholder="제목을 입력하세요"> 
-			<input type="text" name="myInqCont" th:class="myInqCont" id="myInqCont" placeholder="내용을 입력하세요">
-			<button type="submit" th:class="sendInq">제출하기</button>
+	<div id="myRecipe">
+		<button onclick="myActivity()">내가 작성한 글</button>
+		<button onclick="myCom()">내가 작성한 댓글</button>
+		
+		<form onsubmit="return false">
+		<input type="text" onsubmit="return false" title="토크검색" 
+		id="talkSearchInMy" name="talkSearchInMy" placeholder="토크를 검색하세요" 
+		onkeypress="enterkey(event);">
+		<button type="button" id="btnTalkSearchInMy">검색</button>
 		</form>
+		
 	</div>
+	</div>
+	<div class="myActivity">
+	<div class="myTalkMain">
+	<table>
+	<tbody>
+<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
+		<div class="myRecipeIng_title">레시피 제목</div> -->
+
+	
+	<tr th:each="myTalk : ${myTalk}">
+		<td class="" th:text=${myTalk.talkCont}></td>
+		<td class="" th:text=${myTalk.talkDate}></td>
+	</tr>
+	</tbody>
+	</table>
+		</div>
+		</div>
 </body>
 </html>
