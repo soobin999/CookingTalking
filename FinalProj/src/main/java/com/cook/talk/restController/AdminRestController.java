@@ -29,7 +29,7 @@ public class AdminRestController {
 
 	@Autowired(required = false)
 	private AdRecipeDAO adRecipeDAO;
- 
+
 	@Autowired(required = false)
 	private AdIngrDAO adIngrDAO;
 
@@ -45,13 +45,13 @@ public class AdminRestController {
 
 	@PostMapping("/admin/updateUserNickName") // 닉네임 업데이트
 	public String updateUserNickName(@ModelAttribute UserVO userVO) {
-		System.out.println(userVO.getUserId());
+		System.out.println(userVO.getUserId()+"userId를 불러오는자리");
 		System.out.println(userVO);
-		System.out.println(userVO.getNickName());
+		System.out.println(userVO.getNickName()+"userName를 불러오는자리");
 		aduserDAO.updateUserNickName(userVO);
 		return "수정되었습니다.";
 	}
-
+ 
 	// 재료 란.
 	/*
 	 * @PostMapping("/admin/deleteIngr") // 재료 삭제 public void deleteIngr(Model
@@ -105,8 +105,8 @@ public class AdminRestController {
 
 	@PostMapping("/admin/qnaAnswer") // qna 답변
 	public String insertReply(@ModelAttribute QnAVO qna) {
-		System.out.println(qna.getUserId());
-		System.out.println(qna);
+		System.out.println(qna.getUserId()+"유저 아이디");
+		System.out.println(qna.getAnswer()+"답이 입력될거에요 ");
 		qnaDAO.insertReply(qna);
 		return "추가되었습니다.";
 	}

@@ -37,33 +37,96 @@
 	</div>
 	<br>
 	<br>
-	
+
 
 	<div id="basic">
 
-		<table border="1" id="mainTable">
 
-			<div>
-				<div class="123">
-					<div class="qna_title">문의사항제목</div>
-					<div class="qna_date">문의 날짜</div>
-					<div class="qna_user">유저</div>
-					<div class="qna_OX">답변 유무</div>
-				</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>문의사항제목</th>
+					<th>문의 내용</th>
+					<th>문의 날짜</th>
+					<th>유저</th>
+					<th>답변 유무</th>
+				</tr>
+			</thead>
+			<tbody th:each="qna:${qnaList}">
+				<tr>
+					<td>
+						<button type="button" class="btn" th:text="${qna.qnaTitle}"
+							th:id="|btn_open${qnaStat.index}|" name="btn_qna"></button>
+					</td>
+					<td>
+						<div th:text="${qna.qnaCont}"></div>
+					</td>
+					<td>
+						<div th:text="${qna.qnaDate}"></div>
+					</td>
+					<td>
+						<div th:text="${qna.UserId}"></div>
+					</td>
+					<td>
+						<div>답변유무</div>
+					</td>
 
-				<div th:each="qna:${qnaList}">
-					<div class="result_Title" th:text="${qna.qnaTitle}">문의 사항 제목</div>
-					<!-- 				<div class ="result_Comment" th:text="${qnaList.qnaCont}">문의 내용</div> -->
-					<div class="result_Date" th:text="${qna.qnaDate}">문의 날짜</div>
-					<div class="result_userId" th:text="${qna.userId}">유저</div>
-					<div>답변유무</div>
+				</tr>
+				<tr th:id="|open${qnaStat.index}|" class="collapse out">
+					<td><div>작성자</div>
+						<div>
+							<input th:id="|UserId_answer${qnaStat.index}|" name="userId"
+								th:value="${qna.userId}" readonly>
+						</div></td>
+					<td><div th:text="${qna.answer}"></div></td>
+					<td><input type="text" th:id="|answer_answer${qnaStat.index}|"
+						th:name="answer" th:value="${qna.answer}" placeholder="답글을 입력하세요">
+					</td>
+					<td><button type="button"
+							th:id="|button_answer${qnaStat.index}|" th:name="button_button"
+							class="insert_answer_btn">답변하기</button></td>
+					<td><div></div></td>
 
-				</div>
-
-			</div>
+				</tr>
+			</tbody>
 		</table>
-
 	</div>
+	<script type="text/javascript">
+		$(".insert_answer_btn").click(function() {
+			var reply = $(this).attr('id').substring(7);
+
+			var UserID = document.getElementsByName('userId');
+			var UserID = document.getElementById('UserId_' + reply);
+			var answer_reply = document.getElementById('answer_' + reply);
+			console.log(reply);
+			console.log(UserID.value);
+
+			$.ajax({
+				url : '/admin/qnaAnswer',
+				method : "POST",
+				data : {
+					answer : answer_reply.value,
+					userId : UserID.value
+				},
+			}).done(function(response) {
+				alert("문의사항 답변을 작성하였습니다.")
+				location.reload();
+			});
+		});
+	</script>
+	<script>
+		$(".btn").click(function() {
+			var k = $(this).attr('id').substring(4);
+			//#은 아래 th:id 값을 나타내는것이므로, #하나+k(|btn_open${qnaStat.index}|에서 앞에 4글자를 뺀 글자.)로 결국에는  아이디. hasclass("out")가 가능해진다. 
+			if ($("#" + k).hasClass("out")) {
+				$("#" + k).addClass("in");
+				$("#" + k).removeClass("out");
+			} else {
+				$("#" + k).addClass("out");
+				$("#" + k).removeClass("in");
+			}
+		});
+	</script>
 
 
 	<script>

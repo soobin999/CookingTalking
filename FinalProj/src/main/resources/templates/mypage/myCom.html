@@ -43,28 +43,27 @@
 				<input type="text" onsubmit="return false" title="댓글검색"
 					id="comSearchInMy" name="comSearchInMy" placeholder="댓글을 검색하세요"
 					onkeypress="enterkey(event);">
-				<button type="button" id="btnComSearchInMy">검색</button>
+				<button type="button" onclick="myAllComSearch();" id="btnComSearchInMy">검색</button>
 			</form>
 
 		</div>
 	</div>
-	<div class="myActivity">
+	<div id="myActivity">
+	<div id="myAllComMain">
 	<table>
 	<tbody>
-<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
-		<div class="myRecipeIng_title">레시피 제목</div> -->
-
 	
-	<tr th:each="myCom : ${myCom}">
-		<td class="" th:text=${myCom.talkCom}></td>
-		<td class="" th:text=${myCom.talkComDate}></td>
-	</tr>
+	<tr th:each="myAllCom : ${myAllCom}">
+		<td class="" th:text=${myAllCom.talkCom}></td>
+		<td class="" th:text=${myAllCom.talkComDate}></td>
+<!-- 	</tr>
 		<tr th:each="myRcpCom : ${myRcpCom}">
 		<td class="" th:text=${myRcpCom.rcpCom}></td>
 		<td class="" th:text=${myRcpCom.rcpComDate}></td>
-	</tr>
+	</tr> -->
 	</tbody>
 	</table>
+		</div>
 		</div>
 </body>
 </html>

@@ -7,4 +7,5 @@ import com.cook.talk.model.VO.RecipeVO;
 public interface MainService {
 
 	public List<RecipeVO> recipeList(String expl);
+	public String followChef(String follow,String chefNick);
 }

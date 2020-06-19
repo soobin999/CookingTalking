@@ -28,6 +28,7 @@ public class RecipeRestController {
 	@PostMapping("/searched")
 	public List<String> searched(String ingrName) {
 		System.out.println(ingrName);
+		System.out.println(recipeService.getSearchedIngrName(ingrName));
 		return recipeService.getSearchedIngrName(ingrName);
 	}
 

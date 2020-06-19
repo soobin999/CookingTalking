@@ -14,44 +14,41 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.cook.talk.model.serviceImpl.UserServiceImpl;
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 //@EnableWebSecurity=시큐리티 설정할 클래스라 정의 
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private UserServiceImpl userDetailsService;
+   @Autowired
+   private UserServiceImpl userDetailsService;
 
-	@Autowired
-	private Handler handler;
+   @Autowired
+   private Handler handler;
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}// PasswordEncoder: BCryptPasswordEncoder는 시큐리티에서 제공하는 비밀번호 암호화 객체 -BEAN으로 등록.
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }// PasswordEncoder: BCryptPasswordEncoder는 시큐리티에서 제공하는 비밀번호 암호화 객체 -BEAN으로 등록.
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/res/**", "/encryption/**");
-	}// configure를 오버라이딩하여 시큐리티 설정을 잡아준다.
+   @Override
+   public void configure(WebSecurity web) throws Exception {
+      web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/res/**");
+   }// configure를 오버라이딩하여 시큐리티 설정을 잡아준다.
 //WebSecurity는 FilterChainProxy를 생성하는 필터.
+ 
 
-	@Override
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http .authorizeRequests() //페이지 권한 설정
                   
-                    
-                    .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
-                    //관리자만 접근 
-        .antMatchers("/**","/**/*","/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
-        		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage/**","/autoComplete","/recipeSearch").permitAll()
-        .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
                     .antMatchers("/user/mypage").hasRole("Role_MEMBER")
 				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
 				
-                    
+                    .antMatchers("/**/","/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
+                    		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage/**").permitAll()
+                    .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
                     .antMatchers("/user/mypage").hasRole("MEMBER")
                     .anyRequest().authenticated();
-                    //인증된 사용자만 접근할수있음. 
+                    
                     
 
         //접근 가능 
@@ -78,11 +75,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     // .defaultSuccessUrl("/main");
     }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// spring Security에서 모든 인증은 AuthenticationManager를 통해 이루어지며
-		// AuthenticationManager를 생성하기 위해서는 AuthenticationManagerBuilder를 사용.
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-	}
+  
+    
+    
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+          //spring Security에서 모든 인증은 AuthenticationManager를 통해 이루어지며 
+           //AuthenticationManager를 생성하기 위해서는 AuthenticationManagerBuilder를 사용.
+           auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        }
 
+
+    
 }

@@ -4,19 +4,36 @@ $(function(){
 
 
 function enterkey(){
-	
+	/*쉐프 검색하기 via 엔터*/
 	$('#chefSearchInMy').on('keydown', function(event){
 		if(event.keyCode == 13){
 			chefSearch();
 			event.preventDefault();
 		};
-	})
+	});
 	
+	/*토크 검색하기 via 엔터*/
 	$('#talkSearchInMy').on('keydown', function(event){
 		if(event.keyCode == 13){
 			myTalkSearch();
 			event.preventDefault();
 		};
+	});
+	
+	/*스크랩 검색하기 via 엔터*/
+	$('#scrapedSearchInMy').on('keydown', function(event){
+		if(event.keyCode == 13){
+			myScrapSearch();
+			event.preventDefault();
+		}
+	});
+	
+	/*모든 코멘트 검색하기 via 엔터*/
+	$('#comSearchInMy').on('keydown', function(event){
+		if(event.keyCode == 13){
+			myAllComSearch();
+			event.preventDefault();
+		}
 	})
 	
 }
@@ -24,27 +41,44 @@ function enterkey(){
 function searchButtonClick(){
 	$('#btnChefSearchInMy').on('click', function(){
 		chefSearch();
-	})
+	});
+	
+	$('#btnTalkSearchInMy').on('click', function(){
+		myTalkSearch();
+	});
+	
+	$('#btnScrapedSearchInMy').on('click', function(){
+		myScrapSearch();
+	});
+	
+	$('#btnComSearchInMy').on('click', function(){
+		myAllComSearch();
+	});
 }
 
 function chefSearch(){
-	var key = $('#chefSearchInMy').val();
+	var key = $('#chefSearchInMy').val(); /*쉐프 검색 키워드*/
 	console.log("key:"+key);
+	
 	
 	$.ajax({
 		type : "POST",
 		url : "/searchMyFollow",
-		data : {followChef : key},
+		data : { followChef : key},
+			
 		success : function(data){
 			
 			var result = $('#myFrequent');
-			$('.myFrequent').remove();
-			var searchedChef = '<div th:class="myFrequent">';
+			$('#myChefMain').remove();
+			var searchedChef = '<div id="myChefMain">';
+			console.log(data);
 			$.each(data, function(index, value){
-				searchedChef = searchedChef+'<table><tbody><tr><td>'+value+'</td></tr></tbody></table>';
+				console.log(data);
+				searchedChef = searchedChef+value;
 			});
 			
 			result.append(searchedChef+'</div>');
+			
 		},
 		error : function(){
 			alert("ChefSearch Error");
@@ -53,23 +87,26 @@ function chefSearch(){
 }
 
 function myTalkSearch(){
-	var key = $('#talkSearchInMy').val();
+	var key = $('#talkSearchInMy').val(); /*토크 검색 키워드*/
 	console.log("key:"+key);
 	
 	$.ajax({
 		type : "POST",
 		url : "/searchMyTalk",
 		data : {talkCont : key},
-		success : function(data){
+		success : function(data) {
 			
 			var result = $('#myActivity');
-			$('.myTalkMain').remove();
-			var searchedChef = '<div th:class="myTalkMain">';
+			$('#myTalkMain').remove();
+			var searchedTalk = '<div id="myTalkMain">';
+			console.log(data);
 			$.each(data, function(index, value){
-				searchedTalk = searchedTalk+'<table><tbody><tr><td>'+value+'</td></tr></tbody></table>';
+				console.log(data);
+				searchedTalk = searchedTalk+value;
 			});
 			
 			result.append(searchedTalk+'</div>');
+			
 		},
 		error : function(){
 			alert("TalkSearch Error");
@@ -77,7 +114,64 @@ function myTalkSearch(){
 	});
 }
 
+function myScrapSearch(){
+	var key = $('#scrapedSearchInMy').val(); /*스크랩 검색 키워드*/
+	console.log("key:"+key);
+	
+	$.ajax({
+		type : "POST",
+		url : "/searchMyScrap",
+		data : {rcpTitle : key},
+		success : function(data) {
+			
+			var result = $('#myFrequent');
+			$('#myScrapededMain').remove();
+			var searchedScrap = '<div id="myScrapededMain">';
+			console.log(data);
+			$.each(data, function(index, value){
+				console.log(data);
+				searchedScrap = searchedScrap+value;
+			});
+			
+			result.append(searchedScrap+'</div>');
+			
+		},
+		error : function(){
+			alert("ScrapSearch Error");
+		}
+	});
+}
 
+
+function myAllComSearch(){
+	var key = $('#comSearchInMy').val(); /*쉐프 검색 키워드*/
+	console.log("key:"+key);
+	
+	
+	$.ajax({
+		type : "POST",
+		url : "/searchMyAllCom",
+		data : { talkCom : key},
+			
+		success : function(data){
+			
+			var result = $('#myActivity');
+			$('#myAllComMain').remove();
+			var searchedAllCom = '<div id="myAllComMain">';
+			console.log(data);
+			$.each(data, function(index, value){
+				console.log(data);
+				searchedAllCom = searchedAllCom+value+'<br>';
+			});
+			
+			result.append(searchedAllCom+'</div>');
+			
+		},
+		error : function(){
+			alert("searchedAllCom Error");
+		}
+	});
+}
 
 function myRecipe(){
 	

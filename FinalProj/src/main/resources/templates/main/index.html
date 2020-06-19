@@ -35,8 +35,6 @@ position: absolute;
 </head>
 <body>
 <header th:fragment='commonHeader'>
-</head>
-<body>
 <!-- header -->
 
 
@@ -69,7 +67,7 @@ position: absolute;
 				<li><a href="#"
 					style="display: block; width: 44px; height: 44px;"> 
 					<img src="img/login_icon.png" alt="로그인"></a></li>
-				<li><a id="btnTopWrite" href="/recipe/insert"
+				<li><a id="btnTopWrite" href="/recipe/insertRecipe"
 					data-toggle="tooltip" data-placement="top" title="레시피등록"
 					data-original-title="레시피등록">
 					<img src="img/recipe_write_icon.png"></a></li>
@@ -83,8 +81,8 @@ position: absolute;
 			<li><a href="/index.html" class="active">홈</a></li>
 			<li><a href="/recipe/newList">레시피</a></li>
 			<li><a href="/ingrSelect">냉장고파먹기</a></li>
-			<li><a href="/talk/list">토크</a></li>
-			<li><a href="/chefRank">쉐프</a></li>
+			<li><a th:href="@{/talk/list}">토크</a></li>
+			<li><a th:href="@{/chefRank/rcpViews}">쉐프</a></li>
 			<li><a href="/adminMain">고객센터</a></li>
 		</ul>
 	</div>

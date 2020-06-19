@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import com.cook.talk.model.VO.QnAVO;
 import com.cook.talk.model.dao.MypageDAO;
 import com.cook.talk.model.service.MypageService;
 
@@ -19,9 +16,7 @@ public class MyActController {
 	
 	@Autowired
 	MypageService mypageService;
-	
 
-	
 	@GetMapping("/mypage/myTalk")
 	public String myActivity(Model model) {
 		model.addAttribute("myTalk", mypageDAO.getMyTalk());
@@ -30,8 +25,11 @@ public class MyActController {
 	
 	@GetMapping("/mypage/myCom")
 	public String myCom(Model model) {
-		model.addAttribute("myCom", mypageDAO.getMyCom());
-		model.addAttribute("myRcpCom", mypageDAO.getMyRcpCom());
+		model.addAttribute("myAllCom", mypageDAO.getAllMyCom());
+		/*
+		 * model.addAttribute("myTalkCom", mypageDAO.getMyTalkCom());
+		 * model.addAttribute("myRcpCom", mypageDAO.getMyRcpCom());
+		 */
 		return "/mypage/myCom";
 	}
 	

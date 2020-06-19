@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.type.Alias;
 
 import com.cook.talk.model.VO.QnAVO;
-import com.cook.talk.model.VO.UserVO;
 @Mapper
 @Alias("qnADAO")
 public interface QnADAO {

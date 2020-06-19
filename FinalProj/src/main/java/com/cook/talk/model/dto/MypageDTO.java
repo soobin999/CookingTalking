@@ -19,6 +19,8 @@ public class MypageDTO {
 	
 	private String talkCont;
 	private Date talkDate;
+	private String talkCom;
+	private Date talkComDate;
 	
 	
 	private String rcpCom;

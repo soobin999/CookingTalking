@@ -22,9 +22,12 @@ public interface MypageService {
 	public List<MypageDTO> getMyFollow();
 	public List<MypageDTO> getMyScrapedRecipe();
 	public List<String> getSearchMyFollow(String followChef);
+	public List<String> getSearchMyScraped(String rcpTitle, String rcpPic);
 	
 	public List<MypageDTO> getMyTalk();
-	public List<TalkComVO> getMyCom();
+	public List<MypageDTO> getAllMyCom();
+	public List<String> getSearchAllMyCom(String talkCom, String talkDate);
+	public List<TalkComVO> getMyTalkCom();
 	public List<MypageDTO> getMyRcpCom();
 	public List<String> getSearchMyTalk(String talkCont);
 	

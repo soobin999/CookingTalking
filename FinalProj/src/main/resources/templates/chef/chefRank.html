@@ -4,12 +4,11 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
-<title id='pageTitle'>Insert title here</title>
+<title id='pageTitle'>Cooking Talking</title>
 
-<th:block layout:fragment='css'>
+<!-- <th:block layout:fragment='css'> -->
 <link rel="stylesheet" type="text/css"
-	th:href="@{css/soobin/chefRank.css}">
-<link rel="stylesheet" type="text/css" href="css/soobin/font.css">
+	th:href="@{/css/soobin/chefRank.css}">
 <style type="text/css">
 iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;}
 .chef_list4{background:#FFFFFF }
@@ -26,43 +25,7 @@ width:950px;
 left:8%;
 }
 </style>
-</th:block>
-<th:block layout:fragment="javascript">
-<script type="text/javascript">
-
-
-	$(document).ready(function() {
-		doRTKeyword();
-
-		$("#srhRecipeText").keypress(function(event) {
-			if (event.which == 13) {
-				event.preventDefault();
-				$("#frmTopRecipeSearch").submit();
-			}
-		}).autocomplete({
-			delay : 200,
-			source : "/recipe/ajax.html?q_mode=autoComplete",
-			focus : function(event, ui) {
-				return false;
-			},
-			select : function(event, ui) {
-				this.value = ui.item.label;
-				return false;
-			}
-		}).focus();
-
-		$('.ui-autocomplete').css('z-index', '10000');
-	});
-
-	var curRtword = 2;
-	function doRTKeyword() {
-		var backRtword = (curRtword == 1) ? 2 : 1;
-		$("#RtwordDiv_" + curRtword).hide();
-		$("#RtwordDiv_" + backRtword).show();
-		curRtword = backRtword;
-	}
-</script>
-</th:block>
+<!-- </th:block> -->
 </head>
 <div layout:fragment='content'>
 	<div class='container'>
@@ -74,11 +37,13 @@ left:8%;
 				href="/chef/chef_list.html">쉐프</a></li>
 			<div class="list_sort">
 				<div class="chef_search">
-					<input type="text" id="user_search_input" 
+				<form th:action="@{/chefsearch}" th:method="POST">
+					<input type="text" th:id="user_search_input" th:name='chefNick'
 						class="form-control" placeholder="쉐프 닉네임을 입력해 주세요.">
 						<span
 						class="glyphicon glyphicon-search fas fa-search"></span>
-					<button type="submit" onclick="searchUser()" class="btn search">검색</button>
+					<button type="submit" class="btn search">검색</button>
+				</form>
 				</div>
 			</div>
 		</ul>
@@ -92,47 +57,21 @@ left:8%;
 		</div>
 
 		<ul class="my_nav2">
-			<li id="" class="active"><a href="/chef/chef_list.html"
-				id="ranking_tab_title">소식받기 순위</a></li>
-			<li id=""><a href="/chef/chef_list2.html?order=active">최근활동쉐프</a></li>
-			<li id=""><a href="/chef/chef_list2.html?order=new">새로운쉐프</a></li>
+			<li id="" th:class="${status}!='new' ?active :'' ">
+			<a href="/chefRank" id="ranking_tab_title">소식받기 순위</a></li>
+			<li id="" th:class="${status}==new ?active : '' "><a href='/chefRank/new'>새로운쉐프</a></li>
 		</ul>
 
 		<div class="my_nav2_sub">
 			<p id="ranking_tab_explain">누적 기준 소식받기 많은 쉐프순</p>
 			<div class="dropdown clearfix pull-right">
-				<button class="btn btn-default dropdown-toggle" type="button"
-					id="dropdownMenu1" data-toggle="dropdown" aria-expanded="false">
-					<i class="far fa-calendar-alt"></i> 누적
-				</button>
-				<ul class="dropdown-menu" role="menu"
-					aria-labelledby="dropdownMenu1">
-					<li role="presentation"><a role="menuitem" tabindex="-1"
-						href="javascript:void(0);" onclick="setTerm('all');">누적</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1"
-						href="javascript:void(0);" onclick="setTerm('1');">오늘</a></li>
-				</ul>
-			</div>
-			<div class="dropdown clearfix pull-right">
-				<button class="btn btn-default dropdown-toggle" type="button"
-					id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-					<i class="fas fa-list"></i> 소식받기순위
-				</button>
-				<ul class="dropdown-menu" role="menu"
-					aria-labelledby="dropdownMenu1">
-					<li role="presentation"><a role="menuitem" tabindex="-1"
-						href="javascript:void(0);"
-						onclick="location.href = '/chef/chef_list.html?qn=&amp;term=all&amp;order=chef_no_follower'">소식받기순위</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1"
-						href="javascript:void(0);"
-						onclick="location.href = '/chef/chef_list.html?qn=&amp;term=all&amp;order=chef_no_hit'">조회순위</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1"
-						href="javascript:void(0);"
-						onclick="location.href = '/chef/chef_list.html?qn=&amp;term=all&amp;order=chef_no_scrap'">스크랩순위</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1"
-						href="javascript:void(0);"
-						onclick="location.href = '/chef/chef_list.html?qn=&amp;term=all&amp;order=chef_no_recipe'">레시피순위</a></li>
-				</ul>
+					<i class="fas fa-list"></i> 
+					<a role="menuitem" 
+						href="/chefRank/rcpViews">조회순위</a>
+					<a role="menuitem" 
+						href="/chefRank/followers">팔로우순위</a>
+					<a role="menuitem" 
+						href="/chefRank/rcpUploads">레시피순위</a>
 			</div>
 		</div>
 		<div class="chef_list4_in">
@@ -144,11 +83,11 @@ left:8%;
 					</p>
 				</div>
 				<div class="list_mem3">
-					<a href="/profile/index.html?uid=20618485" class="mem_pic"><img
+					<a th:href="'/chefInfo/1/'+${chef.userVO.nickName}" class="mem_pic"><img
 						src="http://placehold.it/70x70/"></a>
 				</div>
 				<div class="list_cont4">
-					<b> <a href="/profile/index.html?uid=20618485"
+					<b> <a th:href="'/chefInfo/1/'+${chef.userVO.nickName}"
 						th:class="info_name_f" th:text='${chef.userVO.nickName}'> </a>
 
 					</b> <span th:class="mem_cont1" th:text='${chef.userVO.rcpUploads}'></span>
@@ -161,28 +100,5 @@ left:8%;
 </div>
 </div>
 </div>
-<th:block layout:fragment="scriptCode">
-<script type="text/javascript">
-function searchUser(){
-	var nick=$('#user_search_input').val();
-	$.ajax({
-		data:{chefNick:nick},
-		url:'/chefsearch',
-		type:'POST',
-		success:function(data){
-			$('.list_lump').remove();
-			/* $('.chef_list4_in').append(); */
-			var aa=JSON.stringify(data);
-			console.log(aa);
-			for (var key in aa)
-			console.log(key);
-				/* $('.chef_list4_in').append() */
-		},
-		error:function(){
-			alert("error");
-		}
-	});
-}
-</script>
-</th:block>
+
 </html>
