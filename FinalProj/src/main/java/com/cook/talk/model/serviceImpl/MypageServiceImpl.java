@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,8 +95,8 @@ public class MypageServiceImpl implements MypageService{
 	}
 	
 	@Override
-	public List<String> getSearchAllMyCom(String talkCom, String talkDate) {
-		List<String> getSearchAllMyCom = mypageDAO.getSearchAllMyCom(talkCom, talkDate);
+	public List<MypageDTO> getSearchAllMyCom(String talkCom) {
+		List<MypageDTO> getSearchAllMyCom = mypageDAO.getSearchAllMyCom(talkCom);
 		return getSearchAllMyCom;
 	}
 
@@ -112,11 +114,11 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public String rqMyInq(String qnaTitle, String qnaCont) {
-		 int qnACount = qnADAO.selectQnACode() +1;
+	public void rqMyInq(QnAVO qnAVO) {
 			/* recipe.setRcpCode("Q-" + qnACount); */
-		String myInq = mypageDAO.rqMyInq(qnaTitle, qnaCont);
-		return myInq;
+		int qnACode = mypageDAO.selectQnACode() + 1;
+		qnAVO.setQnaCode("Q-000"+qnACode);
+		mypageDAO.rqMyInq(qnAVO);
 	}
 
 	@Override
@@ -126,23 +128,30 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public List<String> getSearchMyFollow(String followChef) {
+	public List<MypageDTO> getSearchMyFollow(String followChef) {
 		return mypageDAO.getSearchMyFollow(followChef);
 	}
 
 	@Override
-	public List<String> getSearchMyTalk(String talkCont) {
+	public List<MypageDTO> getSearchMyTalk(String talkCont) {
 		return mypageDAO.getSearchMyTalk(talkCont);
 		
 	}
 
 	@Override
-	public List<String> getSearchMyScraped(String rcpTitle, String rcpPic) {
-		return mypageDAO.getSearchMyScraped(rcpTitle, rcpPic);
+	public List<MypageDTO> getSearchMyScraped(String rcpTitle) {
+		return mypageDAO.getSearchMyScraped(rcpTitle);
 	}
 
+	@Override
+	public List<MypageDTO> getSearchTalkCom(String talkCom) {
+		
+		return mypageDAO.getSearchTalkCom(talkCom);
+	}
 
-	
-
+	@Override
+	public List<MypageDTO> getSearchRcpCom(String rcpCom) {
+			return mypageDAO.getSearchRcpCom(rcpCom);
+	}
 
 }

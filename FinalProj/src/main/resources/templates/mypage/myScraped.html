@@ -36,9 +36,9 @@
 				<button type="button" onclick="myScrapSearch();" id="btnScrapedSearchInMy">검색</button>
 			</form>
 		</div>
-
-	<div id="myFrequent">
-	<div id="myScrapededMain">
+</div>
+	<div th:id="myFrequentSub">
+	<div th:id="myScrapededMain">
 	<table>
 	<tbody>
 <!-- 		<div class="myRecipeIng_img">레시피 사진</div>
@@ -46,14 +46,13 @@
 	
 	
 	<tr th:each="myScraped : ${myScraped}">
-		<td th:text=${myScraped.rcpTitle}></td>
-		<td th:text=${myScraped.rcpPic}></td>
-		<td th:text=${myScraped.scrapDate}></td>
+		<td class="" th:value="${myScraped.rcpTitle}" th:text=${myScraped.rcpTitle}></td>
+		<td class="" th:value="${myScraped.scrapDate}" th:text=${myScraped.scrapDate}></td>
 	</tr>
 	</tbody>
 	</table>
 	</div>
 	</div>
-	</div>
+	
 </body>
 </html>

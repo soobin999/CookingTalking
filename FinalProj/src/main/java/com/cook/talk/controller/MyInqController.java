@@ -22,14 +22,16 @@ public class MyInqController {
 	
 	
 	@GetMapping("/mypage/myInquiry")
-	public String myInquiry(Model model, @ModelAttribute QnAVO qnAVO, String qnaTitle, String qnaCont) {
+	public String myInquiry( Model model, String qnaTitle, String qnaCont) {
+		
 		return "/mypage/myInquiry";
 	}
 	
-	@PostMapping("/mypage/myInquiry")
-	public String myInquiryProc(QnAVO qnAVO, String qnaTitle, String qnaCont) {
-		mypageService.rqMyInq(qnaTitle, qnaCont);
-		return "redirect:myInquiry";
+	@PostMapping("/mypage/inputInq")
+	public String myInquiryProc(@ModelAttribute QnAVO qnAVO) {
+		mypageService.rqMyInq(qnAVO);
+		//디버그로 돌려봤는데 여기까지 돌아가고 리턴까지 못가네? 웹에서도 계속 로딩만 됨
+		return "/mypage/myInquiryList";
 	}
 	
 	@GetMapping("/mypage/myInquiryList")

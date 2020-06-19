@@ -15,7 +15,8 @@ public class MypageDTO {
 	private int registerStatus;
 	
 	private String followChef;
-	private Date scrapedDate;
+	private int followC;
+	private Date scrapDate;
 	
 	private String talkCont;
 	private Date talkDate;

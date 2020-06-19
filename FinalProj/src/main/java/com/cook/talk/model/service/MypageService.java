@@ -21,16 +21,18 @@ public interface MypageService {
 	
 	public List<MypageDTO> getMyFollow();
 	public List<MypageDTO> getMyScrapedRecipe();
-	public List<String> getSearchMyFollow(String followChef);
-	public List<String> getSearchMyScraped(String rcpTitle, String rcpPic);
+	public List<MypageDTO> getSearchMyFollow(String followChef);
+	public List<MypageDTO> getSearchMyScraped(String rcpTitle);
 	
 	public List<MypageDTO> getMyTalk();
 	public List<MypageDTO> getAllMyCom();
-	public List<String> getSearchAllMyCom(String talkCom, String talkDate);
+	public List<MypageDTO> getSearchAllMyCom(String talkCom);
+	public List<MypageDTO> getSearchTalkCom(String talkCom);
+	public List<MypageDTO> getSearchRcpCom(String rcpCom);
 	public List<TalkComVO> getMyTalkCom();
 	public List<MypageDTO> getMyRcpCom();
-	public List<String> getSearchMyTalk(String talkCont);
+	public List<MypageDTO> getSearchMyTalk(String talkCont);
 	
-	public String rqMyInq(String qnaTitle, String qnaCont);
+	public void rqMyInq(QnAVO qnAVO);
 	public List<QnAVO> getMyInq();
 }

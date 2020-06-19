@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cook.talk.model.dao.MypageDAO;
+import com.cook.talk.model.dto.MypageDTO;
 import com.cook.talk.model.service.MypageService;
 
 @RestController
@@ -19,7 +20,7 @@ public class MypageRestController {
 	MypageService mypageService;
 	
 	@PostMapping("/searchMyFollow")
-	public List<String> getSearchMyFollow(String followChef){
+	public List<MypageDTO> getSearchMyFollow(String followChef){
 		System.out.println(followChef);
 		System.out.println(mypageService.getSearchMyFollow(followChef));
 
@@ -28,25 +29,42 @@ public class MypageRestController {
 	}
 	
 	@PostMapping("/searchMyTalk")
-	public List<String> getSearchMyTalk(String talkCont) {
+	public List<MypageDTO> getSearchMyTalk(String talkCont) {
 		System.out.println(talkCont);
 		System.out.println(mypageService.getSearchMyTalk(talkCont));
 		return mypageService.getSearchMyTalk(talkCont);
 	}
 	
 	
+	
 	@PostMapping("/searchMyScrap")
-	public List<String> getSearchMyScraped(String rcpTitle, String rcpPic){
+	public List<MypageDTO> getSearchMyScraped(String rcpTitle){
 		System.out.println(rcpTitle);
-		System.out.println(mypageService.getSearchMyScraped(rcpTitle, rcpPic));
-		return mypageService.getSearchMyScraped(rcpTitle, rcpPic);
+		System.out.println(mypageService.getSearchMyScraped(rcpTitle));
+		return mypageService.getSearchMyScraped(rcpTitle);
 	}
 	
 	@PostMapping("/searchMyAllCom")
-	public List<String> getSearchAllMyCom(String talkCom, String talkDate){
+	public List<MypageDTO> getSearchAllMyCom(String talkCom){
 		System.out.println(talkCom);
-		System.out.println(mypageService.getSearchAllMyCom(talkCom, talkDate));
-		return mypageService.getSearchAllMyCom(talkCom, talkDate);
+		System.out.println(mypageService.getSearchAllMyCom(talkCom));
+		return mypageService.getSearchAllMyCom(talkCom);
 	}
+	
+	@PostMapping("/searchMyTalkCom")
+	public List<MypageDTO> getSearchTalkCom(String talkCom){
+		System.out.println(talkCom);
+		System.out.println(mypageService.getSearchTalkCom(talkCom));
+		return mypageService.getSearchTalkCom(talkCom);
+	}
+	
+	
+	@PostMapping("/searchMyRcpCom")
+	public List<MypageDTO> getSearchRcpCom(String rcpCom) {
+		System.out.println(rcpCom);
+		System.out.println(mypageService.getSearchTalkCom(rcpCom));
+		return mypageService.getSearchRcpCom(rcpCom);
+	}
+	 
 	
 }
