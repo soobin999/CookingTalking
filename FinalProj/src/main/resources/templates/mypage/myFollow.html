@@ -36,8 +36,9 @@
 		<input type="text" onsubmit="return false" title="쉐프검색" 
 		id="chefSearchInMy" name="chefSearchInMy" placeholder="쉐프를 검색하세요" 
 		onkeypress="enterkey(event);">
-		<button type="button" id="btnChefSearchInMy">검색</button>
+		<button type="button" onclick="searchButtonClick();" id="btnChefSearchInMy">검색</button>
 		</form>
+		<button type="button" onclick="searchButtonClick();" id="btnChefSearchInMy">검색2</button>
 	</div>
 		<div th:id="myFrequent">
 			<div th:class="myFrequent">

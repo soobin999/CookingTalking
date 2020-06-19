@@ -36,8 +36,8 @@ function chefSearch(){
 		url : "/searchMyFollow",
 		data : {followChef : key},
 		success : function(data){
-			
-			var result = $('#myFrequent');
+		console.log(data);
+		/*	var result = $('#myFrequent');
 			$('.myFrequent').remove();
 			var searchedChef = '<div th:class="myFrequent">';
 			$.each(data, function(index, value){
@@ -45,7 +45,7 @@ function chefSearch(){
 			});
 			
 			result.append(searchedChef+'</div>');
-		},
+		}*/},
 		error : function(){
 			alert("ChefSearch Error");
 		}
