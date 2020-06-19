@@ -21,7 +21,7 @@ public interface MypageService {
 	
 	public List<MypageDTO> getMyFollow();
 	public List<MypageDTO> getMyScrapedRecipe();
-	public List<String> getSearchMyFollow(String followChef);
+	public MypageDTO getSearchMyFollow(String followChef);
 	
 	public List<MypageDTO> getMyTalk();
 	public List<TalkComVO> getMyCom();

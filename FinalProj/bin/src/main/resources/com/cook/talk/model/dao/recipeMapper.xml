@@ -16,11 +16,14 @@
 	<if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
 	</select>
 
+<<<<<<< HEAD
+=======
 	<select id="getSearchedIngrName" parameterType="String" resultType="String">
 		SELECT ingrName FROM recipe.ingr WHERE ingrName LIKE CONCAT('%',#{ingrName},'%')
 
 	</select>
 
+>>>>>>> 5f36cad292ac7c36220df6734476ef1d622881c4
 	<select id="getRecipeList" parameterType="recipeDto">
 		SELECT * FROM recipe.recipedto;
 	</select>

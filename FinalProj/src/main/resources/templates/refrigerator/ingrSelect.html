@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>냉장고 파먹기(정민)</title>
 <style type="text/css">
-
 </style>
 </head>
 <body>
@@ -40,21 +39,21 @@
 
    <form onsubmit="return false">
 
-	<div th:id="chosungNum">
-	<div th:class="result-area" th:id="ingrList">
-			<table>
-			<tbody th:id="result">
-				<tr th:each="ingrs : ${ingrs}">
-				<td><button th:class="ingrButton" th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}" data-area=""></button></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	</div>
+		<div th:id="chosungNum">
+			<div th:class="result-area" th:id="ingrList">
+				<table>
+					<tbody th:id="result">
+						<tr th:each="ingrs : ${ingrs}">
+							<td><button th:class="ingrButton"
+									th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}"
+									data-area=""></button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</form>
 	<!-- 선택한 재료 담는 곳 -->
-	---------------------------------------
-
 	<div th:class="selectedIngr" id="selectedIngr" value=""></div>
 	
 	<form th:action="@{/rcmmRecipe}" th:method="POST">

@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cook.talk.model.dao.MypageDAO;
+import com.cook.talk.model.dto.MypageDTO;
 import com.cook.talk.model.service.MypageService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @RestController
-@Slf4j
 public class MypageRestController {
 
 	@Autowired(required = false)
@@ -22,11 +20,17 @@ public class MypageRestController {
 	MypageService mypageService;
 	
 	@PostMapping("/searchMyFollow")
-	public List<String> getSearchMyFollow(String followChef){
+	public String getSearchMyFollow(String followChef, MypageDTO mypageDTO){
 		System.out.println(followChef);
-		List<String> a = mypageService.getSearchMyFollow(followChef);
-		a.forEach(b -> log.info(b));
-		return a;
+
+		System.out.println(mypageService.getSearchMyFollow(followChef));
+		System.out.println("searchMyFollow");
+		mypageDTO = mypageService.getSearchMyFollow(followChef);
+		System.out.println(mypageDTO);
+		String nickName = mypageDTO.getNickName();
+		System.out.println(nickName);
+		return nickName;
+
 	}
 	
 	@PostMapping("/searchMyTalk")

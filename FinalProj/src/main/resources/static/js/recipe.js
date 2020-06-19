@@ -1,4 +1,5 @@
 $(function() {
+
    selectedIngr();
    searchedIngr();
    chosung();
@@ -9,7 +10,7 @@ $(function() {
    clickOffVer2();
 })
 
-function chosung() {
+/*function chosung() {
 
    $(".chosung").click(function() {
       var value = $(this).attr('value');
@@ -36,7 +37,7 @@ function chosung() {
 			}
 		});
 	});
-}
+}*/
 
 function enterkey() {
    $('#ingrSearchInRefri').on('keydown',function(event){

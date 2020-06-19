@@ -13,8 +13,6 @@ import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.dao.AdIngrDAO;
 import com.cook.talk.model.service.AdIngrService;
 
-import lombok.extern.log4j.Log4j;
-
 @Controller
 public class AdIngrController {
 	@Autowired(required = false)
