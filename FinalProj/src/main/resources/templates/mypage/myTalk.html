@@ -39,8 +39,8 @@
 		
 	</div>
 	</div>
-	<div class="myActivity">
-	<div class="myTalkMain">
+	<div id="myActivity">
+	<div id="myTalkMain">
 	<table>
 	<tbody>
 <!-- 		<div class="myRecipeIng_img">레시피 사진</div>
@@ -48,7 +48,7 @@
 
 	
 	<tr th:each="myTalk : ${myTalk}">
-		<td class="" th:text=${myTalk.talkCont}></td>
+		<td class="" th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></td>
 		<td class="" th:text=${myTalk.talkDate}></td>
 	</tr>
 	</tbody>

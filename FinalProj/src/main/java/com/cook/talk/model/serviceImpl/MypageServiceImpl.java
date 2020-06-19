@@ -123,11 +123,7 @@ public class MypageServiceImpl implements MypageService{
 
 	@Override
 	public List<String> getSearchMyTalk(String talkCont) {
-		if(talkCont != null) {
-			return mypageDAO.getSearchMyTalk(talkCont);	
-		} else {
-			return null;
-		}
+		return mypageDAO.getSearchMyTalk(talkCont);
 		
 	}
 	

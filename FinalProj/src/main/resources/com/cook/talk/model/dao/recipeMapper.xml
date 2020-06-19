@@ -90,10 +90,6 @@
 		ORDER BY rcpDate DESC
 	</select>
 	
-	<select id="recipeView" resultMap="RecipeDTO">
-	SELECT rcpPic, rcpViews, nickname, rcpTitle, rcpExpl
-	FROM RecipeDTO
-	</select>
 	<!-- 레시피 최신목록에서 총갯수 카운팅 -->
 	<select id="recipeCount" resultType="int">
 		SELECT count(*) FROM rcp

@@ -35,7 +35,7 @@ public class MypageRestController {
 	
 	@PostMapping("/searchMyTalk")
 	public List<String> getSearchMyTalk(String talkCont) {
-		System.out.println(talkCont);
+		System.out.println(talkCont);	
 		return mypageService.getSearchMyTalk(talkCont);
 	}
 	

@@ -10,14 +10,14 @@ function enterkey(){
 			chefSearch();
 			event.preventDefault();
 		};
-	})
+	});
 	
 	$('#talkSearchInMy').on('keydown', function(event){
 		if(event.keyCode == 13){
 			myTalkSearch();
 			event.preventDefault();
 		};
-	})
+	});
 	
 }
 
@@ -28,8 +28,9 @@ function searchButtonClick(){
 }
 
 function chefSearch(){
-	var key = $('#chefSearchInMy').val();
+	var key = $('#chefSearchInMy').val(); /*쉐프 검색 키워드*/
 	console.log("key:"+key);
+	
 	
 	$.ajax({
 		type : "POST",
@@ -39,6 +40,7 @@ function chefSearch(){
 			
 		success : function(data){
 			console.log(data);
+			/*$('#myFrequent').remove();*/
 			$('.myFrequent').append('<table><tbody><tr><td>'+data+'</td></tr></tbody></table>');
 		},
 		error : function(){
@@ -55,16 +57,19 @@ function myTalkSearch(){
 		type : "POST",
 		url : "/searchMyTalk",
 		data : {talkCont : key},
-		success : function(data){
+		success : function(data) {
 			
 			var result = $('#myActivity');
-			$('.myTalkMain').remove();
-			var searchedChef = '<div th:class="myTalkMain">';
+			$('#myTalkMain').remove();
+			var searchedTalk = '<div id="myTalkMain">';
+			console.log(data);
 			$.each(data, function(index, value){
-				searchedTalk = searchedTalk+'<table><tbody><tr><td>'+value+'</td></tr></tbody></table>';
+				console.log(data);
+				searchedTalk = searchedTalk+value;
 			});
 			
 			result.append(searchedTalk+'</div>');
+			
 		},
 		error : function(){
 			alert("TalkSearch Error");
