@@ -8,6 +8,8 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,12 +39,12 @@ public class MypageServiceImpl implements MypageService{
 	}
 	
 	@Override
-	public String modifyUserPic(UserVO userVO, @RequestParam("userPic") MultipartFile file) {
+	public String modifyUserPic(String userPic, @RequestParam("userPic") MultipartFile file) {
 
-		String PicFromFolder = "";
+		String PicFromFolder = "C:/git/cookingtalking/FinalProj/src/main/resources/static/jmjm/";
 		
 		System.out.println("file:"+file);
-		System.out.println("userVO"+userVO);
+		
 		
 		try {
 			
@@ -54,7 +56,7 @@ public class MypageServiceImpl implements MypageService{
 			e.printStackTrace();
 		}
 		
-		mypageDAO.modifyUserPic(userVO);
+		mypageDAO.modifyUserPic(userPic);
 		return "정상적으로 등록되었습니다";
 	}
 
@@ -117,7 +119,7 @@ public class MypageServiceImpl implements MypageService{
 	public void rqMyInq(QnAVO qnAVO) {
 			/* recipe.setRcpCode("Q-" + qnACount); */
 		int qnACode = mypageDAO.selectQnACode() + 1;
-		qnAVO.setQnaCode("Q-000"+qnACode);
+		qnAVO.setQnaCode("Q-"+qnACode);
 		mypageDAO.rqMyInq(qnAVO);
 	}
 
@@ -152,6 +154,12 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public List<MypageDTO> getSearchRcpCom(String rcpCom) {
 			return mypageDAO.getSearchRcpCom(rcpCom);
+	}
+
+	@Transactional
+	@Override
+	public void deleteRcp(String rcpCode) {
+		mypageDAO.deleteRcp(rcpCode);
 	}
 
 }

@@ -1,6 +1,17 @@
 $(function(){
 	enterkey();
+	answer();
 })
+
+function answer(){
+	
+	var ans = $('#answer').val();
+	
+	if(ans != null){
+		$('#answer').append("답변완료");
+	} else 
+		$('#answer').append("답변미등록");
+}
 
 
 function enterkey(){
@@ -54,6 +65,25 @@ function searchButtonClick(){
 	$('#btnComSearchInMy').on('click', function(){
 		myAllComSearch();
 	});
+}
+
+function deleteMyRcp(){
+	var button = document.getElementsByName('deleteMyRcpBtn');
+
+	
+	//var a = document.getElementById('deleteMyRcpBtn');
+	console.log(button);
+	var key = a.value;
+	console.log("key : " + key);
+	/*$.ajax({
+		type : "POST",
+		url : "/deleteRcp",
+		data : {rcpCode : key},
+		success : function(data){
+			
+		}
+	})*/
+	
 }
 
 function chefSearch(){
@@ -140,6 +170,7 @@ function myAllComSearch(){
 	var key = $('#comSearchInMy').val(); /*스크랩 검색 키워드*/
 
 	var selectedV = document.getElementById("comSelect").options[document.getElementById("comSelect").selectedIndex].value;
+	
 	if(selectedV == "onlyTalk"){
 		$.ajax({
 			type : "POST",
@@ -223,7 +254,7 @@ function myRecipe(){
 }
 
 function myFrequent(){
-	$('#mypageSuvMain').remove();
+	$('#mypageSubMain').remove();
 	$('#mypageMain').load("/mypage/myFollow");
 	console.log("myFrequent");
 }
@@ -272,4 +303,15 @@ function sendInq(){
 		}
 	})
 	
+}
+
+function showAns(){
+	
+	$('#myQnATitle').on('click', function(){
+		
+		var myQnACont = $('#myQnACont').innerText();
+		var answer = $('#answer').val();
+		
+		
+	})
 }

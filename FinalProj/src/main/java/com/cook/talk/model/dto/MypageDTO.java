@@ -13,6 +13,7 @@ public class MypageDTO {
 	private String rcpTitle;
 	private String rcpPic;
 	private int registerStatus;
+	private String rcpCode;
 	
 	private String followChef;
 	private int followC;

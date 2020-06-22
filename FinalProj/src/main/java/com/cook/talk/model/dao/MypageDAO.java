@@ -18,10 +18,11 @@ public interface MypageDAO {
 	
 	public int selectQnACode();
 	
-	public void modifyUserPic(UserVO userVO);
+	public void modifyUserPic(String userPic);
 
 	public List<MypageDTO> getMyRecipeIng();
 	public List<MypageDTO> getMyRecipeWritten();
+	public void deleteRcp(String rcpCode);
 	
 	public List<MypageDTO> getMyFollow();
 	public List<MypageDTO> getMyScrapedRecipe();

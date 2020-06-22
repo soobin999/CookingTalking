@@ -34,19 +34,32 @@
 	<div th:class="myWrittenMain">
 	<table>
 	<tbody>
-<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
-		<div class="myRecipeIng_title">레시피 제목</div> -->
 	
 	
-	<tr th:each="myWritten : ${myWritten}" th:class="myWritten" id="myWritten">
-		<!-- <td><button th:class="deleteBtnOfMyRcp" th:value='{myWritten.rcpTitle}'>삭제</button></td> -->
-		<!-- ↑ 버튼 활성화하면 에러남 -->
+	<tr th:each="myWritten, a : ${myWritten}" th:class="myWritten" id="myWritten">
+		<td th:text="${a.count}"></td>
 		<td th:text=${myWritten.rcpTitle}></td>
 		<td th:text=${myWritten.rcpPic}></td>
+		<!-- <td><button type="button" th:name="deleteMyRcpBtn" th:id="deleteMyRcpBtn+${a.count}" onclick="deleteMyRcp();" th:value="${myWritten.rcpCode}">삭제</button></td> -->
+		<td>
+	
+	    <form th:id="deleteMyRcpForm" th:action="@{'/deleteRcp/'+ ${myWritten.rcpCode}}" method="POST">
+        <input type="hidden" name="deleteMyRcpBtn" value="delete"/>
+        <input type="submit" th:id="deleteMyRcpBtn">삭제</button>
+    </form>
+</td>	
+		<!-- <input type="hidden" onclick="deleteMyRcp();"  th:id="deleteMyRcpBtn" th:value="${myWritten.rcpCode}"> -->
+		
 	</tr>
+	
 	</tbody>
 	</table>
 	</div>
 	</div>
+	<!-- 		<td>
+		<div class="deleteMyRcp">
+		<input type="button" onclick="deleteMyRcp();" th:id="deleteMyRcpBtn" value="${myWritten.rcpCode}">
+		</div>
+		</td> -->
 </body>
 </html>

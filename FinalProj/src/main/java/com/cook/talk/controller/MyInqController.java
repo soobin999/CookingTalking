@@ -22,15 +22,18 @@ public class MyInqController {
 	
 	
 	@GetMapping("/mypage/myInquiry")
-	public String myInquiry( Model model, String qnaTitle, String qnaCont) {
+	public String myInquiry(Model model, String qnaTitle, String qnaCont) {
 		
 		return "/mypage/myInquiry";
 	}
 	
 	@PostMapping("/mypage/inputInq")
-	public String myInquiryProc(@ModelAttribute QnAVO qnAVO) {
+	public String myInquiryProc(@ModelAttribute QnAVO qnAVO, Model model) {
 		mypageService.rqMyInq(qnAVO);
-		//디버그로 돌려봤는데 여기까지 돌아가고 리턴까지 못가네? 웹에서도 계속 로딩만 됨
+		System.out.println("mypageService.rqMyInq(qnAVO)");
+		
+		model.addAttribute("myInqList", mypageDAO.getmyInq());
+		
 		return "/mypage/myInquiryList";
 	}
 	

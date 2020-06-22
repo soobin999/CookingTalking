@@ -39,10 +39,11 @@
 
 	
 	<tr th:each="myInqList : ${myInqList}">
-		<td class="" th:text=${myInqList.qnaDate}></td>
-		<td class="" th:text=${myInqList.qnaTitle}></td>
-		<td class="" th:text=${myInqList.qnaCont}></td>
-		<td class="" th:text=${myInqList.answer}></td>
+		<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}></td>
+		<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
+		<td th:id="myQnACont" th:value="${myInqList.qnaCont}"></td>
+		
+		<td th:id="answer" th:value="${myInqList.answer}"></td>
 	</tr>
 	</tbody>
 	</table>
