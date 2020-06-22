@@ -25,21 +25,6 @@ public class MyRcpController {
 	@Autowired
 	MypageService mypageService;
 	
-	/*
-	 * @PostMapping("/mypage/modifyUserPic") public String modifyUserPic(UserVO
-	 * userVO, Model model,
-	 * 
-	 * @RequestParam("file") MultipartFile multipartfile) {
-	 * 
-	 * model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
-	 * System.out.println("multipart :: " + multipartfile.getOriginalFilename());
-	 * userVO.setUserPic(multipartfile.getOriginalFilename());
-	 * mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
-	 * System.out.println("추가된 파일명:" + multipartfile);
-	 * System.out.println("userPic:"+userVO.getUserPic());
-	 * 
-	 * return "/mypage/myRecipeIng"; }
-	 */
 	
 	@GetMapping("/mypage/userPic")
 	public String userPic() {
@@ -61,13 +46,16 @@ public class MyRcpController {
 		return "/mypage/myWritten";
 	}
 	
-	@DeleteMapping("/deleteRcp/{myWritten.rcpCode}")
-	public String deleteRcp(@PathVariable("rcpCode") String rcpCode) {
-		System.out.println("deleteRcp 실행 : ");
-		//mypageService.deleteRcp(rcpCode);
-		System.out.println("dao 끝 ");
-		
-		return "/mypage/myWritten";
-	}
+	
+	  @GetMapping("/deleteRcp/{rcpCode}") 
+	  public String deleteRcp(@PathVariable("rcpCode") String rcpCode) {
+	  System.out.println("deleteRcp 실행 : "); 
+	  mypageService.deleteRcp(rcpCode);
+	  System.out.println("dao 끝 ");
+	  
+	  return "redirect:/mypage/myWritten"; 
+	  
+	  }
+	 
 	
 }
