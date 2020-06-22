@@ -46,7 +46,7 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'>
 			<li><a th:href="@{/ingrSelect}">냉장고파먹기</a></li>
 			<li><a th:href="@{/talk}">토크</a></li>
 			<li><a th:href="@{/chefRank/rcpUploads}">쉐프</a></li>
-			<li><a th:href="@{/adminMain}">고객센터</a></li>
+			<li th:if="${user=='login'}"><a th:href="@{/adminMain}">고객센터</a></li>
 		</ul>
 	</div>
 </header>
