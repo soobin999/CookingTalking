@@ -83,11 +83,11 @@ left:8%;
 					</p>
 				</div>
 				<div class="list_mem3">
-					<a href="/profile/index.html?uid=20618485" class="mem_pic"><img
+					<a th:href="'/chefInfo/1/'+${chef.userVO.nickName}" class="mem_pic"><img
 						src="http://placehold.it/70x70/"></a>
 				</div>
 				<div class="list_cont4">
-					<b> <a href="/profile/index.html?uid=20618485"
+					<b> <a th:href="'/chefInfo/1/'+${chef.userVO.nickName}"
 						th:class="info_name_f" th:text='${chef.userVO.nickName}'> </a>
 
 					</b> <span th:class="mem_cont1" th:text='${chef.userVO.rcpUploads}'></span>

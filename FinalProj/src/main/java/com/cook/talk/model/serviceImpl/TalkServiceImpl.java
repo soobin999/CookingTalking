@@ -19,37 +19,38 @@ public class TalkServiceImpl implements TalkService {
 		int talkNum = talkDAO.selectTalkCode() + 1;
 		talkVO.setTalkCode("T-" + talkNum);
 	}
+
 //목록
 	@Override
 	public List<TalkVO> getTalkList() {
-		// TODO Auto-generated method stub
 		return talkDAO.getTalkList();
 	}
+
 //수정 
 	@Override
 	public boolean update(TalkVO talkVO) {
-		return talkDAO.update(talkVO);
+	return talkDAO.update(talkVO) ==1;
+		
 	}
+
 //삭제
 	@Override
 	public boolean delete(String talkCode) {
-		// TODO Auto-generated method stub
-		return false;
+		return talkDAO.delete(talkCode) == 1;
 	}
 
+//게시판 code
 	@Override
 	public void insert(TalkVO talkVO) {
-		// TODO Auto-generated method stub
 		int talkNum = talkDAO.selectTalkCode() + 1;
 		talkVO.setTalkCode("T-" + talkNum);
 		talkDAO.insert(talkVO);
 	}
-	
+
+	// 클릭한 게시판
 	@Override
-	public TalkVO talkSearchById(String talkCode) {
-		return talkDAO.talkSearchById(talkCode);
+	public TalkVO detail (String talkCode) {
+		return talkDAO.detail(talkCode);
 	}
-
-
 
 }

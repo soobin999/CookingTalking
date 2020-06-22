@@ -13,12 +13,16 @@ public class MypageDTO {
 	private String rcpTitle;
 	private String rcpPic;
 	private int registerStatus;
+	private String rcpCode;
 	
 	private String followChef;
-	private Date scrapedDate;
+	private int followC;
+	private Date scrapDate;
 	
 	private String talkCont;
 	private Date talkDate;
+	private String talkCom;
+	private Date talkComDate;
 	
 	
 	private String rcpCom;

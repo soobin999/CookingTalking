@@ -13,8 +13,7 @@
 		<th>제목</th>	<th>작성자</th><th>등록일</th><th>대표사진</th>
 	</tr>
 	<tr th:each="recipe : ${recipeList}">
-	<!-- <td th:text="${recipe.recipeVO.rcpCode}"> -->
-	<td><a th:href="@{/recipeView(rcpCode=${recipe.recipeVO.rcpCode})}" th:text="${recipe.recipeVO.rcpTitle}"></a></td>
+	<td><a th:href="@{/recipe/recipeView(rcpCode=${recipe.recipeVO.rcpCode})}" th:text="${recipe.recipeVO.rcpTitle}"></a></td>
 	<td th:text="${recipe.nickName}">
 <!-- 	<td th:text="${#temporals.format(recipe.recipeVO.rcpDate, 'yyyy-MM-dd')}"></td> -->
 	<td th:text="${recipe.recipeVO.rcpDate}">

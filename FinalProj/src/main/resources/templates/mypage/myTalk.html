@@ -34,26 +34,29 @@
 		<input type="text" onsubmit="return false" title="토크검색" 
 		id="talkSearchInMy" name="talkSearchInMy" placeholder="토크를 검색하세요" 
 		onkeypress="enterkey(event);">
-		<button type="button" id="btnTalkSearchInMy">검색</button>
+		<button type="button" onclick="searchButtonClick();" id="btnTalkSearchInMy">검색</button>
 		</form>
 		
 	</div>
 	</div>
-	<div class="myActivity">
-	<div class="myTalkMain">
+	<div th:id="myActivity">
+	<div th:id="myTalkMain">
 	<table>
 	<tbody>
 <!-- 		<div class="myRecipeIng_img">레시피 사진</div>
 		<div class="myRecipeIng_title">레시피 제목</div> -->
-
+<!-- 	<td id="talkCont" name="talkCont"></td>
+	<td id="talkDate" name="talkDate"></td> -->
 	
 	<tr th:each="myTalk : ${myTalk}">
-		<td class="" th:text=${myTalk.talkCont}></td>
-		<td class="" th:text=${myTalk.talkDate}></td>
+		<td class="" th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></td>
+		<td class="" th:value="${myTalk.talkDate}" th:text=${myTalk.talkDate}></td>
+	
 	</tr>
 	</tbody>
 	</table>
 		</div>
 		</div>
 </body>
+
 </html>

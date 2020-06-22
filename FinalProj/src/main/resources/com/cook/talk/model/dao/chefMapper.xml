@@ -16,17 +16,17 @@
 	<select id="selectChefDetail" resultMap="chefDTO">
 		select us.nickName,us.userPic,us.rcpUploads,us.followers,sum(rcpViews) as rcpViews
 			   from user as us,rcp 
-			   where us.userId=rcp.userId and us.userId=#{userId}
+			   where us.userId=rcp.userId and us.userId=(select userId from user where nickName=#{chefId})
 	</select>
 	<select id="selectFollow" resultType="int">
-		select count(*) from follow where userId=#{userId} and followChef=#{chefId}
+		select count(*) from follow where userId=#{userId} and followChef=(select userId from user where nickName=#{chefId})
 	</select>
 	
 	<select id="selectRecipe" resultType="recipeVO">
-		select rcpTitle,rcpPic from rcp where userId = #{userId} limit #{page},20
+		select rcpTitle,rcpPic from rcp where userId = (select userId from user where nickName=#{chefId}) limit #{page},20
 	</select>
 	<select id="recipeCount" resultType="int">
-		select count(*) from rcp where userId=#{userId}
+		select count(*) from rcp where userId= (select userId from user where nickName=#{chefId})
 	</select>
 	<select id="allSelectChef" resultMap="chefDTO">
 		select us.nickName as nickName,us.userPic as userPic,us.rcpUploads as rcpUploads,us.followers as followers, sum(rcpViews) as rcpviews

@@ -15,12 +15,15 @@
 		</association>
 	</resultMap>
 	<select id="recipeList" parameterType="String"
-		resultType="recipeVO">
-		select rcpTitle,rcpPic from rcp where
-		<foreach collection="list" item="rcpCode" index="index"
+		resultType="IndexDTO">
+		select rcp.rcpTitle,rcp.rcpPic,user.nickName from rcp,user where rcp.userId=user.userId and
+		<foreach collection="list" item="rcpCode" index="index" open="(" close=")"
 			separator="or">
-			rcpCode= #{rcpCode}
+			rcp.rcpCode= #{rcpCode}
 		</foreach>
+	</select>
+	<select id="newRecipeList" resultType="IndexDTO">
+		select rcp.rcpTitle,rcp.rcpPic,user.nickName from rcp,user where rcp.userId=user.userId order by rcpCode desc limit 12
 	</select>
 
 	<select id="totalSelect" resultType="MainDTO">

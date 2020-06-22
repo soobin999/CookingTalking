@@ -27,16 +27,14 @@ public class MainController {
 
 	@GetMapping("/index")
 	public String index(Model model) {
-		System.out.println(maindao.totalSelect());
 		model.addAttribute("total",maindao.totalSelect());
 		return "/main/index";
 	}
 
 	@GetMapping("/loginIndex")
 	public String loginIndex(Model model, String expl) {
-		System.out.println(mainService.recipeList("R-000001"));
 		model.addAttribute("rcpList", mainService.recipeList("R-000001"));
-
+		model.addAttribute("newRcpList",maindao.newRecipeList());
 		return "/main/loginIndex";
 	}
 
@@ -68,7 +66,6 @@ public class MainController {
 		model.addAttribute("gender",maindao.selectGender(rcpCode));
 		model.addAttribute("birth",maindao.selectBirth(rcpCode));
 		model.addAttribute("month",maindao.selectMonth(rcpCode));
-		System.out.println(maindao.selectBirth(rcpCode));
 		return "/main/chart";
 	}
 }

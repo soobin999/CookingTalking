@@ -25,15 +25,14 @@ public class ChefController {
 		return "/chef/chefRank";
 	}
 
-	@GetMapping("/chefInfo/{page}")
-	public String chefInfo(Model model,String userId,String chefId,@PathVariable int page) {
-		chefId="zleda9@naver.com";
+	@GetMapping("/chefInfo/{page}/{chefId}")
+	public String chefInfo(Model model,String userId,@PathVariable String chefId,@PathVariable int page) {
 		userId="zleda9@naver.com";
 		model.addAttribute("follow",chefDAO.selectFollow(userId, chefId));
 		model.addAttribute("chefInfo",chefDAO.selectRecipe(chefId,(page-1)*20));
 		model.addAttribute("chefDetail",chefDAO.selectChefDetail(chefId));
-		model.addAttribute("totalPage",Math.ceil(chefDAO.recipeCount(userId)/20.0));
-		System.out.println(chefDAO.recipeCount(userId));
+		model.addAttribute("totalPage",Math.ceil(chefDAO.recipeCount(chefId)/20.0));
+		System.out.println(chefDAO.recipeCount(chefId));
 		return "chef/chefInfo";
 	}
 	@PostMapping("/chefsearch")
