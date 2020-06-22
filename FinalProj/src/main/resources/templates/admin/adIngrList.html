@@ -15,7 +15,7 @@
 		<form name="" method="POST">
 			<input type="text" id="searchIngrList" name="searchIngrList"
 				th:value="*{searchIngrList}" placeholder="재료를 입력하시오">
-
+			
 			<button class="btn search-IngrList" type="button"
 				id="btn_adIngrSearch">검색하기</button>
 
@@ -54,7 +54,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="Ingr:${IngrList}">
+				<tr th:each="Ingr,index:${IngrList}" th:id='${index.index}'>
 					<td><div class="checkBox">
 							<input type="checkbox" th:name="checkRow" th:class="checkRow"
 								th:value="${Ingr.rcpingrCode}">삭제하기
@@ -67,16 +67,39 @@
 				</tr>
 			</tbody>
 		</table>
-
+	<ul>
+	<li th:each="num: ${#numbers.sequence(1,IngrList.size()/20)}"><a
+		th:class="page" th:text="${num}" th:value="${num}"></a>
+				</li> 
+	</ul>
 	</div>
 
 	<!-- 재료 검색 페이지 -->
-
 	<script>
-		$('#btn_adIngrSearch')
-				.on(
-						'click',
-						function() {
+	$(document).ready(function(){
+		
+		var cc= 670;
+		for(var i =20;i<cc;i++){
+			$('#'+i).hide();
+		}
+	});
+		</script>
+		<script>
+		$('.page').click(function(event){
+			var k=event.target.text;
+			console.log(k);
+			for (var i =0;i<670;i++){
+				$('#'+i).hide();
+				}
+			for (var i=0;i<20;i++){
+				$('#'+((parseInt(k)-1)*50+parseInt(i))).show();
+				console.log(k+i);
+			}	
+		});
+	</script>
+	
+	<script>
+		$('#btn_adIngrSearch').on('click',function() {
 							var searchINGR;
 							var input = document
 									.getElementById("searchIngrList").value;
@@ -114,6 +137,36 @@
 								
 							});
 						});
+	</script>
+
+	<script>
+		function ingrSearch() {
+
+			var key = $('#searchIngrList').val();
+			console.log("key:" + key);
+			alert("가나다")
+			$.ajax({
+				type : "POST",
+				url : "/admin/search",
+				data : {
+					ingrName : key
+				},
+				success : function(data) {
+					//
+					var result = $('#ingr_Name_List');
+					$('#ingrList').remove();
+					var list = '<div id="ingrList">';
+					$.each(data, function(index, value) {
+						list = list + '<button>' + value + '</button>';
+					});
+
+					result.append(list + '<div>');
+				},
+				error : function() {
+					alert("Search Error");
+				}
+			});
+		}
 	</script>
 
 

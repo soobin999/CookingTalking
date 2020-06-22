@@ -42,10 +42,8 @@ document.form1.submit();
 				</tr>
 			</thead>
 			<tbody>
-
-				<button>
-					<a th:href="@{talk/list}">목록</a>
-				</button>
+				<a th:href="@{/talk/list}"
+					class="btn btn-default waves-effect waves-light">뒤로가기</a>
 
 				<tr th:each="talk : ${talkCode}">
 					<td th:text="${talk.talkCont}"></td>
@@ -54,7 +52,7 @@ document.form1.submit();
 					<td th:text="${talk.talkCom}"></td>
 
 				</tr>
-
+				<div id="docs_comment_list_area"></div>
 
 			</tbody>
 		</table>
@@ -62,7 +60,8 @@ document.form1.submit();
 			<th:block sec:authorize="isAuthenticated()">
 
 				<div th:if="${#authentication.principal.username} == *{userId}">
-					<a th:href="@{/talk/update}">수정</a>
+					<a th:href="@{/talk/updatePage(talkCode=${talkCode.talkCode})}">수정</a>
+
 					<button type="button" id="btnDelete">삭제</button>
 				</div>
 			</th:block>

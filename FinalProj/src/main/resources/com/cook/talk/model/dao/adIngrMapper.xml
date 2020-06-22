@@ -38,6 +38,14 @@
 			rcpingrCode = #{rcpingrCode}
 		</foreach>
 	</delete>
+		<select id="countPaginationIngr" resultType="int">
+		select count(*)
+		form ingr
+	</select>
+	
+	<select id="countPaginationIngrLimit" resultType="ingrVO">
+		select rcpingrCode, ingrPic, ingrName, ingrSeason, ingrCalorie, ingrTemper from ingr limit #{pageNUM},10 
+	</select>
  
 </mapper>
 	

@@ -12,12 +12,12 @@ import com.cook.talk.model.VO.UserVO;
 //@ServiceMode
 
 public interface UserDAO {
-
+	
 	public int userIdCheck(String userId);
-
+	
+	// 닉네임 중복 체크
 	public int userNickNameCheck(String nickName);
 
-	// 닉네임 중복 체크
 	public int updateUser(UserVO userVO);
 
 	public UserVO findUserById(String id);
@@ -29,12 +29,9 @@ public interface UserDAO {
 	public Optional<UserVO> findByEmail(String userEmail);
 
 	public static void setPassword(String encode) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public static int getuserId(UserVO userVO) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

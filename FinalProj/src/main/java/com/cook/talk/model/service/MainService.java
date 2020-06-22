@@ -2,10 +2,10 @@ package com.cook.talk.model.service;
 
 import java.util.List;
 
-import com.cook.talk.model.VO.RecipeVO;
+import com.cook.talk.model.dto.IndexDTO;
 
 public interface MainService {
 
-	public List<RecipeVO> recipeList(String expl);
+	public List<IndexDTO> recipeList(String expl);
 	public String followChef(String follow,String chefNick);
 }

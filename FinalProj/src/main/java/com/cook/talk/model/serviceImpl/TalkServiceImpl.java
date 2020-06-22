@@ -28,9 +28,15 @@ public class TalkServiceImpl implements TalkService {
 
 //수정 
 	@Override
-	public boolean update(TalkVO talkVO) {
-	return talkDAO.update(talkVO) ==1;
-		
+	public TalkVO update(TalkVO talkVO) {
+		return talkDAO.update(talkVO.getTalkCont());
+
+	}
+
+	// 수정 완료
+	@Override
+	public void updateTalk(TalkVO talkVO) {
+		talkDAO.updateTalk(talkVO);
 	}
 
 //삭제
@@ -49,8 +55,14 @@ public class TalkServiceImpl implements TalkService {
 
 	// 클릭한 게시판
 	@Override
-	public TalkVO detail (String talkCode) {
+	public TalkVO detail(String talkCode) {
 		return talkDAO.detail(talkCode);
 	}
-
+	/*
+	 * @Override public TalkVO update(String talkCode) {
+	 * 
+	 * return talkDAO.update(talkCode);
+	 * 
+	 * }
+	 */
 }
