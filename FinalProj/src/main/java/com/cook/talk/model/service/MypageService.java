@@ -14,10 +14,11 @@ import com.cook.talk.model.dto.MypageDTO;
 public interface MypageService {
 
 	public String user(UserVO userVO);
-	public String modifyUserPic(UserVO userVO, MultipartFile file);
+	public String modifyUserPic(String userPic, MultipartFile file);
 	
 	public List<MypageDTO> getMyRecipeIng();
 	public List<MypageDTO> getMyRecipeWritten();
+	public void deleteRcp(String rcpCode);
 	
 	public List<MypageDTO> getMyFollow();
 	public List<MypageDTO> getMyScrapedRecipe();
