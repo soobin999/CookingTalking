@@ -24,9 +24,12 @@ $('#srhRecipeText').keydown(function(){
 		dataType:'JSON',
 		success:function(data){
 			console.log(data);
+				
 			$('#srhRecipeText').autocomplete({
 				source:data,
-			});
+				delay:500,
+			}); 
+			
 			},
 		error:function(){
 			alert("error");

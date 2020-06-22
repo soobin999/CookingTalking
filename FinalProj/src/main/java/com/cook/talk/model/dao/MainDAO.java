@@ -20,7 +20,7 @@ public interface MainDAO {
 	public List<RcpSDTO> recipeSearch(String searchWord,String status,int page);
 	public List<String> selectTitle(String searchWord);
 	public List<ChefDTO> selectChef(String chefNick);
-	public int countRecipe(String searchWord,String status);
+	public int countRecipe(String searchWord);
 	public List<ChartDTO> selectGender(String rcpCode);
 	public List<ChartDTO> selectBirth(String rcpCode);
 	public List<ChartDTO> selectMonth(String rcpCode);

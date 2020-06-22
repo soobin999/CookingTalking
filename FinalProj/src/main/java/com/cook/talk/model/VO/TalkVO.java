@@ -1,13 +1,13 @@
 package com.cook.talk.model.VO;
 
 import java.sql.Date;
-import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
 
 @Data
+@Alias("talkVO")
 public class TalkVO {
 
 	private String talkCode;// 코드
