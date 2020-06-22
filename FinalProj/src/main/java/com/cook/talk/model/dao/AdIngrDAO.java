@@ -19,4 +19,9 @@ public interface AdIngrDAO {
 
 	public int selectIngrRcpCode();
 
+	// 재료 파트 페이지 네이션
+	public int countPaginationIngr();
+
+	public List<IngrVO> countPaginationIngrLimit(int pageNUM);
+
 }

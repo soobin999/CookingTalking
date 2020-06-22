@@ -1,91 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<!-- XHTML 문서를 위한 XML 네임스페이스를 명시하는 것으로, 생략해도 정상동작 -->
+<head>
+<meta charset="UTF-8">
+<title>글 수정</title>
+
+
+<script type="text/javascript">
+	
+</script>
+
+</head>
+<body>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>게시판 수정</title>
-<script type="text/javascript">
-function update(){
-	var talkCont=@{#talkCont}.val();
-
-if(talkCont==""){
-	alret("내용을 입력해주세요");
-	$("#talkCont").focus();
-	return ;
-	
-}
-	var yn =comfirm("게시글을 수정하시겠습니까?")
-	if (yn){
-		$.ajax({
-		url:"talk/update",
-		data:$("#talk").serialize();,
-		dataType:"JSON",
-		async:ture,
-		type:"POST",
-		success: function(obj) {
-			updateTalkCallback(obj);
-			
-		},
-		error:function (xhr,status,error){}
-		});
-	}
-}
-function 	updateTalkCallback(obj){
-	if(obj!= null){
-		var result= obj.result;
-		if(result=="SUCCESS"){
-			alert("게시글이 수정되었습니다");
-			goTalklist();
-		}else{
-		alert("수정에 실패했습니다");		
-		
-		return;
-		}
-		}
-}
-
-</script>
+<title>Insert title here</title>
+</head>
 <body>
-	<div style="padding: 10px;"></div>
-	<div>
-		<h1>게시글 수정</h1>
-	</div>
-	<div>
-		<form role="form" th:object="${talkCodeVO}"
-			th:action="@{/talk/update}" method="post"></form>
-	</div>
-
-	<label for="writer" style="font-weight: bolder">작성자</label>
-	<input type="text" id="userId" name="userLd" th:value="${talk.userId}"
-		disabled="disabled">
-
-	<label for="content" style="font-weight: bolder">내용</label>
-	<textarea id="talkCont" name="talkCont" rows="15" cols="50">[[${detail.content}]]</textarea>
-	
-
-	<th>아이디</th>
-	<th>시간</th>
-	<th>댓글</th>
-	</tr>
-	</thead>
+	<!-- <div th:insert="talk/header.html" id="header"></div> -->
 
 
-	<tbody>
-		<tr th:each="talk : ${talkCode}" readonly="readonly">
-			<td th:text="${talk.talkCont}"></td>
-			<td th:text="${talk.userId}" readonly="readonly"></td>
-			<td th:text="${talk.talkDate}"></td>
-			<td th:text="${talk.talkCom}"></td>
+	<form class="form-horizontal" th:action="@{/talk/update}" method="post">
+		<table>
+			<thead>
+				<tr>
+					<th>내용</th>
+					<th>아이디</th>
+					<th>시간</th>
+					<th>댓글</th>
+				</tr>
+			</thead>
+			<tbody>
 
 
-		</tr>
+				<tr th:each="talk : ${talkupdate}">
+					<td><input name="talkCont" th:value="${talk.talkCont}"></td>
+					<td> <input readonly="readonly" name="userId" th:value="${talk.userId}"></td>
+					<td><input readonly="readonly" name="talkDate" th:value="${talk.talkDate}"></td>
+					<td><input readonly="readonly" name="talkCom" th:value="${talk.talkCom}"></td>
+					<input type="hidden" th:value="${talk.talkCode}" name="talkCode">
+				</tr>
+			</tbody>
 
-		<button type="submit" id="update">수정</button>
-	</tbody>
+		</table>
+
+		<button type="submit" > 등록</button>
+	</form>
 
 
 
-	</table>
+
+	</form>
+
+
 </body>
 </html>
+
+
+
+
+
+

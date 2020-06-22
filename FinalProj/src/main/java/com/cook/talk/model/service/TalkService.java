@@ -12,12 +12,18 @@ public interface TalkService {
 	public void insert(TalkVO talkVO);
 
 	// 수정
-	public boolean update(TalkVO talkVO);
+	public TalkVO update(TalkVO talkVO);
+	
+	//수정 가는거 
+	public void updateTalk(TalkVO talkVO);
+	
+	
 
 	// 삭제
 	public boolean delete(String talkCode);
 	
 	// 보기 
 	public TalkVO detail(String talkCode);
+	
 	
 }

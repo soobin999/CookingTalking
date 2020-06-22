@@ -5,7 +5,7 @@
 
 <mapper namespace="com.cook.talk.model.dao.AdUserDAO">
 	<select id="allSelectUserId" resultType="userVO">
-		select * from user
+		select * from user 
 	</select>
 
 	<delete id="deleteUserID" parameterType="userVO">
@@ -20,6 +20,24 @@
 		nickName = #{nickName}
 		where userId=#{userId}
 	</update>
+	
+	<select id="countPaginationUser" resultType="int">
+		select count(*)
+		from user
+	</select>
+	
+	<select id="countPaginationUserLimit" resultType="userVO">
+		select userId, userPw, nickName, birth, gender, access, auth, userPic, rcpUploads, followers, signUpRouteCode
+		from user
+	</select>
+	
+	
+	<select id="searchUser" resultType="userVO">
+		select * from user
+		where
+	 	nickName
+		LIKE CONCAT('%',#{nickName},'%')
+	</select>
 
 
 

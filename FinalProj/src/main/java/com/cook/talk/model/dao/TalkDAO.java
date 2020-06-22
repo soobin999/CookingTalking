@@ -18,8 +18,11 @@ public interface TalkDAO {
 	// 삭제
 	public int delete(String talkCode);
 
-	// 수정
-	public int update(TalkVO talkVO);
+	// 수정 불러오기
+	public TalkVO update(String talkCode);
+	
+	//수정 버튼 
+	public int updateTalk(TalkVO talkVO);
 
 	//코드 증가
 	public int selectTalkCode();
