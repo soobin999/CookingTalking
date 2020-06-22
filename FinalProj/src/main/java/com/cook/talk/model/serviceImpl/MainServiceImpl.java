@@ -10,9 +10,9 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.dao.ChefDAO;
 import com.cook.talk.model.dao.MainDAO;
+import com.cook.talk.model.dto.IndexDTO;
 import com.cook.talk.model.service.MainService;
 
 @Service
@@ -24,7 +24,7 @@ public class MainServiceImpl implements MainService {
 	private MainDAO main;
 
 	@Override
-	public List<RecipeVO> recipeList(String expl) {
+	public List<IndexDTO> recipeList(String expl) {
 
 		List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>();
 		converters.add(new FormHttpMessageConverter());
@@ -43,7 +43,6 @@ public class MainServiceImpl implements MainService {
 		for (String k:re) {
 			rcpCodeList.add(k);
 		}
-		main.recipeList(rcpCodeList);
 		
 		return main.recipeList(rcpCodeList);
 	}

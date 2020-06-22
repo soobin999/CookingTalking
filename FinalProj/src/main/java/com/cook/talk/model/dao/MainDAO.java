@@ -7,13 +7,15 @@ import org.apache.ibatis.annotations.Mapper;
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.dto.ChartDTO;
 import com.cook.talk.model.dto.ChefDTO;
+import com.cook.talk.model.dto.IndexDTO;
 import com.cook.talk.model.dto.MainDTO;
 import com.cook.talk.model.dto.RcpSDTO;
 
 @Mapper
 public interface MainDAO {
 
-	public List<RecipeVO> recipeList(List<String> repCode);
+	public List<IndexDTO> recipeList(List<String> repCode);
+	public List<IndexDTO> newRecipeList();
 	public MainDTO totalSelect();
 	public List<RcpSDTO> recipeSearch(String searchWord,String status,int page);
 	public List<String> selectTitle(String searchWord);

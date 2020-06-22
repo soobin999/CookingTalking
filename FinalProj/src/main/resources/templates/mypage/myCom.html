@@ -31,11 +31,10 @@
 		<button onclick="myCom()">내가 작성한 댓글</button>
 		<div class="sorting">
 		<form>
-		<select name="com">
-		<option value="all">-전체보기-</option>
-		<option value="onlyTalk">토크에 단 댓글</option>
-		<option value="onlyRcp">레시피에 단 댓글</option>
-		
+		<select name="com" id="comSelect">
+		<option id="allCom" value="allCom">-전체보기-</option>
+		<option id="onlyTalk" th:value="onlyTalk">토크에 단 댓글</option>
+		<option id="onlyRcp" value="onlyRcp">레시피에 단 댓글</option>
 		</select>
 		</form>
 		</div>

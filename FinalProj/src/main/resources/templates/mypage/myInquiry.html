@@ -32,11 +32,11 @@
 
 	</div>
 	</div>
-	<div class="myInq" th:method="POST">
-		<form th:action="@{/mypage/myInquiry}" id="insertMyInq"
-			class="insertMyInq" name="">
-			<input type="text" name="myInqTitle" th:class="myInqTitle" id="myInqTitle" placeholder="제목을 입력하세요"> 
-			<input type="text" name="myInqCont" th:class="myInqCont" id="myInqCont" placeholder="내용을 입력하세요">
+	<div class="myInq">
+		<form th:action="@{/mypage/inputInq}" id="insertMyInq"
+			class="insertMyInq" name="" th:method="post">
+			<input type="text" name="qnaTitle" th:class="qnaTitle" id="qnaTitle" placeholder="제목을 입력하세요"> 
+			<input type="text" name="qnaCont" th:class="qnaCont" id="qnaCont" placeholder="내용을 입력하세요">
 			<button type="submit" th:class="sendInq">제출하기</button>
 		</form>
 	</div>

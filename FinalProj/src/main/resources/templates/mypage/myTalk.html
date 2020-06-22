@@ -45,15 +45,18 @@
 	<tbody>
 <!-- 		<div class="myRecipeIng_img">레시피 사진</div>
 		<div class="myRecipeIng_title">레시피 제목</div> -->
-
+<!-- 	<td id="talkCont" name="talkCont"></td>
+	<td id="talkDate" name="talkDate"></td> -->
 	
 	<tr th:each="myTalk : ${myTalk}">
 		<td class="" th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></td>
-		<td class="" th:text=${myTalk.talkDate}></td>
+		<td class="" th:value="${myTalk.talkDate}" th:text=${myTalk.talkDate}></td>
+	
 	</tr>
 	</tbody>
 	</table>
 		</div>
 		</div>
 </body>
+
 </html>

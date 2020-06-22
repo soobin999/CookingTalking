@@ -2,9 +2,12 @@ package com.cook.talk.restController;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,13 +48,13 @@ public class AdminRestController {
 
 	@PostMapping("/admin/updateUserNickName") // 닉네임 업데이트
 	public String updateUserNickName(@ModelAttribute UserVO userVO) {
-		System.out.println(userVO.getUserId()+"userId를 불러오는자리");
+		System.out.println(userVO.getUserId() + "userId를 불러오는자리");
 		System.out.println(userVO);
-		System.out.println(userVO.getNickName()+"userName를 불러오는자리");
+		System.out.println(userVO.getNickName() + "userName를 불러오는자리");
 		aduserDAO.updateUserNickName(userVO);
 		return "수정되었습니다.";
 	}
- 
+
 	// 재료 란.
 	/*
 	 * @PostMapping("/admin/deleteIngr") // 재료 삭제 public void deleteIngr(Model
@@ -79,7 +82,15 @@ public class AdminRestController {
 
 		return "삭제되었습니다";
 	}
-
+	@PostMapping("/admin/searchUser")
+	public List<UserVO> searchUser(@RequestParam("nickName") String nickName) {
+		System.out.println(nickName);
+		aduserDAO.searchUser(nickName);
+		System.out.println(aduserDAO.searchUser(nickName));
+		return aduserDAO.searchUser(nickName);
+	}
+	
+	
 	@PostMapping("/admin/search")
 	public List<IngrVO> searchIngr(@RequestParam("ingrName") String ingrVO) {
 		System.out.println(ingrVO);
@@ -105,38 +116,43 @@ public class AdminRestController {
 
 	@PostMapping("/admin/qnaAnswer") // qna 답변
 	public String insertReply(@ModelAttribute QnAVO qna) {
-		System.out.println(qna.getUserId()+"유저 아이디");
-		System.out.println(qna.getAnswer()+"답이 입력될거에요 ");
+		System.out.println(qna.getUserId() + "유저 아이디");
+		System.out.println(qna.getAnswer() + "답이 입력될거에요 ");
 		qnaDAO.insertReply(qna);
 		return "추가되었습니다.";
 	}
 
 	@PostMapping("/admin/allSelectRecipe") // 모든 레시피 가져오기
-	public String allSelectRecipe(Model model) {
+	public String allSelectRecipe() {
 
 		return "admin";
 	}
 
 	@PostMapping("/admin/updateRecipe") // 레시피 업데이트, (수정)
-	public String updateRecipe(Model model, RecipeVO rcpUpdate) {
+	public String updateRecipe(RecipeVO rcpUpdate) {
 
 		return "admin";
 	}
 
 	@PostMapping("/admin/searchUserNickName") // 닉네임 찾아서 레시피 찾기
-	public String searchRecipeByNickName(Model model, UserVO userNickName) {
+	public String searchRecipeByNickName(UserVO userNickName) {
 
 		return "admin";
 	}
 
-	@PostMapping("/admin/BiRcpStatic") // 통계 뿌려주기위해
-	public String searchRcpByRcpCode(Model model, String rcpCode) {
-		/*
-		 * searchRcpByRcpCode, selectStaticMonths, selectStaticsAge, selectStaticsGender
-		 */
-		return "admin";
-	}
+	
+	  @GetMapping("/admin/IngrPagination") public List<IngrVO> ingrPagination(int
+	  pageNUM) {
+	  
+	  return adIngrDAO.countPaginationIngrLimit(pageNUM);
+	  
+	  }
+	 
 
-	// 재료 추가
+	@GetMapping("/admin/UserPagination")
+	public List<UserVO> userPagination(int pageNum) {
+
+		return aduserDAO.countPaginationUserLimit((pageNum-1)*10);
+	}
 
 }
