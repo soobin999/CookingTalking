@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.talk.model.dao.TalkComDAO">
+
+	<select id="getComCount" parameterType="com.cook.talk.model.VO.TalkComVO"> 
+	select count(*) from talkcom where talkComCode=#{talkComCode}
+	</select>
+	
+<!--   댓글 등록 -->
+<select id="comInsert" parameterType="com.cook.talk.model.VO.TalkComVO">
+insert into talkcom (talkComCode,talkCom,talkComDate,userId,talkCode)
+values(#{talkComCode},#{talkCom},#{talkComDate},#{userId},#{talkCode})
+</select>
+ 
+<!-- 댓글 보기  -->
+<select id="readCom" parameterType="com.cook.talk.model.VO.TalkComVO">
+select *from talkcom where talkComCode=#{talkComCode}
+</select>
+
+<!-- 삭제  -->
+<delete id="deleteCom" parameterType="Integer">
+delete form talkcom where talkComCode=#{talkComCode} 
+</delete>
+
+<!-- 댓글 수정 -->
+<update id="updateCom">
+update talkcom set talkCont=#{talkCont} where talkComCode =#{talkComCode}
+
+
+</update>
+</mapper>
