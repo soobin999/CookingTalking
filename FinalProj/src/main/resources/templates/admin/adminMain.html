@@ -52,7 +52,7 @@
 					<th>답변 유무</th>
 				</tr>
 			</thead>
-			<tbody th:each="qna:${qnaList}">
+			<tbody th:each="qna, qnaStat:${qnaList}" th:id='${qnaStat.index}'>
 				<tr>
 					<td>
 						<button type="button" class="btn" th:text="${qna.qnaTitle}"
@@ -90,7 +90,36 @@
 				</tr>
 			</tbody>
 		</table>
+		<ul>
+			<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
+				th:class="page" th:text="${num}" th:value="${num}"></a></li>
+		</ul>
+
+
 	</div>
+	<script>
+		$(document).ready(function() {
+
+			var cc = 700;
+			for (var i = 20; i < cc; i++) {
+				$('#' + i).hide();
+			}
+		});
+	</script>
+	<script>
+		$('.page').click(function(event) {
+			var k = event.target.text;
+			console.log(k);
+			for (var i = 0; i < 670; i++) {
+				$('#' + i).hide();
+			}
+			for (var i = 0; i < 20; i++) {
+				$('#' + ((parseInt(k) - 1) * 20 + parseInt(i))).show();
+				console.log(k + i);
+			}
+		});
+	</script>
+
 	<script type="text/javascript">
 		$(".insert_answer_btn").click(function() {
 			var reply = $(this).attr('id').substring(7);
@@ -130,89 +159,21 @@
 
 
 	<script>
-		$(".accordion-row").on("click", function() {
-
-			var accordionRow = $(this).next(".accordion");
-			if (!accordionRow.is(":visible")) {
-				accordionRow.show().find(".accordion-content").slideDown();
-			} else {
-				accordionRow.find(".accordion-content").slideUp(function() {
-					if (!$(this).is(':visible')) {
-						accordionRow.hide();
-					}
-				});
-			}
-		});
-
-		function slideComment() {
-			$(document).ready(function() {
-				$(".btn2").click(function() {
-					$("admin/adminMain3").load("admin/adminMain3").slideUp();
-				});
-				$(".btn1").click(function() {
-					$("adminMain3").load("admin/adminMain3").slideDown();
-				});
-			});
-
-		};
-
 		function adUserList() {
 			$('#mainTable').remove();
 			$('#basic').load("admin/adUser");
-
-			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
-					url : './admin/adUser', // url: 요청할 URL 주소
-					// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
-					type : "GET",
-
-					success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
-						alert("회원정보를 불러왔습니다.");
-
-					},
-					error : function() {
-						alert("실패");
-					}
-				}); */
 
 		};
 		//고객요청함 불러오기
 		function adQnaList() {
 			$('#mainTable').remove();
 			$('#basic').load("admin/adQnaList");
-			/* 		$.ajax({ // ajax 유틸리티가 이하의 내용을 확인
-						url : './admin/adQnaList', // url: 요청할 URL 주소
-						// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
-						type : "GET",
-
-						success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
-							alert("고객요청함을 불러왔습니다.");
-
-						},
-						error : function() {
-							alert("실패");
-						}
-					}); */
 
 		};
 		//재료 추가함 불러오기 		
 		function adIngrList() {
 			$('#mainTable').remove();
 			$('#basic').load("admin/adIngrList");
-			/* $.ajax({ // ajax 유틸리티가 이하의 내용을 확인
-				url : './admin/adIngrList2', // mapping 한 주소
-				// data: 요청할 때 서버에 보낼 자바스크립트 객체 맵이나 문자열 형식의 데이터
-				type : "GET",
-
-				success : function() { // success: 요청이 성공했을 때 호출할 콜백 함수
-					alert("재료추가함을 불러왔습니다.");
-					$('#qnaListTable').remove();
-					$('#basic').load("admin/adIngrList2"); //return 값, html의 파일명
-
-				},
-				error : function() {
-					alert("실패");
-				}
-			}); */
 
 		};
 	</script>

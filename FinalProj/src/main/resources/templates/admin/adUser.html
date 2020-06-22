@@ -57,18 +57,18 @@
 					<th>유저 팔로워 수</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody th:id="tbody">
 
-				<tr th:each="user : ${UserList}">
+				<tr th:each="user,index:${UserList}" th:id='${index.index}'>
 					<td><button th:class="delete_btn" th:value='${user.userId}'>삭제하기</button></td>
 
 
 					<td><input type="text" th:class="C_enter_update_Id"
-						th:id="|enter_update_ID${userStat.index}|" name="userId"
+						th:id="|enter_update_ID${index.index}|" name="userId"
 						th:value="${user.userId}" readonly></td>
 					<td><input type="text"
-						th:id="|enter_update_nickName${userStat.index}|"
-						th:name="nickName" th:value="${user.nickName}"> </td>
+						th:id="|enter_update_nickName${index.index}|" th:name="nickName"
+						th:value="${user.nickName}">
 					<td th:text="${user.birth}">유저 생일</td>
 					<td th:text="${user.gender}">유저 성별</td>
 					<td th:text="${user.access}">유저 or 관리자 확인</td>
@@ -79,8 +79,34 @@
 				</tr>
 			</tbody>
 		</table>
+		<ul>
+			<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
+				th:class="page" th:text="${num}" th:value="${num}"></a></li>
+		</ul>
 
 	</div>
+		<script>
+			$(document).ready(function() {
+	
+				var cc = 700;
+				for (var i = 20; i < cc; i++) {
+					$('#' + i).hide();
+				}
+			});
+		</script>
+	<script>
+		$('.page').click(function(event) {
+			var k = event.target.text;
+			console.log(k);
+			for (var i = 0; i < 670; i++) {
+				$('#' + i).hide();
+			} 
+			for (var i = 0; i < 20; i++) {
+				$('#' + (((parseInt(k) - 1) * 20 +i))).show();
+				console.log((parseInt(k) - 1) * 20 +i);
+			}
+		});
+	</script>
 	<script>
 		$('#btn_adUserSearch')
 				.on(
@@ -90,6 +116,7 @@
 							var input = document
 									.getElementById("searchUserList").value;
 
+							alert(document.getElementById("searchUserList").value); //장어가 나오긴한다. 하지만 그이상 넘어가지 않는다.
 
 							var searchUSER = document
 									.getElementById("searchUserList").value
