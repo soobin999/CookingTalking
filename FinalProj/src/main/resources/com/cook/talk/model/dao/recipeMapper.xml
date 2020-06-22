@@ -5,7 +5,7 @@
 <mapper namespace="com.cook.talk.model.dao.RecipeDAO">
 
    
-   <select id="getIngrName" parameterType="String" resultType="ingrVO">
+  <!--  <select id="getIngrName" parameterType="String" resultType="ingrVO">
    SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}
    <if test='!chosung1.equals("하")'>AND ingrName<![CDATA[<]]>#{chosung2}</if>
    </select>
@@ -32,11 +32,11 @@
    <select id="countIngrInMyRefri" parameterType="int" resultType="int">
    </select>
 
-   <resultMap id="recipeDTO" type="RecipeDTO">
+   <resultMap id="recipeDTO" type="recipeDTO">
       <id property="rcpCode" column="rcpCode" />
       <result property="nickName" column="nickName" />
    
-      <association property="recipeVO" javaType="RecipeVO">
+      <association property="recipeVO" javaType="recipeVO">
          <result column="rcpCode" property="rcpCode" />
          <result column="rcpTitle" property="rcpTitle" />
          <result column="rcpPic"  property="rcpPic" />
@@ -49,7 +49,7 @@
          <result column="rcpExpl" property="rcpExpl" />
       </association>
    
-      <association property="typeCatVO" javaType="TypeCatVO">
+      <association property="typeCatVO" javaType="typeCatVO">
          <result column="cookSituaton" property="cookSituation" />
          <result column="cookMethod" property="cookMethod" />
          <result column="cookType" property="cookType" />
@@ -74,7 +74,7 @@
    
    <select id="recipeCount" resultType="int">
    SELECT count(*) from rcp
-   </select>
+   </select> -->
    
 
       
