@@ -6,8 +6,9 @@ import lombok.Data;
 public class TypeCatVO {
 
 	private String typeCode;
+	private String cookType;
 	private String cookSituation;
 	private String cookMethod;
-	private String cookType;
+	
 
 }

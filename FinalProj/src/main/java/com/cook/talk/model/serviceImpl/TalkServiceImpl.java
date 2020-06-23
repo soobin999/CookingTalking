@@ -58,11 +58,5 @@ public class TalkServiceImpl implements TalkService {
 	public TalkVO detail(String talkCode) {
 		return talkDAO.detail(talkCode);
 	}
-	/*
-	 * @Override public TalkVO update(String talkCode) {
-	 * 
-	 * return talkDAO.update(talkCode);
-	 * 
-	 * }
-	 */
+	
 }

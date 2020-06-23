@@ -36,15 +36,14 @@ public interface RecipeDAO {
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
 
-	//레시피 총갯수
+	//레시피 총갯수 카운팅
 	public int recipeCount();
 	
 	//레시피 글보기
-	public RecipeDTO selectRcptpView(String rcpCode, String typeCode/* String connectCode, String rcpTagCode*/);
-	//RecipeDTO.selectRcptpView(rcpCode, typeCode);
-/*	RecipeDTO.selectRcpIngrView(connectCode, rcpCode);
-	RecipeDTO.selectRcpOrderView(rcpCode);
-	RecipeDTO.SelectTagView(rcpTagCode);*/
+	public RecipeDTO selectRcptpView(String rcpCode);
+	public List<RecipeDTO> selectRcpIngrView(String rcpCode);
+	public List<RcpOrderVO> selectRcpOrderView(String rcpCode);
+	public List<RcpIngrVO> SelectTagView(String rcpTagCode); //List로 가져오기
 		
 		
 	//rcpCode 자동생성

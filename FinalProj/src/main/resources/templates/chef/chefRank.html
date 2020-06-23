@@ -24,6 +24,9 @@ border:1px solid grey;
 width:950px;
 left:8%;
 }
+.pull-right{
+margin-top:20px;
+}
 </style>
 <!-- </th:block> -->
 </head>
@@ -58,12 +61,11 @@ left:8%;
 
 		<ul class="my_nav2">
 			<li id="" th:class="${status}!='new' ?active :'' ">
-			<a href="/chefRank" id="ranking_tab_title">소식받기 순위</a></li>
+			<a th:href="@{/chefRank/rcpUploads}" id="ranking_tab_title">소식받기 순위</a></li>
 			<li id="" th:class="${status}==new ?active : '' "><a href='/chefRank/new'>새로운쉐프</a></li>
 		</ul>
 
 		<div class="my_nav2_sub">
-			<p id="ranking_tab_explain">누적 기준 소식받기 많은 쉐프순</p>
 			<div class="dropdown clearfix pull-right">
 					<i class="fas fa-list"></i> 
 					<a role="menuitem" 
