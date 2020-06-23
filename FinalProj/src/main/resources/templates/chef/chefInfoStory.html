@@ -89,7 +89,7 @@ body {
 			</div>
 
 			<ul class="cont_list st3">
-				<li><a href="/recipe/6927176" class="thumbnail"
+				<li><a th:href="'/talk/detail/'+${story.talkCode}" class="thumbnail"
 					th:each='story,index:${story}' th:id="'story'+${index.index}">
 						<img src="http://placehold.it/198x130/"
 						style="width: 200px; height: 130px;"> <!-- ${recipe.rcpTitle} -->
