@@ -22,14 +22,19 @@ public class MyInqController {
 	
 	
 	@GetMapping("/mypage/myInquiry")
-	public String myInquiry(Model model, @ModelAttribute QnAVO qnAVO, String qnaTitle, String qnaCont) {
+	public String myInquiry(Model model, String qnaTitle, String qnaCont) {
+		
 		return "/mypage/myInquiry";
 	}
 	
-	@PostMapping("/mypage/myInquiry")
-	public String myInquiryProc(QnAVO qnAVO, String qnaTitle, String qnaCont) {
-		mypageService.rqMyInq(qnaTitle, qnaCont);
-		return "redirect:myInquiry";
+	@PostMapping("/mypage/inputInq")
+	public String myInquiryProc(@ModelAttribute QnAVO qnAVO, Model model) {
+		mypageService.rqMyInq(qnAVO);
+		System.out.println("mypageService.rqMyInq(qnAVO)");
+		
+		model.addAttribute("myInqList", mypageDAO.getmyInq());
+		
+		return "/mypage/myInquiryList";
 	}
 	
 	@GetMapping("/mypage/myInquiryList")

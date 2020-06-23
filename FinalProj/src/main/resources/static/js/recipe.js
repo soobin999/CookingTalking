@@ -2,7 +2,8 @@ $(function() {
 
    selectedIngr();
    searchedIngr();
-  // chosung();
+
+   chosung();
    $('#ingrSearchInRefri').on('change', ingrSearch);
    $('#btnIngrSearch').on('click', ingrSearch);
    enterkey();
@@ -10,7 +11,7 @@ $(function() {
    clickOffVer2();
 })
 
-/*function chosung() {
+function chosung() {
 
    $(".chosung").click(function() {
       var value = $(this).attr('value');
@@ -37,7 +38,7 @@ $(function() {
 			}
 		});
 	});
-}*/
+}
 
 function enterkey() {
    $('#ingrSearchInRefri').on('keydown',function(event){

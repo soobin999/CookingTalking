@@ -18,6 +18,10 @@ public interface AdUserDAO {
 
 	public void updateUserNickName(UserVO userVO);
 
-	public void searchUserByEmail(UserVO userEmail);
+	public List<UserVO> searchUser(String nickName);
 
+	public int countPaginationUser();
+	 
+	public List<UserVO> countPaginationUserLimit(int pageNum);
+	
 }

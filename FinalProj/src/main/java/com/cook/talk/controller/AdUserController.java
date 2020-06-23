@@ -19,9 +19,12 @@ public class AdUserController {
 
 	@GetMapping("/admin/adUser") // 모든 qna 뿌려주기 위해
 	public String allSelectUserId(Model model) {
-		List<UserDTO> users = aduserDAO.allSelectUserId();
-		model.addAttribute("UserList", users);
+		List<UserVO> users = aduserDAO.countPaginationUserLimit(1);
 		System.out.println(users);
+		
+		model.addAttribute("UserList", users);
+		model.addAttribute("IngrList",Math.ceil(aduserDAO.countPaginationUser()/20.0));
+		System.out.println(Math.ceil(aduserDAO.countPaginationUser()/20.0));
 		return "admin/adUser";
 	}
 

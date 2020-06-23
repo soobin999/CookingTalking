@@ -1,6 +1,7 @@
 package com.cook.talk.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -49,11 +50,9 @@ public class TalkContoller {
 	// 등록 버튼
 	@PostMapping("/insert.do")
 	public String insertTalk(Principal principal, TalkVO talkVO) {
-		// System.err.println(principal.toString());
 		talkVO.setUserId(principal.getName());
 		talkservice.insert(talkVO);
 		return "redirect:/talk/list";
-
 	}
 
 	// 상세 페이지 이동
@@ -63,34 +62,23 @@ public class TalkContoller {
 		return "talk/talkDetail";
 	}
 
-//수정 
-	@PostMapping("/update")
-	public String update(TalkVO talkVO, RedirectAttributes rttr) {
-		if (talkservice.update(talkVO)) {
-			rttr.addFlashAttribute("result", "success");
-		}
+	// 수정페이지 이동
+	@RequestMapping(value = "/updatePage", method = RequestMethod.GET)
+	public String updatePage(TalkVO talkVO, Model model) {
+		model.addAttribute("talkupdate", talkservice.detail(talkVO.getTalkCode()));
+		return "talk/update";
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateTalk(Principal principal, TalkVO talkVO) {
+		talkVO.setUserId(principal.getName());		
+		talkservice.updateTalk(talkVO);
 		return "redirect:/talk/list";
 	}
-//수정화면 이동 
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String updateTalk(@RequestParam("talkVO") TalkVO talkVO, Model model) {
-		model.addAttribute("talkVO", talkservice.update(talkVO));
-		return "/talk/update";
-	}
-
-	/*
-	 * @RequestMapping(value = "/update", method = RequestMethod.POST) public String
-	 * update(TalkVO talkVO,RedirectAttributes rttr) { if
-	 * (talkservice.update(talkVO)) { rttr.addFlashAttribute("result", "success"); }
-	 * return "redirect:/talk/list";
-	 * 
-	 * }
-	 */
 
 //삭제 
-
-	@PostMapping("/delete")
-	public String delete(@RequestParam("talkCode") String talkCode, RedirectAttributes rttr) {
+	@GetMapping("/delete/{talkCode}")
+	public String delete(@PathVariable String talkCode, RedirectAttributes rttr) {
 		if (talkservice.delete(talkCode)) {
 			rttr.addFlashAttribute("result", "success");
 		}

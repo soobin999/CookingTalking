@@ -2,12 +2,9 @@ package com.cook.talk.model.VO;
 
 import java.sql.Date;
 
-import org.apache.ibatis.type.Alias;
-
 import lombok.Data;
 
 @Data
-@Alias("recipeVO")
 public class RecipeVO {
 
 	private String rcpCode;

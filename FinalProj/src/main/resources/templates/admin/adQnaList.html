@@ -28,7 +28,7 @@
 					<th>답변 유무</th>
 				</tr>
 			</thead>
-			<tbody th:each="qna:${adQnaList}">
+			<tbody th:each="qna, qnaStat:${adQnaList}" th:id='${qnaStat.index}'>
 				<tr>
 					<td>
 						<button type="button" class="btn" th:text="${qna.qnaTitle}"
@@ -66,9 +66,36 @@
 				</tr>
 			</tbody>
 		</table>
+		<ul>
+			<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
+				th:class="page" th:text="${num}" th:value="${num}"></a></li>
+		</ul>
+
 	</div>
 </body>
 <!--  		var user_Id = document.getElementsByName("userId");  -->
+<script>
+	$(document).ready(function() {
+
+		var cc = 700;
+		for (var i = 20; i < cc; i++) {
+			$('#' + i).hide();
+		}
+	});
+</script>
+<script>
+	$('.page').click(function(event) {
+		var k = event.target.text;
+		console.log(k);
+		for (var i = 0; i < 670; i++) {
+			$('#' + i).hide();
+		}
+		for (var i = 0; i < 20; i++) {
+			$('#' + ((parseInt(k) - 1) * 20 + parseInt(i))).show();
+			console.log(k + i);
+		}
+	});
+</script>
 <script type="text/javascript">
 	$(".insert_answer_btn").click(function() {
 		var reply = $(this).attr('id').substring(7);

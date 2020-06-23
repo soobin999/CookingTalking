@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,12 +39,12 @@ public class MypageServiceImpl implements MypageService{
 	}
 	
 	@Override
-	public String modifyUserPic(UserVO userVO, @RequestParam("userPic") MultipartFile file) {
+	public String modifyUserPic(String userPic, @RequestParam("userPic") MultipartFile file) {
 
-		String PicFromFolder = "";
+		String save = "D:/git/cookingtalking/FinalProj/src/main/resources/static/userImg";
 		
 		System.out.println("file:"+file);
-		System.out.println("userVO"+userVO);
+		
 		
 		try {
 			
@@ -52,10 +56,12 @@ public class MypageServiceImpl implements MypageService{
 			e.printStackTrace();
 		}
 		
-		mypageDAO.modifyUserPic(userVO);
+		mypageDAO.modifyUserPic(userPic);
 		return "정상적으로 등록되었습니다";
 	}
 
+	
+	
 	@Override
 	public List<MypageDTO> getMyRecipeIng() {
 		List<MypageDTO> getmyRecipeIng = mypageDAO.getMyRecipeIng();
@@ -93,8 +99,8 @@ public class MypageServiceImpl implements MypageService{
 	}
 	
 	@Override
-	public List<String> getSearchAllMyCom(String talkCom, String talkDate) {
-		List<String> getSearchAllMyCom = mypageDAO.getSearchAllMyCom(talkCom, talkDate);
+	public List<MypageDTO> getSearchAllMyCom(String talkCom) {
+		List<MypageDTO> getSearchAllMyCom = mypageDAO.getSearchAllMyCom(talkCom);
 		return getSearchAllMyCom;
 	}
 
@@ -112,11 +118,11 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public String rqMyInq(String qnaTitle, String qnaCont) {
-		 int qnACount = qnADAO.selectQnACode() +1;
+	public void rqMyInq(QnAVO qnAVO) {
 			/* recipe.setRcpCode("Q-" + qnACount); */
-		String myInq = mypageDAO.rqMyInq(qnaTitle, qnaCont);
-		return myInq;
+		int qnACode = mypageDAO.selectQnACode() + 1;
+		qnAVO.setQnaCode("Q-"+qnACode);
+		mypageDAO.rqMyInq(qnAVO);
 	}
 
 	@Override
@@ -126,23 +132,35 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public List<String> getSearchMyFollow(String followChef) {
+	public List<MypageDTO> getSearchMyFollow(String followChef) {
 		return mypageDAO.getSearchMyFollow(followChef);
 	}
 
 	@Override
-	public List<String> getSearchMyTalk(String talkCont) {
+	public List<MypageDTO> getSearchMyTalk(String talkCont) {
 		return mypageDAO.getSearchMyTalk(talkCont);
 		
 	}
 
 	@Override
-	public List<String> getSearchMyScraped(String rcpTitle, String rcpPic) {
-		return mypageDAO.getSearchMyScraped(rcpTitle, rcpPic);
+	public List<MypageDTO> getSearchMyScraped(String rcpTitle) {
+		return mypageDAO.getSearchMyScraped(rcpTitle);
 	}
 
+	@Override
+	public List<MypageDTO> getSearchTalkCom(String talkCom) {
+		
+		return mypageDAO.getSearchTalkCom(talkCom);
+	}
 
-	
+	@Override
+	public List<MypageDTO> getSearchRcpCom(String rcpCom) {
+			return mypageDAO.getSearchRcpCom(rcpCom);
+	}
 
+	@Transactional
+	public void deleteRcp(String rcpCode) {
+		mypageDAO.deleteRcp(rcpCode);
+	}
 
 }

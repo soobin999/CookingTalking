@@ -14,12 +14,27 @@
 body {
 	background: white;
 }
+.pagingNum{
+display:inline-block;
+margin:10px;
+}
+.con{
+text-align:center;
+}
+.list_ranking2{
+width:70px;
+}
+.mag_t_10{
+text-align:center;}
+#coco {
+	border:1px solid #D8D8D8;
+}
 </style>
 </th:block>
 
 <div layout:fragment='content'>
 
-	<div class='container'>
+	<div class='container coco' th:id='coco'>
 		<div class="chef_list4_in">
 			<div th:class="list_lump" th:each='chef,index:${chefDetail}'>
 				<div th:class="list_ranking2">
@@ -53,13 +68,13 @@ body {
 		<div class="my_tabs">
 			<ul class="nav nav-tabs nav-justified" style="position: relative;">
 				<li role="presentation" class="active"><a
-					href="/profile/recipe.html?uid=jun8707"><i
+					th:href="'/chefInfo/1/'+${chefDetail.userVO.nickName}"><i
 						class="fas fa-utensils"></i> 레시피</a></li>
 				<li role="presentation"><a
 					href="/profile/recipe_comment.html?uid=jun8707"><i
 						class="fas fa-comments"></i>댓글</a></li>
-				<li role="presentation"><a
-					href="/profile/talk.html?uid=jun8707"><i
+				<li role="presentation"><a th:href="'/chefInfo/Story/'+${chefDetail.userVO.nickName}"
+					 th:id='story'><i
 						class="fas fa-user-friends"></i> 스토리</a></li>
 			</ul>
 		</div>
@@ -79,12 +94,16 @@ body {
 							<p class="jq_elips" th:text="'by '+ ${chefDetail.userVO.nickName}"></p>
 						</div>
 				</a></li>
-				<li th:each="num: ${#numbers.sequence(1,totalPage)}"><a
-					th:text="${num}" th:href="'/chefInfo/'+${num}" th:value="${num}"></a>
-				</li> 
+				<div th:class='con'>
+				<div th:each="num: ${#numbers.sequence(1,totalPage)}" th:class="pagingNum"><a
+					th:text="${num}" th:href="'/chefInfo/'+${num}+'/'+${chefDetail.userVO.nickName}" th:value="${num}" style="color:#FF8000;"></a>
+				</div>
+				</div> 
 			</ul>
 		</div>
 	</div>
+	
+	
 	<script>
 		$('#btnAddFriend').click(function() {
 			
