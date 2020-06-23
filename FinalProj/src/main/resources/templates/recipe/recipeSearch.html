@@ -20,6 +20,20 @@ padding:0 0 0 10px;
 boder: 0;
 float: left;
 }
+.pagingNum{
+display:inline-block;
+margin:10px;
+}
+.con{
+text-align:center;
+}
+.rcp_m_list2{
+width:1500px;
+margin:0 0 0 200px;
+}
+.rcp_m_list2 .thumbnail_over{
+left:16px;
+}
 </style>
 <meta charset="UTF-8">
 <title id='pageTitle'>Cooking Talking</title>
@@ -51,14 +65,11 @@ float: left;
 				</a>
 			</div>
 		</div>
-
 	</div>
-	<div th:id="pagingDiv">
-	<ul th:id="paging">
-		<li th:each="num: ${#numbers.sequence(1,totalPage)}" th:class="pagingClass"><a
-			th:text="${num}"
-			th:href="'/recipeSearch/'+${status}+'/'+${num}+'?searchWord='+${searchWord}"
-			th:value="${num}"></a></li>
-	</ul></div>
+	<div th:class='con'>
+				<div th:each="num: ${#numbers.sequence(1,totalPage)}" th:class="pagingNum"><a
+					th:text="${num}" th:href="'/recipeSearch/'+${status}+'/'+${num}+'?searchWord='+${searchWord}" th:value="${num}" style="color:#FF8000;"></a>
+				</div>
+				</div> 
 </div>
 </html>

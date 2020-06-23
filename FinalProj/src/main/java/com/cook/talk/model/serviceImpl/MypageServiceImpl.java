@@ -41,7 +41,7 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public String modifyUserPic(String userPic, @RequestParam("userPic") MultipartFile file) {
 
-		String PicFromFolder = "C:/git/cookingtalking/FinalProj/src/main/resources/static/jmjm/";
+		String save = "D:/git/cookingtalking/FinalProj/src/main/resources/static/userImg";
 		
 		System.out.println("file:"+file);
 		
@@ -60,6 +60,8 @@ public class MypageServiceImpl implements MypageService{
 		return "정상적으로 등록되었습니다";
 	}
 
+	
+	
 	@Override
 	public List<MypageDTO> getMyRecipeIng() {
 		List<MypageDTO> getmyRecipeIng = mypageDAO.getMyRecipeIng();
@@ -157,7 +159,6 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Transactional
-	@Override
 	public void deleteRcp(String rcpCode) {
 		mypageDAO.deleteRcp(rcpCode);
 	}

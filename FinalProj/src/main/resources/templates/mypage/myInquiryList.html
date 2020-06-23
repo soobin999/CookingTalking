@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>마이페이지(정민)</title>
+<title id='pageTitle'>마이페이지(정민)</title>
 <style type="text/css"></style>
 </head>
 <body>
@@ -10,15 +10,13 @@
 	<script src="/js/mypage.js"></script>
 
 	<!-- 사진 및 계정 정보 -->
-			<div th:class="uploadPicOfUser">
-			<form action="" method="POST" enctype="multipart/form-data">
-				<input type="file" name="picOfUser" required>
-				<button type="submit">변경하기</button>
-			</form>
+	<div id="myPageMain">
+	
+	<div th:class="uploadPicOfUser">
+				<button onclick="window.open('/mypage/userPic','myPic','width=300px, height=300px, location=no, status=no, scrollbars=no');">사진변경하기</button>
 		</div>
 	<a href="/userModify.html">회원 정보 수정</a>
 	
-	<div id="myPageMain">
 	<div class="myMenu">
 	<button onclick="myRecipe()">레시피</button>
 	<button onclick="myFrequent()">즐겨찾기</button>
@@ -30,7 +28,7 @@
 		<button onclick="myInquiry()">문의 하기</button>
 		<button onclick="myInquiryList()">내가 문의한 글</button>
 	</div>
-	</div>
+	
 	<div class="myInquiry">
 	<table>
 	<tbody>
@@ -43,10 +41,13 @@
 		<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
 		<td th:id="myQnACont" th:value="${myInqList.qnaCont}"></td>
 		
-		<td th:id="answer" th:value="${myInqList.answer}"></td>
+		<td><a th:href="@{mypage/ans/{qnaCode}(qnaCode=${myInqList.qnaCode})}" th:id="qnaAns" th:value="${myInqList.answer}"></a></td>
+		<td th:id="showAns"></td>
+		
 	</tr>
 	</tbody>
 	</table>
+		</div>
 		</div>
 </body>
 </html>

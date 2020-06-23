@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.dao.RecipeDAO;
@@ -57,34 +56,39 @@ public class RecipeController {
 		return "recipe/newList";
 	}
 
-	@GetMapping("recipe/recipeView") 
-	public String getRecipeView(@RequestParam(value="rcpCode", required=false) String rcpCode, String typeCode, 
-			/*String connectCode, String rcpTagCode,*/ Model model) {
-		
-		model.addAttribute("recipeDTO", recipeService.getRecipeView(rcpCode, typeCode /*connectCode, rcpTagCode*/));
-	//	model.addAttribute("rcpOrderView", recipeService.rcpOrderView(rcpCode));
-	//	model.addAttribute("rcpIngrView", recipeService.rcpIngrView(rcpingrCode));
-	//	model.addAttribute("tagView", recipeService.tagView());
+	@GetMapping("recipe/view") 
+	public String getRecipeView(String rcpCode, String rcpTagCode, Model model) {
+		model.addAttribute("recipeDTO", recipeDAO.selectRcptpView(rcpCode));
+		log.info(recipeDAO.selectRcptpView(rcpCode));
+		model.addAttribute("rcpIngrView", recipeDAO.selectRcpIngrView(rcpCode));
+		log.info(recipeDAO.selectRcpIngrView(rcpCode));
+		model.addAttribute("rcpOrderView", recipeDAO.selectRcpOrderView(rcpCode));
+		log.info(recipeDAO.selectRcpOrderView(rcpCode));
+		model.addAttribute("tagView", recipeDAO.SelectTagView(rcpTagCode));
+		log.info(recipeDAO.SelectTagView(rcpTagCode));
 		return "recipe/recipeView";
-		
-	//	log.info("recipe/recipeView"); 
+
 }
 
-	@GetMapping("recipe/insertRecipe")
+	@GetMapping("recipe/insert")
 	public String insertRecipe(@ModelAttribute RecipeDTO recipeDTO) {
 		return "recipe/insertRecipe";
 	}
 
-	@PostMapping("recipe/insertRecipeProc")
+	@PostMapping("recipe/insertProc")
 	public String insertRecipeProc(/* @RequestParam("file") MultipartFile multipartfile, */ 
-			RecipeDTO recipeDTO) {
+		boolean registerStatus,	RecipeDTO recipeDTO) {
 		BasicConfigurator.configure(); //log4j 오류처리
-		recipeService.insertRecipeProc(true,
+		recipeService.insertRecipeProc(registerStatus,
 				 recipeDTO.getRecipeVO(), recipeDTO.getTypeCatVO(),
 				recipeDTO.getRcpIngrVO(), recipeDTO.getRcpOrderVO(), recipeDTO.getTagVO());
 
 		return "recipe/insertRecipe";
 	}
 
+	@PostMapping("recipe/modify")
+	public String modifyRecipe(RecipeDTO recipeDTO) {
+		return "";
+	}
 
 }

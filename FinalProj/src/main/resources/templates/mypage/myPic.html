@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>프로필 사진 변경하기</title>
+<title id='pageTitle'>프로필 사진 변경하기</title>
 <style type="text/css"></style>
 </head>
 <body>
@@ -13,13 +13,11 @@
 			<div th:class="uploadPicOfUser">
 			<form name="userPicForm" action="/mypage/modifyUserPic" method="POST" enctype="multipart/form-data">
 				<input id="file" type="file" name="file" required>
-				<input type="button" value="변경하기1" onclick="selfclose();">
+				<input type="button" value="변경하기" onclick="selfclose();">
 			</form>
 		</div>
 		
 		<script>
-		
-		
 	
 		function selfclose(){
 			

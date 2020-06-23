@@ -59,12 +59,14 @@ public class MainController {
 	}
 
 	@GetMapping("/recipeSearch/{status}/{page}")
-	public String recipeSearch(Model model, String searchWord, @PathVariable String status, @PathVariable int page) {
-		model.addAttribute("searchRecipe", maindao.recipeSearch(searchWord, status, (page - 1) * 20));
-		model.addAttribute("totalRecipe", maindao.countRecipe(searchWord, status));
-		model.addAttribute("totalPage", (Math.ceil((maindao.countRecipe(searchWord, status) / 20.0))));
-		model.addAttribute("searchWord", searchWord);
-		model.addAttribute("status", status);
+	public String recipeSearch(Model model, String searchWord,@PathVariable String status,@PathVariable 
+			int page) {
+		model.addAttribute("searchRecipe",maindao.recipeSearch(searchWord,status,(page-1)*20));
+		model.addAttribute("totalRecipe",maindao.countRecipe(searchWord));
+		model.addAttribute("totalPage",(Math.ceil((maindao.countRecipe(searchWord)/20.0))));
+		model.addAttribute("searchWord",searchWord);
+		model.addAttribute("status",status);
+
 		return "/recipe/recipeSearch";
 	}
 
@@ -80,6 +82,7 @@ public class MainController {
 		model.addAttribute("gender", maindao.selectGender(rcpCode));
 		model.addAttribute("birth", maindao.selectBirth(rcpCode));
 		model.addAttribute("month", maindao.selectMonth(rcpCode));
+	
 		return "/main/chart";
 	}
 }

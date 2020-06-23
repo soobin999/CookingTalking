@@ -32,11 +32,6 @@ public interface RecipeService {
 	public int recipeCount();
 
 	
-	//레시피 글보기
-	public RecipeDTO getRecipeView(String rcpCode, String typeCode
-			/*String connectCode, String rcpTagCode*/);
-	
-
 	// 레시피 글등록
 	public void insertRecipeProc(/* MultipartFile file */ 
 			boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
