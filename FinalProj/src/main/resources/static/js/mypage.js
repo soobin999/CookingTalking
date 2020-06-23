@@ -6,15 +6,25 @@ $(function(){
 function answer(){
 	
 
-	$('#qnaAns').each(function(index){
+	$('.qnaAns').each(function(index){
 
-		var ans = $('#qnaAns').val();
+		var ans = $(this).data('answer');
+		var ansId = $(this).data('id');
+		console.log(ans)
 		
 		if(ans != null){
-			$('#qnaAns').append("답변완료");
-		} else {
-			$('#qnaAns').append("답변미등록");
+			$('#' + ansId).append("답변완료");
 		}
+		
+		showAns('#' + ansId)
+	})
+	
+}
+
+function showAns(showTarget){
+	$(showTarget).on('click', function(e){
+		var showItem = $(e.target).closest('.myInq-list').find('#showAns');
+		showItem.text($(e.target).data('answer'))
 	})
 }
 
@@ -309,40 +319,4 @@ function sendInq(){
 		}
 	})
 	
-}
-
-function showAns(){
-	
-	$('#answer').on('click', function(){
-		
-/*		var myQnACont = $('#myQnACont').innerText();
-		var answer = $('#answer').val();*/
-		
-		
-		$.ajax({
-			type : "POST",
-			url : "/mypage/ans/{qnaCode}",
-			data : {qnaCode : key},
-			success : function(data) {
-				var searchedAllCom;
-				var result = $('#myActivity');
-				/*$('#myAllComMain').remove();*/
-				$.each(data, function(index, value){
-					console.log(data);
-					searchedAllCom = '<div th:id="myAllComMain"><tr><td>' + data[index].talkCom
-					+ '</td><td>' + data[index].talkComDate
-					+ '</td></tr><br></div>'
-					console.log("data.talkCom:"+value.talkCom);
-					console.log("data.talkComDate:"+value.talkComDate);
-					result.append(searchedAllCom);
-				});
-			},
-			error : function(){
-				alert("myAllComSearch Error");
-			}
-		});
-		
-		$('#showAns').append("${myInqList.answer}");
-		
-	})
 }

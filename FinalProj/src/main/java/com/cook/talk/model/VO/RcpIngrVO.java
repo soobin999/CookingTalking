@@ -1,7 +1,10 @@
 package com.cook.talk.model.VO;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.Data;
 
+@Alias("rcpIngrVO")
 @Data
 public class RcpIngrVO {
 
