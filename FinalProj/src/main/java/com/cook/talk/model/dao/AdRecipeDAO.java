@@ -15,7 +15,7 @@ public interface AdRecipeDAO {
 
 	public void updateRecipe(RecipeVO rcpUpdate);
 
-	public List<RecipeVO> searchRecipeByNickName(UserVO userNickName);
+	public List<RecipeVO> searchRecipeById(String userId);
 
 	public List<RecipeVO> searchRcpByRcpCode(String rcpCode);
 

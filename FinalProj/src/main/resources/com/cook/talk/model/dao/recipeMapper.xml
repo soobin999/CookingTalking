@@ -5,6 +5,8 @@
 <mapper namespace="com.cook.talk.model.dao.RecipeDAO">
 
    
+
+  
       <select id="getIngrName" parameterType="String"
       resultType="ingrVO">
       SELECT ingrName FROM recipe.ingr WHERE ingrName>=#{chosung1}

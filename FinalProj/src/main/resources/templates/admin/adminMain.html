@@ -25,13 +25,13 @@
 		<div class="w3-dropdown-hover">
 			<button class="w3-button w3-black">레시피</button>
 			<div class="w3-dropdown-content w3-bar-block w3-border">
-				<a href="#" class="w3-bar-item w3-button">레시피 리스트</a> <a href="#"
-					class="w3-bar-item w3-button">레시피 통계</a>
+				<button onclick="adRecipeList()" class="w3-bar-item w3-button">레시피
+					리스트</button>
+				<a th:href="@{/googleChart}" class="w3-bar-item w3-button">레시피
+					통계</a>
 			</div>
 		</div>
 	</div>
-
-
 	<div class="adSelectPage" id="adSelectPage">
 		<button onclick="adIngrList()">재료페이지</button>
 	</div>
@@ -175,6 +175,12 @@
 			$('#mainTable').remove();
 			$('#basic').load("admin/adIngrList");
 
+		};
+		
+		//레시피 모두 보여주기 가져오기 
+		function adRecipeList() {
+			$('#mainTable').remove();
+			$('#basic').load("admin/listRcp");
 		};
 	</script>
 </body>

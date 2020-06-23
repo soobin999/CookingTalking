@@ -36,12 +36,13 @@
 		<div class="myRecipeIng_title">레시피 제목</div> -->
 
 	
-	<tr th:each="myInqList : ${myInqList}">
+	<tr th:each="myInqList : ${myInqList}" class="myInq-list">
 		<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}></td>
 		<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
-		<td th:id="myQnACont" th:value="${myInqList.qnaCont}"></td>
+		<td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td>
+		<td><a class="qnaAns" th:id="${myInqList.qnaCode}" th:data-id="${myInqList.qnaCode}" th:data-answer="${myInqList.answer}" style="cursor: pointer;"></a></td>
+		<td th:id="showAns"></td>
 		
-		<td th:id="answer" th:value="${myInqList.answer}"></td>
 	</tr>
 	</tbody>
 	</table>
