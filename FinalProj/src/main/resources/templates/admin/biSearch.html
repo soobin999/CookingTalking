@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원정보 로드하기</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+	<div class="searchIngr_for_table" id="allIngrPage">
+		<form name="" method="get">
+			<input type="text" id="searchRcpCode" name="searchIngrList"
+				th:value="*{searchIngrList}" placeholder="재료를 입력하시오">
+
+			<button class="btn search-IngrList" type="button"
+				id="btn_adIngrSearch">검색하기</button>
+
+		</form>
+	</div>
+
+
+	<!-- 재료 검색 페이지 -->
+	<script>
+		$('#btn_adIngrSearch')
+				.on(
+						'click',
+						function() {
+							var searchINGR;
+							var input = document
+									.getElementById("searchIngrList").value;
+
+							alert(document.getElementById("searchIngrList").value); //장어가 나오긴한다. 하지만 그이상 넘어가지 않는다.
+
+							var searchINGR = document
+									.getElementById("searchIngrList").value
+							$.ajax({
+								type : "POST",
+								url : "/admin/search",
+								data : {
+									ingrName : searchINGR
+
+								},
+								success : function(data) {
+									$(".table123").remove();
+									$.each(data, function(index, ingr) {
+										var str = '<tr class="table123"><td>'
+												+ ingr.ingrPic + '</td><td>'
+												+ ingr.ingrName + '</td><td>'
+												+ ingr.ingrSeason + '</td><td>'
+												+ ingr.ingrCalorie
+												+ '</td><td>' + ingr.ingrTemper
+												+ '</td>';
+										$("#searchIngr").append(str);
+
+									});
+
+								},
+								error : function(data) {
+									alert("Error!");
+								}
+
+							});
+						});
+	</script>
+
+	
+
+	<!-- 재료 추가 페이지  -->
+	<script>
+		function openWindowPop() {
+			var options = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no';
+			window.open('/admin/insertIngr', 'addIngr', options);
+		}
+	</script>
+
+	<script>
+		$(".delete_ingr").click(
+				function() {
+					var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+					if (confirm_val) {
+						var checkArr = new Array();
+
+						$("input[class='checkRow']:checked").each(
+								function(index, value) {
+									checkArr.push(value.value);
+								});
+
+						console.log(checkArr);
+						$.ajax({
+							url : "/admin/deleteIngr2",
+							type : "POST",
+							data : JSON.stringify(checkArr),
+							contentType : 'application/json',
+							success : function() {
+								alert(checkArr + "가 삭제 되었습니다.");
+								window.location.reload();
+							}
+						});
+					}
+				});
+	</script>
+</body>
+</html>
