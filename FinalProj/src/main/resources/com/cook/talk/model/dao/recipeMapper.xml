@@ -4,25 +4,6 @@
 
 <mapper namespace="com.cook.talk.model.dao.RecipeDAO">
 
-<select id="createViewRecipeList">
-   CREATE View RecipeDTO AS
-   SELECT rcp.rcpCode, rcp.rcpTitle, user.nickname, rcp.rcpDate, rcp.rcpViews, 
-   rcp.rcpExpl, rcp.video, rcp.rcpPic, rcp.personnel, rcp.cookTime, rcp.level,
-   typecat.cookType, typecat.cookSituation, typecat.cookMethod
-   FROM rcp, user, typecat
-   WHERE rcp.typeCode = typeCat.typeCode
-   AND rcp.userId = user.userId
-   </select>
-   
-   <select id="getRecipeList" resultMap="recipeDTO">
-   SELECT rcpCode, rcpTitle, nickname, rcpDate, rcpPic
-   FROM recipe.recipedto
-   ORDER BY rcpDate DESC
-   </select>      
-   
-   <select id="recipeCount" resultType="int">
-   SELECT count(*) from rcp
-   </select> 
    
 
       

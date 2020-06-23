@@ -28,7 +28,7 @@
 	</select>
 
 	<select id="selectRecipe" resultType="recipeVO">
-		select rcpTitle,rcpPic from
+		select rcpTitle,rcpPic,rcpDate from
 		rcp where userId = (select userId from user where nickName=#{chefId})
 		limit #{page},12
 	</select>

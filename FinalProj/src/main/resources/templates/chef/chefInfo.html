@@ -70,9 +70,6 @@ text-align:center;}
 				<li role="presentation" class="active"><a
 					th:href="'/chefInfo/1/'+${chefDetail.userVO.nickName}"><i
 						class="fas fa-utensils"></i> 레시피</a></li>
-				<li role="presentation"><a
-					href="/profile/recipe_comment.html?uid=jun8707"><i
-						class="fas fa-comments"></i>댓글</a></li>
 				<li role="presentation"><a th:href="'/chefInfo/Story/'+${chefDetail.userVO.nickName}"
 					 th:id='story'><i
 						class="fas fa-user-friends"></i> 스토리</a></li>
@@ -90,7 +87,8 @@ text-align:center;}
 						src="http://placehold.it/198x130/"
 						style="width: 200px; height: 130px;"> <!-- ${recipe.rcpTitle} -->
 						<div class="caption">
-							<h4 th:text='${recipe.rcpTitle}'>스테이크 덮밥 만들기</h4>
+							<h4 th:text='${recipe.rcpTitle}'></h4>
+							<h6 th:text="${recipe.rcpDate}"></h6>
 							<p class="jq_elips" th:text="'by '+ ${chefDetail.userVO.nickName}"></p>
 						</div>
 				</a></li>
