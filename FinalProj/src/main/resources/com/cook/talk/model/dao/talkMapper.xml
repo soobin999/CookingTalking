@@ -11,28 +11,33 @@
 	<!-- 게시글 작성 -->
 	<insert id="insert"
 		parameterType="com.cook.talk.model.VO.TalkVO">
-		insert into talk (talkCode,talkCont, userId ,talkDate) values
-		(#{talkCode},#{talkCont},#{userId},(select curdate()))
+		insert into talk (talkCode,talkCont, userId ,talkDate,talkVideo,talkLike)
+		values
+		(#{talkCode},#{talkCont},#{userId},(select curdate()),#{talkVideo},#{talkLike})
 	</insert>
 
 	<!-- 게시글 상세보기 -->
 	<select id="detail" resultType="com.cook.talk.model.VO.TalkVO">
-		select * from talk where talkCode=#{talkCode}
+		select * from talk where
+		talkCode=#{talkCode}
 	</select>
 
-<select id="update" resultType="com.cook.talk.model.VO.TalkVO">
-select talkCont from talk where talkCont =#{talkCont} and userId=#{userId}
+	<select id="update" resultType="com.cook.talk.model.VO.TalkVO">
+		select talkCont from talk where talkCont =#{talkCont} and userId=#{userId}
 
-</select>
+	</select>
 
 	<!-- 게시글 수정 처리 -->
-	<update id="updateTalk" parameterType="com.cook.talk.model.VO.TalkVO">
+	<update id="updateTalk"
+		parameterType="com.cook.talk.model.VO.TalkVO">
 		update talk
 		set
-		talkCont=#{talkCont} where userId=#{userId} and talkCode=#{talkCode}
+		talkCont=#{talkCont} where
+		userId=#{userId} and talkCode=#{talkCode}
 	</update>
 
-	<delete id="delete" parameterType="com.cook.talk.model.VO.TalkVO">
+	<delete id="delete"
+		parameterType="com.cook.talk.model.VO.TalkVO">
 		delete from talk where talkCode=#{talkCode}
 	</delete>
 
