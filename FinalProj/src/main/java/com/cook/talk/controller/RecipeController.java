@@ -57,15 +57,16 @@ public class RecipeController {
 	}
 
 	@GetMapping("recipe/view") 
-	public String getRecipeView(String rcpCode, String rcpTagCode, Model model) {
+	public String getRecipeView(String rcpCode, Model model) {
 		model.addAttribute("recipeDTO", recipeDAO.selectRcptpView(rcpCode));
 		log.info(recipeDAO.selectRcptpView(rcpCode));
 		model.addAttribute("rcpIngrView", recipeDAO.selectRcpIngrView(rcpCode));
 		log.info(recipeDAO.selectRcpIngrView(rcpCode));
 		model.addAttribute("rcpOrderView", recipeDAO.selectRcpOrderView(rcpCode));
 		log.info(recipeDAO.selectRcpOrderView(rcpCode));
-		model.addAttribute("tagView", recipeDAO.SelectTagView(rcpTagCode));
-		log.info(recipeDAO.SelectTagView(rcpTagCode));
+		model.addAttribute("tagView", recipeDAO.SelectTagView(rcpCode));
+		log.info(recipeDAO.SelectTagView(rcpCode));
+		
 		return "recipe/recipeView";
 
 }
@@ -88,6 +89,11 @@ public class RecipeController {
 
 	@PostMapping("recipe/modify")
 	public String modifyRecipe(RecipeDTO recipeDTO) {
+		return "";
+	}
+	
+	@GetMapping("recipe/delete")
+	public String deleteRecipe(RecipeDTO recipeDTO) {
 		return "";
 	}
 

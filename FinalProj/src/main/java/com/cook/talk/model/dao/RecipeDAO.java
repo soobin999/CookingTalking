@@ -41,9 +41,9 @@ public interface RecipeDAO {
 	
 	//레시피 글보기
 	public RecipeDTO selectRcptpView(String rcpCode);
-	public List<RecipeDTO> selectRcpIngrView(String rcpCode);
+	public List<RcpIngrVO> selectRcpIngrView(String rcpCode);
 	public List<RcpOrderVO> selectRcpOrderView(String rcpCode);
-	public List<RcpIngrVO> SelectTagView(String rcpTagCode); //List로 가져오기
+	public List<TagVO> SelectTagView(String rcpCode); //List로 가져오기
 		
 		
 	//rcpCode 자동생성

@@ -6,96 +6,96 @@
 </head>
 <body>
 	<h2 style="text-align:center">레시피 등록</h2>
-	<form id="insertRecipe" th:action="@{insertProc}" method="post" th:object="${recipeDTO}" action="#" enctype="multipart/form-data">
+	<form id="insertRecipe" th:action="@{insertProc}" method="post" th:object="${recipeDTO}" action="#">
 		<table th:align="center" border="1" th:cellpadding="0"	th:cellspacing="0">
-		
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="아이디" width="100px">레시피 제목</td>
-				<td><input type="text" th:field="*{recipeVO.userId}" size="100px" placeholder="예)아이디"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="제목" width="100px">레시피 제목</td>
-				<td><input type="text" th:field="*{recipeVO.rcpTitle}" size="100px" placeholder="예) 소고기 미역국 끓이기"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="등록일" width="100px">등록일</td>
-				<td th:field="*{recipeVO.rcpDate}"></td>
-			</tr>
-			<!-- <tr>
 				<td bgcolor="#f8f8f8" th:text="사진" width="100px">레시피 사진</td>
 				<td><input type="file" th:field="*{recipeVO.rcpPic}"
 					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" >
 					<input type="submit" value="등록"></td>	
-			</tr> -->
+			</tr>	
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="요리소개" width="100px">요리 소개</td>
-				<td><textarea name="rcpExpl" th:field="*{recipeVO.rcpExpl}" placeholder="이 레시피의 탄생배경을 적어주세요"
+				<td bgcolor="#f8f8f8" th:text="아이디" width="100px"></td>
+				<td><input type="text" th:field="*{recipeVO.userId}" size="100px" placeholder="아이디"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#f8f8f8" th:text="제목" width="100px"></td>
+				<td><input type="text" th:field="*{recipeVO.rcpTitle}" size="100px" placeholder="예) 소고기 미역국 끓이기"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#f8f8f8" th:text="요리소개" width="100px"></td>
+				<td><textarea name="rcpExpl" th:field="*{recipeVO.rcpExpl}" placeholder="이 레시피의 소개글을 적어주세요"
 						style="size: 100px; margin: 0px; width: 335px; height: 76px; resize:none;"></textarea></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="동영상" width="100px">동영상</td>
-				<td>
-				<textarea name="video" th:field="*{recipeVO.video}" placeholder="동영상이 있으면 주소를 입력하세요."
+				<td bgcolor="#f8f8f8" th:text="동영상" width="100px"></td>
+				<td><textarea name="video" th:field="*{recipeVO.video}" placeholder="동영상이 있으면 주소를 입력하세요."
 						style="size: 100px; margin: 0px; width: 335px; height: 76px; resize:none;"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="종류별" width="100px">종류별</td>
-				<td><input type="text" th:field="*{TypeCatVO.cookType}" size="100px"
+				<td bgcolor="#f8f8f8" th:text="종류별" width="100px"></td>
+				<td><input type="text" th:field="*{typeCatVO.cookType}" size="100px"
 					placeholder="종류별"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="상황별" width="100px">상황별</td>
-				<td><input type="text" th:field="*{TypeCatVO.cookSituation}" size="100px"
+				<td bgcolor="#f8f8f8" th:text="상황별" width="100px"></td>
+				<td><input type="text" th:field="*{typeCatVO.cookSituation}" size="100px"
 					placeholder="상황별"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="방법별" width="100px">방법별</td>
-				<td><input type="text" th:field="*{TypeCatVO.cookMethod}" size="100px"
+				<td bgcolor="#f8f8f8" th:text="방법별" width="100px"></td>
+				<td><input type="text" th:field="*{typeCatVO.cookMethod}" size="100px"
 					placeholder="방법별"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="인원" width="100px">인원</td>
+				<td bgcolor="#f8f8f8" th:text="인원" width="100px"></td>
 				<td><input type="text" th:field="*{recipeVO.personnel}" size="100px"
 					placeholder="인원"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="시간" width="100px">시간</td>
+				<td bgcolor="#f8f8f8" th:text="시간" width="100px"></td>
 				<td><input type="text" th:field="*{recipeVO.cookTime}" size="100px"
 					placeholder="시간"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="난이도" width="100px">난이도</td>
+				<td bgcolor="#f8f8f8" th:text="난이도" width="100px"></td>
 				<td><input type="text" th:field="*{recipeVO.level}" size="100px"
 					placeholder="난이도"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="재료" width="100px">재료</td>
-				<td><input type="text" th:field="*{RcpIngrVO.ingrCat}" size="100px" placeholder="재료"></td>
+				<td bgcolor="#f8f8f8" th:text="재료" width="100px"></td>
+				<td><input type="text" th:field="*{rcpIngrVO.ingrCat}" size="100px" placeholder="재료"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="선택한재료" width="100px">선택한재료</td>
-				<td><input type="text" th:field="*{RcpIngrVO.userIngr}" size="100px"
+				<td bgcolor="#f8f8f8" th:text="선택한재료" width="100px"></td>
+				<td><input type="text" th:field="*{rcpIngrVO.userIngr}" size="100px"
 					placeholder="선택한재료"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="계량정보" width="100px">계량정보</td>
-				<td><input type="text" th:field="*{RcpIngrVO.ingrWeigh}" size="100px"
+				<td bgcolor="#f8f8f8" th:text="계량정보" width="100px"></td>
+				<td><input type="text" th:field="*{rcpIngrVO.ingrWeigh}" size="100px"
 					placeholder="계량정보"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="조리순서" width="100px">조리순서</td>
-				<td><input type="text" th:field="*{RcpOrderVO.cookOrder}" size="100px"
+				<td bgcolor="#f8f8f8" th:text="조리순서" width="100px"></td>
+				<td><input type="text" th:field="*{rcpOrderVO.cookOrder}" size="100px"
 					placeholder="조리순서"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="조리내용" width="100px">조리내용</td>
-				<td><input type="text" th:field="*{RcpOrderVO.cookCont}" size="100px"
+				<td bgcolor="#f8f8f8" th:text="조리내용" width="100px"></td>
+				<td><input type="text" th:field="*{rcpOrderVO.cookCont}" size="100px"
 					placeholder="조리내용"></td>
 			</tr>
 			<tr>
-				<td bgcolor="#f8f8f8" th:text="태그" width="100px">태그</td>
-				<td><input type="text" th:field="*{TagVO.tag}" size="100px"
+				<td bgcolor="#f8f8f8" th:text="이미지" width="100px"></td>
+				<td><input type="file" th:field="*{rcpOrderVO.cookPic}"
+					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" >
+					<input type="submit" value="등록"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#f8f8f8" th:text="태그" width="100px"></td>
+				<td><input type="text" th:field="*{tagVO.tag}" size="100px"
 					placeholder="태그"></td>
 			</tr>
 			<tr>
@@ -128,15 +128,15 @@
     	})
 	});
 	
-/* 	$(document).ready(fuction() {
+ 	$(document).ready(fuction() {
 		$('#Btn').click(function() {
 			var result = confirm('취소하시겠습니까?');
 			
 			if(result) {
 				//예
-				location.replace('')
+				location.replace('reicpe/newlist')
 			}
 		}
-	} */
+	} 
 </script>
 </html>
