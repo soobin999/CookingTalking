@@ -44,13 +44,12 @@ public class ChefController {
 		return "/chef/chefRank";
 	}
 	@GetMapping("/chefInfo/Story/{nickName}")
-	public String chefInfoStory(Model model,String userId,String nickName) {
+	public String chefInfoStory(Model model,String userId,@PathVariable String nickName) {
 		
 		userId="zleda9@naver.com";
 		model.addAttribute("follow",chefDAO.selectFollow(userId, nickName));
 		model.addAttribute("chefDetail",chefDAO.selectChefDetail(nickName));
 		List<TalkVO> story=chefDAO.selectStory(nickName);
-		model.addAttribute("nickName",nickName);
 		model.addAttribute("count",Math.ceil(story.size()/12.0));
 		model.addAttribute("story",story);
 		return "/chef/chefInfoStory";
