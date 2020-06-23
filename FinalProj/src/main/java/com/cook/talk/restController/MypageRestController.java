@@ -89,11 +89,12 @@ public class MypageRestController {
 	}
 	 
 	
-	@PostMapping("/mypage/ans/{qnaCode}")
-	public String showAns(@RequestParam("qnaCode") String qnaCode, RedirectAttributes rttr) {
-		
-		return "redirect:/mypage/myInquiryList";
-	}
+	/*
+	 * @PostMapping("/mypage/ans/{qnaCode}") public String
+	 * showAns(@RequestParam("qnaCode") String qnaCode, RedirectAttributes rttr) {
+	 * 
+	 * return "redirect:/mypage/myInquiryList"; }
+	 */
 	
 	
 }
