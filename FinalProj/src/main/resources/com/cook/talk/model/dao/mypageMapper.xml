@@ -95,7 +95,7 @@
 	</insert>
 	
 	<select id="getmyInq" resultType="QnAVO">
-	SELECT qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
+	SELECT qnaCode, qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
 	</select>
 	
 	<select id="selectQnACode" resultType="int">

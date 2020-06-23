@@ -41,7 +41,9 @@
 		<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
 		<td th:id="myQnACont" th:value="${myInqList.qnaCont}"></td>
 		
-		<td th:id="answer" th:value="${myInqList.answer}"></td>
+		<td><a th:href="@{mypage/ans/{qnaCode}(qnaCode=${myInqList.qnaCode})}" th:id="qnaAns" th:value="${myInqList.answer}"></a></td>
+		<td th:id="showAns"></td>
+		
 	</tr>
 	</tbody>
 	</table>
