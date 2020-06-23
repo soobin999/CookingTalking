@@ -182,9 +182,9 @@ function myAllComSearch(){
 				$('#myAllComMain').remove();
 				$.each(data, function(index, value){
 					console.log(data);
-					searchedTalkCom = '<tr id="myAllComMain"><td>' + data[index].talkCom
+					searchedTalkCom = '<div th:id="myAllComMain"><tr><td>' + data[index].talkCom
 					+ '</td><td>' + data[index].talkComDate
-					+ '</td></tr><br>'
+					+ '</td></tr><br></div>'
 					console.log("data.talkCom:"+value.talkCom);
 					console.log("data.talkComDate:"+value.talkComDate);
 					result.append(searchedTalkCom);
@@ -206,9 +206,9 @@ function myAllComSearch(){
 				$('#myAllComMain').remove();
 				$.each(data, function(index, value){
 					console.log(data);
-					searchedRcpCom = '<tr id="myAllComMain"><td>' + data[index].rcpCom
+					searchedRcpCom = '<div th:id="myAllComMain"><tr><td>' + data[index].rcpCom
 					+ '</td><td>' + data[index].rcpComDate
-					+ '</td></tr><br>'
+					+ '</td></tr><br></div>'
 					console.log("data.rcpCom:"+value.rcpCom);
 					console.log("data.rcpComDate:"+value.rcpComDate);
 					result.append(searchedRcpCom);
@@ -231,9 +231,9 @@ function myAllComSearch(){
 			$('#myAllComMain').remove();
 			$.each(data, function(index, value){
 				console.log(data);
-				searchedAllCom = '<tr id="myAllComMain"><td>' + data[index].talkCom
+				searchedAllCom = '<div th:id="myAllComMain"><tr><td>' + data[index].talkCom
 				+ '</td><td>' + data[index].talkComDate
-				+ '</td></tr><br>'
+				+ '</td></tr><br></div>'
 				console.log("data.talkCom:"+value.talkCom);
 				console.log("data.talkComDate:"+value.talkComDate);
 				result.append(searchedAllCom);
@@ -249,14 +249,15 @@ function myAllComSearch(){
 
 function myRecipe(){
 	
-	/*$('.mypageMain').remove();*/
+	/*$('#mypageMain').remove();*/
 	$('#mypageMain').load("/mypage/myRecipeIng");
+	console.log("myRecipeIng");
 }
 
 function myFrequent(){
-	$('#mypageSubMain').remove();
+	/*$('.mypageMain').remove();*/
 	$('#mypageMain').load("/mypage/myFollow");
-	console.log("myFrequent");
+	console.log("myFollow");
 }
 
 function myActivity(){

@@ -2,7 +2,8 @@ $(function() {
 
    selectedIngr();
    searchedIngr();
-  chosung();
+
+   chosung();
    $('#ingrSearchInRefri').on('change', ingrSearch);
    $('#btnIngrSearch').on('click', ingrSearch);
    enterkey();
