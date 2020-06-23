@@ -3,17 +3,19 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/js/yujin/talk.js"></script>
 
 <title>게시판 상세</title>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
 $("btnDelete").click(function(){
 	if(confirm("삭제하시겠습니까?")){
 		document.form1.action="${path}/talk/delete";
 		document.form1.submit	();
 	}
-});
+}); 
 $("btnUpdate").click(function(){
 	if(confirm("수정하시겠습니까?")){
 var content=${"talkCont"}.val();
@@ -27,17 +29,19 @@ document.form1.submit();
 	
 	});
 });
-</script>
+</script> -->
 </head>
 <body th:object="${talkCode}">
 	<h2>게시글 보기</h2>
 	<form name="form1" method="post">
-		<table border="1" width="600px">
+		<table border="1" width="900px">
 			<thead>
 				<tr>
 					<th>내용</th>
 					<th>아이디</th>
 					<th>시간</th>
+					<th>사진</th>
+					<th>좋아요</th>
 					<th>댓글</th>
 				</tr>
 			</thead>
@@ -45,11 +49,13 @@ document.form1.submit();
 				<a th:href="@{/talk/list}"
 					class="btn btn-default waves-effect waves-light">뒤로가기</a>
 
-				<tr th:each="talk : ${talkCode}">
-					<td th:text="${talk.talkCont}"></td>
-					<td th:text="${talk.userId}"></td>
-					<td th:text="${talk.talkDate}"></td>
-					<td th:text="${talk.talkCom}"></td>
+				<tr>
+					<td th:text="${talkCode.talkCont}"></td>
+					<td th:text="${talkCode.userId}"></td>
+					<td th:text="${talkCode.talkDate}"></td>
+					<td th:text="${talkCode.talkVideo}"></td>
+					<td th:text="${talkCode.talkLike}"></td>
+					<td th:text="${talkCode.talkCom}"></td>
 
 				</tr>
 				<div id="docs_comment_list_area"></div>
@@ -58,6 +64,7 @@ document.form1.submit();
 		</table>
 		<div style="width: 650px; text-align: center;">
 			<th:block sec:authorize="isAuthenticated()">
+				<input id="talk-code" type="hidden" th:value="${talkCode.talkCode}">
 
 				<div th:if="${#authentication.principal.username} == *{userId}">
 					<a th:href="@{/talk/updatePage(talkCode=${talkCode.talkCode})}">수정</a>

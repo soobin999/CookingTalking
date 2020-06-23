@@ -5,7 +5,7 @@
 <mapper namespace="com.cook.talk.model.dao.MypageDAO">
 	
 	<select id="modifyUserPic" parameterType="String">
-	update user set userPic = #{userPic} where userId='1111pppp@naver.com'
+	UPDATE user SET userPic = #{userPic} WHERE userId='1111pppp@naver.com'
 	</select>
 	
 	<select id="getMyRecipeIng" parameterType="String" resultType="RecipeVO">
@@ -16,8 +16,8 @@
 	SELECT DISTINCT rcpTitle, rcpPic, rcpCode FROM recipe.rcp WHERE userId='kkk@naver.com' AND registerStatus=1
 	</select>
 	
-	<delete id="deleteRcp" >
-	DELETE FROM recipe.rcp WHERE rcpCode = #{rcpCode} AND userId = "kkk@naver.com"
+	<delete id="deleteRcp">
+	DELETE FROM recipe.rcp WHERE rcpCode = #{rcpCode} AND userId = 'kkk@naver.com'
 	</delete>
 	
 	<select id="getSearchMyFollow" parameterType="String" resultType="MypageDTO">
@@ -32,11 +32,6 @@
 	SELECT DISTINCT rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
 	WHERE s.userId='kkk@naver.com' AND r.rcpTitle LIKE CONCAT('%', #{rcpTitle}, '%')
 	</select>
-	
-
-<!-- 	<select id="deleteMyRecipe" resultType="MypageDTO">
-	DELETE * FROM recipe.rcp WHERE userId = 'kkk@naver.com' AND rcpCode = #{qnaTitle}
-	</select> -->
 
 	<select id="getMyFollow" resultType="MypageDTO">
 	SELECT DISTINCT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
@@ -100,7 +95,7 @@
 	</insert>
 	
 	<select id="getmyInq" resultType="QnAVO">
-	SELECT qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
+	SELECT qnaCode, qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
 	</select>
 	
 	<select id="selectQnACode" resultType="int">

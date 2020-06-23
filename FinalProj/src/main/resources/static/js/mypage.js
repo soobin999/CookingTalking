@@ -5,12 +5,17 @@ $(function(){
 
 function answer(){
 	
-	var ans = $('#answer').val();
-	
-	if(ans != null){
-		$('#answer').append("답변완료");
-	} else 
-		$('#answer').append("답변미등록");
+
+	$('#qnaAns').each(function(index){
+
+		var ans = $('#qnaAns').val();
+		
+		if(ans != null){
+			$('#qnaAns').append("답변완료");
+		} else {
+			$('#qnaAns').append("답변미등록");
+		}
+	})
 }
 
 
@@ -182,9 +187,9 @@ function myAllComSearch(){
 				$('#myAllComMain').remove();
 				$.each(data, function(index, value){
 					console.log(data);
-					searchedTalkCom = '<tr id="myAllComMain"><td>' + data[index].talkCom
+					searchedTalkCom = '<div th:id="myAllComMain"><tr><td>' + data[index].talkCom
 					+ '</td><td>' + data[index].talkComDate
-					+ '</td></tr><br>'
+					+ '</td></tr><br></div>'
 					console.log("data.talkCom:"+value.talkCom);
 					console.log("data.talkComDate:"+value.talkComDate);
 					result.append(searchedTalkCom);
@@ -206,9 +211,9 @@ function myAllComSearch(){
 				$('#myAllComMain').remove();
 				$.each(data, function(index, value){
 					console.log(data);
-					searchedRcpCom = '<tr id="myAllComMain"><td>' + data[index].rcpCom
+					searchedRcpCom = '<div th:id="myAllComMain"><tr><td>' + data[index].rcpCom
 					+ '</td><td>' + data[index].rcpComDate
-					+ '</td></tr><br>'
+					+ '</td></tr><br></div>'
 					console.log("data.rcpCom:"+value.rcpCom);
 					console.log("data.rcpComDate:"+value.rcpComDate);
 					result.append(searchedRcpCom);
@@ -231,9 +236,9 @@ function myAllComSearch(){
 			$('#myAllComMain').remove();
 			$.each(data, function(index, value){
 				console.log(data);
-				searchedAllCom = '<tr id="myAllComMain"><td>' + data[index].talkCom
+				searchedAllCom = '<div th:id="myAllComMain"><tr><td>' + data[index].talkCom
 				+ '</td><td>' + data[index].talkComDate
-				+ '</td></tr><br>'
+				+ '</td></tr><br></div>'
 				console.log("data.talkCom:"+value.talkCom);
 				console.log("data.talkComDate:"+value.talkComDate);
 				result.append(searchedAllCom);
@@ -249,14 +254,15 @@ function myAllComSearch(){
 
 function myRecipe(){
 	
-	/*$('.mypageMain').remove();*/
+	/*$('#mypageMain').remove();*/
 	$('#mypageMain').load("/mypage/myRecipeIng");
+	console.log("myRecipeIng");
 }
 
 function myFrequent(){
-	$('#mypageSubMain').remove();
+	/*$('.mypageMain').remove();*/
 	$('#mypageMain').load("/mypage/myFollow");
-	console.log("myFrequent");
+	console.log("myFollow");
 }
 
 function myActivity(){
@@ -307,11 +313,36 @@ function sendInq(){
 
 function showAns(){
 	
-	$('#myQnATitle').on('click', function(){
+	$('#answer').on('click', function(){
 		
-		var myQnACont = $('#myQnACont').innerText();
-		var answer = $('#answer').val();
+/*		var myQnACont = $('#myQnACont').innerText();
+		var answer = $('#answer').val();*/
 		
+		
+		$.ajax({
+			type : "POST",
+			url : "/mypage/ans/{qnaCode}",
+			data : {qnaCode : key},
+			success : function(data) {
+				var searchedAllCom;
+				var result = $('#myActivity');
+				/*$('#myAllComMain').remove();*/
+				$.each(data, function(index, value){
+					console.log(data);
+					searchedAllCom = '<div th:id="myAllComMain"><tr><td>' + data[index].talkCom
+					+ '</td><td>' + data[index].talkComDate
+					+ '</td></tr><br></div>'
+					console.log("data.talkCom:"+value.talkCom);
+					console.log("data.talkComDate:"+value.talkComDate);
+					result.append(searchedAllCom);
+				});
+			},
+			error : function(){
+				alert("myAllComSearch Error");
+			}
+		});
+		
+		$('#showAns').append("${myInqList.answer}");
 		
 	})
 }
