@@ -1,8 +1,6 @@
 $(function() {
-
    selectedIngr();
    searchedIngr();
-
    chosung();
    $('#ingrSearchInRefri').on('change', ingrSearch);
    $('#btnIngrSearch').on('click', ingrSearch);
@@ -86,15 +84,16 @@ function ingrSearch() {
 
 
 function selectedIngr() {
-	$('#chosungNum').on('click', function(){
+	$('body').on('click','.ingrButton', function(){
 		console.log("choosing ingr from list");
 		var chosen = $(event.target);
+		
 		console.log(chosen);
 		
 		$('#selectedIngr').append(chosen);
-		
-		sendRcmm();
-		
+		$('#selectedIngrForm').append(
+				'<input type="hidden" id="myIngr" name="selectedIngr" value="'+$(event.target).val()+'">'
+		);		
 	})
 }
 
@@ -132,9 +131,24 @@ function clickOffVer2(){
 }
 
 function sendRcmm(){
-	var selectedIngr = $('.selectedIngr .ingrButton').val();
-	console.log(selectedIngr);
-	$('#myIngr').val(selectedIngr);
+	$('.goToRcmmRecipe').on('click',function(event){
+		
+		console.log($('input[name="selectedIngr"]').val());
+	})
+	
+	
+	
+	
+//	$('.ingrButton').on('click',function(event){
+//		$('#selectedIngrForm').append(
+//				'<input type="hidden" id="myIngr" name="selectedIngr" value="'+$(event.target).val()+'">'
+//		);
+//	})
+		//var selectedIngr = $('.selectedIngr .ingrButton').val();
+		//console.log(selectedIngr);
+		//$('#myIngr').val(selectedIngr);	
+
+	
 }
 
 

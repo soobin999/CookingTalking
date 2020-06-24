@@ -1,5 +1,6 @@
 package com.cook.talk.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
@@ -9,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cook.talk.model.VO.IngrVO;
+import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
@@ -36,8 +39,10 @@ public class RecipeController {
 
 	
 	@PostMapping("/rcmmRecipe")
-	public String rcmmRecipe(Model model, String selectedIngr, IngrVO ingrVO){
+	public String rcmmRecipe(Model model, @RequestParam("selectedIngr") List<String> selectedIngr, IngrVO ingrVO){
 		System.out.println("selectedIngr:"+selectedIngr);
+		System.out.println(selectedIngr);
+		
 		model.addAttribute("rcmmList", recipeDAO.getRcmmList(selectedIngr));
 		System.out.println(recipeDAO.getRcmmList(selectedIngr));
 
@@ -46,10 +51,12 @@ public class RecipeController {
 	
 
 	@GetMapping("recipe/newList")
-	public String getRecipeList(Model model) {
+	public String getRecipeList(Model model, ViewsVO viewsVO) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();
 		model.addAttribute("recipeList", recipeList);
 		model.addAttribute("recipeCount", recipeDAO.recipeCount());
+		//레시피 조회이력 저장
+		
 		for (RecipeDTO dto : recipeList)
 		log.info("list==>" + dto);
 
@@ -66,6 +73,8 @@ public class RecipeController {
 		log.info(recipeDAO.selectRcpOrderView(rcpCode));
 		model.addAttribute("tagView", recipeDAO.SelectTagView(rcpCode));
 		log.info(recipeDAO.SelectTagView(rcpCode));
+		
+		recipeService.rcpViewsUpdate(rcpCode); //조회수 증가
 		
 		return "recipe/recipeView";
 
@@ -93,7 +102,7 @@ public class RecipeController {
 	}
 	
 	@GetMapping("recipe/delete")
-	public String deleteRecipe(RecipeDTO recipeDTO) {
+	public String deleteRecipe(String rcpCode ) {
 		return "";
 	}
 

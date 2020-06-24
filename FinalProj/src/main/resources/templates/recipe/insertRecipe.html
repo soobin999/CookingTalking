@@ -4,6 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>레시피 등록</title>
 </head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+input {
+
+}
+</style>
 <body>
 	<h2 style="text-align:center">레시피 등록</h2>
 	<form id="insertRecipe" th:action="@{insertProc}" method="post" th:object="${recipeDTO}" action="#">
@@ -11,8 +17,7 @@
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="사진" width="100px">레시피 사진</td>
 				<td><input type="file" th:field="*{recipeVO.rcpPic}"
-					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" >
-					<input type="submit" value="등록"></td>	
+					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" ></td>	
 			</tr>	
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="아이디" width="100px"></td>
@@ -91,52 +96,42 @@
 				<td bgcolor="#f8f8f8" th:text="이미지" width="100px"></td>
 				<td><input type="file" th:field="*{rcpOrderVO.cookPic}"
 					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" >
-					<input type="submit" value="등록"></td>
+					</td>
 			</tr>
 			<tr>
 				<td bgcolor="#f8f8f8" th:text="태그" width="100px"></td>
 				<td><input type="text" th:field="*{tagVO.tag}" size="100px"
 					placeholder="태그"></td>
 			</tr>
-			<tr>
-			 <td><input type="hidden" id="registerStatus" name="registerStatus" value="true">
-			</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input class="submit" type="button" value="저장">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input class="submit" type="button" value="등록">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="button" onclick="change()" value="취소">
-				</td>
-			</tr>
 		</table>
+		<input type="hidden" id="registerStatus" name="registerStatus" value="true">
+		<input class="submit" type="button" value="임시 저장">
+		<input class="submit" type="button" value="등록">
+		<input class="cancel" type="button" value="취소">
 	</form>
 	<!-- script -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 	$(document).ready(function(){
  	$("input.submit").click(function(){
     $('#registerStatus').val( ($(this).val()=='등록') ? true : false);
-    alert("등록되었습니다!");
+    alert("완료되었습니다!");
+    	document.location.href = 'recipe/newList';
     $('#insertRecipe').submit();
-    //window.location = 'recipe/newList';
+     
     	})
 	});
-	
- 	$(document).ready(fuction() {
-		$('#Btn').click(function() {
+
+ 	$(document).ready(function(){
+		$("input.cancel").click(function(){
 			var result = confirm('취소하시겠습니까?');
 			
 			if(result) {
 				//예
-				location.replace('reicpe/newlist')
+				location.replace('newList'); //글목록 페이지로 이동
+			} else {
+				//아니오
 			}
-		}
-	} 
+		});
+	}); 
 </script>
 </html>

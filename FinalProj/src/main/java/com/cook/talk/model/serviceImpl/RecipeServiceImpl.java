@@ -2,13 +2,14 @@ package com.cook.talk.model.serviceImpl;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
-
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TypeCatVO;
+import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.VO.RcpIngrVO;
 import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.TagVO;
@@ -48,7 +49,7 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public List<RecipeDTO> getRcmmList(String selectedIngr) {
+	public List<RecipeDTO> getRcmmList(List<String> selectedIngr) {
 		List<RecipeDTO> getRcmmList = recipeDAO.getRcmmList(selectedIngr);
 
 		return getRcmmList;
@@ -60,12 +61,31 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeDAO.getSearchedIngrName(ingrName);
 	}
 
+	
+	//레시피 목록 조회
 	@Override
 	public List<RecipeDTO> getRecipeList() {
 		List<RecipeDTO> recipeList = recipeDAO.getRecipeList();
 		return recipeList;
 	}
+	
+	//레시피 조회이력 저장
+	public void insertRcpViews(ViewsVO viewsVO, RecipeVO recipeVO) {
+		
+		//1. rcpViewsCode 자동생성
+		int rcpVnum = recipeDAO.selectRcpViewCode() +1;
+		viewsVO.setRcpViewCode("RV-" +rcpVnum);
+		recipeDAO.insertRcpViews(viewsVO);		
+		//2. 레시피 상세 조회 시 viewDate는 mapper에서 NOW()로 insert한다
+		
+		//3. 해당 레시피의 rcpCode set한다
+		viewsVO.setRcpCode(recipeVO.getRcpCode()); 				
+		//4. userId는 세션처리
+		
+	}
 
+
+	//레시피 갯수 카운팅
 	@Override
 	public int recipeCount() {
 		int recipeCount = recipeDAO.recipeCount();
@@ -74,73 +94,69 @@ public class RecipeServiceImpl implements RecipeService {
 
 
 	
-		
+	//레시피 등록	
 	@Override
 	public void insertRecipeProc(/*@RequestParam("rcpPic") MultipartFile file*/
 			boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO, 
 			RcpOrderVO rcpOrderVO,TagVO tagVO) {
 		
-//		String UPLOADED_FOLDER = "";
-//		log.info(file+"파일");
-		System.out.println("========");
 		
-		
-		// 1.typeCat테이블 레코드 생성
+		// 1.typeCat 테이블 레코드 생성
 		int tpcNum = recipeDAO.selectTypeCode() +1;
-		typeCatVO.setTypeCode("TC-0000" +tpcNum);
+		typeCatVO.setTypeCode("TC-" +tpcNum);
 		recipeDAO.insertTypecatProc(typeCatVO);
 		
 		log.info(typeCatVO);
 	
 	
-		//2. rcp테이블 레코드 생성		
+		//2. rcp 테이블 레코드 생성		
 		int rcpNum = recipeDAO.selectRcpCode() +1;
-		recipeVO.setRcpCode("R-000" +rcpNum);
+		recipeVO.setRcpCode("R-" +rcpNum);
 		
-		//생성한 typeCode를 가져와서 rcp테이블에 set한다
+		//생성한 typeCode를 가져와서 rcp 테이블에 set한다
 		recipeVO.setTypeCode(typeCatVO.getTypeCode()); 
 		//registerStatus의 값을 set한다
-		recipeVO.setRegisterStatus(registerStatus); 
-		
+		recipeVO.setRegisterStatus(registerStatus); 		
 		recipeDAO.insertRcpProc(recipeVO);
+		
 		log.info(recipeVO);
 		
 		
 		//3. rcpIngr 테이블 생성
-		int cncNum = recipeDAO.selectConnectcode() +1;
-		rcpIngrVO.setConnectCode("RM-0000" +cncNum);
+		int cncNum = recipeDAO.selectConnectCode() +1;
+		rcpIngrVO.setConnectCode("RM-" +cncNum);
 		//rcpCode를 rcpIngr의 rcpCode에 set한다
-		rcpIngrVO.setRcpCode(recipeVO.getRcpCode());
-		
+		rcpIngrVO.setRcpCode(recipeVO.getRcpCode());		
 		recipeDAO.insertRcpingrProc(rcpIngrVO);
+		
 		log.info(rcpIngrVO);		
 		
 		//4. rcporder 테이블 생성
 		//rcpCode를 rcpOrder의 rcpCode에 set한다
-		rcpOrderVO.setRcpCode(recipeVO.getRcpCode());
-		
+		rcpOrderVO.setRcpCode(recipeVO.getRcpCode());		
 		recipeDAO.insertRcporderProc(rcpOrderVO);
+		
 		log.info(rcpOrderVO);
 		
 		//5. tag 테이블 생성
-		//rcpCode를 rcpTagCode에 set한다
-		tagVO.setRcpTagCode(recipeVO.getRcpCode());
-		
+		//해시태그 split로 잘라서 각 레시피 당 한개씩 DB에 저장
+		String [] strings = tagVO.getTag().trim().split(",");
+		for(int i = 0; i < strings.length; i++) {			
+		tagVO.setRcpTagCode(recipeVO.getRcpCode()); //rcpCode를 rcpTagCode에 set한다
+		tagVO.setTag(strings[i].trim()); //쉼표와 다음 태그 사이의 공백(trim)까지 포함
 		recipeDAO.insertTagProc(tagVO);
+		
 		log.info(tagVO);
+		
+		}
 	}
-}
-//		try {
-//
-//			// Get the file and save it somewhere
-//			byte[] bytes = file.getBytes();
-//			Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-//			Files.write(path, bytes);
-//			return "ok";
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			return "fail";
-//		}
 
+	//레시피 조회수 증가
+	public int rcpViewsUpdate(String rcpCode) {
+		return recipeDAO.rcpViewsUpdate(rcpCode);
+		
+	}
+	
+}
 
 
