@@ -24,7 +24,7 @@ public interface RecipeService {
 
 	public List<String> getSearchedIngrName(String ingrName);
 
-	public List<RecipeDTO> getRcmmList(String selectedIngr);
+	public List<RecipeDTO> getRcmmList(List<String> selectedIngr);
 
 	/* List<RecipeDTO> getRcmmList(IngrVO ingrVO); */
 	

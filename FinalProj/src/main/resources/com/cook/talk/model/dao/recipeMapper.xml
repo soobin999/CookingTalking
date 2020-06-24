@@ -31,13 +31,16 @@
       ON r.rcpCode = ri.rcpCode INNER JOIN recipe.ingr AS i ON i.rcpIngrCode = ri.rcpIngrCode
       WHERE i.ingrName='감자';
    </select> -->
-   
-   <select id="getRcmmList" parameterType="String" resultType="recipeVO">
-      SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.rcpIngr AS ri
-      ON r.rcpCode = ri.rcpCode INNER JOIN recipe.ingr AS i ON i.rcpIngrCode = ri.rcpIngrCode
-      WHERE i.ingrName=#{selectedIngr};
 
-   </select>
+	<select id="getRcmmList" parameterType="String"	resultType="recipeVO">
+		SELECT DISTINCT r.rcpCode, rcpTitle, rcpPic FROM recipe.rcp AS r INNER
+		JOIN recipe.rcpIngr AS ri
+		ON r.rcpCode = ri.rcpCode INNER JOIN recipe.ingr AS i ON i.rcpIngrCode =
+		ri.rcpIngrCode WHERE i.ingrName IN
+		<foreach collection="list" item="selectedIngr" open="(" close=")" separator=",">
+			#{selectedIngr}
+		</foreach>
+	</select>
    
 
    <select id="countIngrInRcp" parameterType="int" resultType="int">

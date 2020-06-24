@@ -49,7 +49,7 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public List<RecipeDTO> getRcmmList(String selectedIngr) {
+	public List<RecipeDTO> getRcmmList(List<String> selectedIngr) {
 		List<RecipeDTO> getRcmmList = recipeDAO.getRcmmList(selectedIngr);
 
 		return getRcmmList;

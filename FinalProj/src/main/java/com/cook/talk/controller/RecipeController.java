@@ -1,5 +1,6 @@
 package com.cook.talk.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.VO.ViewsVO;
@@ -37,8 +39,10 @@ public class RecipeController {
 
 	
 	@PostMapping("/rcmmRecipe")
-	public String rcmmRecipe(Model model, String selectedIngr, IngrVO ingrVO){
+	public String rcmmRecipe(Model model, @RequestParam("selectedIngr") List<String> selectedIngr, IngrVO ingrVO){
 		System.out.println("selectedIngr:"+selectedIngr);
+		System.out.println(selectedIngr);
+		
 		model.addAttribute("rcmmList", recipeDAO.getRcmmList(selectedIngr));
 		System.out.println(recipeDAO.getRcmmList(selectedIngr));
 

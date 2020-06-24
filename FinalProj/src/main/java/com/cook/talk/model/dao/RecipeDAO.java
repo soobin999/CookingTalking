@@ -29,7 +29,7 @@ public interface RecipeDAO {
 	
 	public List<String> getIngrName1(String chosung1, String chosung2);
 	
-	public List<RecipeDTO> getRcmmList(String selectedIngr);
+	public List<RecipeDTO> getRcmmList(List<String> selectedIngr);
 	
 	
 	
