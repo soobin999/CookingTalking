@@ -23,7 +23,7 @@ public interface RecipeService {
 
 	public List<String> getSearchedIngrName(String ingrName);
 
-	public List<RecipeDTO> getRcmmList(String selectedIngr);
+	public List<RecipeDTO> getRcmmList(List<String> selectedIngr);
 
 	// 레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
