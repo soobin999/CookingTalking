@@ -38,9 +38,10 @@
 			rcpingrCode = #{rcpingrCode}
 		</foreach>
 	</delete>
+	
 		<select id="countPaginationIngr" resultType="int">
 		select count(*)
-		form ingr
+		from ingr
 	</select>
 	
 	<select id="countPaginationIngrLimit" resultType="ingrVO">
