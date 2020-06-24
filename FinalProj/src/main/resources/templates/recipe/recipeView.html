@@ -3,80 +3,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>레시피 상세보기</title>
+
 </head>
 <body>
-	<form th:method="post" th:each="recipe : ${recipeDTO}" action="#">
-		<p>
+	<form th:method="post" action="#">
+		<div th:each="recipe : ${recipeDTO}">
             <div th:text="${recipe.recipeVO.rcpPic}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.recipeVO.rcpViews}"></div>
-        </p>
-        <p>
+            <div th:text="${recipe.userVO.userPic}"></div>
             <div th:text="${recipe.userVO.nickName}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.recipeVO.rcpTitle}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.recipeVO.rcpDate}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.recipeVO.rcpExpl}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.recipeVO.video}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.typeCatVO.cookType}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.typeCatVO.cookSituation}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.typeCatVO.cookMethod}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.recipeVO.personnel}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.recipeVO.cookTime}"></div>
-        </p>
-        <p>
             <div th:text="${recipe.recipeVO.level}"></div>
-        </p>
-        
-    </form>	
-    <form th:method="post" th:each="rcpIngr : ${rcpIngrView}" action="#">
-        <p>
-            
+ 		</div>
+        <div th:each="rcpIngr : ${rcpIngrView}">
             <div th:text="${rcpIngr.ingrCat}"></div>
-        </p>
-        <p>
             <div th:text="${rcpIngr.userIngr}"></div>
-        </p>
-        <p>
             <div th:text="${rcpIngr.ingrWeigh}"></div>
-        </p>
-    </form>
-    <form th:method="post" th:each="rcpOrder : ${rcpOrderView}" action="#">
-        <p>
-            
+        </div>
+        <div th:each="rcpOrder : ${rcpOrderView}">         
             <div th:text="${rcpOrder.cookOrder}"></div>
-        </p>
-        <p>
             <div th:text="${rcpOrder.cookCont}"></div>
-        </p>
-        <p>
             <div th:text="${rcpOrder.cookPic}"></div>
-        </p>
-    </form>
-    <form th:method="post" th:each="tag : ${tagView}" action="#">
-        <p>
-            <div th:text="${tag.tag}"></div>
-        </p>        
-    </form>         
-	<a th:align="center" th:href="@{newList}">글목록</a>
-<!-- 	<span class="recipe_hit_views" th:text="${rcpV.rcpViews}">조회수</span> -->
+        </div>
+        <div >
+        <span></span><b>태그</b>
+            <div ><a th:each="tag : ${tagView}" href="#" th:text="${tag.tag}"></a></div>
+        </div>       
+    </form>          
+	<span th:align="center"><a th:href="@{newList}">글목록</a></span>
+	<span th:align="center"><a th:href="@{modify}">글수정</a></span>
+	<span th:align="center"><a th:href="@{delete}">글삭제</a></span>
 </body>
 </html>
