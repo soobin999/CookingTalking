@@ -49,7 +49,7 @@
 	<td id="talkDate" name="talkDate"></td> -->
 	
 	<tr th:each="myTalk : ${myTalk}">
-		<td class="" th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></td>
+		<td> <a th:href="@{/talk/detail/{talkCode}(talkCode=${myTalk.talkCode})}" class="" th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></a></td>
 		<td class="" th:value="${myTalk.talkDate}" th:text=${myTalk.talkDate}></td>
 	
 	</tr>
