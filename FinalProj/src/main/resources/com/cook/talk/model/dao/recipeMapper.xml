@@ -33,7 +33,7 @@
    </select> -->
    
    <select id="getRcmmList" parameterType="String" resultType="recipeVO">
-      SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.rcpIngr AS ri
+      SELECT DISTINCT r.rcpCode, rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.rcpIngr AS ri
       ON r.rcpCode = ri.rcpCode INNER JOIN recipe.ingr AS i ON i.rcpIngrCode = ri.rcpIngrCode
       WHERE i.ingrName=#{selectedIngr};
 
@@ -51,7 +51,7 @@
 
 
 
-	<!-- 레시피 -->
+	<!-- 레시피 CRUD -->
 	<resultMap id="recipeDTO" type="RecipeDTO">
 		<id property="rcpCode" column="rcpCode" />
 		
@@ -78,27 +78,6 @@
 			<result column="cookSituation" property="cookSituation" />
 			<result column="cookMethod" property="cookMethod" />
 		</association>	
-		
-		<association property="rcpIngrVO" javaType="RcpIngrVO">
-			<result column="connectCode" property="coonectCode" />
-			<result column="ingrCat" property="ingrCat" />
-			<result column="userIngr" property="userIngr" />
-			<result column="ingrWeigh" property="ingrWeigh" />
-			<result column="rcpingrCode" property="rcpingrCode" />
-			<result column="rcpCode" property="rcpCode" />
-		</association>
-			
-		<association property="rcpOrderVO" javaType="RcpOrderVO">
-			<result column="rcpCode" property="rcpCode" />
-			<result column="cookOrder" property="cookOrder" />
-			<result column="cookCont" property="cookCont" />
-			<result column="cookPic" property="cookPic" />
-		</association>
-		
-		<association property="tagVO" javaType="TagVO">
-			<result column="rcpTagCode" property="rcpTagCode" />
-			<result column="tag" property="tag" />
-		</association>
 	</resultMap>
 	
 	<!-- 레시피 뷰테이블 -->
@@ -124,9 +103,9 @@
 		SELECT count(*) FROM rcp
 	</select>
 	
-	<!-- 레시피 글 상세 조회 -->
+	<!-- 레시피 상세 조회 -->
 	<select id="selectRcptpView" resultMap="recipeDTO"> 
-	SELECT rcpCode, rcpPic, rcpViews, nickName, rcpTitle, rcpDate, rcpExpl, video
+	SELECT rcpCode, rcpPic, rcpViews, nickName, rcpTitle, rcpDate, rcpExpl, video,
 	cookType, cookSituation, cookMethod,
 	personnel, cookTime, level
 	FROM recipe.recipedto 
@@ -148,13 +127,13 @@
 	WHERE rcpTagCode=#{rcpTagCode} 
 	</select> 
 	
-<!-- 	<select id="SelectRcpComView" resultType="rcpComVO"> 
+	<!-- 	<select id="SelectRcpComView" resultType="rcpComVO"> 
 	SELECT rcpComCode, rcpCom, rcpComDate, rcpCode? FROM rcpCom
 	WHERE rcpComCode=#{rcpComCode}
 	</select> -->
 	<!-- userVO에서 nickName 조인, rcpComCode 자동생성 해야함  -->
 
-	
+	<!-- 레시피 등록 -->
 	<!-- 코드 자동생성 -->
 	<select id="selectRcpCode" resultType="int">
 		SELECT substring((SELECT rcpCode FROM rcp ORDER BY rcpCode DESC LIMIT 1) ,3)
@@ -166,7 +145,7 @@
 		SELECT substring((SELECT connectCode FROM rcpingr ORDER BY connectCode DESC LIMIT 1), 4)
 	</select>
 	
-	<!-- 레시피 글등록 -->
+	<!-- 레시피 등록 -->
 	<insert id="insertRcpProc" parameterType="recipeVO">
 		INSERT INTO rcp (rcpCode, rcpTitle, rcpDate, rcpPic, rcpExpl, video,
 		personnel, cookTime, level, registerStatus, userId, typeCode)
@@ -192,5 +171,8 @@
 	<insert id="insertTagProc" parameterType="tagVO">
 		INSERT INTO tag (rcpTagCode, tag) VALUES (#{rcpTagCode}, #{tag})
 	</insert>
+	
+	<!-- 레시피 수정 -->
+	<!-- 레시피 삭제 -->
 
 </mapper>

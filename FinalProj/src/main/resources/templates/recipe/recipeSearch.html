@@ -29,10 +29,13 @@ text-align:center;
 }
 .rcp_m_list2{
 width:1500px;
-margin:0 0 0 200px;
+margin:auto;
 }
 .rcp_m_list2 .thumbnail_over{
 left:16px;
+}
+.col-xs-3{
+margin-top:10px;
 }
 </style>
 <meta charset="UTF-8">
@@ -53,7 +56,7 @@ left:16px;
 
 		<div class="row">
 			<div class="col-xs-3" th:each='search:${searchRecipe}'>
-				<a class="thumbnail" href="/recipe/6892442"> <span
+				<a class="thumbnail" th:href="'/recipe/view?rcpCode='+${search.rcpCode}"> <span
 					class="thumbnail_over"><img
 						src="https://recipe1.ezmember.co.kr/img/thumb_over.png"></span> <img
 					src="https://recipe1.ezmember.co.kr/cache/recipe/2018/07/12/211a169445837d4f72ab65c370acd4e61_m.jpg"
