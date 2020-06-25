@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 로드하기</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -11,36 +16,38 @@
 </head>
 <body>
 
+	<h1>재료 페이지</h1>
 	<div class="searchIngr_for_table" id="allIngrPage">
-		<form >
+		<form>
 			<input type="text" id="searchIngrList" name="searchIngrList"
 				th:value="*{searchIngrList}" placeholder="재료를 입력하시오">
-			
+
 			<button class="btn btn-outline-warning" type="button"
 				id="btn_adIngrSearch">검색하기</button>
-					<button onclick="openWindowPop()">재료 추가하기</button>
+			<button class="btn btn-outline-danger" onclick="openWindowPop()">재료
+				추가하기</button>
 
 			<div th:id="ingr_Name_List">
 				<table class="table table-bordered" id="searchIngr" border="1">
-				<thead>
-				<tr>
-					<th>재료 사진</th>
-					<th>재료 이름</th>
-					<th>재료 제철</th>
-					<th>재료 칼로리</th>
-					<th>재료 보관온도</th>
-				</tr>
-			</thead>
+					<thead>
+						<tr>
+							<th>재료 사진</th>
+							<th>재료 이름</th>
+							<th>재료 제철</th>
+							<th>재료 칼로리</th>
+							<th>재료 보관온도</th>
+						</tr>
+					</thead>
 				</table>
 			</div>
 		</form>
 
 	</div>
-	
+
 
 	<div id="basic">
 
-		
+
 
 
 		<table class="table table-bordered" border="1" id="IngrTable">
@@ -69,44 +76,47 @@
 				</tr>
 			</tbody>
 		</table>
-		<button type="button" class="delete_">삭제하기</button>
-	<ul>
-	<li th:each="num: ${#numbers.sequence(1,IngrList.size()/20)}"><a
-		th:class="page" th:text="${num}" th:value="${num}"></a>
-				</li> 
-	</ul>
+		<button type="button" onclick="delete_ingr" class="btn btn-danger">삭제하기</button>
+		<ul>
+			<li th:each="num: ${#numbers.sequence(1,IngrList.size()/20)}"><a
+				th:class="page" th:text="${num}" th:value="${num}"
+				style="color: #FF8000;"></a></li>
+		</ul>
 	</div>
 
 	<!-- 재료 검색 페이지 -->
 	<script>
-	$(document).ready(function(){
-		
-		var cc= 670;
-		for(var i =20;i<cc;i++){
-			$('#'+i).hide();
-		}
-	});
-		</script>
-		<script>
-		$('.page').click(function(event){
-			var k=event.target.text;
+		$(document).ready(function() {
+
+			var cc = 670;
+			for (var i = 20; i < cc; i++) {
+				$('#' + i).hide();
+			}
+		});
+		1
+	</script>
+	<script>
+		$('.page').click(function(event) {
+			var k = event.target.text;
 			console.log(k);
-			for (var i =0;i<670;i++){
-				$('#'+i).hide();
-				}
-			for (var i=0;i<20;i++){
-				$('#'+((parseInt(k)-1)*20+parseInt(i))).show();
-				console.log(k+i);
-			}	
+			for (var i = 0; i < 670; i++) {
+				$('#' + i).hide();
+			}
+			for (var i = 0; i < 20; i++) {
+				$('#' + ((parseInt(k) - 1) * 20 + parseInt(i))).show();
+				console.log(k + i);
+			}
 		});
 	</script>
-	
+
 	<script>
-		$('#btn_adIngrSearch').on('click',function() {
+		$('#btn_adIngrSearch')
+				.on(
+						'click',
+						function() {
 							var searchINGR;
 							var input = document
 									.getElementById("searchIngrList").value;
-
 
 							var searchINGR = document
 									.getElementById("searchIngrList").value
@@ -120,10 +130,10 @@
 								success : function(data) {
 									$(".table123").remove();
 									$.each(data, function(index, ingr) {
-										var str = '<tr class="table123"><td>' + ingr.ingrPic
-												+ '</td><td>' + ingr.ingrName
-												+ '</td><td>' + ingr.ingrSeason
-												+ '</td><td>'
+										var str = '<tr class="table123"><td>'
+												+ ingr.ingrPic + '</td><td>'
+												+ ingr.ingrName + '</td><td>'
+												+ ingr.ingrSeason + '</td><td>'
 												+ ingr.ingrCalorie
 												+ '</td><td>' + ingr.ingrTemper
 												+ '</td>';
@@ -136,7 +146,6 @@
 									alert("Error!");
 								}
 
-								
 							});
 						});
 	</script>
@@ -181,31 +190,30 @@
 	</script>
 
 	<script>
-		$(".delete_ingr").click(
-				function() {
-					var confirm_val = confirm("정말 삭제하시겠습니까?");
+		function delete_ingr() {
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
 
-					if (confirm_val) {
-						var checkArr = new Array();
+			if (confirm_val) {
+				var checkArr = new Array();
 
-						$("input[class='checkRow']:checked").each(
-								function(index, value) {
-									checkArr.push(value.value);
-								});
-
-						console.log(checkArr);
-						$.ajax({
-							url : "/admin/deleteIngr2",
-							type : "POST",
-							data : JSON.stringify(checkArr),
-							contentType : 'application/json',
-							success : function() {
-								alert(checkArr+"가 삭제 되었습니다.");
-								 window.location.reload();
-							}
+				$("input[class='checkRow']:checked").each(
+						function(index, value) {
+							checkArr.push(value.value);
 						});
+
+				console.log(checkArr);
+				$.ajax({
+					url : "/admin/deleteIngr2",
+					type : "POST",
+					data : JSON.stringify(checkArr),
+					contentType : 'application/json',
+					success : function() {
+						window.location.reload();
 					}
 				});
+			}
+		}
+);
 	</script>
 </body>
 </html>

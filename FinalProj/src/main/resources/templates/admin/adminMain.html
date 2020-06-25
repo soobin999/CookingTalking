@@ -56,7 +56,6 @@
 						<th scope="col">문의 내용</th>
 						<th scope="col">문의 날짜</th>
 						<th scope="col">유저</th>
-						<th scope="col">답변 유무</th>
 					</tr>
 				</thead>
 				<tbody th:each="qna, qnaStat:${qnaList}" th:id='${qnaStat.index}'>
@@ -74,24 +73,21 @@
 						<td scope="row">
 							<div th:text="${qna.UserId}"></div>
 						</td>
-						<td scope="row">
-							<div>답변유무</div>
-						</td>
 
 					</tr>
 					<tr th:id="|open${qnaStat.index}|" class="collapse out">
 						<td><div>작성자</div>
 							<div scope="row">
-								<input th:id="|UserId_answer${qnaStat.index}|" name="userId"
+								<input style="background-color:transparent;border:0 solid black;" th:id="|UserId_answer${qnaStat.index}|" name="userId"
 									th:value="${qna.userId}" readonly>
 							</div></td>
-						<td colspan="2"><div th:text="${qna.answer}"></div></td>
+						<td scope="row"><div th:text="${qna.answer}"></div></td>
 						<td><input type="text"
 							th:id="|answer_answer${qnaStat.index}|" th:name="answer"
 							th:value="${qna.answer}" placeholder="답글을 입력하세요"></td>
 						<td><div>
-								<button type="button" th:id="|button_answer${qnaStat.index}|"
-									th:name="button_button" class="insert_answer_btn">답변하기</button>
+								<button class="btn btn-primary" type="button" th:id="|button_answer${qnaStat.index}|"
+									th:name="button_button">답변하기</button>
 							</div></td>
 
 					</tr>
@@ -99,7 +95,7 @@
 			</table>
 			<ul>
 				<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
-					th:class="page" th:text="${num}" th:value="${num}"></a></li>
+					th:class="page" th:text="${num}" th:value="${num}"  style="color:#FF8000;"></a></li>
 			</ul>
 
 
