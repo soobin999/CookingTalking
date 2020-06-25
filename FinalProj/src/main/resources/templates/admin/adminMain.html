@@ -14,19 +14,20 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <div layout:fragment='content'>
-	<div class="contatiner">
-		<div class="adSelectPage" id="adSelectPage">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-2" id="adSelectPage">
 			<!-- 재료 리스트 가져오기 -->
 			<button onclick="adQnaList()">고객요청함</button>
 		</div>
-		<div class="adSelectPage" id="adSelectPage">
+		<div class="col-md-2" id="adSelectPage">
 			<button onclick="adUserList()">회원정보</button>
 		</div>
 
 		<!-- 레시피 화명 이동 버튼 -->
-		<div class="adSelectRcpPage" id="adSelectPage">
+		<div class="col-md-2" id="adSelectPage">
 			<div class="w3-dropdown-hover">
-				<button class="w3-button w3-black">레시피</button>
+				<button class="">레시피</button>
 				<div class="w3-dropdown-content w3-bar-block w3-border">
 					<button onclick="adRecipeList()" class="w3-bar-item w3-button">레시피
 						리스트</button>
@@ -35,7 +36,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="adSelectPage" id="adSelectPage">
+		<div class="col-md-2" id="adSelectPage">
 			<button onclick="adIngrList()">재료페이지</button>
 		</div>
 		<br> <br>
@@ -87,15 +88,18 @@
 							<div>
 								<button class="insert_answer_btn" type="button"
 									th:id="|button_answer${qnaStat.index}|" th:name="button_button">답변하기</button>
-							</div></div></td>
+							</div>
+						</div></td>
 
 				</tr>
 			</tbody>
 		</table>
 		<ul>
-			<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
-				th:class="page" th:text="${num}" th:value="${num}"
-				style="color: #FF8000;"></a></li>
+			<div th:class="Pagination_Li">
+				<div th:each="num: ${#numbers.sequence(1,IngrList)}" th:class="page">
+					<a th:text="${num}" th:value="${num}" style="color: #FF8000;"></a>
+				</div>
+			</div>
 		</ul>
 
 

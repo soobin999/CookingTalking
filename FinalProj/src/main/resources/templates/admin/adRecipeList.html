@@ -63,15 +63,18 @@
 				</tr>
 			</tbody>
 		</table>
-		<ul>
-			<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
-				th:class="page" th:text="${num}" th:value="${num}"
-				style="color: #FF8000;"></a></li>
-		</ul>
+		<div th:class='Pagination_Li'>
+			<ul>
+				<div th:class="Pagination_Li">
+					<div th:each="num: ${#numbers.sequence(1,IngrList)}"
+						th:class="page">
+						<a th:text="${num}" th:value="${num}"
+							style="color: #FF8000; display: inline;"></a>
+					</div>
+				</div>
+			</ul>
+		</div>
 	</div>
-
-
-
 </body>
 <script>
 	$('#btn_adNickName').on(
