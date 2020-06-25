@@ -18,7 +18,7 @@
 	</thead>
 	<tbody>
 	<tr th:each="rcmmList : ${rcmmList}">
-	<td th:text="${rcmmList.rcpTitle}"></td>
+	<td> <a th:href="@{/recipe/view(rcpCode=${rcmmList.rcpCode})}" th:text="${rcmmList.rcpTitle}"></a></td>
 	<td th:text="${rcmmList.rcpPic}"></td>
 	</tbody>
 	</table>

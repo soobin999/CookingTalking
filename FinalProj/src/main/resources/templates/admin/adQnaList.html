@@ -18,7 +18,7 @@
 <body>
 	<div id="basic">
 
-		<table class="table table-bordered table-striped">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>문의사항제목</th>
@@ -114,7 +114,6 @@
 				userId : UserID.value
 			},
 		}).done(function(response) {
-			alert("문의사항 답변을 작성하였습니다.")
 			location.reload();
 		});
 	});

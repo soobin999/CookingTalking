@@ -13,10 +13,10 @@
 			<input type="text" id="searchId" name="searchId"
 				th:value="*{searchId}" placeholder="유저 아이디를 입력하세요">
 
-			<button class="btn search-IngrList" type="button" id="btn_adNickName">검색하기</button>
+			<button class="btn btn-outline-warning" type="button" id="btn_adNickName">검색하기</button>
 
 			<div th:id="ingr_Name_List">
-				<table class="table table-bordered table-striped" id="searchId2"
+				<table class="table table-bordered" id="searchId2"
 					border="1">
 					<thead>
 						<tr>
@@ -73,8 +73,6 @@
 				var searchId;
 				var input = document.getElementById("searchId").value;
 
-				alert(document.getElementById("searchId").value);
-
 				var searchId = document.getElementById("searchId").value
 				$.ajax({
 					type : "POST",
@@ -90,9 +88,9 @@
 									+ '</td><td>' + rcp.rcpTitle + '</td><td>'
 									+ rcp.userId + '</td><td>' + rcp.typeCode
 									+ '</td><td>' + rcp.rcpDate + '</td></tr>';
-									console.log(rcp.rcpCode);
-									console.log(index);
-									console.log(data);
+							console.log(rcp.rcpCode);
+							console.log(index);
+							console.log(data);
 							$("#searchId2").append(str);
 
 						});
@@ -105,27 +103,27 @@
 				});
 			});
 </script>
-	<script>
-		$(document).ready(function() {
+<script>
+	$(document).ready(function() {
 
-			var cc = 700;
-			for (var i = 20; i < cc; i++) {
-				$('#' + i).hide();
-			}
-		});
-	</script>
-	<script>
-		$('.page').click(function(event) {
-			var k = event.target.text;
-			console.log(k);
-			for (var i = 0; i < 670; i++) {
-				$('#' + i).hide();
-			}
-			for (var i = 0; i < 20; i++) {
-				$('#' + ((parseInt(k) - 1) * 20 + parseInt(i))).show();
-				console.log(k + i);
-			}
-		});
-	</script>
+		var cc = 700;
+		for (var i = 20; i < cc; i++) {
+			$('#' + i).hide();
+		}
+	});
+</script>
+<script>
+	$('.page').click(function(event) {
+		var k = event.target.text;
+		console.log(k);
+		for (var i = 0; i < 670; i++) {
+			$('#' + i).hide();
+		}
+		for (var i = 0; i < 20; i++) {
+			$('#' + ((parseInt(k) - 1) * 20 + parseInt(i))).show();
+			console.log(k + i);
+		}
+	});
+</script>
 
 </html>

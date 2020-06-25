@@ -12,15 +12,16 @@
 <body>
 
 	<div class="searchIngr_for_table" id="allIngrPage">
-		<form name="" method="POST">
+		<form >
 			<input type="text" id="searchIngrList" name="searchIngrList"
 				th:value="*{searchIngrList}" placeholder="재료를 입력하시오">
 			
-			<button class="btn search-IngrList" type="button"
+			<button class="btn btn-outline-warning" type="button"
 				id="btn_adIngrSearch">검색하기</button>
+					<button onclick="openWindowPop()">재료 추가하기</button>
 
 			<div th:id="ingr_Name_List">
-				<table id="searchIngr" border="1">
+				<table class="table table-bordered" id="searchIngr" border="1">
 				<thead>
 				<tr>
 					<th>재료 사진</th>
@@ -35,13 +36,14 @@
 		</form>
 
 	</div>
-	<button onclick="openWindowPop()">재료 추가하기</button>
+	
+
 	<div id="basic">
 
-		<button type="button" class="delete_">삭제하기</button>
+		
 
 
-		<table border="1" id="IngrTable">
+		<table class="table table-bordered" border="1" id="IngrTable">
 
 			<thead>
 				<tr>
@@ -67,6 +69,7 @@
 				</tr>
 			</tbody>
 		</table>
+		<button type="button" class="delete_">삭제하기</button>
 	<ul>
 	<li th:each="num: ${#numbers.sequence(1,IngrList.size()/20)}"><a
 		th:class="page" th:text="${num}" th:value="${num}"></a>
@@ -92,7 +95,7 @@
 				$('#'+i).hide();
 				}
 			for (var i=0;i<20;i++){
-				$('#'+((parseInt(k)-1)*50+parseInt(i))).show();
+				$('#'+((parseInt(k)-1)*20+parseInt(i))).show();
 				console.log(k+i);
 			}	
 		});
@@ -104,7 +107,6 @@
 							var input = document
 									.getElementById("searchIngrList").value;
 
-							alert(document.getElementById("searchIngrList").value); //장어가 나오긴한다. 하지만 그이상 넘어가지 않는다.
 
 							var searchINGR = document
 									.getElementById("searchIngrList").value
