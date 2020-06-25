@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>회원정보 로드하기</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -26,7 +25,9 @@
 				id="btn_adIngrSearch">검색하기</button>
 			<button class="btn btn-outline-danger" onclick="openWindowPop()">재료
 				추가하기</button>
-
+				<br>
+				
+			<br>
 			<div th:id="ingr_Name_List">
 				<table class="table table-bordered" id="searchIngr" border="1">
 					<thead>
@@ -65,8 +66,8 @@
 			<tbody>
 				<tr th:each="Ingr,index:${IngrList}" th:id='${index.index}'>
 					<td><div class="checkBox">
-							<input type="checkbox" th:name="checkRow" th:class="checkRow"
-								th:value="${Ingr.rcpingrCode}">삭제하기
+							<input type="checkbox" th:name="checkRow" aria-label="Checkbox for following text input" th:class="checkRow"
+								th:value="${Ingr.rcpingrCode}">
 						</div></td>
 					<td th:text="${Ingr.ingrPic}">재료 사진</td>
 					<td th:text="${Ingr.ingrName}">재료 이름</td>
@@ -76,7 +77,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<button type="button" onclick="delete_ingr" class="btn btn-danger">삭제하기</button>
+		<button type="button" onclick="delete_ingr()" class="btn btn-danger">삭제하기</button>
 		<ul>
 			<li th:each="num: ${#numbers.sequence(1,IngrList.size()/20)}"><a
 				th:class="page" th:text="${num}" th:value="${num}"
@@ -212,8 +213,7 @@
 					}
 				});
 			}
-		}
-);
+		};
 	</script>
 </body>
 </html>

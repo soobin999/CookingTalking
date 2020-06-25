@@ -7,40 +7,49 @@
 
 <title id='pageTitle'>회원정보 로드하기</title>
 <th:block layout:fragment='css'>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </th:block>
-	<div layout:fragment='content'>
+</head>
+<div layout:fragment='content'>
 	<h1>레시피별 데이터</h1>
 
 	<div class="searchBI" id=searchBiInfo>
-		
-			<input type="text" th:id="searchBiInfo1" name="searchBiInfo"
-				th:value="*{searchBiInfo}" placeholder="레시피 코드를 입력하시오">
 
-			<input onclick="searchBiInfo()" type="button"
-				id="btn_searchBiInfo" th:value="검색하기" />
-				<div th:id ="biInfo">
-	<div th:id="columnchart_values"
-			style="height: 400px; float: left; width: 33%"></div>
-		<div th:id="chart_div1"
-			style="width: 600px; height: 400px; float: left; width: 33%"></div>
-		<div th:id="piechart"
-			style="width: 600px; height: 400px; float: left; width: 33%"></div>
+		<input type="text" th:id="searchBiInfo1" name="searchBiInfo"
+			th:value="*{searchBiInfo}" placeholder="레시피 코드를 입력하시오"> <input
+			onclick="searchBiInfo()" type="button" id="btn_searchBiInfo"
+			th:value="검색하기" />
+		<div th:id="biInfo">
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4" id="columnchart_values"
+						style="height: 400px; float: left; width: 33%"></div>
+					<div class="col-md-4" id="chart_div1"
+						style="width: 600px; height: 400px; float: left; width: 33%"></div>
+					<div class="col-md-4" id="piechart"
+						style="width: 600px; height: 400px; float: left; width: 33%"></div>
+				</div>
+			</div>
+
+			</body>
+		</div>
 	</div>
-	</div>
-	
-	
+
+
+
 	<script>
-	function searchBiInfo() {
-		var searchBiInfo = document.getElementById("searchBiInfo1").value;
-	
-		console.log(searchBiInfo);
-		$('#mainTable').remove();
-		$('#biInfo').load("/googleChart/"+searchBiInfo);
+		function searchBiInfo() {
+			var searchBiInfo = document.getElementById("searchBiInfo1").value;
 
-	};
-	
+			console.log(searchBiInfo);
+			$('#mainTable').remove();
+			$('#biInfo').load("/googleChart/" + searchBiInfo);
+
+		};
 	</script>
 
 	<script>
@@ -70,9 +79,9 @@
 					}
 				});
 	</script>
-	</div>
+</div>
 
 
-	<!-- 재료 검색 페이지 -->
-	
+
+<!-- 재료 검색 페이지 -->
 </html>

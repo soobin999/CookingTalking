@@ -39,7 +39,7 @@ public class MainController {
 	}
 
 	@GetMapping("/loginIndex")
-	public String loginIndex(Model model,String userId) {
+	public String loginIndex(Model model, String userId) {
 		model.addAttribute("rcpList", mainService.recipeList(userId));
 		model.addAttribute("newRcpList", maindao.newRecipeList());
 		return "/main/loginIndex";
@@ -59,13 +59,12 @@ public class MainController {
 	}
 
 	@GetMapping("/recipeSearch/{status}/{page}")
-	public String recipeSearch(Model model, String searchWord,@PathVariable String status,@PathVariable 
-			int page) {
-		model.addAttribute("searchRecipe",maindao.recipeSearch(searchWord,status,(page-1)*20));
-		model.addAttribute("totalRecipe",maindao.countRecipe(searchWord));
-		model.addAttribute("totalPage",(Math.ceil((maindao.countRecipe(searchWord)/20.0))));
-		model.addAttribute("searchWord",searchWord);
-		model.addAttribute("status",status);
+	public String recipeSearch(Model model, String searchWord, @PathVariable String status, @PathVariable int page) {
+		model.addAttribute("searchRecipe", maindao.recipeSearch(searchWord, status, (page - 1) * 20));
+		model.addAttribute("totalRecipe", maindao.countRecipe(searchWord));
+		model.addAttribute("totalPage", (Math.ceil((maindao.countRecipe(searchWord) / 20.0))));
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("status", status);
 
 		return "/recipe/recipeSearch";
 	}
@@ -77,8 +76,8 @@ public class MainController {
 	}
 
 	@GetMapping("/googleChart/{rcpCode}")
-	public String googleChart(Model model,@PathVariable String rcpCode) {
-		
+	public String googleChart(Model model, @PathVariable String rcpCode) {
+
 		model.addAttribute("gender", maindao.selectGender(rcpCode));
 		model.addAttribute("birth", maindao.selectBirth(rcpCode));
 		model.addAttribute("month", maindao.selectMonth(rcpCode));
