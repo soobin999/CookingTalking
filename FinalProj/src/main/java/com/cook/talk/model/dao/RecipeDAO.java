@@ -34,8 +34,14 @@ public interface RecipeDAO {
 	
 	
 	
+	//레시피 재료 상세페이지 조회
+	public List<IngrVO> getIngrDetail();
+	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
+	
+	//레시피 랭킹 조회
+	public List<RecipeDTO> getRankList();
 	
 	//rcpViewsCode 자동생성
 	public int selectRcpViewCode();	

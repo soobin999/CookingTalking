@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cook.talk.model.VO.TalkComVO;
 import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.dao.TalkDAO;
 import com.cook.talk.model.service.TalkService;
@@ -58,5 +59,13 @@ public class TalkServiceImpl implements TalkService {
 	public TalkVO detail(String talkCode) {
 		return talkDAO.detail(talkCode);
 	}
+	
+	//토크별 댓글
+	@Override
+	public TalkVO getBoardById(String talkCode) {
+		return talkDAO.getBoardById(talkCode);
+	}
+
+
 	
 }
