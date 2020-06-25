@@ -11,6 +11,7 @@ import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TagVO;
 import com.cook.talk.model.VO.TypeCatVO;
+import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dto.RecipeDTO;
 
 @Service
@@ -35,6 +36,13 @@ public interface RecipeDAO {
 	
 	//레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
+	
+	//rcpViewsCode 자동생성
+	public int selectRcpViewCode();	
+	
+	//레시피 조회이력 저장
+	public void insertRcpViews(ViewsVO viewsVO);
+	
 
 	//레시피 총갯수 카운팅
 	public int recipeCount();
@@ -45,15 +53,16 @@ public interface RecipeDAO {
 	public List<RcpOrderVO> selectRcpOrderView(String rcpCode);
 	public List<TagVO> SelectTagView(String rcpCode); //List로 가져오기
 		
-		
+	
+	//레시피 등록proc
 	//rcpCode 자동생성
 	public int selectRcpCode();
 	//typeCode 자동생성
 	public int selectTypeCode();
 	//rcpingr.connectcode 자동생성
-	public int selectConnectcode();
+	public int selectConnectCode();
 
-	//레시피 글등록
+	//레시피 등록
 	public void insertRecipeProc(RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
 			RcpOrderVO rcpOrderVO, TagVO tagVO);
 	void insertRcpProc(RecipeVO recipeVO);
@@ -61,6 +70,10 @@ public interface RecipeDAO {
 	void insertRcpingrProc(RcpIngrVO rcpIngrVO);
 	void insertRcporderProc(RcpOrderVO rcpOrderVO);
 	void insertTagProc(TagVO tagVO);
+
+	//레시피 조회수 증가
+	public int rcpViewsUpdate(String rcpCode);
+
 
 			
 	//레시피 수정

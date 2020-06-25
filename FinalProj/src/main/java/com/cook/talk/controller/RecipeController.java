@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cook.talk.model.VO.IngrVO;
+import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
@@ -50,10 +51,12 @@ public class RecipeController {
 	
 
 	@GetMapping("recipe/newList")
-	public String getRecipeList(Model model) {
+	public String getRecipeList(Model model, ViewsVO viewsVO) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();
 		model.addAttribute("recipeList", recipeList);
 		model.addAttribute("recipeCount", recipeDAO.recipeCount());
+		//레시피 조회이력 저장
+		
 		for (RecipeDTO dto : recipeList)
 		log.info("list==>" + dto);
 
@@ -70,6 +73,8 @@ public class RecipeController {
 		log.info(recipeDAO.selectRcpOrderView(rcpCode));
 		model.addAttribute("tagView", recipeDAO.SelectTagView(rcpCode));
 		log.info(recipeDAO.SelectTagView(rcpCode));
+		
+		recipeService.rcpViewsUpdate(rcpCode); //조회수 증가
 		
 		return "recipe/recipeView";
 
@@ -97,7 +102,7 @@ public class RecipeController {
 	}
 	
 	@GetMapping("recipe/delete")
-	public String deleteRecipe(RecipeDTO recipeDTO) {
+	public String deleteRecipe(String rcpCode ) {
 		return "";
 	}
 

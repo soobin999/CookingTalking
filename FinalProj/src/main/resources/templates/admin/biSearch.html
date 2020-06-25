@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
 
-<title>회원정보 로드하기</title>
+<title id='pageTitle'>회원정보 로드하기</title>
+<th:block layout:fragment='css'>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -12,6 +15,7 @@
 
 </head>
 <body>
+	<div layout:fragment='content'>
 	<h1>레시피별 데이터</h1>
 
 	<div class="searchBI" id=searchBiInfo>
@@ -25,8 +29,7 @@
 	</div>
 	
 	<div id ="biInfo">
-	
-	
+	</div>
 	</div>
 
 

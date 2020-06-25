@@ -10,6 +10,7 @@ import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TagVO;
 import com.cook.talk.model.VO.TypeCatVO;
+import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dto.RecipeDTO;
 
 @Service
@@ -25,20 +26,30 @@ public interface RecipeService {
 
 	public List<RecipeDTO> getRcmmList(List<String> selectedIngr);
 
+	/* List<RecipeDTO> getRcmmList(IngrVO ingrVO); */
+	
+	
+	
 	// 레시피 목록 조회
 	public List<RecipeDTO> getRecipeList();
+	
+	//레시피 조회이력 저장
+	public void insertRcpViews(ViewsVO viewsVO, RecipeVO recipeVO);
 
 	//레시피 총갯수
 	public int recipeCount();
-
 	
 	// 레시피 글등록
 	public void insertRecipeProc(/* MultipartFile file */ 
 			boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
 			RcpOrderVO rcpOrderVO, TagVO tagVO);
+	
+	
+	//레시피 조회수 증가
+	public int rcpViewsUpdate(String rcpCode);
+	
+	
+		
 
-
-
-	/* List<RecipeDTO> getRcmmList(IngrVO ingrVO); */
 
 }

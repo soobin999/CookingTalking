@@ -10,15 +10,15 @@
 
 </head>
 <body>
-	<div class="searchIngr_for_table" id="allIngrPage">
+	<div class="chef_list4_in" id="allIngrPage">
 		<form name="" method="POST">
 			<input type="text" id="searchUserList" name="searchUserList"
 				th:value="*{searchUserList}" placeholder="닉네임을 입력하시오">
 
-			<button class="btn search-List" type="button" id="btn_adUserSearch">검색하기</button>
+			<button class="btn btn-outline-warning" type="button" id="btn_adUserSearch">검색하기</button>
 
 			<div th:id="ingr_Name_List">
-				<table id="searchUser" border="1">
+				<table class="table table-bordered" id="searchUser" border="1">
 					<thead>
 						<tr>
 							<th>유저 아이디</th>
