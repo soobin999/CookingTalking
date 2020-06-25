@@ -5,133 +5,170 @@
 <title>레시피 등록</title>
 </head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<style>
-input {
+	<script src="/js/insertR.js"></script>
 
-}
-</style>
 <body>
-	<h2 style="text-align:center">레시피 등록</h2>
-	<form id="insertRecipe" th:action="@{insertProc}" method="post" th:object="${recipeDTO}" action="#">
-		<table th:align="center" border="1" th:cellpadding="0"	th:cellspacing="0">
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="사진" width="100px">레시피 사진</td>
-				<td><input type="file" th:field="*{recipeVO.rcpPic}"
-					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" ></td>	
-			</tr>	
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="아이디" width="100px"></td>
-				<td><input type="text" th:field="*{recipeVO.userId}" size="100px" placeholder="아이디"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="제목" width="100px"></td>
-				<td><input type="text" th:field="*{recipeVO.rcpTitle}" size="100px" placeholder="예) 소고기 미역국 끓이기"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="요리소개" width="100px"></td>
-				<td><textarea name="rcpExpl" th:field="*{recipeVO.rcpExpl}" placeholder="이 레시피의 소개글을 적어주세요"
-						style="size: 100px; margin: 0px; width: 335px; height: 76px; resize:none;"></textarea></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="동영상" width="100px"></td>
-				<td><textarea name="video" th:field="*{recipeVO.video}" placeholder="동영상이 있으면 주소를 입력하세요."
+		<h2 style="text-align:center">레시피 등록</h2>    
+    <form id="insertRecipe" th:action="@{insertProc}" method="post" th:object="${recipeDTO}" action="#" enctype="multipart/form-data">
+        <div id="reicpe_typecat_area" th:text-align="cetner">
+            <div class="rcpPic">
+                <p class="rcpPic">레시피 사진</p>
+                <input type="file" name="files" id="input_img" th:field="*{recipeVO.rcpPic}"
+                accept="jpeg,png" placeholder="요리 대표사진을 등록해주세요" >
+            </div>
+            <div class="userId">
+                <input type="text" th:field="*{recipeVO.userId}" placeholder="아이디">
+            </div>
+            <div class="rcpTitle">
+                <p class="rcpTitle">레시피 제목</p>
+                <input type="text" th:field="*{recipeVO.rcpTitle}" placeholder="예)소고기 미역국 끓이기">
+            </div>
+            <div class="rcpExpl">
+                <p class="rcpExpl">요리소개</p>
+                <textarea name="rcpExpl" th:field="*{recipeVO.rcpExpl}" placeholder="이 레시피의 소개글을 적어주세요"
 						style="size: 100px; margin: 0px; width: 335px; height: 76px; resize:none;"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="종류별" width="100px"></td>
-				<td><input type="text" th:field="*{typeCatVO.cookType}" size="100px"
-					placeholder="종류별"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="상황별" width="100px"></td>
-				<td><input type="text" th:field="*{typeCatVO.cookSituation}" size="100px"
-					placeholder="상황별"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="방법별" width="100px"></td>
-				<td><input type="text" th:field="*{typeCatVO.cookMethod}" size="100px"
-					placeholder="방법별"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="인원" width="100px"></td>
-				<td><input type="text" th:field="*{recipeVO.personnel}" size="100px"
-					placeholder="인원"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="시간" width="100px"></td>
-				<td><input type="text" th:field="*{recipeVO.cookTime}" size="100px"
-					placeholder="시간"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="난이도" width="100px"></td>
-				<td><input type="text" th:field="*{recipeVO.level}" size="100px"
-					placeholder="난이도"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="재료" width="100px"></td>
-				<td><input type="text" th:field="*{rcpIngrVO.ingrCat}" size="100px" placeholder="재료"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="선택한재료" width="100px"></td>
-				<td><input type="text" th:field="*{rcpIngrVO.userIngr}" size="100px"
-					placeholder="선택한재료"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="계량정보" width="100px"></td>
-				<td><input type="text" th:field="*{rcpIngrVO.ingrWeigh}" size="100px"
-					placeholder="계량정보"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="조리순서" width="100px"></td>
-				<td><input type="text" th:field="*{rcpOrderVO.cookOrder}" size="100px"
-					placeholder="조리순서"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="조리내용" width="100px"></td>
-				<td><input type="text" th:field="*{rcpOrderVO.cookCont}" size="100px"
-					placeholder="조리내용"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="이미지" width="100px"></td>
-				<td><input type="file" th:field="*{rcpOrderVO.cookPic}"
+            </div>
+            <div class="video">
+                <p class="video">동영상</p>
+                <textarea name="video" th:field="*{recipeVO.video}" placeholder="동영상이 있으면 주소를 입력하세요."
+						style="size: 100px; margin: 0px; width: 335px; height: 76px; resize:none;"></textarea>
+            </div>    
+            <div class="TypeCat">
+                <p class="TypeCat">카테고리</p>
+              <!--   <input type="hidden" name="cookType" id="cookType" value="">--> 
+                <select name="cookType" id="cookType" text="종류별" onchange="changeCookType()">
+                    <option value>종류별</option>
+                    <option value="밑반찬">밑반찬</option>
+                    <option value="메인반찬">메인반찬</option>
+                    <option value="국/탕">국/탕</option>
+                    <option value="찌개">찌개</option>
+                    <option value="디저트">디저트</option>
+                    <option value="면/만두">면/만두</option>
+                    <option value="밥/죽/떡">밥/죽/떡</option>
+                    <option value="퓨전">퓨전</option>
+                    <option value="김치/젓갈/장류">김치/젓갈/장류</option>
+                    <option value="양념/소스/잼">양념/소스/잼</option>
+                    <option value="양식">양식</option>
+                    <option value="샐러드">샐러드</option>
+                    <option value="스프">스프</option>
+                    <option value="빵">빵</option>
+                    <option value="과자">과자</option>
+                    <option value="차/음료/술">차/음료/술</option>
+                    <option value="기타">기타</option>
+                  </select>
+                <select name="cookSituation" id="cookSituation" text="상황별" onchange="changeCookSituation()">
+                    <option value>상황별</option>
+                    <option value="일상">일상</option>
+                    <option value="초스피드">초스피드</option>
+                    <option value="손님접대">손님접대</option>
+                    <option value="술안주">술안주</option>
+                    <option value="다이어트">다이어트</option>
+                    <option value="도시락">도시락</option>
+                    <option value="영양식">영양식</option>
+                    <option value="간식">간식</option>
+                    <option value="야식">야식</option>
+                    <option value="푸드스타일링">푸드스타일링</option>
+                    <option value="해장">해장</option>
+                    <option value="명절">명절</option>
+                    <option value="이유식">이유식</option>
+                    <option value="기타">기타</option>
+                </select>
+                <select name="cookMethod" class="cookMethod" text="방법별" onchange="changeCookMethod()">
+                    <option value>방법별</option>
+                    <option value="볶음">볶음</option>
+                    <option value="끓이기">끓이기</option>
+                    <option value="부침">부침</option>
+                    <option value="조림">조림</option>
+                    <option value="무침">무침</option>
+                    <option value="비빔">비빔</option>
+                    <option value="찜">찜</option>
+                    <option value="절임">절임</option>
+                    <option value="튀김">튀김</option>
+                    <option value="삶기">삶기</option>
+                    <option value="굽기">굽기</option>
+                    <option value="데치기">데치기</option>
+                    <option value="회">회</option>
+                    <option value="기타">기타</option>
+                </select>
+            </div>
+            <div class="cookInfo">
+                <p class="cookInfo">요리정보</p>
+                	<p>인원  <select name="personnel" id="personnel" text="인원" onchange="changePersonnel()">
+                    <option value="">인원</option>
+                    <option value="1">1인분</option>
+                    <option value="2">2인분</option>
+                    <option value="3">3인분</option>
+                    <option value="4">4인분</option>
+                    <option value="5">5인분</option>
+                    <option value="6">6인분이상</option>
+                </select>
+                <span class="cookTime">시간</span>
+                <select name="cookTime" id="cookTime" text="요리시간" onchange="changeCookTime()">
+                    <option value="">시간</option>
+                    <option value="5">5분이내</option>
+                    <option value="10">10분이내</option>
+                    <option value="15">15분이내</option>
+                    <option value="20">20분이내</option>
+                    <option value="30">30분이내</option>
+                    <option value="60">60분이내</option>
+                    <option value="90">90분이내</option>
+                    <option value="120">2시간이내</option>
+                    <option value="999">2시간이상</option>
+                </select>
+                <span class="level">난이도</span>
+                <select name="level" id="level" text="난이도" onchange="changeLevel()">
+                    <option value="">난이도</option>
+                    <option value="1">아무나</option>
+                    <option value="2">초급</option>
+                    <option value="3">중급</option>
+                    <option value="4">고급</option>
+                </select>
+            </div>
+        </div>
+        <div class="rcpIngr_area" th:text-align="cetner">
+            <div class="rcpIngr">
+                <p class="재료">재료</p>
+                <input type="text" th:field="*{rcpIngrVO.ingrCat}" placeholder="재료">
+            </div>
+            <div class="userIngr">
+                <p class="선택된재료"></p>
+                <input type="text" th:field="*{rcpIngrVO.userIngr}" placeholder="예)돼지고기">
+            </div>
+            <div class="">
+                <p class=""></p>
+                <input type="text" th:field="*{rcpIngrVO.ingrWeigh}" placeholder="예)300g">
+            </div>        
+        </div>
+        <div class="rcpOrder_area" th:text-align="cetner">
+            <div class="cookOrder">
+                <p class="요리순서">요리순서</p>
+                <input type="text" th:field="*{rcpOrderVO.cookOrder}" placeholder="조리순서">
+            </div>  
+            <p>
+            <div class="cookCont">
+                 <textarea name="cookCont" th:field="*{rcpOrderVO.cookCont}" 
+                 placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요"
+                    style="size: 100px; margin: 0px; width: 335px; height: 76px; resize:none;"></textarea>
+            </div>
+            <div>
+                <input type="file" th:field="*{rcpOrderVO.cookPic}"
 					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" >
-					</td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="태그" width="100px"></td>
-				<td><input type="text" th:field="*{tagVO.tag}" size="100px"
-					placeholder="태그"></td>
-			</tr>
-		</table>
-		<input type="hidden" id="registerStatus" name="registerStatus" value="true">
-		<input class="submit" type="button" value="임시 저장">
-		<input class="submit" type="button" value="등록">
-		<input class="cancel" type="button" value="취소">
-	</form>
-	<!-- script -->
-	<script>
-	$(document).ready(function(){
- 	$("input.submit").click(function(){
-    $('#registerStatus').val( ($(this).val()=='등록') ? true : false);
-    alert("완료되었습니다!");
-    	document.location.href = 'recipe/newList';
-    $('#insertRecipe').submit();
-     
-    	})
-	});
-
- 	$(document).ready(function(){
-		$("input.cancel").click(function(){
-			var result = confirm('취소하시겠습니까?');
-			
-			if(result) {
-				//예
-				location.replace('newList'); //글목록 페이지로 이동
-			} else {
-				//아니오
-			}
-		});
-	}); 
-</script>
+                </div>  
+        </div>
+        <div class="tag_area" th:text-align="cetner">
+            <div class="tag">
+                <p class="태그">태그</p>
+                <textarea name="tag" th:field="*{tagVO.tag}" placeholder="예) 돼지고기, 다이어트, 비만, 칼슘, 감기예방, 이유식, 초간단"
+                style="size: 100px; margin: 0px; width: 335px; height: 76px; resize:none;"></textarea>
+            </div>
+        </div>
+        <p>
+        <div class="regi_btm">
+       		<input type="hidden" id="registerStatus" name="registerStatus" value="true">
+			<input class="submit" type="button" value="임시 저장">
+			<input class="submit" type="button" value="등록">
+			<input class="cancel" type="button" value="취소">
+		</div>
+        </form>
+        </body>
 </html>
