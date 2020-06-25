@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="getSearchMyScraped" resultType="MypageDTO" parameterType="String">
-	SELECT DISTINCT rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
+	SELECT DISTINCT r.rcpCode, r.rcpPic, rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
 	WHERE s.userId='kkk@naver.com' AND r.rcpTitle LIKE CONCAT('%', #{rcpTitle}, '%')
 	</select>
 
@@ -51,7 +51,7 @@
 	</select>
 	
 	<select id="getSearchMyTalk" resultType="MypageDTO" parameterType="String">
-	SELECT DISTINCT talkCont, talkDate FROM recipe.talk WHERE userId='1113pppp@naver.com' AND 
+	SELECT DISTINCT talkCode, talkCont, talkDate FROM recipe.talk WHERE userId='1113pppp@naver.com' AND 
 	talkCont LIKE CONCAT('%', #{talkCont}, '%')
 	</select>
 	

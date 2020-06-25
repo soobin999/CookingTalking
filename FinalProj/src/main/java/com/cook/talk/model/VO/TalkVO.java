@@ -1,6 +1,7 @@
 package com.cook.talk.model.VO;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
@@ -17,4 +18,6 @@ public class TalkVO {
 	private int talkLike;// 좋아요 수
 	private int talkCom;// 댓글 수
 	private String userId;
+	private String nickName;
+	private List<TalkComVO> talkComs;
 }

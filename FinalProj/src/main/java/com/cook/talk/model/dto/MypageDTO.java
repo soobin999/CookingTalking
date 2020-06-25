@@ -19,6 +19,7 @@ public class MypageDTO {
 	private int followC;
 	private Date scrapDate;
 	
+	private String talkCode;
 	private String talkCont;
 	private Date talkDate;
 	private String talkCom;
