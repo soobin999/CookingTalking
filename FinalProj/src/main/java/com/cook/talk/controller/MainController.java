@@ -82,7 +82,6 @@ public class MainController {
 		model.addAttribute("gender", maindao.selectGender(rcpCode));
 		model.addAttribute("birth", maindao.selectBirth(rcpCode));
 		model.addAttribute("month", maindao.selectMonth(rcpCode));
-	
 		return "/main/chart";
 	}
 }
