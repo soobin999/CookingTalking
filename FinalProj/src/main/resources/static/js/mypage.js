@@ -113,7 +113,9 @@ function chefSearch(){
 			var result = $('#myFrequent');
 			$('#myChefMain').remove();
 			$.each(data, function(index, value){
-				searchedChef = '<tr id="myChefMain"><td>' + data[index].nickName
+				searchedChef = '<tr class="myChefMain"><td>'
+				+ '<a href="/chefInfo/1/'+ data[index].nickName+ '">'
+				+ data[index].nickName + '</a>'
 				+ '</td><td>' + data[index].followC
 				+ '</td></tr><br>'
 				console.log("data.nickName:"+value.nickName);
@@ -139,7 +141,11 @@ function myTalkSearch(){
 			var result = $('#myActivity');
 			$('#myTalkMain').remove();
 			$.each(data, function(index, value){
-				searchedTalk = '<tr id="myTalkMain"><td>' + data[index].talkCont
+				console.log(data[index].talkCode);
+				searchedTalk = '<tr class="myTalkMain"><td>'
+				+ '<a href="/talk/detail/'
+				+ data[index].talkCode + '">'
+				+ data[index].talkCont + '</a>'	
 				+ '</td><td>' + data[index].talkDate
 				+ '</td></tr><br>'
 				console.log("data.talkCont:"+value.talkCont);
@@ -166,7 +172,18 @@ function myScrapSearch(){
 			$('#myScrapededMain').remove();
 			$.each(data, function(index, value){
 				console.log(data);
-				searchedScrap = '<tr id="myScrapededMain"><td>' + data[index].rcpTitle
+				
+				+ '<a href="/talk/detail/'
+				+ data[index].talkCode + '">'
+				+ data[index].talkCont + '</a>'	
+				
+				searchedScrap = '<tr id="myScrapededMain"><td>'
+				+ '<a href="/recipe/view?rcpCode='
+				+ data[index].rcpCode + '">'
+				+ data[index].rcpPic + '</a>'
+				+ '</td><td>' + '<a href="/recipe/view?rcpCode=' 
+				+ data[index].rcpCode + '">'
+				+ data[index].rcpTitle + '</a>' 
 				+ '</td><td>' + data[index].scrapDate
 				+ '</td></tr><br>'
 				console.log("data.rcpTitle:"+value.rcpTitle);

@@ -41,7 +41,7 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public String modifyUserPic(String userPic, @RequestParam("userPic") MultipartFile file) {
 
-		String save = "D:/git/cookingtalking/FinalProj/src/main/resources/static/userImg";
+		String save = "D:/git/cookingtalking/FinalProj/src/main/resources/static/userImg/";
 		
 		System.out.println("file:"+file);
 		
@@ -49,7 +49,7 @@ public class MypageServiceImpl implements MypageService{
 		try {
 			
 			byte[] bytes = file.getBytes();
-			Path path = Paths.get(file + file.getOriginalFilename());
+			Path path = Paths.get(save + file.getOriginalFilename());
 			Files.write(path, bytes);
 			
 		} catch (IOException e) {

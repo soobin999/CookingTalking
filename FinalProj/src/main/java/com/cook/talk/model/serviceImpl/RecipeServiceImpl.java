@@ -60,13 +60,30 @@ public class RecipeServiceImpl implements RecipeService {
 		// TODO Auto-generated method stub
 		return recipeDAO.getSearchedIngrName(ingrName);
 	}
+	
+	
 
+	
+	//재료 상세페이지 조회
+	@Override
+	public List<IngrVO> getIngrDetail() {
+		List<IngrVO> ingrDetail = recipeDAO.getIngrDetail();
+		return ingrDetail;
+	}
+	
 	
 	//레시피 목록 조회
 	@Override
 	public List<RecipeDTO> getRecipeList() {
 		List<RecipeDTO> recipeList = recipeDAO.getRecipeList();
 		return recipeList;
+	}
+	
+	//레시피 랭킹 조회
+	@Override
+	public List<RecipeDTO> getRankList() {
+		List<RecipeDTO> rankList = recipeDAO.getRankList();
+		return rankList;
 	}
 	
 	//레시피 조회이력 저장
@@ -91,7 +108,6 @@ public class RecipeServiceImpl implements RecipeService {
 		int recipeCount = recipeDAO.recipeCount();
 		return recipeCount();
 	}
-
 
 	
 	//레시피 등록	
@@ -156,6 +172,8 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeDAO.rcpViewsUpdate(rcpCode);
 		
 	}
+
+
 	
 }
 

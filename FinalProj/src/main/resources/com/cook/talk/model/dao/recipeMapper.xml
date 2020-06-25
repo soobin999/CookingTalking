@@ -48,11 +48,7 @@
    </select>
 	<select id="countIngrInMyRefri" parameterType="int" resultType="int">
 	</select>
-
-
-
-
-
+	
 
 	<!-- 레시피 CRUD -->
 	<resultMap id="recipeDTO" type="RecipeDTO">
@@ -95,6 +91,12 @@
 		AND rcp.userId = user.userId
 	</select>
 	
+	<!-- 레시피 재료 상세페이지 조회 -->
+	<select id="getIngrDetail" resultType="ingrVO">
+		SELECT rcpingrCode, ingrPic, ingrName, ingrSeason, ingrCalorie, ingrTemper 
+		FROM ingr
+	</select>
+	
 	<!-- 레시피 최신목록 조회 -->
 	<select id="getRecipeList" resultMap="recipeDTO">
 		SELECT rcpCode, rcpTitle, nickName, userPic, rcpDate, rcpPic
@@ -102,7 +104,10 @@
 		ORDER BY rcpDate DESC
 	</select>
 	<!-- 레시피 랭킹목록 조회 -->
-	
+	<select id="getRankList" resultMap="recipeDTO">
+		SELECT rcpCode, rcpPic, rcpTitle, nickName, rcpDate 
+		FROM recipe.recipedto
+	</select>
 	<!-- 레시피 총갯수 카운팅 -->
 	<select id="recipeCount" resultType="int">
 		SELECT count(*) FROM rcp
@@ -190,6 +195,7 @@
 		UPDATE rcp SET rcpViews = rcpViews+1 where rcpCode=#{rcpCode}
 	</update>
 	<!-- 레시피 수정 -->
+	
 	<!-- 레시피 삭제 -->
 
 </mapper>
