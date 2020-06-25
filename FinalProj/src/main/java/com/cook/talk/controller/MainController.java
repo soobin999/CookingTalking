@@ -39,8 +39,8 @@ public class MainController {
 	}
 
 	@GetMapping("/loginIndex")
-	public String loginIndex(Model model, String expl) {
-		model.addAttribute("rcpList", mainService.recipeList("R-000001"));
+	public String loginIndex(Model model,String userId) {
+		model.addAttribute("rcpList", mainService.recipeList(userId));
 		model.addAttribute("newRcpList", maindao.newRecipeList());
 		return "/main/loginIndex";
 	}
@@ -82,7 +82,6 @@ public class MainController {
 		model.addAttribute("gender", maindao.selectGender(rcpCode));
 		model.addAttribute("birth", maindao.selectBirth(rcpCode));
 		model.addAttribute("month", maindao.selectMonth(rcpCode));
-	
 		return "/main/chart";
 	}
 }

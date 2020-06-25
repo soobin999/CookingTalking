@@ -41,7 +41,7 @@
 	
 	<select id="getMyScrapedRecipe" parameterType="String" resultType="RecipeVO">
 	<!-- SELECT rcpTitle, rcpPic, scrapDate FROM recipe.scrap WHERE userId='kkk@naver.com' -->
-	SELECT r.rcpCode, rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
+	SELECT r.rcpCode, r.rcpPic, rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
 	WHERE s.userId='kkk@naver.com' ORDER BY scrapDate DESC
 	</select>
 	

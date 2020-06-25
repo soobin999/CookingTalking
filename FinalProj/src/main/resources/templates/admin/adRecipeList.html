@@ -2,21 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>레시피 보두 보기</title>
+<title>레시피 모두 보기</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
+<h1>레시피 페이지</h1>
 	<div class="searchIngr_for_table" id="allIngrPage">
 		<form name="" method="POST">
 			<input type="text" id="searchId" name="searchId"
 				th:value="*{searchId}" placeholder="유저 아이디를 입력하세요">
 
-			<button class="btn search-IngrList" type="button" id="btn_adNickName">검색하기</button>
+			<button class="btn btn-outline-warning" type="button" id="btn_adNickName">검색하기</button>
 
 			<div th:id="ingr_Name_List">
-				<table class="table table-bordered table-striped" id="searchId2"
+				<table class="table table-bordered" id="searchId2"
 					border="1">
 					<thead>
 						<tr>
@@ -59,7 +65,7 @@
 		</table>
 		<ul>
 			<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
-				th:class="page" th:text="${num}" th:value="${num}"></a></li>
+				th:class="page" th:text="${num}" th:value="${num}"  style="color:#FF8000;"></a></li>
 		</ul>
 	</div>
 

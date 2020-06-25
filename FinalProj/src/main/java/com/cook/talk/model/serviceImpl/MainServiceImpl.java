@@ -10,7 +10,6 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.cook.talk.model.dao.ChefDAO;
 import com.cook.talk.model.dao.MainDAO;
 import com.cook.talk.model.dto.IndexDTO;
 import com.cook.talk.model.service.MainService;
@@ -18,8 +17,6 @@ import com.cook.talk.model.service.MainService;
 @Service
 public class MainServiceImpl implements MainService {
 
-	@Autowired(required = false)
-	private ChefDAO chef;
 	@Autowired(required = false)
 	private MainDAO main;
 
@@ -32,10 +29,9 @@ public class MainServiceImpl implements MainService {
 
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.setMessageConverters(converters);
-
 		// parameter 세팅
 		// REST API 호출
-		String result = restTemplate.postForObject("http://localhost:5000/recommend", expl, String.class);
+		String result = restTemplate.postForObject("http://localhost:5000/recommend",main.userRecommend(expl), String.class);
 		result = result.substring(2, result.length());
 		result = result.substring(0, result.length() - 3);
 		String[] re = result.split("\",\"");

@@ -91,4 +91,11 @@
 	delete from follow where followChef=(select userid from user where nickName=#{chefNick}) and userId=#{userId}
 </delete>
 
+<select id="userRecommend" resultType="String">
+	select rcpCode from views 
+	<if test='userId !=null'>
+	where userId=#{userId} 
+	</if>
+	order by viewDate desc ,rcpViewCode desc limit 1 
+</select>
 </mapper>

@@ -44,8 +44,9 @@
 	
 	
 	<tr th:each="myScraped : ${myScraped}">
-		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" class="" th:value="${myScraped.rcpTitle}" th:text=${myScraped.rcpTitle}></a></td>
-		<td class="" th:value="${myScraped.scrapDate}" th:text=${myScraped.scrapDate}></td>
+		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpPic}" th:text=${myScraped.rcpPic}></a></td>
+		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpTitle}" th:text=${myScraped.rcpTitle}></a></td>
+		<td th:value="${myScraped.scrapDate}" th:text=${myScraped.scrapDate}></td>
 	</tr>
 	</tbody>
 	</table>

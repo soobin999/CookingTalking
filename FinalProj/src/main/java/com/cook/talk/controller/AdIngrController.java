@@ -23,6 +23,7 @@ public class AdIngrController {
 	@GetMapping("/admin/adIngrList") // 재료 뿌리기
 	public String allSelectIngr(Model model) {
 		model.addAttribute("IngrList", adingrDAO.allSelectIngr());
+		
 		return "admin/adIngrList"; // data를 처리한다. 페이지 이동이 아닌,
 	}
 
