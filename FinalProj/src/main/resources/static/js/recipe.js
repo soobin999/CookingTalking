@@ -113,9 +113,10 @@ function clickOffVer1(){
 		console.log("back to list on chosung");
 		var goBack = $(event.target);
 		
+		console.log(goBack)
 		$('#chosungNum').append(goBack);
-		/*$('#selectedIngr').remove();*/
-	})
+		$('#selectedIngr').remove();
+	});
 	
 }
 
@@ -126,7 +127,7 @@ function clickOffVer2(){
 		console.log(goBack);
 		
 		$('#searchedIngr').append(goBack);
-		/*$('#selectedIngr').remove();*/
+		$('#selectedIngr').remove();
 	})
 }
 
