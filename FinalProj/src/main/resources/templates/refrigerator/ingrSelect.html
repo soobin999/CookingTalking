@@ -44,7 +44,7 @@
 				<table>
 					<tbody th:id="result">
 						<tr th:each="ingrs : ${ingrs}">
-							<td><button th:class="ingrButton"
+							<td><button th:class="ingrButton" th:id='${ingrs.ingrName}'
 									th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}"
 									data-area=""></button></td>
 						</tr>

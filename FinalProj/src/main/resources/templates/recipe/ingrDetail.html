@@ -9,14 +9,14 @@
 	<tr>
 		<th>사진</th><th>이름</th><th>제철</th><th>100g당 열량</th><th>보관온도</th>
 	</tr>
-	<tr th:each="ingr : ${ingrList}">
+	<tr th:each="ingr : ${ingrDetail}">
 	<td th:text="${ingr.ingrPic}">
 	<td th:text="${ingr.ingrName}">
 	<td th:text="${ingr.ingrSeason}">
 	<td th:text="${ingr.ingrCalorie}">Kcal</td>
 	<td th:text="${ingr.ingrTemper}">℃</td>
 	</table>	
-	<!--  <input type="button" text="레시피검색"/>-->
+	<!--  <input type="button" text="레시피검색"/>--><!-- 구성 div로 바꾸기 지금 구조를 옆쪽으로 옮겨야 함-->
 	<!-- 모달창으로 띄우기. 제목에 재료이름. 구성은 css로 포지션하기 -->
 </body>
 </html>

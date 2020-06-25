@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>레시피 최신목록</title>
+</head>
+<body>
+	<ul class="nav nav-tab2 pull-right" style="position:relative;">
+		<li role="presentation" class="active">
+			<a>일간</a>
+		</li>
+		<li role="presentation" class="active">
+			<a>주간</a>
+		</li>
+		<li role="presentation" class="active">
+			<a>월간</a>
+		</li>
+	</ul>
+	<div>
+		<span th:align="center"><a th:href="@{insert}">글쓰기</a></span>
+		<div th:each="rank : ${rankList}">
+			<div th:text="${rank.recipeVO.rcpPic}"></div>
+			<div>
+				<a th:href="@{/recipe/view(rcpCode=${rank.recipeVO.rcpCode})}"
+					th:text="${rank.recipeVO.rcpTitle}"></a>
+			</div>
+			<div th:text="${rank.userVO.nickName}"></div>
+			<div th:text="${rank.recipeVO.rcpDate}"></div>
+		</div>
+	</div>
+</body>
+</html>

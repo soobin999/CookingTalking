@@ -1,6 +1,6 @@
 package com.cook.talk.controller;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.VO.ViewsVO;
@@ -49,6 +51,16 @@ public class RecipeController {
 		return "refrigerator/rcmmRecipe";
 	}
 	
+	@GetMapping("/ingrDetail")
+	public String getIngrDetail(Model model) {
+		List<IngrVO> ingrDetail = recipeService.getIngrDetail();
+		model.addAttribute("ingrDetail", ingrDetail);
+		
+		log.info(recipeService.getIngrDetail());
+		
+		return "recipe/ingrDetail";
+	}
+	
 
 	@GetMapping("recipe/newList")
 	public String getRecipeList(Model model, ViewsVO viewsVO) {
@@ -61,6 +73,14 @@ public class RecipeController {
 		log.info("list==>" + dto);
 
 		return "recipe/newList";
+	}
+	
+	@GetMapping("recipe/rankList")
+	public String getRankList(Model model) {
+		List<RecipeDTO> rankList = recipeService.getRankList();
+		model.addAttribute("rankList", rankList);
+		
+		return "recipe/rankList";
 	}
 
 	@GetMapping("recipe/view") 
@@ -85,19 +105,29 @@ public class RecipeController {
 		return "recipe/insertRecipe";
 	}
 
+	@ResponseBody
 	@PostMapping("recipe/insertProc")
-	public String insertRecipeProc(/* @RequestParam("file") MultipartFile multipartfile, */ 
+	public String insertRecipeProc(@RequestParam("file") MultipartFile files,  
 		boolean registerStatus,	RecipeDTO recipeDTO) {
 		BasicConfigurator.configure(); //log4j 오류처리
 		recipeService.insertRecipeProc(registerStatus,
 				 recipeDTO.getRecipeVO(), recipeDTO.getTypeCatVO(),
 				recipeDTO.getRcpIngrVO(), recipeDTO.getRcpOrderVO(), recipeDTO.getTagVO());
 
+		
+		try {
+			String baseDir = "C:/cooktalk/FinalProj/src/main/resources/static/img"; 
+			files.transferTo(new File(baseDir + "\\"+ files.getOriginalFilename()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		return "recipe/insertRecipe";
 	}
 
-	@PostMapping("recipe/modify")
-	public String modifyRecipe(RecipeDTO recipeDTO) {
+	@PostMapping("recipe/update")
+	public String updateRecipe(RecipeDTO recipeDTO) {
 		return "";
 	}
 	

@@ -4,22 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>레시피 최신목록</title>
 </head>
-<body >
-
-	<p style="text-align:center">총 <b><span th:text="${recipeCount}"></span></b>개의 맛있는 레시피가 있습니다.</p>
-
-	<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
-	<tr>
-		<th>대표사진</th><th>제목</th><th>작성자</th><th>등록일</th>
-	</tr>
-	<tr th:each="recipe : ${recipeList}">
-	<td th:text="${recipe.recipeVO.rcpPic}">
-	<td><a th:href="@{/recipe/view(rcpCode=${recipe.recipeVO.rcpCode})}" th:text="${recipe.recipeVO.rcpTitle}"></a></td>
-	<td th:text="${recipe.userVO.nickName}">
-	<td th:text="${recipe.recipeVO.rcpDate}">
-	
+<body>
+	<p style="text-align: center">
+		총 <b><span th:text="${recipeCount}"></span></b>개의 맛있는 레시피가 있습니다.
+	</p>
 	<span th:align="center"><a th:href="@{insert}">글쓰기</a></span>
-	</table>	
-	<br>
+	<div th:each="recipe : ${recipeList}">
+		<div th:text="${recipe.recipeVO.rcpPic}"></div>
+		<div>
+			<a th:href="@{/recipe/view(rcpCode=${recipe.recipeVO.rcpCode})}"
+				th:text="${recipe.recipeVO.rcpTitle}"></a>
+		</div>
+		<div th:text="${recipe.userVO.nickName}"></div>
+		<div th:text="${recipe.recipeVO.rcpDate}"></div>
+	</div>
 </body>
 </html>
