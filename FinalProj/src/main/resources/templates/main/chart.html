@@ -3,26 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>구글 차트</title>
-
-
-
-
-
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript" th:inline='javascript'>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" th:inline='javascript'>
   /*<!CDATA[*/
   var birthData=/*[[${birth}]]*/;
   /*]]>*/
   var birthArray=[];
   birthArray.push(["연령", "조회수", { role: "style" } ]);
   for (birth in birthData){
-  	var birthSubArray=[];
-  	birthSubArray.push(birthData[birth]['axis']+'대');
-  	birthSubArray.push(parseInt(birthData[birth]['count']));
-  	birthSubArray.push('#FF8000');
-  	birthArray.push(birthSubArray);
+     var birthSubArray=[];
+     birthSubArray.push(birthData[birth]['axis']+'대');
+     birthSubArray.push(parseInt(birthData[birth]['count']));
+     birthSubArray.push('#FF8000');
+     birthArray.push(birthSubArray);
   }
- 	console.log(birthArray);
+    console.log(birthArray);
     google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -47,23 +45,26 @@
       chart.draw(view, options);
   }
   </script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script  type="text/javascript" th:inline="javascript">
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<script type="text/javascript" th:inline="javascript">
     /*<!CDATA[*/
     var gender=/*[[${gender}]]*/;
     /*]]>*/
     var array=[];
     array.push(['Task', 'Hours per Day']);
     for (k in gender){
-    	var array1=[];
-    	if(gender[k]['axis']==0){
-    		array1.push('남성');
-    		}
-    	else{
-    		array1.push('여성');
-    	}
-    	array1.push(gender[k]['count']);
-    	array.push(array1);
+       var array1=[];
+       if(gender[k]['axis']==0){
+          array1.push('남성');
+          }
+       else{
+          array1.push('여성');
+       }
+       array1.push(gender[k]['count']);
+       array.push(array1);
     }
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -81,7 +82,8 @@
         chart.draw(data, options);
       }
     </script>
-    <script th:inline='javascript'>
+
+<script th:inline='javascript'>
         google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 /*<!CDATA[*/
@@ -89,10 +91,10 @@ var data=/*[[${month}]]*/;
 /*]]>*/
 var monthArray=[];
 for (month in data){
-	var monthSubArray=[];
-	monthSubArray.push(parseInt(data[month]['axis']));
-	monthSubArray.push(data[month]['count']);
-	monthArray.push(monthSubArray);
+   var monthSubArray=[];
+   monthSubArray.push(parseInt(data[month]['axis']));
+   monthSubArray.push(data[month]['count']);
+   monthArray.push(monthSubArray);
 }
 function drawBasic() {
 
@@ -119,11 +121,17 @@ function drawBasic() {
     </script>
 </head>
 <body>
-<div >
- <div id="columnchart_values" style="height: 400px; float:left;width:33%"></div>
 
-       <div id="chart_div1" style="width:600px; height:400px; float:left;width:33%"></div>
- <div id="piechart" style="width: 600px; height: 400px; float:left;width:33%"></div>
-</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4" id="columnchart_values"
+				style="height: 400px; float: left; width: 33%"></div>
+			<div class="col-md-4" id="chart_div1"
+				style="width: 600px; height: 400px; float: left; width: 33%"></div>
+			<div class="col-md-4" id="piechart"
+				style="width: 600px; height: 400px; float: left; width: 33%"></div>
+		</div>
+	</div>
+
 </body>
 </html>

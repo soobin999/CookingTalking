@@ -53,12 +53,12 @@ body {
 					</p>
 				</div>
 				<div class="list_mem3">
-					<a th:href="'/chefInfo/1/'+${nickName}" class="mem_pic"><img
+					<a th:href="'/chefInfo/1/'+${chefDetail.userVO.nickName}" class="mem_pic"><img
 						src="http://placehold.it/70x70/"> </a>
 				</div>
 				<div class="list_cont4">
-					<b> <a th:href="'/chefInfo/1/'+${nickName}"
-						th:class="info_name_f" th:text='${nickName}'> </a>
+					<b> <a th:href="'/chefInfo/1/'+${chefDetail.userVO.nickName}"
+						th:class="info_name_f" th:text='${chefDetail.userVO.nickName}'> </a>
 						<button type="button" class="btn btn-default btn-sm"
 							id="btnAddFriend" th:if="${follow == 0}">
 							<span class="glyphicon glyphicon-plus" th:text="Follow"></span>
@@ -79,9 +79,6 @@ body {
 				<li role="presentation"><a
 					th:href="'/chefInfo/1/'+${nickName}"><i class="fas fa-utensils"></i>
 						레시피</a></li>
-				<li role="presentation"><a
-					href="/profile/recipe_comment.html?uid=jun8707"><i
-						class="fas fa-comments"></i>댓글</a></li>
 				<li role="presentation" class="active"><a th:id='story'><i
 						class="fas fa-user-friends"></i> 스토리</a></li>
 			</ul>
@@ -92,13 +89,14 @@ body {
 			</div>
 
 			<ul class="cont_list st3">
-				<li><a href="/recipe/6927176" class="thumbnail"
-					th:each='recipe,index:${story}' th:id="'story'+${index.index}">
+				<li><a th:href="'/talk/detail/'+${story.talkCode}" class="thumbnail"
+					th:each='story,index:${story}' th:id="'story'+${index.index}">
 						<img src="http://placehold.it/198x130/"
 						style="width: 200px; height: 130px;"> <!-- ${recipe.rcpTitle} -->
 						<div class="caption">
-							<h5 th:text='${recipe.talkCont}'></h5>
-							<p class="jq_elips" th:text="'by '+ ${recipe.userId}"></p>
+							<h5 th:text='${story.talkCont}'></h5>
+							<h6 th:text="${story.talkDate}"></h6>
+							<p class="jq_elips" th:text="'by '+ ${chefDetail.userVO.nickName}"></p>
 						</div>
 				</a></li>
 				<div th:class='con'>
@@ -115,17 +113,17 @@ body {
 	<script>
 		$(document).ready(function() {
 			for (var i = 12; i < 100; i++) {
-				$('#' + i).hide();
+				$('#story' + i).hide();
 			}
 		});
 		$('.paging').click(function(event) {
 			var k = event.target.text;
 			console.log(k);
 			for (var i = 0; i < 100; i++) {
-				$('#' + i).hide();
+				$('#story' + i).hide();
 			}
 			for (var i = 0; i < 12; i++) {
-				$('#' + ((parseInt(k) - 1) * 12 + i)).show();
+				$('#story' + ((parseInt(k) - 1) * 12 + i)).show();
 			}
 		});
 	</script>

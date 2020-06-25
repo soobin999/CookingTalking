@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dao.MypageDAO;
@@ -89,12 +90,10 @@ public class MypageRestController {
 	 
 	
 	/*
-	 * @DeleteMapping("/deleteRcp/${myWritten.rcpCode}") public String
-	 * deleteRcp(@PathVariable("rcpCode") String rcpCode) {
-	 * System.out.println("deleteRcp 실행 : "); mypageService.deleteRcp(rcpCode);
-	 * System.out.println("dao 끝 ");
+	 * @PostMapping("/mypage/ans/{qnaCode}") public String
+	 * showAns(@RequestParam("qnaCode") String qnaCode, RedirectAttributes rttr) {
 	 * 
-	 * return "redirect:/"; }
+	 * return "redirect:/mypage/myInquiryList"; }
 	 */
 	
 	

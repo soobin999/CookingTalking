@@ -11,4 +11,5 @@ public class RcpSDTO {
 	private String rcpPic;
 	private String rcpTitle;
 	private String nickName;
+	private String rcpCode;
 }

@@ -82,6 +82,7 @@ public class AdminRestController {
 
 		return "삭제되었습니다";
 	}
+
 	@PostMapping("/admin/searchUser")
 	public List<UserVO> searchUser(@RequestParam("nickName") String nickName) {
 		System.out.println(nickName);
@@ -89,8 +90,7 @@ public class AdminRestController {
 		System.out.println(aduserDAO.searchUser(nickName));
 		return aduserDAO.searchUser(nickName);
 	}
-	
-	
+
 	@PostMapping("/admin/search")
 	public List<IngrVO> searchIngr(@RequestParam("ingrName") String ingrVO) {
 		System.out.println(ingrVO);
@@ -98,8 +98,6 @@ public class AdminRestController {
 		System.out.println(adIngrDAO.searchIngr(ingrVO));
 		return adIngrDAO.searchIngr(ingrVO);
 	}
-
-	// (value = "${Ingr.ingrName}")
 
 	@PostMapping("/admin/complain")
 	public void complain() {
@@ -134,25 +132,26 @@ public class AdminRestController {
 		return "admin";
 	}
 
-	@PostMapping("/admin/searchUserNickName") // 닉네임 찾아서 레시피 찾기
-	public String searchRecipeByNickName(UserVO userNickName) {
-
-		return "admin";
+	@PostMapping("/admin/searchId") // 아이디 찾아서 레시피 찾기
+	public List<RecipeVO> searchRecipeByNickName(@RequestParam("userId") String userId) {
+		System.out.println(userId);
+		adRecipeDAO.searchRecipeById(userId);
+		System.out.println(adRecipeDAO.searchRecipeById(userId));
+		System.out.println("여기까지되나요?");
+		return adRecipeDAO.searchRecipeById(userId);
 	}
 
-	
-	  @GetMapping("/admin/IngrPagination") public List<IngrVO> ingrPagination(int
-	  pageNUM) {
-	  
-	  return adIngrDAO.countPaginationIngrLimit(pageNUM);
-	  
-	  }
-	 
+	@GetMapping("/admin/IngrPagination")
+	public List<IngrVO> ingrPagination(int pageNUM) {
+
+		return adIngrDAO.countPaginationIngrLimit(pageNUM);
+
+	}
 
 	@GetMapping("/admin/UserPagination")
 	public List<UserVO> userPagination(int pageNum) {
 
-		return aduserDAO.countPaginationUserLimit((pageNum-1)*10);
+		return aduserDAO.countPaginationUserLimit((pageNum - 1) * 10);
 	}
 
 }

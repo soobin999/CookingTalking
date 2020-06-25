@@ -51,13 +51,11 @@
 	<tbody>
 	
 	<tr th:each="myAllCom : ${myAllCom}">
-		<td class="" th:text=${myAllCom.talkCom}></td>
+		<td> <a href="" class="" th:text=${myAllCom.talkCom}></td>
 		<td class="" th:text=${myAllCom.talkComDate}></td>
-<!-- 	</tr>
-		<tr th:each="myRcpCom : ${myRcpCom}">
-		<td class="" th:text=${myRcpCom.rcpCom}></td>
-		<td class="" th:text=${myRcpCom.rcpComDate}></td>
-	</tr> -->
+		</tr>
+		
+
 	</tbody>
 	</table>
 		</div>

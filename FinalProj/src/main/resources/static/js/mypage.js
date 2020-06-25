@@ -5,12 +5,27 @@ $(function(){
 
 function answer(){
 	
-	var ans = $('#answer').val();
+
+	$('.qnaAns').each(function(index){
+
+		var ans = $(this).data('answer');
+		var ansId = $(this).data('id');
+		console.log(ans)
+		
+		if(ans != null){
+			$('#' + ansId).append("답변완료");
+		}
+		
+		showAns('#' + ansId)
+	})
 	
-	if(ans != null){
-		$('#answer').append("답변완료");
-	} else 
-		$('#answer').append("답변미등록");
+}
+
+function showAns(showTarget){
+	$(showTarget).on('click', function(e){
+		var showItem = $(e.target).closest('.myInq-list').find('#showAns');
+		showItem.text($(e.target).data('answer'))
+	})
 }
 
 
@@ -304,15 +319,4 @@ function sendInq(){
 		}
 	})
 	
-}
-
-function showAns(){
-	
-	$('#myQnATitle').on('click', function(){
-		
-		var myQnACont = $('#myQnACont').innerText();
-		var answer = $('#answer').val();
-		
-		
-	})
 }

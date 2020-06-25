@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
+<head>
+<meta charset="UTF-8">
+
+<title id='pageTitle'>회원정보 로드하기</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</th:block>
+</head>
+<div layout:fragment='content'>
+	<h1>레시피별 데이터</h1>
+
+	<div class="searchBI" id=searchBiInfo>
+
+		<input type="text" th:id="searchBiInfo1" name="searchBiInfo"
+			th:value="*{searchBiInfo}" placeholder="레시피 코드를 입력하시오"> <input
+			onclick="searchBiInfo()" type="button" id="btn_searchBiInfo"
+			th:value="검색하기" />
+		<div th:id="biInfo">
+
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4" id="columnchart_values"
+						style="height: 400px; float: left; width: 33%"></div>
+					<div class="col-md-4" id="chart_div1"
+						style="width: 600px; height: 400px; float: left; width: 33%"></div>
+					<div class="col-md-4" id="piechart"
+						style="width: 600px; height: 400px; float: left; width: 33%"></div>
+				</div>
+			</div>
+
+			</body>
+		</div>
+	</div>
+
+
+
+	<script>
+		function searchBiInfo() {
+			var searchBiInfo = document.getElementById("searchBiInfo1").value;
+
+			console.log(searchBiInfo);
+			$('#mainTable').remove();
+			$('#biInfo').load("/googleChart/" + searchBiInfo);
+
+		};
+	</script>
+
+	<script>
+		$(".delete_ingr").click(
+				function() {
+					var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+					if (confirm_val) {
+						var checkArr = new Array();
+
+						$("input[class='checkRow']:checked").each(
+								function(index, value) {
+									checkArr.push(value.value);
+								});
+
+						console.log(checkArr);
+						$.ajax({
+							url : "/admin/deleteIngr2",
+							type : "POST",
+							data : JSON.stringify(checkArr),
+							contentType : 'application/json',
+							success : function() {
+								alert(checkArr + "가 삭제 되었습니다.");
+								window.location.reload();
+							}
+						});
+					}
+				});
+	</script>
+</div>
+
+
+
+<!-- 재료 검색 페이지 -->
+</html>

@@ -8,4 +8,5 @@ public interface MainService {
 
 	public List<IndexDTO> recipeList(String expl);
 	public String followChef(String follow,String chefNick);
+	
 }

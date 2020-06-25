@@ -44,7 +44,7 @@
 				<table>
 					<tbody th:id="result">
 						<tr th:each="ingrs : ${ingrs}">
-							<td><button th:class="ingrButton"
+							<td><button th:class="ingrButton" th:id='${ingrs.ingrName}'
 									th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}"
 									data-area=""></button></td>
 						</tr>
@@ -56,8 +56,8 @@
 	<!-- 선택한 재료 담는 곳 -->
 	<div th:class="selectedIngr" id="selectedIngr" value=""></div>
 	
-	<form th:action="@{/rcmmRecipe}" th:method="POST">
-		<input type="hidden" id="myIngr" name="selectedIngr" value="${selectedIngr}">
+	<form id="selectedIngrForm" th:action="@{/rcmmRecipe}" th:method="POST">
+		<!-- <input type="hidden" id="myIngr" name="selectedIngr" value="${selectedIngr}"> -->
 		<button type="submit" th:class="goToRcmmRecipe" th:id="goToRcmmRecipe">레시피 검색하러 가기</button>
 	</form>
 	

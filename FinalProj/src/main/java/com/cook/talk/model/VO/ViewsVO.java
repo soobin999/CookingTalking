@@ -6,13 +6,12 @@ import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
 
-@Alias("rcpComVO")
+@Alias("viewsVO")
 @Data
-public class RcpComVO {
+public class ViewsVO {
 
-	private String rcpComCode;
-	private String rcpCom;
-	private Date rcpComDate;
+	private String rcpViewCode;
+	private Date viewDate;
 	private String rcpCode;
 	private String userId;
 }
