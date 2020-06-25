@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 로드하기(adUser의 백업 파일본들)</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -23,7 +27,6 @@
 						<tr>
 							<th>유저 아이디</th>
 							<th>유저 닉네임</th>
-							<!-- <th>유저 닉네임 수정하기</th> -->
 							<th>유저 생일</th>
 							<th>유저 성별</th>
 							<th>유저 or 관리자</th>
@@ -47,7 +50,6 @@
 					<th>삭제</th>
 					<th>유저 아이디</th>
 					<th>유저 닉네임</th>
-					<!-- <th>유저 닉네임 수정하기</th> -->
 					<th>유저 생일</th>
 					<th>유저 성별</th>
 					<th>유저 or 관리자</th>
@@ -60,13 +62,13 @@
 			<tbody th:id="tbody">
 
 				<tr th:each="user,index:${UserList}" th:id='${index.index}'>
-					<td><button th:class="delete_btn" th:value='${user.userId}'>삭제하기</button></td>
+					<td><button class="btn btn-danger" th:class="delete_btn" th:value='${user.userId}'>삭제하기</button></td>
 
 
-					<td><input type="text" th:class="C_enter_update_Id"
+					<td><input style="background-color:transparent;border:0 solid black;" type="text" th:class="C_enter_update_Id"
 						th:id="|enter_update_ID${index.index}|" name="userId"
 						th:value="${user.userId}" readonly></td>
-					<td><input type="text"
+					<td><input style="background-color:transparent;border:0 solid black;" type="text"
 						th:id="|enter_update_nickName${index.index}|" th:name="nickName"
 						th:value="${user.nickName}">
 					<td th:text="${user.birth}">유저 생일</td>
@@ -81,7 +83,7 @@
 		</table>
 		<ul>
 			<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
-				th:class="page" th:text="${num}" th:value="${num}"></a></li>
+				th:class="page" th:text="${num}" th:value="${num}" style="color:#FF8000;"></a></li>
 		</ul>
 
 	</div>
