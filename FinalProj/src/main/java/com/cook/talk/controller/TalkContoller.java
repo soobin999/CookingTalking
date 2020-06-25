@@ -59,6 +59,7 @@ public class TalkContoller {
 	@RequestMapping(value = "/detail/{talkCode}", method = RequestMethod.GET)
 	public String detail(@PathVariable String talkCode, Model model) {
 		model.addAttribute("talkCode", talkservice.detail(talkCode));
+		model.addAttribute("listCom", talkservice.getBoardById(talkCode));
 		return "talk/talkDetail";
 	}
 

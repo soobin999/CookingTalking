@@ -29,5 +29,7 @@ public interface TalkDAO {
 	
 	//보기 
 	public TalkVO detail(String talkCode);
-
+	
+	//토크별 댓글 가져오기 
+	public TalkVO getBoardById(String talkCode);  
 }
