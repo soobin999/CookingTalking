@@ -9216,12 +9216,19 @@ table.table.table-hover>tbody>tr>td {
 }
 .adSelectPage {
 	float: left;
-	width: 25%;
+	
+	width: 300px;
+	
 }
 
 .adSelectRcpPage {
 	float: left;
 	width: 25%;
+}
+.insert_answer_btn {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
 }
 
 

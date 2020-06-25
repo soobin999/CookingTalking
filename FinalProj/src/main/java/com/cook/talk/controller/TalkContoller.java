@@ -1,9 +1,6 @@
 package com.cook.talk.controller;
 
 import java.security.Principal;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cook.talk.model.VO.TalkVO;
@@ -26,7 +22,6 @@ import lombok.extern.log4j.Log4j;
 
 @RequestMapping("/talk/*")
 @Controller
-@Log4j
 @AllArgsConstructor
 public class TalkContoller {
 	@Autowired
@@ -53,7 +48,6 @@ public class TalkContoller {
 		talkVO.setUserId(principal.getName());
 		talkservice.insert(talkVO);
 		return "redirect:/talk/list";
-
 	}
 
 	// 상세 페이지 이동
@@ -69,36 +63,17 @@ public class TalkContoller {
 		model.addAttribute("talkupdate", talkservice.detail(talkVO.getTalkCode()));
 		return "talk/update";
 	}
-	/*
-	 * //수정버튼
-	 * 
-	 * @RequestMapping(value = "/update/{talkCode}", method = RequestMethod.POST)
-	 * public String updateTalk(@PathVariable TalkVO talkVO, Model model) {
-	 * model.addAttribute("talkCode", talkservice.update(talkVO)); return
-	 * "talk/update"; }
-	 */
-
+	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateTalk(Principal principal, TalkVO talkVO) {
 		talkVO.setUserId(principal.getName());		
 		talkservice.updateTalk(talkVO);
 		return "redirect:/talk/list";
 	}
-	
-	
-	/*
-	 * @RequestMapping(value = "/update", method = RequestMethod.POST) public String
-	 * update(TalkVO talkVO,RedirectAttributes rttr) { if
-	 * (talkservice.update(talkVO)) { rttr.addFlashAttribute("result", "success"); }
-	 * return "redirect:/talk/list";
-	 * 
-	 * }
-	 */
 
 //삭제 
-
-	@PostMapping("/delete/{talkCode}")
-	public String delete(@RequestParam("talkCode") String talkCode, RedirectAttributes rttr) {
+	@GetMapping("/delete/{talkCode}")
+	public String delete(@PathVariable String talkCode, RedirectAttributes rttr) {
 		if (talkservice.delete(talkCode)) {
 			rttr.addFlashAttribute("result", "success");
 		}

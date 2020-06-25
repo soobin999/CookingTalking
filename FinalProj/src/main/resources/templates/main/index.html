@@ -42,7 +42,7 @@ position: absolute;
 	<div class="gnb_top_wrap">
 		<div class="gnb_top">
 			<h1>
-				<a href="main/index"><img src="img/logo.png" alt="로고"></a>
+				<a href="index"><img src="img/logo.png" alt="로고"></a>
 			</h1>
 			<div class="gnb_search">
 				<form id="frmTopRecipeSearch" method="get"
@@ -67,7 +67,7 @@ position: absolute;
 				<li><a href="#"
 					style="display: block; width: 44px; height: 44px;"> 
 					<img src="img/login_icon.png" alt="로그인"></a></li>
-				<li><a id="btnTopWrite" href="/recipe/insertRecipe"
+				<li><a id="btnTopWrite" href="/recipe/insert"
 					data-toggle="tooltip" data-placement="top" title="레시피등록"
 					data-original-title="레시피등록">
 					<img src="img/recipe_write_icon.png"></a></li>
@@ -78,7 +78,7 @@ position: absolute;
 	</div>
 	<div class="gnb_nav text-center" style='background: #FF8000'>
 		<ul class="gnb_nav_ea10">
-			<li><a href="/index.html" class="active">홈</a></li>
+			<li><a href="/index" class="active">홈</a></li>
 			<li><a href="/recipe/newList">레시피</a></li>
 			<li><a href="/ingrSelect">냉장고파먹기</a></li>
 			<li><a th:href="@{/talk/list}">토크</a></li>

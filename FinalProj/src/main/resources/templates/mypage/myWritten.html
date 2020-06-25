@@ -35,8 +35,8 @@
 	
 	<tr th:each="myWritten, a : ${myWritten}" th:class="myWritten" id="myWritten">
 		<td th:text="${a.count}"></td>
-		<td th:text=${myWritten.rcpTitle}></td>
-		<td th:text=${myWritten.rcpPic}></td>
+		<td> <a th:href="@{/recipe/view(rcpCode=${myWritten.rcpCode})}" th:text=${myWritten.rcpTitle}></a></td>
+		<td> <a th:href="@{/recipe/view(rcpCode=${myWritten.rcpCode})}" th:text=${myWritten.rcpPic}></a></td>
 		<!-- <td><button type="button" th:name="deleteMyRcpBtn" th:id="deleteMyRcpBtn+${a.count}" onclick="deleteMyRcp();" th:value="${myWritten.rcpCode}">삭제</button></td> -->
 		<td>
 	

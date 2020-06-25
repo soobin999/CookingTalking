@@ -41,12 +41,12 @@
 	
 	<select id="getMyScrapedRecipe" parameterType="String" resultType="RecipeVO">
 	<!-- SELECT rcpTitle, rcpPic, scrapDate FROM recipe.scrap WHERE userId='kkk@naver.com' -->
-	SELECT rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
+	SELECT r.rcpCode, r.rcpPic, rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
 	WHERE s.userId='kkk@naver.com' ORDER BY scrapDate DESC
 	</select>
 	
 	<select id="getMyTalk" resultType="TalkVO">
-	SELECT DISTINCT talkCont, talkDate FROM recipe.talk WHERE userId='1113pppp@naver.com' 
+	SELECT DISTINCT talkCode, talkCont, talkDate FROM recipe.talk WHERE userId='1113pppp@naver.com' 
 	ORDER BY talkDate DESC
 	</select>
 	
@@ -95,7 +95,7 @@
 	</insert>
 	
 	<select id="getmyInq" resultType="QnAVO">
-	SELECT qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
+	SELECT DISTINCT qnaCode, qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
 	</select>
 	
 	<select id="selectQnACode" resultType="int">

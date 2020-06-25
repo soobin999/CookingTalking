@@ -2,114 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>레시피 글 상세보기</title>
+<title>레시피 상세보기</title>
+
 </head>
 <body>
-	<form th:object="${recipeDTO}" method="post" action="#">
-		<table th:align="center" border="1" th:cellpadding="0"	th:cellspacing="0">
-
-	<!-- 		<tr>
-				<td bgcolor="#f8f8f8" th:text="사진" width="100px">레시피 사진</td>
-				<td><input type="file" th:field="*{rcpPic}"
-					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" ></td>
-			</tr> -->
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="조회수" width="100px">조회수</td>
-				<td th:field="${rcpViews}"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="닉네임" width="100px">닉네임</td>
-				<td th:field="${nickname}"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="제목" width="100px">레시피 제목</td>
-			 	<td><input type="text" th:field="${recipeVO.rcpTitle}" size="100px" placeholder="예) 소고기 미역국 끓이기"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="등록일" width="100px">등록일</td>
-				<!-- <td th:field="*{recipeVO.rcpDate}"></td> -->
-				<td th:text="*{#temporals.format(recipeDTO.rcpDate, 'yyyy-MM-dd')}"></td>
-			</tr>		
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="요리소개" width="100px">요리 소개</td>
-				<td><textarea name="rcpExpl" th:field="${recipeDTO.rcpExpl}" placeholder="이 레시피의 탄생배경을 적어주세요"
-						style="size: 100px; margin: 0px; width: 335px; height: 76px; resize:none;"></textarea></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="동영상" width="100px">동영상</td>
-				<td><textarea name="video" th:field="*{recipeDTO.video}" placeholder="동영상이 있으면 주소를 입력하세요."
-						style="size: 100px; margin: 0px; width: 335px; height: 76px; resize:none;"></textarea></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="종류별" width="100px">종류별</td>
-				<td><input type="text" th:field="*{recipeDTO.cookType}" size="100px"
-					placeholder="종류별"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="상황별" width="100px">상황별</td>
-				<td><input type="text" th:field="*{recipeDTO.cookSituation}" size="100px"
-					placeholder="상황별"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="방법별" width="100px">방법별</td>
-				<td><input type="text" th:field="*{recipeDTO.cookMethod}" size="100px"
-					placeholder="방법별"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="인원" width="100px">인원</td>
-				<td><input type="text" th:field="*{recipeDTO.personnel}" size="100px"
-					placeholder="인원"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="시간" width="100px">시간</td>
-				<td><input type="text" th:field="*{recipeDTO.cookTime}" size="100px"
-					placeholder="시간"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="난이도" width="100px">난이도</td>
-				<td><input type="text" th:field="*{recipeDTO.level}" size="100px"
-					placeholder="난이도"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="재료" width="100px">재료</td>
-				<td><input type="text" th:field="*{rcpIngrVO.ingrCat}" size="100px"
-					placeholder="재료"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="선택한재료" width="100px">선택한재료</td>
-				<td><input type="text" th:field="*{rcpIngrVO.userIngr}" size="100px"
-					placeholder="선택한재료"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="계량정보" width="100px">계량정보</td>
-				<td><input type="text" th:field="*{rcpIngrVO.ingrWeigh}" size="100px"
-					placeholder="계량정보"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="조리순서" width="100px">조리순서</td>
-				<td><input type="text" th:field="*{rcpOrderVO.cookOrder}" size="100px"
-					placeholder="조리순서"></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="조리내용" width="100px">조리내용</td>
-				<td><textarea name="cookCont" th:field="*{rcpOrderVO.cookCont}" placeholder="조리내용"
-						style="size: 100px; margin: 0px; width: 335px; height: 76px;"></textarea></td>
-			</tr>
-			<tr>
-				<td bgcolor="#f8f8f8" th:text="조리내용" width="100px">조리내용</td>
-				<td><textarea name="cookCont" th:field="*{rcpOrderVO.cookCont}" placeholder="조리내용"
-						style="size: 100px; margin: 0px; width: 335px; height: 76px;"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit" value="수정">
-				</td>
-			</tr>		
-		</table>
-		<a th:href="@{recipe/newList}" class="btn btn-default wave-effect waves-light">뒤로가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a th:href="@{recipe/insertRecipe(userId=${recipeVO.rcpCode})}">수정</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<button type="button" class="" th:onclick="deleteRecipe([[${recipeVO.rcpCode}]])">삭제</button>&nbsp;&nbsp;&nbsp;&nbsp;
-	</form>
-	<a th:href="@{newList}">글목록</a>
-<!-- 	<span class="recipe_hit_views" th:text="${rcpV.rcpViews}">조회수</span> -->
+	<form th:method="post" action="#">
+		<div th:each="recipe : ${recipeDTO}">
+            <div th:text="${recipe.recipeVO.rcpPic}"></div>
+            <div th:text="${recipe.recipeVO.rcpViews}"></div>
+            <div th:text="${recipe.userVO.userPic}"></div>
+            <div th:text="${recipe.userVO.nickName}"></div>
+            <div th:text="${recipe.recipeVO.rcpTitle}"></div>
+            <div th:text="${recipe.recipeVO.rcpDate}"></div>
+            <div th:text="${recipe.recipeVO.rcpExpl}"></div>
+            <div th:text="${recipe.recipeVO.video}"></div>
+            <div th:text="${recipe.typeCatVO.cookType}"></div>
+            <div th:text="${recipe.typeCatVO.cookSituation}"></div>
+            <div th:text="${recipe.typeCatVO.cookMethod}"></div>
+            <div th:text="${recipe.recipeVO.personnel}"></div>
+            <div th:text="${recipe.recipeVO.cookTime}"></div>
+            <div th:text="${recipe.recipeVO.level}"></div>
+ 		</div>
+        <div th:each="rcpIngr : ${rcpIngrView}">
+            <div th:text="${rcpIngr.ingrCat}"></div>
+            <div th:text="${rcpIngr.userIngr}"></div>
+            <div th:text="${rcpIngr.ingrWeigh}"></div>
+        </div>
+        <div th:each="rcpOrder : ${rcpOrderView}">         
+            <div th:text="${rcpOrder.cookOrder}"></div>
+            <div th:text="${rcpOrder.cookCont}"></div>
+            <div th:text="${rcpOrder.cookPic}"></div>
+        </div>
+        <div >
+        <span></span><b>태그</b>
+            <div ><a th:each="tag : ${tagView}" href="#" th:text="${tag.tag}"></a></div>
+        </div>       
+    </form>          
+	<span th:align="center"><a th:href="@{newList}">글목록</a></span>
+	<span th:align="center"><a th:href="@{update}">글수정</a></span>
+	<span th:align="center"><a th:href="@{delete}">글삭제</a></span>
 </body>
 </html>

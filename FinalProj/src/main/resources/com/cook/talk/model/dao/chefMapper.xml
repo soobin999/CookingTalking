@@ -28,7 +28,7 @@
 	</select>
 
 	<select id="selectRecipe" resultType="recipeVO">
-		select rcpTitle,rcpPic from
+		select rcpCode,rcpTitle,rcpPic,rcpDate from
 		rcp where userId = (select userId from user where nickName=#{chefId})
 		limit #{page},12
 	</select>
@@ -55,6 +55,6 @@
 	</select>
 
 	<select id="selectStory" resultType="talkVO">
-		SELECT talkCont,talkDate,talkVideo FROM recipe.talk where userId=(select userId from user where nickName=#{nickName})
+		SELECT talkCode,talkCont,talkDate,talkVideo FROM recipe.talk where userId=(select userId from user where nickName=#{nickName})
 	</select>
 </mapper>

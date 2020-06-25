@@ -8,6 +8,7 @@ import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TagVO;
 import com.cook.talk.model.VO.TypeCatVO;
+import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.VO.RcpComVO;
 
 import lombok.Data;
@@ -20,7 +21,8 @@ public class RecipeDTO {
 	@Autowired(required = false)
 	private RecipeVO recipeVO;
 	
-	private String nickName;
+	@Autowired(required = false)
+	private UserVO userVO;
 	
 	@Autowired(required = false)
 	private TypeCatVO typeCatVO;
