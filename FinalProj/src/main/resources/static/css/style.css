@@ -1,12 +1,43 @@
 @charset "utf-8";
 
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+html {
+	position: relative;
+	min-height: 100%;
+	margin: 0;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width:100%;
+	
+}
+
 body {
 	min-width: 1240px;
+	min-height: 100%;
+}
+
+table {
+	table-layout: fixed;
 }
 
 .container {
 	width: 1240px;
 	max-width: none !important;
+	min-height: 100%;
+}
+
+.container-lg {
+	height: 100%;
 }
 
 .container_full {
@@ -644,7 +675,13 @@ body {
 .event_cont
 
 
+
+
+
  
+
+
+
 
 
 ul
@@ -652,10 +689,22 @@ ul
 
 
 
+
+
+
+
+
+
 .theme_list
 
 
+
+
+
  
+
+
+
 
 
 li
@@ -663,17 +712,35 @@ li
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 .dropdown-li
 
 
+
+
+
  
+
+
+
 
 
 )
@@ -683,14 +750,32 @@ width
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 200
 px
+
+
+
+
+
+
 
 
 
@@ -701,13 +786,31 @@ display
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 inline-block
+
+
+
+
+
+
 
 
 
@@ -718,10 +821,22 @@ padding
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -730,10 +845,22 @@ margin
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0
@@ -741,14 +868,26 @@ margin
 px
 
 
+
+
+
  
+
+
+
 
 
 30
 px
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -757,13 +896,31 @@ position
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 relative
+
+
+
+
+
+
 
 
 
@@ -8478,7 +8635,13 @@ relative
 .9
 
 
+
+
+
  
+
+
+
 
 
 %
@@ -8488,13 +8651,31 @@ visibility
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 visible
+
+
+
+
+
+
 
 
 
@@ -8505,10 +8686,22 @@ z-index
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 10;
@@ -8517,10 +8710,22 @@ opacity
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0
@@ -8543,7 +8748,13 @@ keyframes placesMap-bookmark-layer-animation { 0% {
 .9
 
 
+
+
+
  
+
+
+
 
 
 %
@@ -8553,13 +8764,31 @@ visibility
 
 
 
+
+
+
+
+
+
 :
+
+
+
 
 
  
 
 
+
+
+
 visible
+
+
+
+
+
+
 
 
 
@@ -8570,10 +8799,22 @@ z-index
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 10;
@@ -8582,10 +8823,22 @@ opacity
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0
@@ -15999,7 +16252,13 @@ a.label_like span {
 .note-editor
 
 
+
+
+
  
+
+
+
 
 
 .btn-group
@@ -16009,7 +16268,19 @@ a.label_like span {
 
 
 
+
+
+
+
+
+
 :last-child
+
+
+
+
+
+
 
 
 
@@ -16017,21 +16288,39 @@ a.label_like span {
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 ),
 .note-editor
 
 
+
+
+
  
+
+
+
 
 
 .btn-group
@@ -16041,17 +16330,35 @@ a.label_like span {
 
 
 
+
+
+
+
+
+
 :not
 
 
+
+
+
  
+
+
+
 
 
 (
 :first-child
 
 
+
+
+
  
+
+
+
 
 
 )
@@ -16061,10 +16368,22 @@ border-top-left-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0;
@@ -16073,10 +16392,22 @@ border-bottom-left-radius
 
 
 
+
+
+
+
+
+
 :
 
 
+
+
+
  
+
+
+
 
 
 0

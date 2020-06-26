@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <title>건호 리스트 뿌리기</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/Harry/w3.css">
 </head>
 
 
@@ -43,19 +43,26 @@
 					</td>
 
 				</tr>
-				<tr th:id="|open${qnaStat.index}|" class="collapse out">
-					<td colspan="4"><div>
-							작성자 :<input
-								style="background-color: transparent; border: 0 solid black;"
-								th:id="|UserId_answer${qnaStat.index}|" name="userId"
-								th:value="${qna.userId}" readonly>
-							<div th:text="${qna.answer}"></div>
-							<input type="text" th:id="|answer_answer${qnaStat.index}|"
-								th:name="answer" th:value="${qna.answer}"
-								placeholder="답글을 입력하세요">
-							<div>
-								<button type="button" th:id="|button_answer${qnaStat.index}|"
-									th:name="button_button" class="insert_answer_btn">답변하기</button>
+				<tr th:id="|open${qnaStat.index}|" class="collapse out bg-light"
+					width="100%">
+					<td colspan="4"><div class="m-3">
+							<p>
+								<b>작성자 :<b></b><input
+									style="background-color: transparent; border: 0 solid black;"
+									th:id="|UserId_answer${qnaStat.index}|" name="userId"
+									th:value="${qna.userId}" readonly>
+							</p>
+							<hr>
+							<div th:text="${qna.answer}" class="mb-3"></div>
+							<div class="input-group mb-3 mw-100">
+								<textarea type="text" th:id="|answer_answer${qnaStat.index}|"
+									th:name="answer" th:value="${qna.answer}"
+									placeholder="답글을 입력하세요" rows="4" cols="100" style="width: 90%"></textarea>
+							</div>
+							<div class="input-group-append" style="width:10%">
+								<button class="insert_answer_btn btn btn-dark"
+								 type="button" th:id="|button_answer${qnaStat.index}|"
+									th:name="button_button" style="width:100%">답변하기</button>
 							</div>
 						</div></td>
 

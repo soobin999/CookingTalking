@@ -46,7 +46,6 @@
 
 			<thead>
 				<tr>
-					<th>회원 정보 삭제</th>
 					<th>유저 아이디</th>
 					<th>유저 닉네임</th>
 					<th>유저 생일</th>
@@ -55,8 +54,10 @@
 					<th>유저 프로필 사진</th>
 					<th>레시피 업로드 개수</th>
 					<th>유저 팔로워 수</th>
+					<th>회원 정보 삭제</th>
+					
 				</tr>
-			</thead>
+			</thead>	
 			<tbody th:id="tbody">
 
 				<tr th:each="user,index:${UserList}" th:id='${index.index}'>

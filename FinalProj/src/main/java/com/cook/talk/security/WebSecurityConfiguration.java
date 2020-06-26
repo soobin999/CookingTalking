@@ -41,13 +41,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http .authorizeRequests() //페이지 권한 설정
                   
                     .antMatchers("/user/mypage").hasRole("Role_MEMBER")
-				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
+				 .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") 
 				
                     .antMatchers("/**/","/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
                     		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage/**","/chat/**").permitAll()
                     .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
                     .antMatchers("/user/mypage").hasRole("MEMBER")
                     .anyRequest().authenticated();
+                //    .antMatchers("/**/","/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
+                    //		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage/**").permitAll()
+                 //   .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
+                //    .antMatchers("/user/mypage").hasRole("MEMBER")
+                 //   .anyRequest().authenticated();
                     
                     
 
