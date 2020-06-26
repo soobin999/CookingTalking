@@ -194,8 +194,5 @@
 	<update id="rcpViewsUpdate" parameterType="String">
 		UPDATE rcp SET rcpViews = rcpViews+1 where rcpCode=#{rcpCode}
 	</update>
-	<!-- 레시피 수정 -->
-	
-	<!-- 레시피 삭제 -->
 
 </mapper>

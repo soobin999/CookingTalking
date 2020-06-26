@@ -10,101 +10,108 @@
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <div layout:fragment='content'>
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-2" id="adSelectPage">
-			<!-- 재료 리스트 가져오기 -->
-			<button onclick="adQnaList()">고객요청함</button>
-		</div>
-		<div class="col-md-2" id="adSelectPage">
-			<button onclick="adUserList()">회원정보</button>
-		</div>
+	<div class="container-lg">
+		<div class="row mb-5">
+			<div class="col-md-3" id="adSelectPage">
+				<!-- 재료 리스트 가져오기 -->
+				<button class="btn btn-block btn-light" onclick="adQnaList()">고객요청함</button>
+			</div>
+			<div class="col-md-3" id="adSelectPage">
+				<button class="btn btn-block btn-light" onclick="adUserList()">회원정보</button>
+			</div>
 
-		<!-- 레시피 화명 이동 버튼 -->
-		<div class="col-md-2" id="adSelectPage">
-			<div class="w3-dropdown-hover">
-				<button class="">레시피</button>
-				<div class="w3-dropdown-content w3-bar-block w3-border">
-					<button onclick="adRecipeList()" class="w3-bar-item w3-button">레시피
-						리스트</button>
-					<a th:href="@{/searchBichart}" class="w3-bar-item w3-button">레시피
-						통계</a>
+			<!-- 레시피 화명 이동 버튼 -->
+			<div class="col-md-3" id="adSelectPage">
+				<div class="btn btn-block btn-light w3-dropdown-hover">
+					<a>레시피</a>
+					<div class="w3-dropdown-content w3-bar-block w3-border">
+						<button onclick="adRecipeList()" class="w3-bar-item w3-button">레시피
+							리스트</button>
+						<a th:href="@{/searchBichart}" class="w3-bar-item w3-button">레시피
+							통계</a>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-2" id="adSelectPage">
-			<button onclick="adIngrList()">재료페이지</button>
-		</div>
-		<br> <br>
-
-	</div>
-	<div class="container-lg" id="basic">
-		<div>
-			<h1>고객센터 문의함</h1>
-		</div>
-
-
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th scope="col">문의사항제목</th>
-					<th scope="col">문의 내용</th>
-					<th scope="col">문의 날짜</th>
-					<th scope="col">유저</th>
-				</tr>
-			</thead>
-			<tbody th:each="qna, qnaStat:${qnaList}" th:id='${qnaStat.index}'>
-				<tr>
-					<td scope="row">
-						<button type="button" class="btn" th:text="${qna.qnaTitle}"
-							th:id="|btn_open${qnaStat.index}|" name="btn_qna"></button>
-					</td>
-					<td scope="row">
-						<div th:text="${qna.qnaCont}"></div>
-					</td>
-					<td scope="row">
-						<div th:text="${qna.qnaDate}"></div>
-					</td>
-					<td scope="row">
-						<div th:text="${qna.UserId}"></div>
-					</td>
-
-				</tr>
-				<tr th:id="|open${qnaStat.index}|" class="collapse out">
-					<td colspan="4"><div>
-							작성자 : <input
-								style="background-color: transparent; border: 0 solid black;"
-								th:id="|UserId_answer${qnaStat.index}|" name="userId"
-								th:value="${qna.userId}" readonly>
-
-							<div th:text="${qna.answer}"></div>
-							<input type="text" th:id="|answer_answer${qnaStat.index}|"
-								th:name="answer" th:value="${qna.answer}"
-								placeholder="답글을 입력하세요">
-							<div>
-								<button class="insert_answer_btn" type="button"
-									th:id="|button_answer${qnaStat.index}|" th:name="button_button">답변하기</button>
-							</div>
-						</div></td>
-
-				</tr>
-			</tbody>
-		</table>
-		<ul>
-			<div th:class="Pagination_Li">
-				<div th:each="num: ${#numbers.sequence(1,IngrList)}" th:class="page">
-					<a th:text="${num}" th:value="${num}" style="color: #FF8000;"></a>
-				</div>
+			<div class="col-md-3" id="adSelectPage">
+				<button class="btn btn-block btn-light" onclick="adIngrList()">재료페이지</button>
 			</div>
-		</ul>
+
+		</div>
+
+		<div id="basic">
+			<div>
+				<h1>고객센터 문의함</h1>
+			</div>
 
 
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">문의사항제목</th>
+						<th scope="col">문의 내용</th>
+						<th scope="col" width="10%">문의 날짜</th>
+						<th scope="col">유저</th>
+					</tr>
+				</thead>
+				<tbody th:each="qna, qnaStat:${qnaList}" th:id='${qnaStat.index}'>
+					<tr>
+						<td scope="row">
+							<button type="button" class="btn" th:text="${qna.qnaTitle}"
+								th:id="|btn_open${qnaStat.index}|" name="btn_qna"></button>
+						</td>
+						<td scope="row">
+							<div th:text="${qna.qnaCont}"></div>
+						</td>
+						<td scope="row">
+							<div th:text="${qna.qnaDate}"></div>
+						</td>
+						<td scope="row">
+							<div th:text="${qna.UserId}"></div>
+						</td>
+
+					</tr>
+					<tr th:id="|open${qnaStat.index}|" class="collapse out bg-light"
+						width="100%">
+						<td colspan="4"><div class="m-3">
+								<p>
+									<b>작성자 :</b> <input
+										style="background-color: transparent; border: 0 solid black;"
+										th:id="|UserId_answer${qnaStat.index}|" name="userId"
+										th:value="${qna.userId}" readonly>
+								</p>
+								<hr>
+								<div th:text="${qna.answer}" class="mb-3"></div>
+
+								<div class="input-group mb-3 mw-100">
+									<textarea type="text" th:id="|answer_answer${qnaStat.index}|"
+										th:name="answer" th:value="${qna.answer}"
+										placeholder="답글을 입력하세요" rows="4" cols="100" style="width: 90%"></textarea>
+									<div class="input-group-append" style="width: 10%">
+										<button class="insert_answer_btn btn btn-dark" type="button"
+											th:id="|button_answer${qnaStat.index}|"
+											th:name="button_button" style="width: 100%">답변하기</button>
+									</div>
+								</div>
+							</div></td>
+
+					</tr>
+				</tbody>
+			</table>
+			<ul>
+				<div th:class="Pagination_Li">
+					<div th:each="num: ${#numbers.sequence(1,IngrList)}"
+						th:class="page">
+						<a th:text="${num}" th:value="${num}" style="color: #FF8000;"></a>
+					</div>
+				</div>
+			</ul>
+
+
+		</div>
 	</div>
-
 	<script>
 		$(document).ready(function() {
 
@@ -132,7 +139,7 @@
 		$(".insert_answer_btn").click(function() {
 			var reply = $(this).attr('id').substring(7);
 
-			var UserID = document.getElementsByName('userId');
+			/* var UserID = document.getElementsByName('userId'); */
 			var UserID = document.getElementById('UserId_' + reply);
 			var answer_reply = document.getElementById('answer_' + reply);
 			console.log(reply);
