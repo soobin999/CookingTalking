@@ -38,16 +38,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http .authorizeRequests() //페이지 권한 설정
+      //  http .authorizeRequests() //페이지 권한 설정
                   
-                    .antMatchers("/user/mypage").hasRole("Role_MEMBER")
+                   // .antMatchers("/user/mypage").hasRole("Role_MEMBER")
 				/* .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN") */
 				
-                    .antMatchers("/**/","/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
-                    		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage/**").permitAll()
-                    .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
-                    .antMatchers("/user/mypage").hasRole("MEMBER")
-                    .anyRequest().authenticated();
+                //    .antMatchers("/**/","/login","/index","/join","/ingrSelect","/chefInfo","/chefRank"
+                    //		,"/loginIndex","/adminMain/**","/admin/**","/chosung","/searched", "/rcmmRecipe", "/mypage/**").permitAll()
+                 //   .antMatchers("/admin/**","/adminMain/**").hasRole("Role_ADMIN")
+                //    .antMatchers("/user/mypage").hasRole("MEMBER")
+                 //   .anyRequest().authenticated();
                     
                     
 

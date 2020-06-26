@@ -14,39 +14,34 @@
 </th:block>
 </head>
 <div layout:fragment='content'>
-	<h1>레시피별 데이터</h1>
-
-	<div class="searchBI" id=searchBiInfo>
-
-		<input type="text" th:id="searchBiInfo1" name="searchBiInfo"
-			th:value="*{searchBiInfo}" placeholder="레시피 코드를 입력하시오"> <input
-			onclick="searchBiInfo()" type="button" id="btn_searchBiInfo"
-			th:value="검색하기" />
-		<div th:id="biInfo">
-
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4" id="columnchart_values"
-						style="height: 400px; float: left; width: 33%"></div>
-					<div class="col-md-4" id="chart_div1"
-						style="width: 600px; height: 400px; float: left; width: 33%"></div>
-					<div class="col-md-4" id="piechart"
-						style="width: 600px; height: 400px; float: left; width: 33%"></div>
-				</div>
-			</div>
-
-			</body>
+	<div class="container-lg">
+		<div class="row justify-content-center center-block mb-5">
+			<h1>레시피별 데이터</h1>
 		</div>
+		<div class="row justify-content-center center-block">
+			<div class="searchBI w-100" id="searchBiInfo">
+				<div class="input-group mb-3 w-100">
+					<input type="text" class="form-control" th:id="searchBiInfo1"
+						name="searchBiInfo" th:value="*{searchBiInfo}"
+						placeholder="레시피 코드를 입력하시오">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" type="button"
+							onclick="searchBiInfo()" id="btn_searchBiInfo">검색하기</button>
+					</div>
+				</div>
+				<div th:id="biInfo"></div>
+			</div>
+		</div>
+
+
+
 	</div>
-
-
 
 	<script>
 		function searchBiInfo() {
 			var searchBiInfo = document.getElementById("searchBiInfo1").value;
 
 			console.log(searchBiInfo);
-			$('#mainTable').remove();
 			$('#biInfo').load("/googleChart/" + searchBiInfo);
 
 		};
