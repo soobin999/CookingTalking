@@ -56,10 +56,14 @@
 	</select>
 	
 	<select id="getAllMyCom" resultType="MypageDTO">
-	SELECT talkCom, talkComDate FROM recipe.talkcom tc WHERE userId='kkk@naver.com' 
-	UNION SELECT rcpCom AS talkCom, rcpComDate AS talkComDate 
-	FROM recipe.rcpcom rc WHERE userId='kkk@naver.com' 
-	ORDER BY talkComDate DESC
+	SELECT talkCode, talkCom, talkComDate 
+	FROM recipe.talkcom tc 
+	WHERE userId='kkk@naver.com' 
+	UNION 
+		SELECT rcpCode AS talkCode, rcpCom AS talkCom, rcpComDate AS talkComDate 
+		FROM recipe.rcpcom rc 
+		WHERE userId='kkk@naver.com' 
+		ORDER BY talkComDate DESC
 	</select>
 	
 	<select id="getSearchAllMyCom" parameterType="String" resultType="MypageDTO">

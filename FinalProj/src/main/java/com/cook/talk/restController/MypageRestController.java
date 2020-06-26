@@ -27,19 +27,21 @@ public class MypageRestController {
 	MypageService mypageService;
 	
 	
-	@PostMapping("/mypage/modifyUserPic")
-	public String modifyUserPic(UserVO userVO, Model model, 
-			@RequestParam("file") MultipartFile multipartfile) {
-		
-		model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
-		System.out.println("multipart :: " + multipartfile.getOriginalFilename());
-		userVO.setUserPic(multipartfile.getOriginalFilename());
-		mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
-		System.out.println("추가된 파일명:" + multipartfile);
-		System.out.println("userPic:"+userVO.getUserPic());
-		
-		return "/mypage/myRecipeIng";
-	}
+	/*
+	 * @PostMapping("/mypage/modifyUserPic") public String modifyUserPic(UserVO
+	 * userVO, Model model,
+	 * 
+	 * @RequestParam("file") MultipartFile multipartfile) {
+	 * 
+	 * model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
+	 * System.out.println("multipart :: " + multipartfile.getOriginalFilename());
+	 * userVO.setUserPic(multipartfile.getOriginalFilename());
+	 * mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
+	 * System.out.println("추가된 파일명:" + multipartfile);
+	 * System.out.println("userPic:"+userVO.getUserPic());
+	 * 
+	 * return "/mypage/myRecipeIng"; }
+	 */
 	
 	@PostMapping("/searchMyFollow")
 	public List<MypageDTO> getSearchMyFollow(String followChef){

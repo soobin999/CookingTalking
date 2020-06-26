@@ -38,10 +38,12 @@ public class MypageServiceImpl implements MypageService{
 		return null;
 	}
 	
+	
+	//마이페이지 유저 사진 업로드 OR 수정
 	@Override
 	public String modifyUserPic(String userPic, @RequestParam("userPic") MultipartFile file) {
 
-		String save = "D:/git/cookingtalking/FinalProj/src/main/resources/static/userImg/";
+		String save = "C:/git/cookingtalking/FinalProj/src/main/resources/static/userImg/";
 		
 		System.out.println("file:"+file);
 		
@@ -61,61 +63,74 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	
-	
+	//작성중인 레시피 가져오기
 	@Override
 	public List<MypageDTO> getMyRecipeIng() {
 		List<MypageDTO> getmyRecipeIng = mypageDAO.getMyRecipeIng();
 		return getmyRecipeIng;
 	}
 
+	
+	//작성완료된 레시피 가져오기
 	@Override
 	public List<MypageDTO> getMyRecipeWritten() {
 		List<MypageDTO> getMyRecipeWritten = mypageDAO.getMyRecipeWritten();
 		return getMyRecipeWritten;
 	}
 
+	
+	//팔로우한 쉐프 목록 가져오기
 	@Override
 	public List<MypageDTO> getMyFollow() {
 		List<MypageDTO> getMyFollow = mypageDAO.getMyFollow();
 		return getMyFollow;
 	}
 
+	
+	//스크랩한 레시피 목록 가져오기
 	@Override
 	public List<MypageDTO> getMyScrapedRecipe() {
 		List<MypageDTO> getMyScrapedRecipe = mypageDAO.getMyScrapedRecipe();
 		return getMyScrapedRecipe;
 	}
 
+	
+	//내가 작성한 토크 목록 가져오기
 	@Override
 	public List<MypageDTO> getMyTalk() {
 		List<MypageDTO> getMyTalk = mypageDAO.getMyTalk();
 		return getMyTalk;
 	}
 	
+	
+	//내가 작성한 모든 댓글(RCP+TK) 가져오기
 	@Override
 	public List<MypageDTO> getAllMyCom() {
 		List<MypageDTO> getAllMyCom = mypageDAO.getAllMyCom();
 		return getAllMyCom;
 	}
 	
+	//내가 작성한 토크 댓글만 가져오기
+	@Override
+	public List<TalkComVO> getMyTalkCom() {
+		List<TalkComVO> getMyTalkCom = mypageDAO.getMyTalkCom();
+		return getMyTalkCom;
+	}
+	
+	//내가 작성한 레시피 댓글만 가져오기
+	@Override
+	public List<MypageDTO> getMyRcpCom() {
+		List<MypageDTO> getMyRcpCom = mypageDAO.getMyRcpCom();
+		return getMyRcpCom;
+	}
+	
+	//모든 댓글(RCP+TK) 검색하기
 	@Override
 	public List<MypageDTO> getSearchAllMyCom(String talkCom) {
 		List<MypageDTO> getSearchAllMyCom = mypageDAO.getSearchAllMyCom(talkCom);
 		return getSearchAllMyCom;
 	}
 
-
-	@Override
-	public List<TalkComVO> getMyTalkCom() {
-		List<TalkComVO> getMyTalkCom = mypageDAO.getMyTalkCom();
-		return getMyTalkCom;
-	}
-
-	@Override
-	public List<MypageDTO> getMyRcpCom() {
-		List<MypageDTO> getMyRcpCom = mypageDAO.getMyRcpCom();
-		return getMyRcpCom;
-	}
 
 	@Override
 	public void rqMyInq(QnAVO qnAVO) {
@@ -149,7 +164,6 @@ public class MypageServiceImpl implements MypageService{
 
 	@Override
 	public List<MypageDTO> getSearchTalkCom(String talkCom) {
-		
 		return mypageDAO.getSearchTalkCom(talkCom);
 	}
 
