@@ -3,54 +3,18 @@
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-<link rel="stylesheet" type="text/css" th:href="@{/css/fragmentCss/bootstrap_20200413.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/css/fragmentCss/ez_recipe_20200605.css}">
+<link rel="stylesheet" type="text/css" href="/css/fragmentCss/bootstrap_20200413.css">
+<link rel="stylesheet" type="text/css" href="/css/fragmentCss/ez_recipe_20200605.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<style> 
-.gnb_search .btn{
-background: #FF8000;
-border:1px solid #FF8000;
-}
-.gnb_right li a img{
-	width:35px;
-	border-radious:none !important;
-}
-</style>
 </head>
 <th:block layout:fragment='CSS'></th:block>
-<header th:replace="fragments/header :: header"></header>
-
+ <header th:replace="~{fragments/header :: header}"></header> 
 <div layout:fragment='content'></div>
 
 
-<footer th:replace='fragments/footer :: footer'></footer>
-
-<script type="text/javascript">
-$('#srhRecipeText').keydown(function(){
-	var k=$('#srhRecipeText').val();
-	console.log(k);
-	$.ajax({
-		url:'/autoComplete',
-		data:{searchWord:k},
-		type:'POST',
-		dataType:'JSON',
-		success:function(data){
-			console.log(data);
-				
-			$('#srhRecipeText').autocomplete({
-				source:data,
-				delay:500,
-			}); 
-			
-			},
-		error:function(){
-			alert("error");
-		}
-	})
-});
-</script>
+ <footer th:replace="~{fragments/footer :: footer}"></footer>
 <div layout:fragment='scriptCode'></div>
 </html>

@@ -4,6 +4,31 @@
 
 
 <footer th:fragment="footer">
+
+<script type="text/javascript">
+$('#srhRecipeText').keydown(function(){
+	var k=$('#srhRecipeText').val();
+	console.log(k);
+	$.ajax({
+		url:'/autoComplete',
+		data:{searchWord:k},
+		type:'POST',
+		dataType:'JSON',
+		success:function(data){
+			console.log(data);
+				
+			$('#srhRecipeText').autocomplete({
+				source:data,
+				delay:500,
+			}); 
+			
+			},
+		error:function(){
+			alert("error");
+		}
+	})
+});
+</script>
 	<div class="footer st2 mt-5" style='background: #ff5100'>
 		<div class="container text-center">
 			<img th:src="@{/img/footer_logo.png}">

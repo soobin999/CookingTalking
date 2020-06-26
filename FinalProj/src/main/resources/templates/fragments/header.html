@@ -1,57 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'>
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'>
 <body>
-<header th:fragment='header'>
-	<div class="gnb_top_wrap">
-		<div class="gnb_top">
-			<h1>
-				<a th:href="@{/index}"><img th:src="@{/img/logo.png}" alt="로고"></a>
-			</h1>
-			<div class="gnb_search">
-				<form th:id="frmTopRecipeSearch" th:method="get"
-					th:action="@{/recipeSearch/s/1}" >
-					<div class="input-group ui-widget">
-					<label for="srhRecipeText"></label>
-						<input th:id="srhRecipeText" name="searchWord" type="text"
-							class="form-control ui-autocomplete-input" placeholder=""
-							value="" style="ime-mode: active;" autocomplete="off"> <span
-							class="input-group-btn">
-							
-							<button class="btn btn-default" th:type="submit">
-								<span class="fas fa-search" aria-hidden="true"></span>
-							</button>
-						</span>
-					</div>
-				</form>
-			</div>
-			<ul class="gnb_right">
-				<li><a th:href="@{/login}"> 
-				<img th:src="@{/img/user_icon.png}" alt="유저"></a></li>
-				<li><a th:href="@{/user/logout}"
-					style="display: block; width: 44px; height: 44px;"> 
-					<img th:src="@{/img/login_icon.png}" alt="로그아웃"></a></li>
-				<li><a id="btnTopWrite" th:href="@{/recipe/insert}"
-					data-toggle="tooltip" data-placement="top" title="레시피등록"
-					data-original-title="레시피등록">
-					<img th:src="@{/img/recipe_write_icon.png}"></a></li>
-					<li>
-					<a th:href="@{/mypage/myRecipeIng}" th:text="mypage"></a>
-					</li>
-			</ul>
+	<header th:fragment='header'>
+		<div class="gnb_top_wrap">
+			<div class="gnb_top">
+				<h1>
+					<a th:href="@{/index}"><img th:src="@{/img/logo.png}" alt="로고"></a>
+				</h1>
+				<div class="gnb_search">
+					<form th:id="frmTopRecipeSearch" th:method="get"
+						th:action="@{/recipeSearch/s/1}">
+						<div class="input-group ui-widget">
+							<label for="srhRecipeText"></label> <input th:id="srhRecipeText"
+								name="searchWord" type="text"
+								class="form-control ui-autocomplete-input" placeholder=""
+								value="" style="ime-mode: active;" autocomplete="off"> <span
+								class="input-group-btn">
 
+								<button class="btn btn-default" th:type="submit">
+									<span class="fas fa-search" aria-hidden="true"></span>
+								</button>
+							</span>
+						</div>
+					</form>
+				</div>
+				<ul class="gnb_right">
+					<li><a th:href="@{/login}">  <img th:src="@{/img/user_icon.png}" alt="유저"></a></li>
+					<li><a th:href="@{/user/logout}"> <img th:src="@{/img/login_icon.png}" alt="로그아웃"></a></li>
+					<li><a th:href="@{/recipe/insert}"> <img th:src="@{/img/recipe_write_icon.png}"></a></li>
+					<li><a th:href="@{/mypage/myRecipeIng}" th:text="mypage"></a>
+					</li>
+				</ul>
+
+			</div>
 		</div>
-	</div>
-	<div class="gnb_nav text-center" style='background: #FF8000'>
-		<ul class="
-">
-			<li><a th:href="@{/index}" class="active">홈</a></li>
-			<li><a th:href="@{/recipe/newList}">레시피</a></li>
-			<li><a th:href="@{/ingrSelect}">냉장고파먹기</a></li>
-			<li><a th:href="@{/talk/list}">토크</a></li>
-			<li><a th:href="@{/chefRank/rcpUploads}">쉐프</a></li>
-			<li ><a th:href="@{/adminMain}">고객센터</a></li> <!-- th:if="${user=='login'}" -->
-		</ul>
-	</div>
-</header>
+		<div class="gnb_nav text-center" style='background: #FF8000'>
+			<ul class="">
+				<li><a th:href="@{/index}" class="active">홈</a></li>
+				<li><a th:href="@{/recipe/newList}">레시피</a></li>
+				<li><a th:href="@{/ingrSelect}">냉장고파먹기</a></li>
+				<li><a th:href="@{/talk/list}">토크</a></li>
+				<li><a th:href="@{/chefRank/rcpUploads}">쉐프</a></li>
+				<li><a th:href="@{/adminMain}">고객센터</a></li>
+				<li><a th:href="@{/chat/room}">채팅</a></li>
+				<!-- th:if="${user=='login'}" -->
+			</ul>
+		</div>
+	</header>
 </html>
