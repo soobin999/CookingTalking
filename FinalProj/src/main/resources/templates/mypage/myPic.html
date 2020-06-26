@@ -4,10 +4,12 @@
 <meta charset="UTF-8">
 <title id='pageTitle'>프로필 사진 변경하기</title>
 <style type="text/css"></style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
+
 <body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/mypage.js"></script>
+		<!-- <script src="/js/mypage.js"></script> -->
 
 	<!-- 사진 및 계정 정보 -->
 			<div th:class="uploadPicOfUser">
@@ -25,7 +27,6 @@
 			   console.log(userPicForm);
 			   userPicForm.submit();
 			   console.log("submit");
-			   selfclose2();
 		}
 		function selfclose2(){
 			alert("사진이 정상적으로 등록되었습니다");

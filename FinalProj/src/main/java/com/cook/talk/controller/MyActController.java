@@ -17,12 +17,14 @@ public class MyActController {
 	@Autowired
 	MypageService mypageService;
 
+	//활동-즐겨찾기-내가 작성한 글
 	@GetMapping("/mypage/myTalk")
 	public String myActivity(Model model) {
 		model.addAttribute("myTalk", mypageDAO.getMyTalk());
 		return "/mypage/myTalk";
 	}
 	
+	//활동-즐겨찾기-내가 작성한 댓글(레시피에 단 댓글 + 토크에 단 댓글)
 	@GetMapping("/mypage/myCom")
 	public String myCom(Model model) {
 		model.addAttribute("myAllCom", mypageDAO.getAllMyCom());
