@@ -21,12 +21,16 @@ public class MyInqController {
 	MypageService mypageService;
 	
 	
+	//마이페이지-문의사항-문의사항 입력하기
 	@GetMapping("/mypage/myInquiry")
 	public String myInquiry(Model model, String qnaTitle, String qnaCont) {
 		
 		return "/mypage/myInquiry";
 	}
 	
+	
+	
+	//마이페이지-문의사항-나의 문의사항 보기
 	@PostMapping("/mypage/inputInq")
 	public String myInquiryProc(@ModelAttribute QnAVO qnAVO, Model model) {
 		mypageService.rqMyInq(qnAVO);
@@ -36,6 +40,7 @@ public class MyInqController {
 		
 		return "/mypage/myInquiryList";
 	}
+	
 	
 	@GetMapping("/mypage/myInquiryList")
 	public String myInquiryList(Model model) {

@@ -12,6 +12,6 @@ public interface QnADAO {
 	public void insertReply(QnAVO qna);
 	public List<QnAVO> selectQna();
 	
-	public void rqMyInq(String qnaTitle, String qnaCont);
+	/* public void rqMyInq(String qnaTitle, String qnaCont); */
 	
 }

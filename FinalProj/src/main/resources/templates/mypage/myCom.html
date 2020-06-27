@@ -51,7 +51,8 @@
 	<tbody>
 	
 	<tr th:each="myAllCom : ${myAllCom}">
-		<td> <a href="" class="" th:text=${myAllCom.talkCom}></td>
+		<td th:if="${#strings.startsWith(myAllCom.talkCode,'T')}"> <a th:href="@{/talk/detail/{talkCode}(talkCode=${myAllCom.talkCode})}" th:text=${myAllCom.talkCom}></a></td>
+		<td th:unless="${#strings.startsWith(myAllCom.talkCode,'T')}"> <a th:href="@{/recipe/view(rcpCode=${myAllCom.talkCode})}" th:text=${myAllCom.talkCom}></a></td>
 		<td class="" th:text=${myAllCom.talkComDate}></td>
 		</tr>
 		
