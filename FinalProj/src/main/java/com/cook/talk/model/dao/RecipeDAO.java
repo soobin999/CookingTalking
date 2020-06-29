@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.VO.RcpIngrVO;
@@ -37,9 +38,9 @@ public interface RecipeDAO {
 	//레시피 재료 상세페이지 조회
 	public List<IngrVO> getIngrDetail();
 	
-	//레시피 목록 조회
+	//레시피 목록 조회+페이징
 	public List<RecipeDTO> getRecipeList();
-	
+		
 	//레시피 랭킹 조회
 	public List<RecipeDTO> getRankList();
 	
@@ -49,10 +50,9 @@ public interface RecipeDAO {
 	//레시피 조회이력 저장
 	public void insertRcpViews(ViewsVO viewsVO);
 	
-
 	//레시피 총갯수 카운팅
 	public int recipeCount();
-	
+			
 	//레시피 글보기
 	public RecipeDTO selectRcptpView(String rcpCode);
 	public List<RcpIngrVO> selectRcpIngrView(String rcpCode);
@@ -69,8 +69,7 @@ public interface RecipeDAO {
 	public int selectConnectCode();
 
 	//레시피 등록
-	public void insertRecipeProc(RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
-			RcpOrderVO rcpOrderVO, TagVO tagVO);
+	public void insertRecipeProc(MultipartFile file, RecipeDTO recipeDTO);
 	void insertRcpProc(RecipeVO recipeVO);
 	void insertTypecatProc(TypeCatVO typeCatVO);
 	void insertRcpingrProc(RcpIngrVO rcpIngrVO);
@@ -80,9 +79,9 @@ public interface RecipeDAO {
 	//레시피 조회수 증가
 	public int rcpViewsUpdate(String rcpCode);
 
-
 			
 	//레시피 수정
+	
 	//레시피 삭제
 
 	

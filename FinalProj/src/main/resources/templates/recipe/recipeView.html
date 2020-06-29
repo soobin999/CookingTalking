@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>레시피 상세보기</title>
-
+<title id='pageTitle'>레시피 상세보기</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
+<div layout:fragment='content'>
 	<form th:method="post" action="#">
 		<div th:each="recipe : ${recipeDTO}">
             <div th:text="${recipe.recipeVO.rcpPic}"></div>
@@ -37,9 +44,14 @@
         <span></span><b>태그</b>
             <div ><a th:each="tag : ${tagView}" href="#" th:text="${tag.tag}"></a></div>
         </div>       
-    </form>          
-	<span th:align="center"><a th:href="@{newList}">글목록</a></span>
-	<span th:align="center"><a th:href="@{update}">글수정</a></span>
-	<span th:align="center"><a th:href="@{delete}">글삭제</a></span>
-</body>
+    </form>
+    <div class="regi_btm"> 
+    <button type="button" onclick="" class="btn-lg btn-primary">수정</button> 
+    <button type="button" onclick="" class="btn-lg btn-primary">삭제</button>    
+    <button type="button" onclick="" class="btn-lg btn-primary">목록</button> 
+	<a th:href="@{newList}">글목록</a>
+	<a th:href="@{update}">글수정</a>
+	<a th:href="@{delete}">글삭제</a>
+	</div>
+</div>
 </html>

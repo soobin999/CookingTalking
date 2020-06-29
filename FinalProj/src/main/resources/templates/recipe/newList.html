@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>레시피 최신목록</title>
+<title id='pageTitle'>레시피 최신목록</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	 <!-- font awesome  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<style>
+      .scrolltop {
+        display: none;
+        position: fixed;
+        right: 30px;
+        bottom: 50px;
+        z-index: 1030;
+        font-size: 1.875rem;
+        color: #868e96;
+        transition: all 0.5s ease-in-out;
+        opacity: 0.8;
+      }
+      .scrolltop:hover,
+      .scrolltop:focus {
+        color: #dc3545;
+        transition: all 0.5s ease-in-out;
+      }
+</style>
 </head>
-<body>
-	<p style="text-align: center">
+<div layout:fragment='content'>
+	<div class="rcp_m_tit2"><!-- recipe area -->
+		<div class="m_list_tit"><!-- recipe counting -->
 		총 <b><span th:text="${recipeCount}"></span></b>개의 맛있는 레시피가 있습니다.
-	</p>
-	<span th:align="center"><a th:href="@{insert}">글쓰기</a></span>
+	</div>
 	<div th:each="recipe : ${recipeList}">
 		<div th:text="${recipe.recipeVO.rcpPic}"></div>
 		<div>
@@ -18,5 +45,29 @@
 		<div th:text="${recipe.userVO.nickName}"></div>
 		<div th:text="${recipe.recipeVO.rcpDate}"></div>
 	</div>
-</body>
+	</div>
+
+		<!-- pagination end -->
+	</div>
+<!-- scroll -->	
+<a id="backToTop" class="scrolltop" href="#">
+<i class="fas fa-chevron-circle-up"></i></a>
+
+<!-- script -->
+<script>
+jQuery(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#backToTop').fadeIn(500);
+    } else {
+      $('#backToTop').fadeOut('slow');
+    }
+  });
+  $('#backToTop').click(function (e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop: 0}, 200);
+  });
+});
+</script>
+</div> <!-- layout end -->
 </html>

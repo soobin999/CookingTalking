@@ -7162,7 +7162,7 @@ a.label_like span {color:#f64000; padding:0 5px 0 0; vertical-align:middle;}
 .regi_cont {height:1000px; overflow-y:scroll; overflow-x: hidden}
 .regi_left .regi_cont {padding:15px;}
 .regi_cont div:last-child {border:none;}
-.cont_box {padding:26px 30px; border-bottom:10px solid #f1f1f2; margin:0 -1px;}
+.cont_box {padding:26px 30px; border-bottom:10px solid; margin:0 -1px;}
 .cont_box input {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px; padding-left:15px; height:50px; vertical-align:middle; margin-top:-1px;}
 .cont_box select {background:#f5f5f5; border:1px solid #e1e1e1; font-size:16px; padding:8px 2px; margin:0 2px 0 0; border-radius:4px;}
 ::i-block-chrome, .cont_box select {padding:0px 12px;}
@@ -9216,9 +9216,7 @@ table.table.table-hover>tbody>tr>td {
 }
 .adSelectPage {
 	float: left;
-	
-	width: 300px;
-	
+	width: 25%;
 }
 
 .adSelectRcpPage {

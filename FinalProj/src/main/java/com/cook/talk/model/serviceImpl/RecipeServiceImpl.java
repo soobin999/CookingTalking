@@ -2,20 +2,17 @@ package com.cook.talk.model.serviceImpl;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
-import com.cook.talk.model.VO.RecipeVO;
-import com.cook.talk.model.VO.TypeCatVO;
-import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.VO.RcpIngrVO;
 import com.cook.talk.model.VO.RcpOrderVO;
+import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TagVO;
-
+import com.cook.talk.model.VO.TypeCatVO;
+import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dao.RecipeDAO;
-
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
 
@@ -112,14 +109,24 @@ public class RecipeServiceImpl implements RecipeService {
 	
 	//레시피 등록	
 	@Override
-	public void insertRecipeProc(/*@RequestParam("rcpPic") MultipartFile file*/
-			boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO, 
-			RcpOrderVO rcpOrderVO,TagVO tagVO) {
+	public void insertRecipeProc(boolean registerStatus, RecipeDTO recipeDTO){
+
+	/*
+	 * public void insertRecipeProc(@RequestParam("file") MultipartFile file,
+	 * boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO
+	 * rcpIngrVO, RcpOrderVO rcpOrderVO,TagVO tagVO){
+	 */
 		
-		
+		 RecipeVO recipeVO = recipeDTO.getRecipeVO();
+		 TypeCatVO typeCatVO = recipeDTO.getTypeCatVO();
+		 RcpIngrVO rcpIngrVO = recipeDTO.getRcpIngrVO();
+		 RcpOrderVO rcpOrderVO = recipeDTO.getRcpOrderVO();
+		 TagVO tagVO = recipeDTO.getTagVO();
+		 
 		// 1.typeCat 테이블 레코드 생성
 		int tpcNum = recipeDAO.selectTypeCode() +1;
-		typeCatVO.setTypeCode("TC-" +tpcNum);
+		 typeCatVO.setTypeCode("TC-" +tpcNum);
+		
 		recipeDAO.insertTypecatProc(typeCatVO);
 		
 		log.info(typeCatVO);
@@ -132,10 +139,13 @@ public class RecipeServiceImpl implements RecipeService {
 		//생성한 typeCode를 가져와서 rcp 테이블에 set한다
 		recipeVO.setTypeCode(typeCatVO.getTypeCode()); 
 		//registerStatus의 값을 set한다
-		recipeVO.setRegisterStatus(registerStatus); 		
+		recipeVO.setRegisterStatus(registerStatus); 	
+		
+		
 		recipeDAO.insertRcpProc(recipeVO);
 		
 		log.info(recipeVO);
+		
 		
 		
 		//3. rcpIngr 테이블 생성
@@ -158,11 +168,12 @@ public class RecipeServiceImpl implements RecipeService {
 		//해시태그 split로 잘라서 각 레시피 당 한개씩 DB에 저장
 		String [] strings = tagVO.getTag().trim().split(",");
 		for(int i = 0; i < strings.length; i++) {			
-		tagVO.setRcpTagCode(recipeVO.getRcpCode()); //rcpCode를 rcpTagCode에 set한다
-		tagVO.setTag(strings[i].trim()); //쉼표와 다음 태그 사이의 공백(trim)까지 포함
-		recipeDAO.insertTagProc(tagVO);
+			tagVO.setRcpTagCode(recipeVO.getRcpCode()); //rcpCode를 rcpTagCode에 set한다
+			tagVO.setTag(strings[i].trim()); //쉼표와 다음 태그 사이의 공백(trim)까지 포함
+			recipeDAO.insertTagProc(tagVO);
+			
+			log.info(tagVO);
 		
-		log.info(tagVO);
 		
 		}
 	}
@@ -172,8 +183,6 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeDAO.rcpViewsUpdate(rcpCode);
 		
 	}
-
-
 	
 }
 
