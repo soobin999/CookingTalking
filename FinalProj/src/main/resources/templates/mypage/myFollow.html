@@ -7,7 +7,7 @@
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/mypage.js"></script>
+	<!-- <script src="/js/mypage.js"></script> -->
 
 	<!-- 사진 및 계정 정보 -->
 	<div id="myPageMain">
@@ -24,7 +24,7 @@
 	
 	
 	
-	<div th:class="myFrequentMain">
+	<div id="myFrequentMain">
 	<!-- <div id="myFollow"> -->
 		<button onclick="myFrequent()">팔로우</button>
 		<button onclick="myScraped()">스크랩한 레시피</button>
@@ -33,9 +33,8 @@
 		<input type="text" onsubmit="return false" title="쉐프검색" 
 		id="chefSearchInMy" name="chefSearchInMy" placeholder="쉐프를 검색하세요" 
 		onkeypress="enterkey(event);">
-		<button type="button" onclick="chefSearch();"id="btnChefSearchInMy">검색</button>
+		<button type="button" onclick="chefSearch();"id="btnChefSearchInMy">ㄲ</button>
 		</form>
-		</div>
 		</div>
 	<!-- </div> -->
 		 <div th:id="myFrequent"> 
@@ -45,6 +44,8 @@
 						<tr th:each="myFollow : ${myFollow}">
 							<td><a th:href="@{'/chefInfo/1/'+${myFollow.nickName}}" th:text=${myFollow.nickName}></a></td>
 							 <td th:text=${myFollow.followC}></td>
+							 
+							dddd
 						</tr>
 					</tbody>
 				</table>
@@ -52,6 +53,59 @@
 		 </div> 
 	
 	</div>
+	
+		<script>
+		
+		$(document).ready(function(){
+			   /*쉐프 검색하기 via 엔터*/
+			   $('#chefSearchInMy').on('keydown', function(event){
+			      if(event.keyCode == 13){
+			         chefSearch();
+			         event.preventDefault();
+			      };
+			   });
+			    
+			});
+		
+		function searchButtonClick(){
+			   $('#btnChefSearchInMy').on('click', function(){
+			      chefSearch();
+			   });
+			  
+			}
+		
+		function chefSearch(){
+			   var key = $('#chefSearchInMy').val(); /*토크 검색 키워드*/
+			   console.log("chefSearCH")
+			   $.ajax({
+			      type : "POST",
+			      url : "/searchMyFollow",
+			      data : {followChef : key},
+			      success : function(data) {
+			         var searchedChef;
+			         var result = $('#myFrequent');
+			         $('#myChefMain').remove();
+			         $.each(data, function(index, value){
+			        	console.log("dk"+data);
+			           searchedChef = '<tr id="myChefMain"> <td>'
+			            + '<a href="/chefInfo/1/'+ data[index].nickName+ '">'
+			            + data[index].nickName + '</a>'
+			            + '</td> <td>' + data[index].followC
+			            + '</td> </tr><br>'
+			            console.log("data.nickName:"+value.nickName);
+			            console.log("data.followC:"+value.followC);
+			            result.append(searchedChef);
+			         });
+			      },
+			      error : function(){
+			         alert("chefSearch Error");
+			      }
+			   });
+			}
+		
+		</script>
+		
+	
 </body>
 
 
