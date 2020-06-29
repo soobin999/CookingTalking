@@ -19,6 +19,7 @@ public class MailController {
 	
 	@Autowired
 	MainDAO maindao;
+	
     @GetMapping("/mail")
     public String dispMail() {
         return "mail/NewFile";
