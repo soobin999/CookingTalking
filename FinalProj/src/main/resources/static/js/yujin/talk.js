@@ -7,9 +7,9 @@ $(function() {
 	/* com_Delete(); */
 	comUpdate();
 	comDelete();
-	//insertLike();
-	//deleteLike();
-	showComUpdate();
+	// insertLike();
+	// deleteLike();
+	// showComUpdate();
 })
 
 // 게시판 삭제 기능
@@ -124,11 +124,18 @@ function comUpdate() {
 }
 
 function comDelete() {
+
 	$("#com_Delete").click(function() {
-		if (confirm("삭제하시겠습니까?")) {
+		var com = $(this).attr('value');
+
+		if (confirm($(this).attr('value') + " 삭제하시겠습니까?")) {
+
 			$.ajax({
-				type : "delete",
-				url : "/com/deletCom/${talkComCode}",
+				method : "post",
+				url : '/com/deletCom/${talkComCode}',
+				data : {
+					talkComCode : com
+				},
 				success : function(result) {
 					if (result == "success") {
 						alert("삭제되었습니다");
@@ -142,7 +149,7 @@ function comDelete() {
 
 	})
 
-}
+};
 
 /*
  * function insertLike(){ $('comLike_btn').on('click',function(event){
