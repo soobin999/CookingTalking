@@ -20,7 +20,7 @@ public interface TalkComDAO {
 	public void delete(String talkComCode);
 
 	// 수정 불러오기
-	public void update(TalkComVO talkComVO);
+	public int update(TalkComVO talkComVO);
 	
 	//수정 버튼 
 	//public int updateTalk(TalkVO talkVO);

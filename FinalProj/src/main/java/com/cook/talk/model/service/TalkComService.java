@@ -14,7 +14,7 @@ public interface TalkComService {
 	public void createCom(TalkComVO comVO);
 
 	// 수정
-	public void updateCom(TalkComVO comVO);
+	public int updateCom(TalkComVO comVO);
 
 	// 삭제
 	public void deleteCom(String talkComCode);
