@@ -66,7 +66,7 @@ visibility: hidden;
 		</table>
 		<div style="width: 650px; text-align: center;">
 			<th:block sec:authorize="isAuthenticated()">
-				<input id="talk_code" type="hidden" th:value="${talkCode.talkCode}">
+				<input id="talk-code" type="hidden" th:value="${talkCode.talkCode}">
 
 				<div th:if="${#authentication.principal.username} == *{userId}">
 					<a th:href="@{/talk/updatePage(talkCode=${talkCode.talkCode})}">수정</a>

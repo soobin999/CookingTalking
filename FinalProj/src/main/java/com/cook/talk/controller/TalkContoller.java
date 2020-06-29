@@ -82,6 +82,8 @@ public class TalkContoller {
 	public String delete(@PathVariable String talkCode, RedirectAttributes rttr) {
 		if (talkservice.delete(talkCode)) {
 			rttr.addFlashAttribute("result", "success");
+			System.out.println(rttr);
+			System.out.println(talkCode);
 		}
 		return "redirect:/talk/list";
 	}
