@@ -223,8 +223,8 @@ function myAllComSearch(){
                
                console.log(date);*/
                
-               var dateTime = new Date(data[index].talkComDate*1000);
-               var formatted = dateTime.toGMTString();
+/*               var dateTime = new Date(data[index].talkComDate*1000);
+               var formatted = dateTime.toGMTString();*/
                
                searchedTalkCom = '<tr id="myAllComMain"><td>' 
                + '<a href="/talk/detail/'
@@ -253,9 +253,9 @@ function myAllComSearch(){
             $('#myAllComMain').remove();
             $.each(data, function(index, value){
                console.log(data);
-               searchedRcpCom = '<div th:id="myAllComMain"><tr><td>' + data[index].rcpCom
+               searchedRcpCom = '<tr id="myAllComMain"><td>' + data[index].rcpCom
                + '</td><td>' + data[index].rcpComDate
-               + '</td></tr><br></div>'
+               + '</td></tr><br>'
                console.log("data.rcpCom:"+value.rcpCom);
                console.log("data.rcpComDate:"+value.rcpComDate);
                result.append(searchedRcpCom);
@@ -278,9 +278,9 @@ function myAllComSearch(){
          $('#myAllComMain').remove();
          $.each(data, function(index, value){
             console.log(data);
-            searchedAllCom = '<div th:id="myAllComMain"><tr><td>' + data[index].talkCom
+            searchedAllCom = '<tr id="myAllComMain"><td>' + data[index].talkCom
             + '</td><td>' + data[index].talkComDate
-            + '</td></tr><br></div>'
+            + '</td></tr><br>'
             console.log("data.talkCom:"+value.talkCom);
             console.log("data.talkComDate:"+value.talkComDate);
             result.append(searchedAllCom);

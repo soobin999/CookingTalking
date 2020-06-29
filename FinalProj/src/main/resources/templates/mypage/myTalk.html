@@ -7,7 +7,7 @@
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/mypage.js"></script>
+	<!-- <script src="/js/mypage.js"></script> -->
 
 	<!-- 사진 및 계정 정보 -->
 		
@@ -58,6 +58,72 @@
 		</div>
 		</div>
 		</div>
+		
+		
+		<script>
+		$(document).ready(function(){
+			
+			   /*토크 검색하기 via 엔터*/
+			   $('#talkSearchInMy').on('keydown', function(event){
+			      if(event.keyCode == 13){
+			         myTalkSearch();
+			         event.preventDefault();
+			      };
+			   });
+		});
+		
+		   $('#btnTalkSearchInMy').on('click', function(){
+			      myTalkSearch();
+			   });
+		   
+		   function myTalkSearch(){
+			   var key = $('#talkSearchInMy').val(); /*토크 검색 키워드*/
+
+			   $.ajax({
+			      type : "POST",
+			      url : "/searchMyTalk",
+			      data : {talkCont : key},
+			      success : function(data) {
+			         var searchedTalk;
+			         var result = $('#myActivity');
+			         $('#myTalkMain').remove();
+			         $.each(data, function(index, value){
+			            console.log(data[index].talkCode);
+			            var unix_date = data[index].talkDate * 1000;
+/* 			            
+			            var timestamp = 1476508607 * 1000; */
+			            var date = new Date(unix_date);
+			            console.log('year is ' + date.getFullYear());
+			            
+/* 			            var date = moment(unix_date).format("YYYY-MM-DD");
+			            console.log(date); */
+			            
+/*  			            var year = date.getYear().toString();
+			            var month = (date.getMonth()+1).toString();
+			            var day = date.getDate().toString();  */
+			            
+			            
+			            
+			            searchedTalk = '<tr id="myTalkMain"><td>'
+			            + '<a href="/talk/detail/'
+			            + data[index].talkCode + '">'
+			            + data[index].talkCont + '</a>'   
+			            + '</td><td>' + data[index].talkDate
+			            + '</td></tr><br>'
+			            console.log("data.talkCont:"+value.talkCont);
+			            console.log("data.talkDate:"+value.talkDate);
+			            result.append(searchedTalk);
+			         });
+			      },
+			      error : function(){
+			         alert("TalkSearch Error");
+			      }
+			   });
+			}
+		
+		</script>
+		
+		
 </body>
 
 </html>
