@@ -57,6 +57,7 @@ function enterkey(){
    /*모든 코멘트 검색하기 via 엔터*/
    $('#comSearchInMy').on('keydown', function(event){
       if(event.keyCode == 13){
+    	 /*$('#myAllComMain').remove();*/
          myAllComSearch();
          event.preventDefault();
       }
@@ -103,7 +104,7 @@ function deleteMyRcp(){
 
 function chefSearch(){
    var key = $('#chefSearchInMy').val(); /*토크 검색 키워드*/
-
+   console.log("chefSearCH")
    $.ajax({
       type : "POST",
       url : "/searchMyFollow",
@@ -113,14 +114,15 @@ function chefSearch(){
          var result = $('#myFrequent');
          $('#myChefMain').remove();
          $.each(data, function(index, value){
-            searchedChef = '<tr class="myChefMain"><td>'
+        	console.log("dk"+data);
+           /* searchedChef = '<tr id="myChefMain"> <td>'
             + '<a href="/chefInfo/1/'+ data[index].nickName+ '">'
             + data[index].nickName + '</a>'
-            + '</td><td>' + data[index].followC
-            + '</td></tr><br>'
+            + '</td> <td>' + data[index].followC
+            + '</td> </tr><br>'
             console.log("data.nickName:"+value.nickName);
             console.log("data.followC:"+value.followC);
-            result.append(searchedChef);
+            result.append(searchedChef);*/
          });
       },
       error : function(){
@@ -142,7 +144,7 @@ function myTalkSearch(){
          $('#myTalkMain').remove();
          $.each(data, function(index, value){
             console.log(data[index].talkCode);
-            searchedTalk = '<tr class="myTalkMain"><td>'
+            searchedTalk = '<tr id="myTalkMain"><td>'
             + '<a href="/talk/detail/'
             + data[index].talkCode + '">'
             + data[index].talkCont + '</a>'   
@@ -171,12 +173,7 @@ function myScrapSearch(){
          var result = $('#myFrequentSub');
          $('#myScrapededMain').remove();
          $.each(data, function(index, value){
-            console.log(data);
-            
-            + '<a href="/talk/detail/'
-            + data[index].talkCode + '">'
-            + data[index].talkCont + '</a>'   
-            
+            console.log("dk"+data);
             searchedScrap = '<tr id="myScrapededMain"><td>'
             + '<a href="/recipe/view?rcpCode='
             + data[index].rcpCode + '">'
@@ -204,6 +201,8 @@ function myAllComSearch(){
    var selectedV = document.getElementById("comSelect").options[document.getElementById("comSelect").selectedIndex].value;
    
    if(selectedV == "onlyTalk"){
+	  /* $('#myAllComMain').remove();*/
+	   
       $.ajax({
          type : "POST",
          url : "/searchMyTalkCom",
@@ -212,11 +211,27 @@ function myAllComSearch(){
             var searchedTalkCom;
             var result = $('#myActivity');
             $('#myAllComMain').remove();
+            /*result.remove();*/
             $.each(data, function(index, value){
                console.log(data);
-               searchedTalkCom = '<div th:id="myAllComMain"><tr><td>' + data[index].talkCom
+               
+
+/*               const timestamp = data[index].talkComDate
+               var myDate = new Date(timestamp * 1000);
+               
+               var date = myDate.getFullYear()+ "-" + (myDate.getMonth()+1) + "-" + myDate.getDate();
+               
+               console.log(date);*/
+               
+/*               var dateTime = new Date(data[index].talkComDate*1000);
+               var formatted = dateTime.toGMTString();*/
+               
+               searchedTalkCom = '<tr id="myAllComMain"><td>' 
+               + '<a href="/talk/detail/'
+               + data[index].talkCode + '">'
+               + data[index].talkCom + '</a>'
                + '</td><td>' + data[index].talkComDate
-               + '</td></tr><br></div>'
+               + '</td></tr><br>'
                console.log("data.talkCom:"+value.talkCom);
                console.log("data.talkComDate:"+value.talkComDate);
                result.append(searchedTalkCom);
@@ -238,9 +253,9 @@ function myAllComSearch(){
             $('#myAllComMain').remove();
             $.each(data, function(index, value){
                console.log(data);
-               searchedRcpCom = '<div th:id="myAllComMain"><tr><td>' + data[index].rcpCom
+               searchedRcpCom = '<tr id="myAllComMain"><td>' + data[index].rcpCom
                + '</td><td>' + data[index].rcpComDate
-               + '</td></tr><br></div>'
+               + '</td></tr><br>'
                console.log("data.rcpCom:"+value.rcpCom);
                console.log("data.rcpComDate:"+value.rcpComDate);
                result.append(searchedRcpCom);
@@ -263,9 +278,9 @@ function myAllComSearch(){
          $('#myAllComMain').remove();
          $.each(data, function(index, value){
             console.log(data);
-            searchedAllCom = '<div th:id="myAllComMain"><tr><td>' + data[index].talkCom
+            searchedAllCom = '<tr id="myAllComMain"><td>' + data[index].talkCom
             + '</td><td>' + data[index].talkComDate
-            + '</td></tr><br></div>'
+            + '</td></tr><br>'
             console.log("data.talkCom:"+value.talkCom);
             console.log("data.talkComDate:"+value.talkComDate);
             result.append(searchedAllCom);

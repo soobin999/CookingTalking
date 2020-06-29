@@ -53,5 +53,68 @@
 	</div>
 	</div>
 	</div>
+	
+	<script>
+	
+	$(document).ready(function(){
+		   $('#scrapedSearchInMy').on('keydown', function(event){
+			      if(event.keyCode == 13){
+			         myScrapSearch();
+			         event.preventDefault();
+			      }
+			   });
+		});
+	
+	
+	function searchButtonClick(){
+
+
+		   $('#btnScrapedSearchInMy').on('click', function(){
+		      myScrapSearch();
+		   });
+
+		}
+
+	function myScrapSearch(){
+		   var key = $('#scrapedSearchInMy').val(); /*스크랩 검색 키워드*/
+
+		   $.ajax({
+		      type : "POST",
+		      url : "/searchMyScrap",
+		      data : {rcpTitle : key},
+		      success : function(data) {
+		         var searchedScrap;
+		         var result = $('#myFrequentSub');
+		         $('#myScrapededMain').remove();
+		         $.each(data, function(index, value){
+		            
+		               var dateTime = new Date(data[index].scrapDate*1000);
+		               console.log(dateTime.getFullYear());
+		               var formatted = dateTime.getFullYear()+(dateTime.getMonth()+1)+dateTime.getDate();
+		        	 
+		        	 console.log("dk"+data);
+		            searchedScrap = '<tr id="myScrapededMain"><td>'
+		            + '<a href="/recipe/view?rcpCode='
+		            + data[index].rcpCode + '">'
+		            + data[index].rcpPic + '</a>'
+		            + '</td><td>' + '<a href="/recipe/view?rcpCode=' 
+		            + data[index].rcpCode + '">'
+		            + data[index].rcpTitle + '</a>' 
+		            + '</td><td>' + formatted
+		            + '</td></tr><br>'
+		            console.log("data.rcpTitle:"+value.rcpTitle);
+		            console.log("data.scrapDate:"+formatted);
+		            result.append(searchedScrap);
+		         });
+		      },
+		      error : function(){
+		         alert("myScrapSearch Error");
+		      }
+		   });
+		}
+	
+	</script>
+	
+	
 </body>
 </html>

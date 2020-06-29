@@ -1,6 +1,5 @@
 package com.cook.talk.controller;
 
-import java.io.File;
 import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
@@ -19,6 +18,7 @@ import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.RecipeService;
+import com.cook.talk.util.FileTrancefer;
 
 import lombok.extern.log4j.Log4j;
 
@@ -66,12 +66,12 @@ public class RecipeController {
 	public String getRecipeList(Model model, ViewsVO viewsVO) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();
 		model.addAttribute("recipeList", recipeList);
+
 		model.addAttribute("recipeCount", recipeDAO.recipeCount());
 		//레시피 조회이력 저장
 		
 		for (RecipeDTO dto : recipeList)
 		log.info("list==>" + dto);
-
 		return "recipe/newList";
 	}
 	
@@ -107,21 +107,21 @@ public class RecipeController {
 
 	@ResponseBody
 	@PostMapping("recipe/insertProc")
-	public String insertRecipeProc(@RequestParam("file") MultipartFile files,  
-		boolean registerStatus,	RecipeDTO recipeDTO) {
+	public String insertRecipeProc(@RequestParam("file") MultipartFile file, 
+			boolean registerStatus, RecipeDTO recipeDTO) {
 		BasicConfigurator.configure(); //log4j 오류처리
-		recipeService.insertRecipeProc(registerStatus,
-				 recipeDTO.getRecipeVO(), recipeDTO.getTypeCatVO(),
-				recipeDTO.getRcpIngrVO(), recipeDTO.getRcpOrderVO(), recipeDTO.getTagVO());
-
 		
-		try {
-			String baseDir = "C:/cooktalk/FinalProj/src/main/resources/static/img"; 
-			files.transferTo(new File(baseDir + "\\"+ files.getOriginalFilename()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		/*
+		 * recipeService.insertRecipeProc(file, registerStatus, recipeDTO.getRecipeVO(),
+		 * recipeDTO.getTypeCatVO(), recipeDTO.getRcpIngrVO(),
+		 * recipeDTO.getRcpOrderVO(), recipeDTO.getTagVO());
+		 */
 		
+		//rcpPic, cookPic 업로드
+		String rcpPic = FileTrancefer.requestFileTrancefer(file); 
+		recipeDTO.getRecipeVO().setRcpPic(rcpPic);
+		
+		recipeService.insertRecipeProc(registerStatus, recipeDTO);
 		
 		return "recipe/insertRecipe";
 	}
