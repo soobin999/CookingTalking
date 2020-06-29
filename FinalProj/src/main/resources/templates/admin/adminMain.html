@@ -7,28 +7,26 @@
 <title id='pageTitle'>Cooking Talking</title>
 <th:block layout:fragment='css'>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
-<body>
-	<div layout:fragment='content'>
-		<div>
-			<div class="adSelectPage" id="adSelectPage">
+<div layout:fragment='content'>
+	<div class="container-lg">
+		<div class="row mb-5">
+			<div class="col-md-3" id="adSelectPage">
 				<!-- 재료 리스트 가져오기 -->
-				<button onclick="adQnaList()">고객요청함</button>
+				<button class="btn btn-block btn-light" onclick="adQnaList()">고객요청함</button>
 			</div>
-			<div class="adSelectPage" id="adSelectPage">
-				<button onclick="adUserList()">회원정보</button>
+			<div class="col-md-3" id="adSelectPage">
+				<button class="btn btn-block btn-light" onclick="adUserList()">회원정보</button>
 			</div>
 
 			<!-- 레시피 화명 이동 버튼 -->
-			<div class="adSelectRcpPage" id="adSelectPage">
-				<div class="w3-dropdown-hover">
-					<button class="w3-button w3-black">레시피</button>
+			<div class="col-md-3" id="adSelectPage">
+				<div class="btn btn-block btn-light w3-dropdown-hover">
+					<a>레시피</a>
 					<div class="w3-dropdown-content w3-bar-block w3-border">
 						<button onclick="adRecipeList()" class="w3-bar-item w3-button">레시피
 							리스트</button>
@@ -37,16 +35,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="adSelectPage" id="adSelectPage">
-				<button onclick="adIngrList()">재료페이지</button>
+			<div class="col-md-3" id="adSelectPage">
+				<button class="btn btn-block btn-light" onclick="adIngrList()">재료페이지</button>
 			</div>
-			<br> <br>
 
 		</div>
-		<div class="container-lg" id="basic">
-		<div>
-	<h1>고객센터 문의함</h1>
-</div>
+
+		<div id="basic">
+			<div>
+				<h1>고객센터 문의함</h1>
+			</div>
 
 
 			<table class="table table-bordered">
@@ -54,7 +52,7 @@
 					<tr>
 						<th scope="col">문의사항제목</th>
 						<th scope="col">문의 내용</th>
-						<th scope="col">문의 날짜</th>
+						<th scope="col" width="10%">문의 날짜</th>
 						<th scope="col">유저</th>
 					</tr>
 				</thead>
@@ -75,33 +73,45 @@
 						</td>
 
 					</tr>
-					<tr th:id="|open${qnaStat.index}|" class="collapse out">
-						<td><div>작성자</div>
-							<div scope="row">
-								<input style="background-color:transparent;border:0 solid black;" th:id="|UserId_answer${qnaStat.index}|" name="userId"
-									th:value="${qna.userId}" readonly>
-							</div></td>
-						<td scope="row"><div th:text="${qna.answer}"></div></td>
-						<td><input type="text"
-							th:id="|answer_answer${qnaStat.index}|" th:name="answer"
-							th:value="${qna.answer}" placeholder="답글을 입력하세요"></td>
-						<td><div>
-								<button class="btn btn-primary" type="button" th:id="|button_answer${qnaStat.index}|"
-									th:name="button_button">답변하기</button>
+					<tr th:id="|open${qnaStat.index}|" class="collapse out bg-light"
+						width="100%">
+						<td colspan="4"><div class="m-3">
+								<p>
+									<b>작성자 :</b> <input
+										style="background-color: transparent; border: 0 solid black;"
+										th:id="|UserId_answer${qnaStat.index}|" name="userId"
+										th:value="${qna.userId}" readonly>
+								</p>
+								<hr>
+								<div th:text="${qna.answer}" class="mb-3"></div>
+
+								<div class="input-group mb-3 mw-100">
+									<textarea type="text" th:id="|answer_answer${qnaStat.index}|"
+										th:name="answer" th:value="${qna.answer}"
+										placeholder="답글을 입력하세요" rows="4" cols="100" style="width: 90%"></textarea>
+									<div class="input-group-append" style="width: 10%">
+										<button class="insert_answer_btn btn btn-dark" type="button"
+											th:id="|button_answer${qnaStat.index}|"
+											th:name="button_button" style="width: 100%">답변하기</button>
+									</div>
+								</div>
 							</div></td>
 
 					</tr>
 				</tbody>
 			</table>
 			<ul>
-				<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
-					th:class="page" th:text="${num}" th:value="${num}"  style="color:#FF8000;"></a></li>
+				<div th:class="Pagination_Li">
+					<div th:each="num: ${#numbers.sequence(1,IngrList)}"
+						th:class="page">
+						<a th:text="${num}" th:value="${num}" style="color: #FF8000;"></a>
+					</div>
+				</div>
 			</ul>
 
 
 		</div>
 	</div>
-
 	<script>
 		$(document).ready(function() {
 
@@ -129,7 +139,7 @@
 		$(".insert_answer_btn").click(function() {
 			var reply = $(this).attr('id').substring(7);
 
-			var UserID = document.getElementsByName('userId');
+			/* var UserID = document.getElementsByName('userId'); */
 			var UserID = document.getElementById('UserId_' + reply);
 			var answer_reply = document.getElementById('answer_' + reply);
 			console.log(reply);
@@ -187,6 +197,12 @@
 			$('#mainTable').remove();
 			$('#basic').load("admin/listRcp");
 		};
+		//레시피 모두 보여주기 가져오기 
+		function adSearchBiChart() {
+			$('#mainTable').remove();
+			$('#basic').load("searchBichart");
+		};
 	</script>
-</body>
+</div>
+
 </html>

@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title id='pageTitle'>마이페이지(정민)</title>
 <style type="text/css"></style>
 
@@ -14,7 +15,34 @@
 	<div id="mypageMain">
 	<!-- 사진 및 계정 정보 -->
 		<div th:class="uploadPicOfUser">
-				<button onclick="window.open('/mypage/userPic','myPic','width=300px, height=300px, location=no, status=no, scrollbars=no');">사진변경하기</button>
+				<!-- <button onclick="window.open('/mypage/userPic','myPic','width=300px, height=300px, location=no, status=no, scrollbars=no');">사진변경하기</button> -->
+		
+		
+		<div class="w3-container">
+  <h2>나의 계정 정보</h2>
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large">사진 변경하기</button>
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+        <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+      </div>
+
+      <form class="w3-container" action="/mypage/modifyUserPic" method="POST" enctype="multipart/form-data">
+        <div class="w3-section">
+          <label><b>사진 등록</b></label>
+          <input class="w3-input w3-border" type="file" placeholder="사진을 등록하세요" name="file" required>
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">등록하기</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+		
+		
 		</div>
 		<div id="mypageSubMain">
 	<a href="/userModify.html">회원 정보 수정</a>
