@@ -1,5 +1,6 @@
 package com.cook.talk.restController;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +28,21 @@ public class MypageRestController {
 	MypageService mypageService;
 	
 	
-	@PostMapping("/mypage/modifyUserPic")
-	public String modifyUserPic(UserVO userVO, Model model, 
-			@RequestParam("file") MultipartFile multipartfile) {
-		
-		model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
-		System.out.println("multipart :: " + multipartfile.getOriginalFilename());
-		userVO.setUserPic(multipartfile.getOriginalFilename());
-		mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
-		System.out.println("추가된 파일명:" + multipartfile);
-		System.out.println("userPic:"+userVO.getUserPic());
-		
-		return "/mypage/myRecipeIng";
-	}
+	/*
+	 * @PostMapping("/mypage/modifyUserPic") public String modifyUserPic(UserVO
+	 * userVO, Model model,
+	 * 
+	 * @RequestParam("file") MultipartFile multipartfile) {
+	 * 
+	 * model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
+	 * System.out.println("multipart :: " + multipartfile.getOriginalFilename());
+	 * userVO.setUserPic(multipartfile.getOriginalFilename());
+	 * mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
+	 * System.out.println("추가된 파일명:" + multipartfile);
+	 * System.out.println("userPic:"+userVO.getUserPic());
+	 * 
+	 * return "/mypage/myRecipeIng"; }
+	 */
 	
 	@PostMapping("/searchMyFollow")
 	public List<MypageDTO> getSearchMyFollow(String followChef){
@@ -53,7 +56,10 @@ public class MypageRestController {
 	@PostMapping("/searchMyTalk")
 	public List<MypageDTO> getSearchMyTalk(String talkCont) {
 		System.out.println(talkCont);
-		System.out.println(mypageService.getSearchMyTalk(talkCont));
+		List<MypageDTO>mypageDTOs=  mypageService.getSearchMyTalk(talkCont);
+		Date  date =   mypageDTOs.get(0).getTalkDate();
+		
+		System.out.println(date.getTime()+"    mypageDTOs===="+mypageDTOs);
 		return mypageService.getSearchMyTalk(talkCont);
 	}
 	

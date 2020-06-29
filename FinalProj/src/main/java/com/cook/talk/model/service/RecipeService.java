@@ -5,11 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
-import com.cook.talk.model.VO.RcpIngrVO;
-import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.RecipeVO;
-import com.cook.talk.model.VO.TagVO;
-import com.cook.talk.model.VO.TypeCatVO;
 import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dto.RecipeDTO;
 
@@ -34,7 +30,8 @@ public interface RecipeService {
 	public List<IngrVO> getIngrDetail();
 	
 	// 레시피 목록 조회
-	public List<RecipeDTO> getRecipeList();
+	public List<RecipeDTO> getRecipeList();	
+	
 	
 	//레시피 랭킹 조회	
 	public List<RecipeDTO> getRankList();
@@ -46,15 +43,11 @@ public interface RecipeService {
 	public int recipeCount();
 	
 	// 레시피 글등록
-	public void insertRecipeProc(/* MultipartFile file */ 
-			boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO rcpIngrVO,
-			RcpOrderVO rcpOrderVO, TagVO tagVO);
-	
+	public void insertRecipeProc(boolean registerStatus, RecipeDTO recipeDTO);
 	
 	//레시피 조회수 증가
 	public int rcpViewsUpdate(String rcpCode);
-	
-	
+
 		
 
 
