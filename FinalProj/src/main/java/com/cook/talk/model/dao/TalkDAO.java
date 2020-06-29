@@ -20,16 +20,20 @@ public interface TalkDAO {
 
 	// 수정 불러오기
 	public TalkVO update(String talkCode);
-	
-	//수정 버튼 
+
+	// 수정 버튼
 	public int updateTalk(TalkVO talkVO);
 
-	//코드 증가
+	// 코드 증가
 	public int selectTalkCode();
-	
-	//보기 
+
+	// 보기
 	public TalkVO detail(String talkCode);
-	
-	//토크별 댓글 가져오기 
-	public TalkVO getBoardById(String talkCode);  
+
+	// 토크별 댓글 가져오기
+	public TalkVO getBoardById(String talkCode);
+
+	//이미지 업로드 
+	public void upload(TalkVO talkVO);
+
 }

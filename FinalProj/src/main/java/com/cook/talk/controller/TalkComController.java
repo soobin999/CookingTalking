@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,47 +36,55 @@ public class TalkComController {
 	private TalkService talkservice;
 
 	// 댓글 입력
-	/*@RequestMapping(value = "/comInsert", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/comInsert", method = RequestMethod.POST)
 	@ResponseBody
-	public String create(TalkComVO comVO, Principal principal,RedirectAttributes rttr) {
-		System.err.println(comVO);
-		//rttr.addAttribute("comVO",comVO.getTalkComCode());
+	public String create(TalkComVO comVO, Principal principal, RedirectAttributes rttr) {
+
+		rttr.addAttribute("comVO", comVO.getTalkComCode());
 		comVO.setUserId(principal.getName());
 		String talkCode = comVO.getTalkCode();
+		String talkComCode = comVO.getTalkComCode();
+		System.err.println(comVO);
+		comservice.createCom(comVO);
 		return "success";
-	}*/
-	
-	@RequestMapping(value = "/comInsert/{talkComCode}", method = RequestMethod.POST)
-	@ResponseBody
-	public String insert (TalkComVO comVO, HttpSession session, @RequestParam(value ="talkCom")String talkCom 
-			, @RequestParam(value = "talkComCode")@PathVariable  String talkComCode) {
-	
-		if(session.getAttribute("userId") !=null) {
-			String userId=(String) session.getAttribute("userId");
-			comVO.setUserId(userId);
-			
-		}
-		comVO.setTalkCom(talkCom);
-		comVO.setTalkComCode(talkComCode);
-	comservice.createCom(comVO);
-	return "success";
 	}
-	
-	
-	
-	
-	
-	
-	
+//댓글 수정 
+
+	@RequestMapping(method = { RequestMethod.PUT,
+			RequestMethod.PATCH }, value = "/update/{talkComCode}", consumes = "application/json", produces = {
+					MediaType.TEXT_PLAIN_VALUE })
+	public ResponseEntity<String> updateCom(@RequestBody TalkComVO comVO,
+			@PathVariable("talkComCode") String talkComCode) {
+		comVO.setTalkComCode(talkComCode);
+		return comservice.updateCom(comVO) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+	}
 
 	// 댓글 삭제
 	@RequestMapping("/deletCom/{talkComCode}")
-	public String deleteCom(HttpSession session, @PathVariable String talkComCode) {
-		String talkCode = (String) session.getAttribute("talkCode");
-		comservice.deleteCom(talkComCode);
-		int talkComCount = comservice.comcount(talkCode);
-		return "talk/detail";
+	public ResponseEntity<String> deleteCom(@PathVariable("talkComCode") String talkComCode) {
+		ResponseEntity<String> entity = null;
+		try {
+			comservice.deleteCom(talkComCode);
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+
 	}
+
+	/*
+	 * @RequestMapping("/deletCom/{talkComCode}") public String
+	 * deleteCom(HttpSession session, @PathVariable String talkComCode) { String
+	 * talkCode = (String) session.getAttribute("talkCode");
+	 * comservice.deleteCom(talkComCode); int talkComCount =
+	 * comservice.comcount(talkCode); return "redirect:talk/talkDetail"; }
+	 */
 
 //댓글 목록 
 	@RequestMapping("/list.do")
@@ -80,30 +92,5 @@ public class TalkComController {
 		model.addAttribute("talkCode", comservice.searchComment(talkComCode));
 		return "talk/comTest";
 	}
-
-	// ajax test
-
-	@RequestMapping("/comTest")
-	public String comTest() {
-		return "/talk/comTest";
-	}
-
-	/*
-	 * @RequestMapping("/comDelete.do") public String deleteCom (HttpSession
-	 * session,@PathVariable int talkComCode) { String
-	 * talkComCode=(String)session.getAttribute("talkComCode");
-	 * comservice.deleteCom(talkComCode);
-	 * 
-	 * int }
-	 */
-
-	/*
-	 * @PostMapping(value = "/new", consumes = "application/json", produces =
-	 * {MediaType.TEXT_PLAIN_VALUE}) public ResponseEntity<String>
-	 * create(@RequestBody TalkComVO comVO){ int insertCount =
-	 * comService.comInsert(comVO); return insertCount==1 ? new
-	 * ResponseEntity<>("success",HttpStatus.OK) : new
-	 * ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); //삼항연산자 처리 }
-	 */
 
 }
