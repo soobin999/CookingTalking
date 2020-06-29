@@ -10,7 +10,7 @@
 <body>
 	<h1>레시피 페이지</h1>
 	<div class="searchIngr_for_table" id="allIngrPage">
-		<form name="" method="POST">
+		<form method="POST">
 			<input type="text" id="searchId" name="searchId"
 				th:value="*{searchId}" placeholder="유저 아이디를 입력하세요">
 
@@ -25,7 +25,6 @@
 							<th>레시피 제목</th>
 							<th>작성자</th>
 							<th>카테고리</th>
-							<th>레시피 등록 날짜</th>
 						</tr>
 					</thead>
 				</table>
@@ -116,7 +115,7 @@
 							var str = '<tr class="table243"><td>' + rcp.rcpCode
 							+ '</td><td>' + rcp.rcpTitle + '</td><td>'
 							+ rcp.userId + '</td><td>' + rcp.typeCode
-							+ '</td><td>' + rcp.rcpDate + '</td></tr>';
+							+ '</td></tr>';
 							console.log(rcp.rcpCode);
 							console.log(index);
 							console.log(data);
