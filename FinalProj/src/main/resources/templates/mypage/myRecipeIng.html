@@ -27,16 +27,50 @@
 
       <div class="w3-center"><br>
         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-        <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+       <!--  <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"> -->
+     <img id="img" style="width:30%"/> 
+     
       </div>
 
       <form class="w3-container" action="/mypage/modifyUserPic" method="POST" enctype="multipart/form-data">
         <div class="w3-section">
           <label><b>사진 등록</b></label>
-          <input class="w3-input w3-border" type="file" placeholder="사진을 등록하세요" name="file" required>
+          <input id="input_img" class="w3-input w3-border" type="file" placeholder="사진을 등록하세요" name="file" required>
           <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">등록하기</button>
         </div>
+        
+        <script>
+var sel_file;
+
+$(document).ready(function(){
+	$('#input_img').on("change", handleImgFileSelect);
+});
+
+function handleImgFileSelect(e){
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+	
+	filesArr.forEach(function(f){
+		if(!f.type.match("image.*")){
+			alert("확장 가능한 이미지 파일이 아닙니다");
+			return;
+			
+		}
+		sel_file = f;
+		
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$('#img').attr("src", e.target.result);
+			
+		}
+		reader.readAsDataURL(f);
+	});
+}
+
+</script>
+        
       </form>
+
 
     </div>
   </div>
