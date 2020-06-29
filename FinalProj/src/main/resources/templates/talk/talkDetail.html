@@ -103,6 +103,10 @@ visibility: hidden;
 					<div th:each="com : ${listCom.talkComs}">
 						<span th:text="${com.nickName}"></span> <span
 							th:text="${com.talkCom}"></span>
+							<div th:if="${#authentication.principal.username} == ${com.userId}">
+								<button type="button" id="com_update" onclick="showUpdateCom($'com.talkCom')">수정</button>
+								<button type="button" id="com_Delete">삭제</button>
+							</div>
 						<!-- <span th:text="${com.talkComDate}"></span> -->
 					</div>
 				</div>
@@ -114,16 +118,16 @@ visibility: hidden;
 
 
 
-	<th:block sec:authorize="isAuthenticated()">
+<!-- 	<th:block sec:authorize="isAuthenticated()">
 		<input id="talkcom_code" type="hidden" th:value="${talkCode.talkCom}">
 	
-		<div th:if="${#authentication.principal.username} == *{userId}">
+		<div th:if="${#authentication.principal.username} == ${.userId}">
 		
 			<button type="button" id="com_update" onclick="showUpdateCom($'com.talkCom')">수정</button>
 			<button type="button" id="com_Delete">삭제</button>
 		</div>
 	</th:block>
-
+ -->
 
 <div id="modifyCom"></div>
 

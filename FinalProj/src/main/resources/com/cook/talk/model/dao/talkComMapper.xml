@@ -32,8 +32,8 @@ select substring((select talkComCode from
 
 
 <!-- 삭제  -->
-<delete id="deleteCom" parameterType="com.cook.talk.model.VO.TalkVO">
-delete form recipe.talkcom where talkComCode=#{talkComCode} 
+<delete id="deleteCom" parameterType="com.cook.talk.model.VO.TalkComVO">
+DELETE FROM talkcom where talkComCode =#{talkComCode} 
 </delete>
 
 <!-- 댓글 수정 -->

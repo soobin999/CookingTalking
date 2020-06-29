@@ -7,9 +7,9 @@ $(function() {
 	/* com_Delete(); */
 	comUpdate();
 	comDelete();
-	insertLike();
-	deleteLike();
-
+	//insertLike();
+	//deleteLike();
+	showComUpdate();
 })
 
 // 게시판 삭제 기능
@@ -93,7 +93,7 @@ function talkSave() {
 function showComUpdate(talkComCode) {
 	$.ajax({
 		type : "get",
-		url : "${path}/talk/detail/{talkCode}" + talkComCode,
+		url : "/talk/detail/",
 		success : function(result) {
 			$("#modifyCom").html(result);
 			$("#modifyCom").css("visibility", "visible");
@@ -106,7 +106,7 @@ function comUpdate() {
 	$("#com_update").click(function() {
 		$.ajax({
 			type : "put",
-			url : "${path}/com/update/${talkcom}",
+			url : "/com/update /${talkComCode}",
 			headers : {
 				"Content-Type" : "application/json"
 			},
@@ -128,10 +128,10 @@ function comDelete() {
 		if (confirm("삭제하시겠습니까?")) {
 			$.ajax({
 				type : "delete",
-				url : "${path}/com/delete/{comVO.talkComCode}",
+				url : "/com/deletCom/${talkComCode}",
 				success : function(result) {
 					if (result == "success") {
-						alret("삭제되었습니다");
+						alert("삭제되었습니다");
 						$("modifiyCom").css("visibility", "hidden");
 
 					}
@@ -148,16 +148,9 @@ function comDelete() {
  * function insertLike(){ $('comLike_btn').on('click',function(event){
  * event.preventDefault(); var talkVO={
  * 
- * userId :'${user.userId}', talkCode:'${talk.talkCode}',
- *  }; $.ajax({ url:'/talk/' }) })
- *  }
+ * userId :'${user.userId}', talkCode:'${talk.talkCode}', }; $.ajax({
+ * url:'/talk/' }) }) }
  */
-
-
-
-
-
-
 
 /*
  * function com_Delete(rno, callback, error) { $('#com_Delete').on('click',

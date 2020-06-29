@@ -48,7 +48,7 @@ public class TalkComServiceImpl implements TalkComService {
 	// 삭제
 	@Override
 	public void deleteCom(String talkComCode) {
-	comDAO.delete(talkComCode);
+	comDAO.deleteCom(talkComCode);
 	}
 
 	// 목록
@@ -62,5 +62,10 @@ public class TalkComServiceImpl implements TalkComService {
 	public List<TalkComVO> searchComment(String talkCode) {
 		return talkComService.searchComment(talkCode);
 	}
+
+
+
+
+
 
 }

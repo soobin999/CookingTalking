@@ -50,29 +50,41 @@ public class TalkComController {
 		return "success";
 	}
 //댓글 수정 
-	
+
 	@RequestMapping(method = { RequestMethod.PUT,
 			RequestMethod.PATCH }, value = "/update/{talkComCode}", consumes = "application/json", produces = {
 					MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> update(@RequestBody TalkComVO comVO,
+	public ResponseEntity<String> updateCom(@RequestBody TalkComVO comVO,
 			@PathVariable("talkComCode") String talkComCode) {
 		comVO.setTalkComCode(talkComCode);
-		return comservice.updateCom(comVO) == 1 
-				? new ResponseEntity<>("success", HttpStatus.OK)
+		return comservice.updateCom(comVO) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
-	
-	
 
 	// 댓글 삭제
 	@RequestMapping("/deletCom/{talkComCode}")
-	public String deleteCom(HttpSession session, @PathVariable String talkComCode) {
-		String talkCode = (String) session.getAttribute("talkCode");
-		comservice.deleteCom(talkComCode);
-		int talkComCount = comservice.comcount(talkCode);
-		return "redirect:talk/talkDetail";
+	public ResponseEntity<String> deleteCom(@PathVariable("talkComCode") String talkComCode) {
+		ResponseEntity<String> entity = null;
+		try {
+			comservice.deleteCom(talkComCode);
+			entity = new ResponseEntity<String>("success", HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+
 	}
+
+	/*
+	 * @RequestMapping("/deletCom/{talkComCode}") public String
+	 * deleteCom(HttpSession session, @PathVariable String talkComCode) { String
+	 * talkCode = (String) session.getAttribute("talkCode");
+	 * comservice.deleteCom(talkComCode); int talkComCount =
+	 * comservice.comcount(talkCode); return "redirect:talk/talkDetail"; }
+	 */
 
 //댓글 목록 
 	@RequestMapping("/list.do")

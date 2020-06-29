@@ -17,7 +17,7 @@ public interface TalkComDAO {
 	public void createCom(TalkComVO talkComVO);
 
 	// 삭제
-	public void delete(String talkComCode);
+	public void deleteCom(String talkComCode);
 
 	// 수정 불러오기
 	public int update(TalkComVO talkComVO);
