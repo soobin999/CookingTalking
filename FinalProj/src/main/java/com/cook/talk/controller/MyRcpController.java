@@ -25,13 +25,14 @@ public class MyRcpController {
 	@Autowired
 	MypageService mypageService;
 	
-	
+	//마이페이지-사용자 개인 사진 수정페이지로 가기
 	@GetMapping("/mypage/userPic")
 	public String userPic() {
 		
 		return "/mypage/myPic";
 	}
 	
+	//마이페이지-레시피-나의 작성중인 레시피
 	@GetMapping("/mypage/myRecipeIng")
 	public String myRecipeIng(Model model) {
 		model.addAttribute("myRecipeIng", mypageDAO.getMyRecipeIng());
@@ -39,6 +40,7 @@ public class MyRcpController {
 		return "/mypage/myRecipeIng";
 	}
 	
+	//마이페이지-레시피-나의 작성완료된 레시피
 	@GetMapping("/mypage/myWritten")
 	public String myWritten(Model model) {
 		model.addAttribute("myWritten", mypageDAO.getMyRecipeWritten());
@@ -56,6 +58,21 @@ public class MyRcpController {
 	  return "redirect:/mypage/myWritten"; 
 	  
 	  }
+	  
+	  
+		@PostMapping("/mypage/modifyUserPic")
+		public String modifyUserPic(UserVO userVO, Model model, 
+				@RequestParam("file") MultipartFile multipartfile) {
+			
+			model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
+			System.out.println("multipart :: " + multipartfile.getOriginalFilename());
+			userVO.setUserPic(multipartfile.getOriginalFilename());
+			mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
+			System.out.println("추가된 파일명:" + multipartfile);
+			System.out.println("userPic:"+userVO.getUserPic());
+			
+			return "/mypage/myRecipeIng";
+		}
 	 
 	
 }

@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="getSearchMyScraped" resultType="MypageDTO" parameterType="String">
-	SELECT DISTINCT rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
+	SELECT DISTINCT r.rcpCode, r.rcpPic, rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
 	WHERE s.userId='kkk@naver.com' AND r.rcpTitle LIKE CONCAT('%', #{rcpTitle}, '%')
 	</select>
 
@@ -51,15 +51,19 @@
 	</select>
 	
 	<select id="getSearchMyTalk" resultType="MypageDTO" parameterType="String">
-	SELECT DISTINCT talkCont, talkDate FROM recipe.talk WHERE userId='1113pppp@naver.com' AND 
+	SELECT DISTINCT talkCode, talkCont, talkDate FROM recipe.talk WHERE userId='1113pppp@naver.com' AND 
 	talkCont LIKE CONCAT('%', #{talkCont}, '%')
 	</select>
 	
 	<select id="getAllMyCom" resultType="MypageDTO">
-	SELECT talkCom, talkComDate FROM recipe.talkcom tc WHERE userId='kkk@naver.com' 
-	UNION SELECT rcpCom AS talkCom, rcpComDate AS talkComDate 
-	FROM recipe.rcpcom rc WHERE userId='kkk@naver.com' 
-	ORDER BY talkComDate DESC
+	SELECT talkCode, talkCom, talkComDate 
+	FROM recipe.talkcom tc 
+	WHERE userId='kkk@naver.com' 
+	UNION 
+		SELECT rcpCode AS talkCode, rcpCom AS talkCom, rcpComDate AS talkComDate 
+		FROM recipe.rcpcom rc 
+		WHERE userId='kkk@naver.com' 
+		ORDER BY talkComDate DESC
 	</select>
 	
 	<select id="getSearchAllMyCom" parameterType="String" resultType="MypageDTO">

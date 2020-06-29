@@ -2,17 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>회원정보 로드하기(adUser의 백업 파일본들)</title>
+<title>회원정보</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 	<div class="chef_list4_in" id="allIngrPage">
@@ -20,18 +12,17 @@
 			<input type="text" id="searchUserList" name="searchUserList"
 				th:value="*{searchUserList}" placeholder="닉네임을 입력하시오">
 
-			<button class="btn btn-outline-warning" type="button" id="btn_adUserSearch">검색하기</button>
+			<button class="btn btn-outline-warning" type="button"
+				id="btn_adUserSearch">검색하기</button>
 
 			<div th:id="ingr_Name_List">
-				<table class="table table-bordered" id="searchUser" border="1">
+				<table class="table table-bordered" id="searchUser" border="1"
+					style="text-align: center;">
 					<thead>
 						<tr>
 							<th>유저 아이디</th>
 							<th>유저 닉네임</th>
-							<th>유저 생일</th>
 							<th>유저 성별</th>
-							<th>유저 or 관리자</th>
-							<th>인증 확인</th>
 							<th>유저 프로필 사진</th>
 							<th>레시피 업로드 개수</th>
 							<th>유저 팔로워 수</th>
@@ -42,69 +33,74 @@
 		</form>
 
 	</div>
-	<h2>회원정보 보이기, 수정하기, 삭제하기</h2>
+	<h2>회원정보</h2>
 	<div id="basic">
-		<table class="table table-bordered" id="AduserId">
+		<table class="table table-bordered" id="AduserId"
+			style="text-align: center;">
 
 			<thead>
 				<tr>
-					<th>회원 정보 삭제</th>
 					<th>유저 아이디</th>
 					<th>유저 닉네임</th>
 					<th>유저 생일</th>
 					<th>유저 성별</th>
-					<th>인증 확인</th>
-					<th>유저 프로필 사진</th>
 					<th>레시피 업로드 개수</th>
 					<th>유저 팔로워 수</th>
+					<th>회원 정보 삭제</th>
+
 				</tr>
 			</thead>
 			<tbody th:id="tbody">
 
 				<tr th:each="user,index:${UserList}" th:id='${index.index}'>
-					<td><button class="btn btn-danger" th:class="delete_btn" th:value='${user.userId}'>회원삭제</button></td>
-
-
-					<td><input style="background-color:transparent;border:0 solid black;" type="text" th:class="C_enter_update_Id"
+					<td><input
+						style="background-color: transparent; border: 0 solid black;"
+						type="text" th:class="C_enter_update_Id"
 						th:id="|enter_update_ID${index.index}|" name="userId"
 						th:value="${user.userId}" readonly></td>
-					<td><input style="background-color:transparent;border:0 solid black;" type="text"
-						th:id="|enter_update_nickName${index.index}|" th:name="nickName"
-						th:value="${user.nickName}">
+					<td><input
+						style="background-color: transparent; border: 0 solid black;"
+						type="text" th:id="|enter_update_nickName${index.index}|"
+						th:name="nickName" th:value="${user.nickName}">
 					<td th:text="${user.birth}">유저 생일</td>
-					<td th:text="${user.gender}">유저 성별</td>
-					<td th:text="${user.auth}">인증 확인</td>
-					<td th:text="${user.userPic}">유저 프로필 사진</td>
+					<td th:switch="${user.gender}"><i th:case="true" class="">남자</i>
+						<i th:case="false" class="">여자</i></td>
 					<td th:text="${user.rcpUploads}">레시피 업로드 개수</td>
 					<td th:text="${user.followers}">유저 팔로워 수</td>
+					<td><button class="btn btn-danger" th:class="delete_btn"
+							th:value='${user.userId}'>회원 삭제</button></td>
+
 				</tr>
 			</tbody>
 		</table>
 		<ul>
-			<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
-				th:class="page" th:text="${num}" th:value="${num}" style="color:#FF8000;"></a></li>
+			<div th:class="Pagination_Li">
+				<div th:each="num: ${#numbers.sequence(1,IngrList)}" th:class="page">
+					<a th:text="${num}" th:value="${num}" style="color: #FF8000;"></a>
+				</div>
+			</div>
 		</ul>
 
 	</div>
-		<script>
-			$(document).ready(function() {
-	
-				var cc = 700;
-				for (var i = 20; i < cc; i++) {
-					$('#' + i).hide();
-				}
-			});
-		</script>
+	<script>
+		$(document).ready(function() {
+
+			var cc = 700;
+			for (var i = 20; i < cc; i++) {
+				$('#' + i).hide();
+			}
+		});
+	</script>
 	<script>
 		$('.page').click(function(event) {
 			var k = event.target.text;
 			console.log(k);
 			for (var i = 0; i < 670; i++) {
 				$('#' + i).hide();
-			} 
+			}
 			for (var i = 0; i < 20; i++) {
-				$('#' + (((parseInt(k) - 1) * 20 +i))).show();
-				console.log((parseInt(k) - 1) * 20 +i);
+				$('#' + (((parseInt(k) - 1) * 20 + i))).show();
+				console.log((parseInt(k) - 1) * 20 + i);
 			}
 		});
 	</script>
@@ -116,7 +112,6 @@
 							var searchINGR;
 							var input = document
 									.getElementById("searchUserList").value;
-
 
 							var searchUSER = document
 									.getElementById("searchUserList").value
@@ -131,15 +126,13 @@
 									$(".table234").remove();
 									$.each(data, function(index, user) {
 										var str = '<tr class="table234"><td>'
-												+ user.userId + '</td><td>'
-												+ user.nickName + '</td><td>'
-												+ user.birth + '</td><td>'
-												+ user.gender + '</td><td>'
-												+ user.access + '</td><td>'
-												+ user.auth + '</td><td>'
-												+ user.userPic + '</td><td>'
-												+ user.rcpUploads + '</td><td>'
-												+ user.followers + '</td>';
+											+ user.userId + '</td><td>'
+											+ user.nickName + '</td><td th:switch='+ user.gender +'>'+
+											'<i th:case="true">'+"남자"+'</i>'+'</td>'
+											+ user.gender + '</td><td>'
+											+ user.userPic + '</td><td>'
+											+ user.rcpUploads + '</td><td>'
+											+ user.followers + '</td>';
 										$("#searchUser").append(str);
 
 									});
@@ -152,13 +145,12 @@
 							});
 						});
 	</script>
-	
+
 
 
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
-					console.log("ss");
 					var ENTER_KEY = 13;
 					nickNames = document.getElementsByName('nickName');
 					nickNames.forEach(function(nickName, i) {

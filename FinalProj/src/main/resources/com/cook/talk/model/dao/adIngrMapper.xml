@@ -13,7 +13,7 @@
 
 	<select id="allSelectIngr" resultType="ingrVO">
 		select * from ingr order
-		by rcpingrCode
+		by rcpingrCode DESC
 	</select>
 
 	<insert id="insertIngr">

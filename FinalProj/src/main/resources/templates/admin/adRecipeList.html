@@ -4,18 +4,13 @@
 <meta charset="UTF-8">
 <title>레시피 모두 보기</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
 	<h1>레시피 페이지</h1>
 	<div class="searchIngr_for_table" id="allIngrPage">
-		<form name="" method="POST">
+		<form method="POST">
 			<input type="text" id="searchId" name="searchId"
 				th:value="*{searchId}" placeholder="유저 아이디를 입력하세요">
 
@@ -23,14 +18,13 @@
 				id="btn_adNickName">검색하기</button>
 
 			<div th:id="ingr_Name_List">
-				<table class="table table-bordered" id="searchId2" border="1">
+				<table class="table table-bordered" id="searchId2" border="1" style="text-align:center;">
 					<thead>
 						<tr>
 							<th>레시피 고유식별 번호</th>
 							<th>레시피 제목</th>
 							<th>작성자</th>
 							<th>카테고리</th>
-							<th>레시피 등록 날짜</th>
 						</tr>
 					</thead>
 				</table>
@@ -42,7 +36,7 @@
 	</div>
 	<br>
 	<div id="basic">
-		<table class="table table-bordered table-striped">
+		<table class="table table-bordered" style="text-align:center;">
 			<thead>
 				<tr>
 					<th>레시피 고유식별번호</th>
@@ -50,29 +44,56 @@
 					<th>작성자</th>
 					<th>카테고리</th>
 					<th>레시피 등록 날짜</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
 
-			<tbody th:each="rcp, rcpStat:${rcpList}" th:id='${rcpStat.index}'>
+			<tbody th:each="rcp, rcpStat:${rcpList}" th:id='${rcpStat.index}' style=>
 				<tr>
 					<td><div th:text="${rcp.rcpCode}"></div></td>
 					<td><div th:text="${rcp.rcpTitle}"></div></td>
 					<td><div th:text="${rcp.userId}"></div></td>
 					<td><div th:text="${rcp.typeCode}"></div></td>
 					<td><div th:text="${rcp.rcpDate}"></div></td>
+					<td><button class="btn btn-danger" th:class="delete_btn" th:value="${rcp.rcpCode}">
+							레시피 삭제</button></td>
 				</tr>
 			</tbody>
 		</table>
-		<ul>
-			<li th:each="num: ${#numbers.sequence(1,IngrList)}"><a
-				th:class="page" th:text="${num}" th:value="${num}"
-				style="color: #FF8000;"></a></li>
-		</ul>
+		<div th:class='Pagination_Li'>
+			<ul>
+				<div th:class="Pagination_Li">
+					<div th:each="num: ${#numbers.sequence(1,IngrList)}"
+						th:class="page">
+						<a th:text="${num}" th:value="${num}"
+							style="color: #FF8000; display: inline;"></a>
+					</div>
+				</div>
+			</ul>
+		</div>
 	</div>
-
-
-
 </body>
+<script th:inline="javascript">
+	$(".delete_btn").click(function() {
+		/*          alert($(this).attr('value')); */
+		var rcpCode = $(this).attr('value');
+
+		if (confirm($(this).attr('value') + "를 삭제 하시겠습니까?")) {
+			$.ajax({
+				url : './admin/deleteRcp',
+				data : {
+					rcpCode : rcpCode
+				},
+				method : "POST",
+			}).done(function(response) {
+				$('#basic').load("admin/listRcp");
+			});
+		} else {
+			return false;
+		}
+
+	});
+</script>
 <script>
 	$('#btn_adNickName').on(
 			'click',
@@ -92,9 +113,9 @@
 						$(".table243").remove();
 						$.each(data, function(index, rcp) {
 							var str = '<tr class="table243"><td>' + rcp.rcpCode
-									+ '</td><td>' + rcp.rcpTitle + '</td><td>'
-									+ rcp.userId + '</td><td>' + rcp.typeCode
-									+ '</td><td>' + rcp.rcpDate + '</td></tr>';
+							+ '</td><td>' + rcp.rcpTitle + '</td><td>'
+							+ rcp.userId + '</td><td>' + rcp.typeCode
+							+ '</td></tr>';
 							console.log(rcp.rcpCode);
 							console.log(index);
 							console.log(data);
@@ -132,5 +153,6 @@
 		}
 	});
 </script>
+
 
 </html>

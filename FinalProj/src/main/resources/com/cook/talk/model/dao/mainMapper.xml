@@ -32,7 +32,7 @@
 		as totalRecipe ,(select
 		count(*) from search) as totalSearch ,
 		(select count(*) from talk) as
-		totalTalk from user limit 1
+		totalTalk from dual
 	</select>
 	<select id="recipeSearch" resultType='rcpSDTO'>
 		select rcp.rcpCode,rcp.rcpTitle, rcp.rcpPic,user.nickName

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/js/yujin/talk.js"></script>
 
 <!-- XHTML 문서를 위한 XML 네임스페이스를 명시하는 것으로, 생략해도 정상동작 -->
 <head>
@@ -36,16 +38,29 @@ $(document).ready(function){
 	<form class="form-horizontal" th:action="@{/talk/insert.do}"
 		th:object="${talkVO}" method="post" name="form"
 		onsubmit="return registerBoard(this)">
-		<tr>
-			<th>내용</th>
+		<div class="form-group"> 
+			<h5>내용</h5>
+		
+		
 			<td><textarea th:field="*{talkCont}" cols="10" placeholder="내용을 입력하세요" name="content"></textarea>
-			<th>파일 첨부</th>
-			<td><input type="text" placeholder="사진을 선택하세요" name=""></td>
-<!-- 	<td><input name="files" placeholder="사진을 선택하세요" id="fileupload" type="file" multiple></td> -->
-			<td><!-- <input type="text" placeholder="사진을 선택하세요" name=""> -->
+			<th>파일 첨부</th> 
+		
+		
+			<input type="file" placeholder="사진을 선택하세요" id="talk-file"
+			th:field="*{talkVideo}">
 			
 			
-<input type="file" name="file" id="imageFileOpenInput" accept="image/*"></td>
+			 <img id="talk-img" th:data-img="${talkVO.talkVideo}" 
+			
+			
+			  th:src="${talkVideo}"
+			 style="width: 100px; height: 100px; margin-top: 10px;">
+			 
+			<br>
+			<p></p>
+			
+</div>
+
 			<td colspan="2"><input type="submit" value="등록"
 				onclick="btnSave"> <input type="button" value="취소"
 				onclick="">

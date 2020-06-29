@@ -5,7 +5,7 @@
     alert("완료되었습니다!");
     	
     $('#insertRecipe').submit();
-   			document.location.href = 'recipe/newList'; //위치 잘 모르겠음
+   			//document.location.href = 'recipe/newList'; //위치 잘 모르겠음
     	})
 	});
 
@@ -23,7 +23,7 @@
 		});
 	}); 
  	
- 	//이미지
+ 	//이미지 미리보기
  	var sel_file;
  	
  	$(document).ready(function() {
@@ -36,7 +36,7 @@
  		
  		filesArr.forEach(function(f) {
  			if(!f.type.match("image.*")) {
- 				alert("확장자는 jpg, png만 가능합니다.");
+ 				alert("확장자는 이미지 확장자만 가능합니다.");
  				return;
  			}
  			
