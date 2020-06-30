@@ -21,22 +21,25 @@
 	</delete>
 	
 	<select id="getSearchMyFollow" parameterType="String" resultType="MypageDTO">
-	
-	SELECT DISTINCT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
+	SELECT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
 	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r ON r.userId = f.followChef
-	WHERE f.userId='kkk@naver.com' AND nickName LIKE CONCAT('%', #{followChef},'%')
-	
+	WHERE f.userId='kkk@naver.com' AND nickName LIKE CONCAT('%', #{followChef},'%') group by nickName
 	</select>
 	
 	<select id="getSearchMyScraped" resultType="MypageDTO" parameterType="String">
 	SELECT DISTINCT r.rcpCode, r.rcpPic, rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
-	WHERE s.userId='kkk@naver.com' AND r.rcpTitle LIKE CONCAT('%', #{rcpTitle}, '%')
+	WHERE s.userId='kkk@naver.com' AND r.rcpTitle LIKE CONCAT('%', #{rcpTitle}, '%') ORDER BY scrapDate DESC
 	</select>
 
 	<select id="getMyFollow" resultType="MypageDTO">
-	SELECT DISTINCT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
+<!-- 	SELECT DISTINCT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
 	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r ON r.userId = f.followChef
-	WHERE f.userId='kkk@naver.com' 
+	WHERE f.userId='kkk@naver.com'  -->
+	
+	SELECT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
+	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r ON r.userId = f.followChef
+	WHERE f.userId='kkk@naver.com' group by nickName
+	
 	</select>
 	
 	<select id="getMyScrapedRecipe" parameterType="String" resultType="RecipeVO">
@@ -52,7 +55,7 @@
 	
 	<select id="getSearchMyTalk" resultType="MypageDTO" parameterType="String">
 	SELECT DISTINCT talkCode, talkCont, talkDate FROM recipe.talk WHERE userId='1113pppp@naver.com' AND 
-	talkCont LIKE CONCAT('%', #{talkCont}, '%')
+	talkCont LIKE CONCAT('%', #{talkCont}, '%') ORDER BY talkDate DESC
 	</select>
 	
 	<select id="getAllMyCom" resultType="MypageDTO">
@@ -67,22 +70,25 @@
 	</select>
 	
 	<select id="getSearchAllMyCom" parameterType="String" resultType="MypageDTO">
-	SELECT DISTINCT talkCom, talkComDate FROM recipe.talkcom tc WHERE userId='kkk@naver.com' 
+	SELECT DISTINCT talkCode, talkCom, talkComDate 
+	FROM recipe.talkcom tc 
+	WHERE userId='kkk@naver.com' 
 	AND tc.talkCom LIKE CONCAT('%', #{talkCom}, '%') 
-	UNION SELECT rcpCom AS talkCom, rcpComDate AS talkComDate  
-	FROM recipe.rcpcom rc WHERE userId='kkk@naver.com' 
-	AND rc.rcpCom LIKE CONCAT('%', #{talkCom}, '%') 
+	UNION 
+		SELECT rcpCode AS talkCode, rcpCom AS talkCom, rcpComDate AS talkComDate  
+		FROM recipe.rcpcom rc WHERE userId='kkk@naver.com' 
+		AND rc.rcpCom LIKE CONCAT('%', #{talkCom}, '%') 
 	ORDER BY talkComDate DESC
 	</select>
 
 
 	<select id="getSearchTalkCom" parameterType="String" resultType="MypageDTO">
-	SELECT DISTINCT talkCom, talkComDate FROM recipe.talkcom tc WHERE userId='kkk@naver.com' 
+	SELECT DISTINCT talkCode, talkCom, talkComDate FROM recipe.talkcom tc WHERE userId='kkk@naver.com' 
 	AND tc.talkCom LIKE CONCAT('%',#{talkCom},'%') ORDER BY talkComDate DESC
 	</select>
 	
 	<select id="getSearchRcpCom" parameterType="String" resultType="MypageDTO">
-	SELECT DISTINCT rcpCom, rcpComDate FROM recipe.rcpcom rc WHERE userId='kkk@naver.com' 
+	SELECT DISTINCT rcpComDate, rcpCom, rcpComDate FROM recipe.rcpcom rc WHERE userId='kkk@naver.com' 
 	AND rc.rcpCom LIKE CONCAT('%',#{rcpCom},'%') ORDER BY rcpComDate DESC
 	</select>
 	
