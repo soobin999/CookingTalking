@@ -39,10 +39,6 @@
 	<div th:id="myScrapededMain">
 	<table>
 	<tbody>
-<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
-		<div class="myRecipeIng_title">레시피 제목</div> -->
-	
-	
 	<tr th:each="myScraped : ${myScraped}">
 		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpPic}" th:text=${myScraped.rcpPic}></a></td>
 		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpTitle}" th:text=${myScraped.rcpTitle}></a></td>
@@ -55,6 +51,13 @@
 	</div>
 	
 	<script>
+	
+	 Date.prototype.yyyymmdd = function() {
+	      var yyyy = this.getFullYear().toString();
+	      var mm = (this.getMonth() + 1).toString();
+	      var dd = this.getDate().toString();
+	      return  yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
+	  }
 	
 	$(document).ready(function(){
 		   $('#scrapedSearchInMy').on('keydown', function(event){
@@ -83,35 +86,43 @@
 		      url : "/searchMyScrap",
 		      data : {rcpTitle : key},
 		      success : function(data) {
-		         var searchedScrap;
+		         var searchedScrap = new Array();
 		         var result = $('#myFrequentSub');
+		         var a,b;
+		         removeFunc();
+		         
+		         a='<tr id="myScrapededMain"><td>'
+		         b='</td></tr><br>'
+		         
 		         $('#myScrapededMain').remove();
 		         $.each(data, function(index, value){
 		            
-		               var dateTime = new Date(data[index].scrapDate*1000);
-		               console.log(dateTime.getFullYear());
-		               var formatted = dateTime.getFullYear()+(dateTime.getMonth()+1)+dateTime.getDate();
-		        	 
-		        	 console.log("dk"+data);
-		            searchedScrap = '<tr id="myScrapededMain"><td>'
-		            + '<a href="/recipe/view?rcpCode='
+		       	  var scrap_date = (new Date(data[index].scrapDate)).yyyymmdd();
+		    	  console.log(scrap_date);
+		            searchedScrap[index] =
+		     		'<a href="/recipe/view?rcpCode='
 		            + data[index].rcpCode + '">'
 		            + data[index].rcpPic + '</a>'
 		            + '</td><td>' + '<a href="/recipe/view?rcpCode=' 
 		            + data[index].rcpCode + '">'
 		            + data[index].rcpTitle + '</a>' 
-		            + '</td><td>' + formatted
-		            + '</td></tr><br>'
+		            + '</td><td>' + scrap_date
+		        
 		            console.log("data.rcpTitle:"+value.rcpTitle);
-		            console.log("data.scrapDate:"+formatted);
-		            result.append(searchedScrap);
+		            console.log("data.scrapDate:"+scrap_date);
 		         });
+		            result.append(a+searchedScrap+b);
 		      },
 		      error : function(){
 		         alert("myScrapSearch Error");
 		      }
 		   });
 		}
+	
+	function removeFunc(){
+		console.log("removeFunc");
+		$('#myTalkMain').remove();
+	}
 	
 	</script>
 	

@@ -22,6 +22,7 @@ public interface TalkComDAO {
 	
 	//수정 버튼 
 	public int updateCom(@Param("talkComCode") String talkComCode, @Param("talkCom") String talkCom);
+	//public int upda2teTalk(TalkVO talkVO);
 
 	//코드 증가
 	public int selectTalkComCode();
