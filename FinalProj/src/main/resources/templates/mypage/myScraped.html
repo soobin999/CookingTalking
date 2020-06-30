@@ -39,10 +39,6 @@
 	<div th:id="myScrapededMain">
 	<table>
 	<tbody>
-<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
-		<div class="myRecipeIng_title">레시피 제목</div> -->
-	
-	
 	<tr th:each="myScraped : ${myScraped}">
 		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpPic}" th:text=${myScraped.rcpPic}></a></td>
 		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpTitle}" th:text=${myScraped.rcpTitle}></a></td>
