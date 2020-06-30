@@ -5,35 +5,35 @@
 <mapper namespace="com.cook.talk.model.dao.MypageDAO">
 	
 	<select id="modifyUserPic" parameterType="String">
-	UPDATE user SET userPic = #{userPic} WHERE userId='1111pppp@naver.com'
+	UPDATE user SET userPic = #{userPic} WHERE userId=#{userId}
 	</select>
 	
 	
 	<select id="modifyUserInfo" parameterType="String">
-	UPDATE user SET userPw = #{userPw}, nickName = #{nickName} WHERE userId='1111pppp@naver.com'
+	UPDATE user SET userPw = #{userPw}, nickName = #{nickName} WHERE userId=#{userId}
 	</select>
 	
 	<select id="getMyRecipeIng" parameterType="String" resultType="RecipeVO">
-	SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' AND registerStatus=0
+	SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp WHERE userId=#{userId} AND registerStatus=0
 	</select>
 	
 	<select id="getMyRecipeWritten" resultType="MypageDTO">
-	SELECT DISTINCT rcpTitle, rcpPic, rcpCode FROM recipe.rcp WHERE userId='kkk@naver.com' AND registerStatus=1
+	SELECT DISTINCT rcpTitle, rcpPic, rcpCode FROM recipe.rcp WHERE userId=#{userId} AND registerStatus=1
 	</select>
 	
 	<delete id="deleteRcp">
-	DELETE FROM recipe.rcp WHERE rcpCode = #{rcpCode} AND userId = 'kkk@naver.com'
+	DELETE FROM recipe.rcp WHERE rcpCode = #{rcpCode} AND userId = #{userId}
 	</delete>
 	
 	<select id="getSearchMyFollow" parameterType="String" resultType="MypageDTO">
 	SELECT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
 	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r ON r.userId = f.followChef
-	WHERE f.userId='kkk@naver.com' AND nickName LIKE CONCAT('%', #{followChef},'%') group by nickName
+	WHERE f.userId=#{userId} AND nickName LIKE CONCAT('%', #{followChef},'%') group by nickName
 	</select>
 	
 	<select id="getSearchMyScraped" resultType="MypageDTO" parameterType="String">
 	SELECT DISTINCT r.rcpCode, r.rcpPic, rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
-	WHERE s.userId='kkk@naver.com' AND r.rcpTitle LIKE CONCAT('%', #{rcpTitle}, '%') ORDER BY scrapDate DESC
+	WHERE s.userId=#{userId} AND r.rcpTitle LIKE CONCAT('%', #{rcpTitle}, '%') ORDER BY scrapDate DESC
 	</select>
 
 	<select id="getMyFollow" resultType="MypageDTO">
@@ -43,74 +43,74 @@
 	
 	SELECT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
 	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r ON r.userId = f.followChef
-	WHERE f.userId='kkk@naver.com' group by nickName
+	WHERE f.userId=#{userId} group by nickName
 	
 	</select>
 	
 	<select id="getMyScrapedRecipe" parameterType="String" resultType="RecipeVO">
 	<!-- SELECT rcpTitle, rcpPic, scrapDate FROM recipe.scrap WHERE userId='kkk@naver.com' -->
 	SELECT r.rcpCode, r.rcpPic, rcpTitle, scrapDate FROM recipe.rcp AS r INNER JOIN recipe.scrap AS s ON r.rcpCode = s.rcpCode 
-	WHERE s.userId='kkk@naver.com' ORDER BY scrapDate DESC
+	WHERE s.userId=#{userId} ORDER BY scrapDate DESC
 	</select>
 	
 	<select id="getMyTalk" resultType="TalkVO">
-	SELECT DISTINCT talkCode, talkCont, talkDate FROM recipe.talk WHERE userId='1113pppp@naver.com' 
+	SELECT DISTINCT talkCode, talkCont, talkDate FROM recipe.talk WHERE userId=#{userId} 
 	ORDER BY talkDate DESC
 	</select>
 	
 	<select id="getSearchMyTalk" resultType="MypageDTO" parameterType="String">
-	SELECT DISTINCT talkCode, talkCont, talkDate FROM recipe.talk WHERE userId='1113pppp@naver.com' AND 
+	SELECT DISTINCT talkCode, talkCont, talkDate FROM recipe.talk WHERE userId=#{userId} AND 
 	talkCont LIKE CONCAT('%', #{talkCont}, '%') ORDER BY talkDate DESC
 	</select>
 	
 	<select id="getAllMyCom" resultType="MypageDTO">
 	SELECT talkCode, talkCom, talkComDate 
 	FROM recipe.talkcom tc 
-	WHERE userId='kkk@naver.com' 
+	WHERE userId=#{userId} 
 	UNION 
 		SELECT rcpCode AS talkCode, rcpCom AS talkCom, rcpComDate AS talkComDate 
 		FROM recipe.rcpcom rc 
-		WHERE userId='kkk@naver.com' 
+		WHERE userId=#{userId} 
 		ORDER BY talkComDate DESC
 	</select>
 	
 	<select id="getSearchAllMyCom" parameterType="String" resultType="MypageDTO">
 	SELECT DISTINCT talkCode, talkCom, talkComDate 
 	FROM recipe.talkcom tc 
-	WHERE userId='kkk@naver.com' 
+	WHERE userId=#{userId} 
 	AND tc.talkCom LIKE CONCAT('%', #{talkCom}, '%') 
 	UNION 
 		SELECT rcpCode AS talkCode, rcpCom AS talkCom, rcpComDate AS talkComDate  
-		FROM recipe.rcpcom rc WHERE userId='kkk@naver.com' 
+		FROM recipe.rcpcom rc WHERE userId=#{userId} 
 		AND rc.rcpCom LIKE CONCAT('%', #{talkCom}, '%') 
 	ORDER BY talkComDate DESC
 	</select>
 
 
 	<select id="getSearchTalkCom" parameterType="String" resultType="MypageDTO">
-	SELECT DISTINCT talkCode, talkCom, talkComDate FROM recipe.talkcom tc WHERE userId='kkk@naver.com' 
+	SELECT DISTINCT talkCode, talkCom, talkComDate FROM recipe.talkcom tc WHERE userId=#{userId} 
 	AND tc.talkCom LIKE CONCAT('%',#{talkCom},'%') ORDER BY talkComDate DESC
 	</select>
 	
 	<select id="getSearchRcpCom" parameterType="String" resultType="MypageDTO">
-	SELECT DISTINCT rcpComDate, rcpCom, rcpComDate FROM recipe.rcpcom rc WHERE userId='kkk@naver.com' 
+	SELECT DISTINCT rcpComDate, rcpCom, rcpComDate FROM recipe.rcpcom rc WHERE userId=#{userId} 
 	AND rc.rcpCom LIKE CONCAT('%',#{rcpCom},'%') ORDER BY rcpComDate DESC
 	</select>
 	
 	<select id="getMyTalkCom" resultType="TalkComVO">
-	SELECT DISTINCT talkCom, talkComDate FROM recipe.talkCom WHERE userId='kkk@naver.com'
+	SELECT DISTINCT talkCom, talkComDate FROM recipe.talkCom WHERE userId=#{userId}
 	</select>
 	
 	<select id="getMyRcpCom" resultType="MypageDTO">
-	SELECT DISTINCT rcpCom, rcpComDate FROM recipe.rcpcom WHERE userId='kkk@naver.com'
+	SELECT DISTINCT rcpCom, rcpComDate FROM recipe.rcpcom WHERE userId=#{userId}
 	</select>
 	
 	<insert id="rqMyInq" parameterType="QnAVO">
-	INSERT INTO recipe.qna(qnaCode, qnaTitle, qnaCont, qnaDate, userId) VALUES (#{qnaCode}, #{qnaTitle}, #{qnaCont}, curdate(),'kkk@naver.com') 
+	INSERT INTO recipe.qna(qnaCode, qnaTitle, qnaCont, qnaDate, userId) VALUES (#{qnaCode}, #{qnaTitle}, #{qnaCont}, curdate(),#{userId}) 
 	</insert>
 	
-	<select id="getmyInq" resultType="QnAVO">
-	SELECT DISTINCT qnaCode, qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId='kkk@naver.com'
+	<select id="getmyInq" parameterType="String" resultType="qnAVO">
+		SELECT DISTINCT qnaCode, qnaDate, qnaTitle, qnaCont, answer FROM recipe.qna WHERE userId=#{userId}
 	</select>
 	
 	<select id="selectQnACode" resultType="int">
