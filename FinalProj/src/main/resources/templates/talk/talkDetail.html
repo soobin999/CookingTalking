@@ -7,28 +7,72 @@
 <script type="text/javascript" src="/js/yujin/talk.js"></script>
 
 <title>게시판 상세</title>
+<script>
+	$(function() {
+		$('.comment-update-btn').on('click',function(e) {
+			var text = $(e.target).closest('.comment-div').find(".comment-form").text();
+			$(e.target).closest('.comment-div').find(".comment-form").html("<input type='text' name='ComCode' value='"+text+"' id='talkCom'>");
+			$(e.target).closest('.comment-div').find(".comment-btn").html("<button type='button' class='btnDo'>수정하기</button>");
+			updateResult();
+		})
+	})
 
- <script type="text/javascript">
+	function updateResult() {
+		$('.btnDo').on('click',function(e) {
+			var item = $(e.target).closest('.comment-div').find('#talkCom').val();
+			var text = $(e.target).closest('.comment-div').find('.comment-form').text(item);
+			var comCode = $(e.target).closest('.comment-div').find('.comment-code').val();
+			
+			$(e.target).closest('.comment-div').find('.comment-btn').html("<button type='button' class='com_update'>수정</button>");
 
+			// text -> DB에서 talkCom
+			// comCode -> DB에서 talkComCode
 
+			// UPDATE talkcom SET talkCom = #{talkCom} WHERE talkComCode = #{talkComCode}
+			// var TalkcomC = $(e.target).attr('value')
+			
+			$.ajax({
+				url : '/com/update/' + comCode,
+				type : 'put',
+				data : item
+			}).done(function(result){
+				if (result == "success") {
+					alert("수정되었습니다");
+					location.reload();
+				}
+			}).fail(function(){
+				alert('comment update fail')
+			})
+		});
+	}
+	
 
+	/* function newCom() {
 
-</script> 
+		$(".btnDo").click(function(e) {
+			var TalkcomC = $(e.target).attr('value')
+		
+			console.log(TalkcomC)
 
-<style>
-#modifyCom{
-width:600px;
-height:130px;
-background-color: gray;
-padding:  10px;
-z-index: 10;
-visibility: hidden;
+			$.ajax({
+				url : '/com/update/' + TalkcomC,
+				method : "PUT",
+				data : {
+					talkComCode : TalkcomC,
+					talkCom : Talkcom
+				},
+				success : function(result) {
+					if (result == "success") {
+						alert("수정되었습니다");
+						location.reload();
+					}
+				}
+			})
+		})
+	}; */
 
-}
-
-
-
-</style>
+	
+</script>
 
 </head>
 <body th:object="${talkCode}">
@@ -57,18 +101,15 @@ visibility: hidden;
 					<td th:text="${listCom.talkLike}"></td>
 					<td th:text="${listCom.talkCom}"></td>
 				</tr>
-
-
-
 				</div>
 			</tbody>
 		</table>
 		<div style="width: 650px; text-align: center;">
 			<th:block sec:authorize="isAuthenticated()">
-				<input id="talk-code" type="hidden" th:value="${talkCode.talkCode}">
+				<input id="talk-code" type="hidden" th:value="${listCom.talkCode}">
 
 				<div th:if="${#authentication.principal.username} == *{userId}">
-					<a th:href="@{/talk/updatePage(talkCode=${talkCode.talkCode})}">수정</a>
+					<a th:href="@{/talk/updatePage(talkCode=${listCom.talkCode})}">수정</a>
 
 					<button type="button" id="btnDelete">삭제</button>
 				</div>
@@ -76,8 +117,6 @@ visibility: hidden;
 			<!-- <span th:text="${#authentication.principal}"></span> -->
 			</th:block>
 		</div>
-
-
 
 	</form>
 	<br>
@@ -99,25 +138,29 @@ visibility: hidden;
 				<br> <br>
 
 				<div id="docs_comment_list_area">
-					<div th:each="com : ${listCom.talkComs}">
-						<span th:text="${com.nickName}"></span> <span
-							th:text="${com.talkCom}"></span>
-							<div th:if="${#authentication.principal.username} == ${com.userId}">
-								<button type="button" id="com_update" onclick="showUpdateCom($'com.talkCom')">수정</button>
-								<button type="button" id="com_Delete" th:value='${com.talkComCode}'>삭제</button>
+					<div class="comment-div" th:each="com : ${listCom.talkComs}">
+						<input class="comment-code" type="hidden"
+							th:value="${com.talkComCode}">
+							
+							 <span th:text="${com.nickName}"></span> 
+							 <span th:text="${com.talkCom}"class="comment-form"></span>
+
+						<div th:if="${#authentication.principal.username} == ${com.userId}">
+
+							<div class="comment-btn">
+
+								<button class="comment-update-btn" type="button" id="com_update"
+									th:value='${com.talkComCode}'>수정</button>
+
+								<button class="comment-delete-btn" type="button" id="com_Delete"
+									th:value='${com.talkComCode}'>삭제</button>
 							</div>
-						<!-- <span th:text="${com.talkComDate}"></span> -->
+						</div>
 					</div>
 				</div>
-			</div>
 	</table>
-
-
-
-
-
-
-<!-- 	<th:block sec:authorize="isAuthenticated()">
+	
+	<!-- 	<th:block sec:authorize="isAuthenticated()">
 		<input id="talkcom_code" type="hidden" th:value="${talkCode.talkCom}">
 	
 		<div th:if="${#authentication.principal.username} == ${.userId}">
@@ -126,9 +169,6 @@ visibility: hidden;
 			<button type="button" id="com_Delete">삭제</button>
 		</div>
 	</th:block>
- -->
-
-<div id="modifyCom"></div>
-
+ --> 
 </body>
 </html>
