@@ -6,11 +6,9 @@
 <meta charset="UTF-8">
 <title id='pageTitle'>Cooking Talking</title>
 <th:block layout:fragment='css'>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
 </head>
 <div layout:fragment='content'>
 	<div class="container-lg">
@@ -45,10 +43,12 @@
 			<div>
 				<h1>고객센터 문의함</h1>
 			</div>
+			<br>
+
 
 
 			<table class="table table-bordered">
-				<thead>
+				<thead style="text-align: center;">
 					<tr>
 						<th scope="col">문의사항제목</th>
 						<th scope="col">문의 내용</th>
@@ -58,17 +58,17 @@
 				</thead>
 				<tbody th:each="qna, qnaStat:${qnaList}" th:id='${qnaStat.index}'>
 					<tr>
-						<td scope="row">
+						<td scope="row" style="text-align: center;">
 							<button type="button" class="btn" th:text="${qna.qnaTitle}"
 								th:id="|btn_open${qnaStat.index}|" name="btn_qna"></button>
 						</td>
-						<td scope="row">
+						<td scope="row" style="text-align: center;">
 							<div th:text="${qna.qnaCont}"></div>
 						</td>
-						<td scope="row">
+						<td scope="row" style="text-align: center;">
 							<div th:text="${qna.qnaDate}"></div>
 						</td>
-						<td scope="row">
+						<td scope="row" style="text-align: center;">
 							<div th:text="${qna.UserId}"></div>
 						</td>
 

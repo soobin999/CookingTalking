@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -9,28 +8,28 @@
 
 <title>게시판 상세</title>
 
-<!-- <script type="text/javascript">
-$(document).ready(function(){
-$("btnDelete").click(function(){
-	if(confirm("삭제하시겠습니까?")){
-		document.form1.action="${path}/talk/delete";
-		document.form1.submit	();
-	}
-}); 
-$("btnUpdate").click(function(){
-	if(confirm("수정하시겠습니까?")){
-var content=${"talkCont"}.val();
-if(content==""){
-	alret("내용을 입력하세요 ");
-document.form1.content.focus();
-return;
-	}
-document.form1.action="${path}/talk/update"
-document.form1.submit();
-	
-	});
-});
-</script> -->
+ <script type="text/javascript">
+
+
+
+
+</script> 
+
+<style>
+#modifyCom{
+width:600px;
+height:130px;
+background-color: gray;
+padding:  10px;
+z-index: 10;
+visibility: hidden;
+
+}
+
+
+
+</style>
+
 </head>
 <body th:object="${talkCode}">
 	<h2>게시글 보기</h2>
@@ -49,7 +48,6 @@ document.form1.submit();
 			<tbody>
 				<a th:href="@{/talk/list}"
 					class="btn btn-default waves-effect waves-light">뒤로가기</a>
-				<input type="">
 
 				<tr>
 					<td th:text="${listCom.talkCont}"></td>
@@ -59,23 +57,15 @@ document.form1.submit();
 					<td th:text="${listCom.talkLike}"></td>
 					<td th:text="${listCom.talkCom}"></td>
 				</tr>
-				<div id="docs_comment_list_area">
-					<div th:each="com : ${listCom.talkComs}">
-						<span th:text="${com.nickName}"></span> <span
-							th:text="${com.talkCom}"></span>
-						<!-- <span th:text="${com.talkComDate}"></span> -->
-					</div>
-				</div>
-				<div class="box bpx-warning">
-					<div class="box-header with-border">
-						<a class="link-black text-lg"><i class="fa fa-pencil"></i>댓글작성</a>
-					</div>
 
-				</div>	</tbody>
+
+
+				</div>
+			</tbody>
 		</table>
 		<div style="width: 650px; text-align: center;">
 			<th:block sec:authorize="isAuthenticated()">
-				<input id="talk_code" type="hidden" th:value="${talkCode.talkCode}">
+				<input id="talk-code" type="hidden" th:value="${talkCode.talkCode}">
 
 				<div th:if="${#authentication.principal.username} == *{userId}">
 					<a th:href="@{/talk/updatePage(talkCode=${talkCode.talkCode})}">수정</a>
@@ -90,15 +80,55 @@ document.form1.submit();
 
 
 	</form>
-	<div style="width: 650px; text-align: center;">
-		<br>
-		<!-- <tr th:if="${sessionScope.userId !=null}"> -->
-		<textarea rows="5" cols="80" id="talk-comment"
-			placeholder="댓글을 작성해주세요 "></textarea>
-		<br>
-		<button type="button" id="btn_comment">댓글작성</button>
-<!-- 	</tr> -->
-	<div id="listCOM"></div>
-	</div>
+	<br>
+
+	<table>
+		<div style="width: 650px; text-align: center;">
+			<div class="box bpx-warning">
+				<div class="box-header with-border">
+
+					<a class="link-black text-lg"><i class="fa fa-pencil"></i>댓글작성</a>
+				</div>
+				<br>
+				<!-- <tr th:if="${sessionScope.userId !=null}"> -->
+				<textarea rows="5" cols="80" id="talk-comment"
+					placeholder="댓글을 작성해주세요 "></textarea>
+				<br>
+
+				<button type="button" id="btn_comment">댓글작성</button>
+				<br> <br>
+
+				<div id="docs_comment_list_area">
+					<div th:each="com : ${listCom.talkComs}">
+						<span th:text="${com.nickName}"></span> <span
+							th:text="${com.talkCom}"></span>
+							<div th:if="${#authentication.principal.username} == ${com.userId}">
+								<button type="button" id="com_update" onclick="showUpdateCom($'com.talkCom')">수정</button>
+								<button type="button" id="com_Delete" th:value='${com.talkComCode}'>삭제</button>
+							</div>
+						<!-- <span th:text="${com.talkComDate}"></span> -->
+					</div>
+				</div>
+			</div>
+	</table>
+
+
+
+
+
+
+<!-- 	<th:block sec:authorize="isAuthenticated()">
+		<input id="talkcom_code" type="hidden" th:value="${talkCode.talkCom}">
+	
+		<div th:if="${#authentication.principal.username} == ${.userId}">
+		
+			<button type="button" id="com_update" onclick="showUpdateCom($'com.talkCom')">수정</button>
+			<button type="button" id="com_Delete">삭제</button>
+		</div>
+	</th:block>
+ -->
+
+<div id="modifyCom"></div>
+
 </body>
 </html>

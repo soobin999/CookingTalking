@@ -2,14 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>회원정보 로드하기(adUser의 백업 파일본들)</title>
+<title>회원정보</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
-
-
 </head>
 <body>
 	<div class="chef_list4_in" id="allIngrPage">
@@ -21,15 +16,13 @@
 				id="btn_adUserSearch">검색하기</button>
 
 			<div th:id="ingr_Name_List">
-				<table class="table table-bordered" id="searchUser" border="1">
+				<table class="table table-bordered" id="searchUser" border="1"
+					style="text-align: center;">
 					<thead>
 						<tr>
 							<th>유저 아이디</th>
 							<th>유저 닉네임</th>
-							<th>유저 생일</th>
 							<th>유저 성별</th>
-							<th>유저 or 관리자</th>
-							<th>인증 확인</th>
 							<th>유저 프로필 사진</th>
 							<th>레시피 업로드 개수</th>
 							<th>유저 팔로워 수</th>
@@ -42,7 +35,8 @@
 	</div>
 	<h2>회원정보</h2>
 	<div id="basic">
-		<table class="table table-bordered" id="AduserId">
+		<table class="table table-bordered" id="AduserId"
+			style="text-align: center;">
 
 			<thead>
 				<tr>
@@ -50,14 +44,12 @@
 					<th>유저 닉네임</th>
 					<th>유저 생일</th>
 					<th>유저 성별</th>
-					<th>인증 확인</th>
-					<th>유저 프로필 사진</th>
 					<th>레시피 업로드 개수</th>
 					<th>유저 팔로워 수</th>
 					<th>회원 정보 삭제</th>
-					
+
 				</tr>
-			</thead>	
+			</thead>
 			<tbody th:id="tbody">
 
 				<tr th:each="user,index:${UserList}" th:id='${index.index}'>
@@ -71,9 +63,8 @@
 						type="text" th:id="|enter_update_nickName${index.index}|"
 						th:name="nickName" th:value="${user.nickName}">
 					<td th:text="${user.birth}">유저 생일</td>
-					<td th:text="${user.gender}">유저 성별</td>
-					<td th:text="${user.auth}">인증 확인</td>
-					<td th:text="${user.userPic}">유저 프로필 사진</td>
+					<td th:switch="${user.gender}"><i th:case="true" class="">남자</i>
+						<i th:case="false" class="">여자</i></td>
 					<td th:text="${user.rcpUploads}">레시피 업로드 개수</td>
 					<td th:text="${user.followers}">유저 팔로워 수</td>
 					<td><button class="btn btn-danger" th:class="delete_btn"
@@ -135,15 +126,13 @@
 									$(".table234").remove();
 									$.each(data, function(index, user) {
 										var str = '<tr class="table234"><td>'
-												+ user.userId + '</td><td>'
-												+ user.nickName + '</td><td>'
-												+ user.birth + '</td><td>'
-												+ user.gender + '</td><td>'
-												+ user.access + '</td><td>'
-												+ user.auth + '</td><td>'
-												+ user.userPic + '</td><td>'
-												+ user.rcpUploads + '</td><td>'
-												+ user.followers + '</td>';
+											+ user.userId + '</td><td>'
+											+ user.nickName + '</td><td th:switch='+ user.gender +'>'+
+											'<i th:case="true">'+"남자"+'</i>'+'</td>'
+											+ user.gender + '</td><td>'
+											+ user.userPic + '</td><td>'
+											+ user.rcpUploads + '</td><td>'
+											+ user.followers + '</td>';
 										$("#searchUser").append(str);
 
 									});
@@ -162,7 +151,6 @@
 	<script type="text/javascript">
 		$(document).ready(
 				function() {
-					console.log("ss");
 					var ENTER_KEY = 13;
 					nickNames = document.getElementsByName('nickName');
 					nickNames.forEach(function(nickName, i) {

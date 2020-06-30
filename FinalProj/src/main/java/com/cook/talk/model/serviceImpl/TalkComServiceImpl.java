@@ -28,20 +28,27 @@ public class TalkComServiceImpl implements TalkComService {
 	@Override
 	public void createCom(TalkComVO comVO) {
 		int talkNum= comDAO.selectTalkComCode()+1;
+		System.err.println(talkNum);
 		comVO.setTalkComCode("TC-"+talkNum);
-		//comDAO.createCom(comVO);
+		comDAO.createCom(comVO);
 	}
+	
+	
+	
+	
+	
+	
 
 	// 수정
 	@Override
-	public void updateCom(TalkComVO comVO) {
-		comDAO.update(comVO);
+	public int updateCom(TalkComVO comVO) {
+		return comDAO.update(comVO);
 	}
 
 	// 삭제
 	@Override
 	public void deleteCom(String talkComCode) {
-	comDAO.delete(talkComCode);
+	comDAO.deleteCom(talkComCode);
 	}
 
 	// 목록
@@ -55,5 +62,10 @@ public class TalkComServiceImpl implements TalkComService {
 	public List<TalkComVO> searchComment(String talkCode) {
 		return talkComService.searchComment(talkCode);
 	}
+
+
+
+
+
 
 }
