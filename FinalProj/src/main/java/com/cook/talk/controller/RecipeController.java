@@ -118,7 +118,7 @@ public class RecipeController {
 		 */
 		
 		//rcpPic, cookPic 업로드
-		String rcpPic = FileTrancefer.requestFileTrancefer(file); 
+		String rcpPic = FileTrancefer.requestFileTrancefer(file,"recipe/"); 
 		recipeDTO.getRecipeVO().setRcpPic(rcpPic);
 		
 		recipeService.insertRecipeProc(registerStatus, recipeDTO);
