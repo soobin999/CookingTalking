@@ -3,6 +3,13 @@ $(function(){
    answer();
 })
 
+ Date.prototype.yyyymmdd = function() {
+      var yyyy = this.getFullYear().toString();
+      var mm = (this.getMonth() + 1).toString();
+      var dd = this.getDate().toString();
+      return  yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
+  }
+
 function answer(){
    
 
@@ -38,13 +45,6 @@ function enterkey(){
       };
    });
    
-   /*토크 검색하기 via 엔터*/
-   $('#talkSearchInMy').on('keydown', function(event){
-      if(event.keyCode == 13){
-         myTalkSearch();
-         event.preventDefault();
-      };
-   });
    
    /*스크랩 검색하기 via 엔터*/
    $('#scrapedSearchInMy').on('keydown', function(event){
@@ -68,10 +68,6 @@ function enterkey(){
 function searchButtonClick(){
    $('#btnChefSearchInMy').on('click', function(){
       chefSearch();
-   });
-   
-   $('#btnTalkSearchInMy').on('click', function(){
-      myTalkSearch();
    });
    
    $('#btnScrapedSearchInMy').on('click', function(){
@@ -131,36 +127,6 @@ function chefSearch(){
    });
 }
 
-function myTalkSearch(){
-   var key = $('#talkSearchInMy').val(); /*토크 검색 키워드*/
-
-   $.ajax({
-      type : "POST",
-      url : "/searchMyTalk",
-      data : {talkCont : key},
-      success : function(data) {
-         var searchedTalk;
-         var result = $('#myActivity');
-         $('#myTalkMain').remove();
-         $.each(data, function(index, value){
-            console.log(data[index].talkCode);
-            searchedTalk = '<tr id="myTalkMain"><td>'
-            + '<a href="/talk/detail/'
-            + data[index].talkCode + '">'
-            + data[index].talkCont + '</a>'   
-            + '</td><td>' + data[index].talkDate
-            + '</td></tr><br>'
-            console.log("data.talkCont:"+value.talkCont);
-            console.log("data.talkDate:"+value.talkDate);
-            result.append(searchedTalk);
-         });
-      },
-      error : function(){
-         alert("TalkSearch Error");
-      }
-   });
-}
-
 function myScrapSearch(){
    var key = $('#scrapedSearchInMy').val(); /*스크랩 검색 키워드*/
 
@@ -169,10 +135,17 @@ function myScrapSearch(){
       url : "/searchMyScrap",
       data : {rcpTitle : key},
       success : function(data) {
+    	  
+
+    	  
          var searchedScrap;
          var result = $('#myFrequentSub');
          $('#myScrapededMain').remove();
          $.each(data, function(index, value){
+        	 
+       	  var scrap_date = (new Date(data[index].scrapedDate)).yyyymmdd();
+    	  console.log(scrap_date);
+        	 
             console.log("dk"+data);
             searchedScrap = '<tr id="myScrapededMain"><td>'
             + '<a href="/recipe/view?rcpCode='
@@ -181,10 +154,10 @@ function myScrapSearch(){
             + '</td><td>' + '<a href="/recipe/view?rcpCode=' 
             + data[index].rcpCode + '">'
             + data[index].rcpTitle + '</a>' 
-            + '</td><td>' + data[index].scrapDate
+            + '</td><td>' + scrap_date
             + '</td></tr><br>'
             console.log("data.rcpTitle:"+value.rcpTitle);
-            console.log("data.scrapDate:"+value.scrapDate);
+            console.log("data.scrapDate:"+scrap_date);
             result.append(searchedScrap);
          });
       },
@@ -213,27 +186,19 @@ function myAllComSearch(){
             $('#myAllComMain').remove();
             /*result.remove();*/
             $.each(data, function(index, value){
+            	
+            	var com_date = (new Date(data[index].TalkComDate)).yyyymmdd();
+            	console.log(com_date);
+            	
                console.log(data);
-               
-
-/*               const timestamp = data[index].talkComDate
-               var myDate = new Date(timestamp * 1000);
-               
-               var date = myDate.getFullYear()+ "-" + (myDate.getMonth()+1) + "-" + myDate.getDate();
-               
-               console.log(date);*/
-               
-/*               var dateTime = new Date(data[index].talkComDate*1000);
-               var formatted = dateTime.toGMTString();*/
-               
                searchedTalkCom = '<tr id="myAllComMain"><td>' 
                + '<a href="/talk/detail/'
                + data[index].talkCode + '">'
                + data[index].talkCom + '</a>'
-               + '</td><td>' + data[index].talkComDate
+               + '</td><td>' + com_date
                + '</td></tr><br>'
                console.log("data.talkCom:"+value.talkCom);
-               console.log("data.talkComDate:"+value.talkComDate);
+               console.log("data.talkComDate:"+com_date);
                result.append(searchedTalkCom);
             });
          },
@@ -252,12 +217,16 @@ function myAllComSearch(){
             var result = $('#myActivity');
             $('#myAllComMain').remove();
             $.each(data, function(index, value){
+            	
+            	var com_date = (new Date(data[index].TalkComDate)).yyyymmdd();
+            	console.log(com_date);
+            	
                console.log(data);
                searchedRcpCom = '<tr id="myAllComMain"><td>' + data[index].rcpCom
-               + '</td><td>' + data[index].rcpComDate
+               + '</td><td>' + com_date
                + '</td></tr><br>'
                console.log("data.rcpCom:"+value.rcpCom);
-               console.log("data.rcpComDate:"+value.rcpComDate);
+               console.log("data.rcpComDate:"+com_date);
                result.append(searchedRcpCom);
             });
          },
@@ -277,12 +246,16 @@ function myAllComSearch(){
          var result = $('#myActivity');
          $('#myAllComMain').remove();
          $.each(data, function(index, value){
+        	 
+         	var com_date = (new Date(data[index].TalkComDate)).yyyymmdd();
+        	console.log(com_date);
+        	 
             console.log(data);
             searchedAllCom = '<tr id="myAllComMain"><td>' + data[index].talkCom
-            + '</td><td>' + data[index].talkComDate
+            + '</td><td>' + com_date
             + '</td></tr><br>'
             console.log("data.talkCom:"+value.talkCom);
-            console.log("data.talkComDate:"+value.talkComDate);
+            console.log("data.talkComDate:"+com_date);
             result.append(searchedAllCom);
          });
       },
