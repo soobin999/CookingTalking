@@ -4,6 +4,7 @@ var nameJ = /^[가-힣]{2,6}$/;
 // 이메일 검사 정규식
 
 $(function() {
+
    $("#alert-success").hide();
    $("#alert-danger").hide();
    $("input").keyup(function() {
@@ -27,6 +28,7 @@ $(function() {
 
 var id_btn = 0;
 $(function() {
+
    // idck 버튼을 클릭했을 때
    $("#id_btn").click(function() {
 
