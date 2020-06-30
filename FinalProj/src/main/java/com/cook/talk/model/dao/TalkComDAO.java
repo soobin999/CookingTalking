@@ -23,7 +23,7 @@ public interface TalkComDAO {
 	public int update(TalkComVO talkComVO);
 	
 	//수정 버튼 
-	//public int updateTalk(TalkVO talkVO);
+	//public int upda2teTalk(TalkVO talkVO);
 
 	//코드 증가
 	public int selectTalkComCode();
