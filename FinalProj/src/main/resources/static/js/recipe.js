@@ -6,7 +6,6 @@ $(function() {
    $('#btnIngrSearch').on('click', ingrSearch);
    enterkey();
    clickOffVer1();
-  /* clickOffVer2();*/
 })
 
 function chosung() {

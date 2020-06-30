@@ -5,7 +5,7 @@
 <mapper namespace="com.cook.talk.model.dao.MypageDAO">
 	
 	<select id="modifyUserPic" parameterType="String">
-	UPDATE user SET userPw = #{userPw}, nickName = #{nickName}, userPic = #{userPic} WHERE userId='1111pppp@naver.com'
+	UPDATE user SET userPic = #{userPic} WHERE userId='1111pppp@naver.com'
 	</select>
 	
 	

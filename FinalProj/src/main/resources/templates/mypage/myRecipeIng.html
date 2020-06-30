@@ -36,8 +36,8 @@
         <div class="w3-section">
           <label><b>사진 등록</b></label>
           <input id="input_img" class="w3-input w3-border" type="file" placeholder="사진을 등록하세요" name="file" required>
-          <input id="user_pw" type="text" placeholder="변경할 비밀번호" name="user_pw"><br>
-          <input id="user_nickName" type="text" placeholder="변경할 닉네임" name="user_nickName">
+<!--           <input id="user_pw" type="text" placeholder="변경할 비밀번호" name="user_pw"><br>
+          <input id="user_nickName" type="text" placeholder="변경할 닉네임" name="user_nickName"> -->
           <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">등록하기</button>
         </div>
         
@@ -55,7 +55,7 @@ function handleImgFileSelect(e){
 	filesArr.forEach(function(f){
 		if(!f.type.match("image.*")){
 			alert("확장 가능한 이미지 파일이 아닙니다");
-			return;
+			return false;
 			
 		}
 		sel_file = f;

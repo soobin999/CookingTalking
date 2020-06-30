@@ -40,7 +40,7 @@ public class MyInqController {
 		
 		model.addAttribute("myInqList", mypageDAO.getmyInq());
 		
-		return "/mypage/myInquiryList";
+		return "redirect:/mypage/myInquiryList";
 	}
 	
 	
