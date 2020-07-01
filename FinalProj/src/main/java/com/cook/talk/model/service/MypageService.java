@@ -15,7 +15,7 @@ public interface MypageService {
 
 	//마이페이지-사용자 사진 변경
 	public String user(UserVO userVO);
-	public String modifyUserPic(String userPic, MultipartFile file);
+	/* public String modifyUserPic(String userPic, MultipartFile file); */
 	
 	//마이페이지-레시피-1.작성중인 레시피-2.작성완료된 레시피-3.레시피 삭제 AT 작성완료된 레시피
 	public List<MypageDTO> getMyRecipeIng();

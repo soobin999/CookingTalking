@@ -27,21 +27,23 @@ public class TalkComServiceImpl implements TalkComService {
 	// 작성
 	@Override
 	public void createCom(TalkComVO comVO) {
-		int talkNum= comDAO.selectTalkComCode()+1;
-		comVO.setTalkComCode("TC-"+talkNum);
-		//comDAO.createCom(comVO);
+		int talkNum = comDAO.selectTalkComCode() + 1;
+		System.err.println(talkNum);
+		comVO.setTalkComCode("TC-" + talkNum);
+		comDAO.createCom(comVO);
 	}
 
 	// 수정
 	@Override
-	public void updateCom(TalkComVO comVO) {
-		comDAO.update(comVO);
+	public void updateCom(String talkComCode, String talkCom) {
+		comDAO.updateCom(talkComCode, talkCom);
 	}
+	
 
 	// 삭제
 	@Override
 	public void deleteCom(String talkComCode) {
-	comDAO.delete(talkComCode);
+		comDAO.deleteCom(talkComCode);
 	}
 
 	// 목록

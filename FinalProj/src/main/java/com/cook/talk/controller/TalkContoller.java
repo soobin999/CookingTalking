@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cook.talk.model.VO.CriteriaVO;
 import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.dao.TalkDAO;
 import com.cook.talk.model.service.TalkService;
@@ -30,8 +32,8 @@ public class TalkContoller {
 
 //목록 
 	@GetMapping("/list")
-	public String list(Model model) {
-		model.addAttribute("list", talkservice.getTalkList());
+	public String list(Model model, CriteriaVO cri) {
+		model.addAttribute("list", talkservice.getTalkList(cri));
 		return "talk/list";
 	}
 
@@ -72,12 +74,21 @@ public class TalkContoller {
 		return "redirect:/talk/list";
 	}
 
+
+	
+	
 //삭제 
 	@GetMapping("/delete/{talkCode}")
 	public String delete(@PathVariable String talkCode, RedirectAttributes rttr) {
 		if (talkservice.delete(talkCode)) {
 			rttr.addFlashAttribute("result", "success");
+			System.out.println(rttr);
+			System.out.println(talkCode);
 		}
 		return "redirect:/talk/list";
 	}
+	
+	
+	
+	
 }

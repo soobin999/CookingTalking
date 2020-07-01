@@ -53,6 +53,7 @@ public class UserServiceImpl implements UserDetailsService {
 		// 회원가입 비지니스 로직 구현
 	}
 
+
 	@Transactional
 	// joinUser 회원가입 처리 메서드 ,비밀번호 암호화해서 저장
 	public int joinUser(UserVO userVO) { // 비밀번호 암호화

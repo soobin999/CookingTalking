@@ -1,5 +1,6 @@
 package com.cook.talk.restController;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,10 @@ public class MypageRestController {
 	@PostMapping("/searchMyTalk")
 	public List<MypageDTO> getSearchMyTalk(String talkCont) {
 		System.out.println(talkCont);
-		System.out.println(mypageService.getSearchMyTalk(talkCont));
+		List<MypageDTO>mypageDTOs=  mypageService.getSearchMyTalk(talkCont);
+		Date  date =   mypageDTOs.get(0).getTalkDate();
+		
+		System.out.println(date.getTime()+"    mypageDTOs===="+mypageDTOs);
 		return mypageService.getSearchMyTalk(talkCont);
 	}
 	

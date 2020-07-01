@@ -14,7 +14,7 @@ public interface TalkComService {
 	public void createCom(TalkComVO comVO);
 
 	// 수정
-	public void updateCom(TalkComVO comVO);
+	public void updateCom(String talkComCode, String talkCom);
 
 	// 삭제
 	public void deleteCom(String talkComCode);
@@ -22,6 +22,7 @@ public interface TalkComService {
 	// 개수
 	public int comcount(String talkCode);
 
+	
 	public List<TalkComVO> searchComment(@Param("talkComCode") String talkCode);
 
 }

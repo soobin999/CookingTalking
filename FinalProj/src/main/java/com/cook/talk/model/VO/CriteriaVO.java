@@ -1,8 +1,13 @@
 package com.cook.talk.model.VO;
 
 public class CriteriaVO {
+
 	private int page;
+	
+	//페이지 개수
 	private int perpageNum;
+	
+	
 	private int pageStart;
 
 	public CriteriaVO() {

@@ -7,13 +7,14 @@
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- <script src="/js/mypage.js"></script> -->
+	<script src="/js/mypage.js"></script>
 
 	<!-- 사진 및 계정 정보 -->
-	<div id="myPageMain">
+	
+	<div id="mypageMain">
 	<div th:class="uploadPicOfUser">
 				<button onclick="window.open('/mypage/userPic','myPic','width=300px, height=300px, location=no, status=no, scrollbars=no');">사진변경하기</button>
-		</div>
+		</div>     
 	<a href="/userModify.html">회원 정보 수정</a>
 	
 	<div class="myMenu">
@@ -21,92 +22,93 @@
 	<button onclick="myFrequent()">즐겨찾기</button>
 	<button onclick="myActivity()">활동</button>
 	<button onclick="myInquiry()">문의 사항</button>
-	
-	
-	
-	<div id="myFrequentMain">
-	<!-- <div id="myFollow"> -->
-		<button onclick="myFrequent()">팔로우</button>
-		<button onclick="myScraped()">스크랩한 레시피</button>
-		<!-- chef search -->
-		<form onsubmit="return false">
-		<input type="text" onsubmit="return false" title="쉐프검색" 
-		id="chefSearchInMy" name="chefSearchInMy" placeholder="쉐프를 검색하세요" 
-		onkeypress="enterkey(event);">
-		<button type="button" onclick="chefSearch();"id="btnChefSearchInMy">ㄲ</button>
-		</form>
-		</div>
-	<!-- </div> -->
-		 <div th:id="myFrequent"> 
-			<div th:id="myChefMain">
-				<table>
-					<tbody>
-						<tr th:each="myFollow : ${myFollow}">
-							<td><a th:href="@{'/chefInfo/1/'+${myFollow.nickName}}" th:text=${myFollow.nickName}></a></td>
-							 <td th:text=${myFollow.followC}></td>
-							 
-							dddd
-						</tr>
-					</tbody>
-				</table>
- 	</div>
-		 </div> 
-	
 	</div>
 	
-		<script>
-		
-		$(document).ready(function(){
-			   /*쉐프 검색하기 via 엔터*/
-			   $('#chefSearchInMy').on('keydown', function(event){
+	<div id="myFrequent">
+		<button onclick="myFrequent()">팔로우</button>
+		<button onclick="myScraped()">스크랩한 레시피</button>
+			<form onsubmit="return false">
+				<input type="text" onsubmit="return false" title="쉐프검색"
+					id="chefSearchInMy" name="chefSearchInMy" placeholder="쉐프를 검색하세요"
+					onkeypress="enterkey(event);">
+				<button type="button" onclick="chefSearch();" id="btnChefSearchInMy">검색</button>
+			</form>
+		</div>
+
+	<div th:id="myFrequentSub">
+	<div th:id="myChefMain">
+	<table>
+	<tbody>
+	<tr th:each="myFollow : ${myFollow}">
+		<td> <a th:href="@{'/chefInfo/1/'+${myFollow.nickName}}" th:text=${myFollow.nickName}></a></td>
+		<td th:text=${myFollow.followC}></td>
+	</tr>
+	</tbody>
+	</table>
+	</div>
+	</div>
+	</div>
+	
+	<script>
+
+	$(document).ready(function(){
+		   $('#chefSearchInMy').on('keydown', function(event){
 			      if(event.keyCode == 13){
-			         chefSearch();
+			    	 chefSearch();
 			         event.preventDefault();
-			      };
-			   });
-			    
-			});
-		
-		function searchButtonClick(){
-			   $('#btnChefSearchInMy').on('click', function(){
-			      chefSearch();
-			   });
-			  
-			}
-		
-		function chefSearch(){
-			   var key = $('#chefSearchInMy').val(); /*토크 검색 키워드*/
-			   console.log("chefSearCH")
-			   $.ajax({
-			      type : "POST",
-			      url : "/searchMyFollow",
-			      data : {followChef : key},
-			      success : function(data) {
-			         var searchedChef;
-			         var result = $('#myFrequent');
-			         $('#myChefMain').remove();
-			         $.each(data, function(index, value){
-			        	console.log("dk"+data);
-			           searchedChef = '<tr id="myChefMain"> <td>'
-			            + '<a href="/chefInfo/1/'+ data[index].nickName+ '">'
-			            + data[index].nickName + '</a>'
-			            + '</td> <td>' + data[index].followC
-			            + '</td> </tr><br>'
-			            console.log("data.nickName:"+value.nickName);
-			            console.log("data.followC:"+value.followC);
-			            result.append(searchedChef);
-			         });
-			      },
-			      error : function(){
-			         alert("chefSearch Error");
 			      }
 			   });
-			}
-		
-		</script>
-		
+		});
+	
+	
+	function searchButtonClick(){
+
+
+		   $('#btnChefSearchInMy').on('click', function(){
+			   chefSearch();
+		   });
+
+		}
+
+	function chefSearch(){
+		   var key = $('#chefSearchInMy').val(); /*스크랩 검색 키워드*/
+
+		   $.ajax({
+		      type : "POST",
+		      url : "/searchMyFollow",
+		      data : {followChef : key},
+		      success : function(data) {
+		    	 var searchedChef = new Array();
+		         var result = $('#myFrequentSub');
+		         var a,b;
+		         removeFunc();
+		         a = '<tr id="myChefMain"> <td>'
+			     b = '</td> </tr><br>'
+		         $.each(data, function(index, value){
+		        	console.log("data"+data);
+		        	
+		        	searchedChef[index] = 
+			             '<a href="/chefInfo/1/'+ data[index].nickName+ '">'
+			            + data[index].nickName + '</a>'
+			            + '</td> <td>' + data[index].followC
+			            
+			            console.log("data.nickName:"+value.nickName);
+			            console.log("data.followC:"+value.followC);
+		         });
+			     console.log(searchedChef);
+		         result.append(a+searchedChef+b);
+		      },
+		      error : function(){
+		         alert("chefSearch Error");
+		      }
+		   });
+		}
+	function removeFunc(){
+		console.log("removeFunc");
+		$('#myChefMain').remove();
+	}
+	</script>
+	
 	
 </body>
-
-
 </html>

@@ -44,5 +44,5 @@ public interface MypageDAO {
 	
 	//마이페이지-문의사항-1.문의사항 입력하기-2.내가 문의한 글 리스트 보기
 	public void rqMyInq(QnAVO qnAVO);
-	public List<QnAVO> getmyInq();
+	public List<QnAVO> getmyInq(String userId);
 }

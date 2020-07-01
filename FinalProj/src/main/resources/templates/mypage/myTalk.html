@@ -7,16 +7,14 @@
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/mypage.js"></script>
+	<script src="/js/mypage.js?version=20200629"></script>
 
 	<!-- 사진 및 계정 정보 -->
-		
 	
-	<div id="myPageMain">
-	
+	<div id="mypageMain">
 	<div th:class="uploadPicOfUser">
 				<button onclick="window.open('/mypage/userPic','myPic','width=300px, height=300px, location=no, status=no, scrollbars=no');">사진변경하기</button>
-		</div>
+		</div>     
 	<a href="/userModify.html">회원 정보 수정</a>
 	
 	<div class="myMenu">
@@ -26,38 +24,108 @@
 	<button onclick="myInquiry()">문의 사항</button>
 	</div>
 	
-	<div id="myRecipe">
+	<div id="myActivity">
 		<button onclick="myActivity()">내가 작성한 글</button>
 		<button onclick="myCom()">내가 작성한 댓글</button>
 		
-		<form onsubmit="return false">
-		<input type="text" onsubmit="return false" title="토크검색" 
-		id="talkSearchInMy" name="talkSearchInMy" placeholder="토크를 검색하세요" 
-		onkeypress="enterkey(event);">
-		<button type="button" onclick="searchButtonClick();" id="btnTalkSearchInMy">검색</button>
-		</form>
-		
-	</div>
-	
-	<div th:id="myActivity">
+			<form onsubmit="return false">
+				<input type="text" onsubmit="return false" title="토크검색"
+					id="talkSearchInMy" name="talkSearchInMy" placeholder="토르를 검색하세요"
+					onkeypress="enterkey(event);">
+				<button type="button" onclick="myTalkSearch();" id="btnTalkSearchInMy">검색</button>
+			</form>
+		</div>
+
+	<div th:id="myActivitySub">
 	<div th:id="myTalkMain">
 	<table>
 	<tbody>
-<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
-		<div class="myRecipeIng_title">레시피 제목</div> -->
-<!-- 	<td id="talkCont" name="talkCont"></td>
-	<td id="talkDate" name="talkDate"></td> -->
-	
 	<tr th:each="myTalk : ${myTalk}">
-		<td> <a th:href="@{/talk/detail/{talkCode}(talkCode=${myTalk.talkCode})}" class="" th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></a></td>
-		<td class="" th:value="${myTalk.talkDate}" th:text=${myTalk.talkDate}></td>
-	
+		<td> <a th:href="@{/talk/detail/{talkCode}(talkCode=${myTalk.talkCode})}"  th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></a></td>
+		<td th:value="${myTalk.talkDate}" th:text=${myTalk.talkDate}></td>
 	</tr>
 	</tbody>
 	</table>
-		</div>
-		</div>
-		</div>
-</body>
+	</div>
+	</div>
+	</div>
+	
+	<script>
+	
+	 Date.prototype.yyyymmdd = function() {
+	      var yyyy = this.getFullYear().toString();
+	      var mm = (this.getMonth() + 1).toString();
+	      var dd = this.getDate().toString();
+	      return  yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
+	  }
+	
+	$(document).ready(function(){
+		   $('#talkSearchInMy').on('keydown', function(event){
+			      if(event.keyCode == 13){
+			    	 myTalkSearch();
+			         event.preventDefault();
+			      }
+			   });
+		});
+	
+	
+	function searchButtonClick(){
 
+
+		   $('#btnTalkSearchInMy').on('click', function(){
+			  myTalkSearch();
+		   });
+
+		}
+
+	function myTalkSearch(){
+		   var key = $('#talkSearchInMy').val(); /*토크 검색 키워드*/
+
+		   $.ajax({
+		      type : "POST",
+		      url : "/searchMyTalk",
+		      data : {talkCont : key},
+		      success : function(data) {
+		         var searchedTalk = new Array();
+		         var result = $('#myActivitySub');
+		         var a,b;
+		         removeFunc();
+		         
+		         a= '<tr id="myTalkMain"><td>'
+		         b= '</td></tr><br>'
+		         
+		         
+		         $.each(data, function(index, value){
+		        	var talk_date = (new Date(data[index].talkDate)).yyyymmdd();
+		    	  console.log(talk_date);
+		        	 
+		    	  searchedTalk[index] = 
+		    		   '<a href="/talk/detail/'
+		    		  + data[index].talkCode + '">'
+		    		  + data[index].talkCont
+		    		  + '</a></td><td>'
+		    		  + talk_date
+		    		   
+		    		  console.log("data.talkCont:" + value.talkCont);
+		    		  console.log("data.talkDate:" + talk_date);
+		    		  
+		         });
+		         console.log(a+"st"+searchedTalk+b);
+		         result.append(a+searchedTalk+b);
+		      },
+		      error : function(){
+		         alert("myTalkSearch Error");
+		      }
+		   });
+		}
+	
+	function removeFunc(){
+		console.log("removeFunc");
+		$('#myTalkMain').remove();
+	}
+	
+	</script>
+	
+	
+</body>
 </html>
