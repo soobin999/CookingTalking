@@ -32,7 +32,6 @@ public class UserServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserDAO userDAO;
 	
-
 	
 	// 회원가입시 유효성 체크
 	public static Map<String, String> validateHandling(Errors errors) {
@@ -52,7 +51,6 @@ public class UserServiceImpl implements UserDetailsService {
 	public void join(UserDTO userDTO) {
 		// 회원가입 비지니스 로직 구현
 	}
-
 
 	@Transactional
 	// joinUser 회원가입 처리 메서드 ,비밀번호 암호화해서 저장

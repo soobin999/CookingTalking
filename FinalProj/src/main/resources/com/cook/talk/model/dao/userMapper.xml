@@ -18,8 +18,8 @@ values (#{userId}, #{userPw}, #{nickName}, #{birth}, #{gender}, #{access}, #{aut
 </select>
 
 
-<select id="userNickCheck" parameterType="String" resultType="com.cook.talk.model.dao.UserDAO">
-select count(*) form user where nickName=#{nickName}
+<select id="nickNameCheck" parameterType="java.lang.String" resultType="Integer">
+		SELECT COUNT(*) FROM user WHERE nickName=#{nickName}
 </select>
 
 

@@ -83,10 +83,6 @@ public class LoginController {
 		return "/login/login";
 	}
 
-	/*
-	 * @RequestMapping("/logout") public String logout(HttpSession session) {
-	 * session.removeAttribute("user"); return "index"; }
-	 */
 
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
@@ -102,6 +98,7 @@ public class LoginController {
 		return "adminpage";
 	}
 
+	
 	@RequestMapping(value = "/gologin", method = RequestMethod.GET)
 	public String gologin(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
@@ -117,6 +114,7 @@ public class LoginController {
 		return "/user/login";
 	}
 
+	
 	private UserServiceImpl userServiceImpl;
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
@@ -124,6 +122,8 @@ public class LoginController {
 		return "join/join";
 	}// 화면보여주는 것.
 
+	
+	
 	@PostMapping("/join")
 	public String execJoin(@Valid UserVO userVO, Errors errors, Model model) {
 		userServiceImpl.joinUser(userVO);
@@ -131,8 +131,8 @@ public class LoginController {
 		encryption.encryption(userVO.getUserId());
 		return "redirect:/index";
 
-	}// 기능
-
+	}// 회원가입 기능
+/*
 	@PostMapping("/join2")
 	public String execJoin(@Valid UserDTO userDTO, Errors errors, Model model) {
 		// @Valid 입력데이터가 dto클래스로 캡슐화 되어 넘어올때 유효성을 체크하라는 어노테이션이다 /dto의 어노테니션 기준으로 체크
@@ -154,7 +154,7 @@ public class LoginController {
 
 		return "/join/join";
 
-	}
+	}*/
 
 	@GetMapping("/loginConfirm/{accessCode}")
 	public String loginConfirm(@PathVariable String accessCode, Model model) {

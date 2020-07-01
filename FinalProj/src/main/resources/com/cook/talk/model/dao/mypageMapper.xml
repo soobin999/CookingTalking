@@ -5,24 +5,24 @@
 <mapper namespace="com.cook.talk.model.dao.MypageDAO">
 	
 	<select id="modifyUserPic" parameterType="String">
-	UPDATE user SET userPw = #{userPw}, nickName = #{nickName}, userPic = #{userPic} WHERE userId='1111pppp@naver.com'
+	UPDATE user SET userPw = #{userPw}, nickName = #{nickName}, userPic = #{userPic} WHERE userId= #{userId}
 	</select>
 	
 	
 	<select id="modifyUserInfo" parameterType="String">
-	UPDATE user SET userPw = #{userPw}, nickName = #{nickName} WHERE userId='1111pppp@naver.com'
+	UPDATE user SET userPw = #{userPw}, nickName = #{nickName} WHERE userId=#{userId}
 	</select>
 	
 	<select id="getMyRecipeIng" parameterType="String" resultType="RecipeVO">
-	SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp WHERE userId='kkk@naver.com' AND registerStatus=0
+	SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp WHERE userId=#{userId} AND registerStatus=0
 	</select>
 	
 	<select id="getMyRecipeWritten" resultType="MypageDTO">
-	SELECT DISTINCT rcpTitle, rcpPic, rcpCode FROM recipe.rcp WHERE userId='kkk@naver.com' AND registerStatus=1
+	SELECT DISTINCT rcpTitle, rcpPic, rcpCode FROM recipe.rcp WHERE userId=#{userId} AND registerStatus=1
 	</select>
 	
 	<delete id="deleteRcp">
-	DELETE FROM recipe.rcp WHERE rcpCode = #{rcpCode} AND userId = 'kkk@naver.com'
+	DELETE FROM recipe.rcp WHERE rcpCode = #{rcpCode} AND userId = #{userId}
 	</delete>
 	
 	<select id="getSearchMyFollow" parameterType="String" resultType="MypageDTO">
