@@ -1,5 +1,4 @@
 
-
 package com.cook.talk.model.serviceImpl;
 
 import javax.validation.Valid;
@@ -17,13 +16,19 @@ public class UserloginServiceImpl implements UserService {
 	@Autowired
 	UserDTO userDTO;
 
-	@Override public int userIdCheck(String userId) { 
-		// TODO Auto-generatedmethod stub 
-		return 0; 
-  }
+	//아이디 체크
+	@Override
+	public int userIdCheck(String userId) {
+		return 0;
+	}
 
-	@Override public void joinUser(@Valid UserVO userVO) { 
-		// TODO Auto-generated method stub
- 
-  }
+	@Override
+	public void joinUser(@Valid UserVO userVO) {
+
+	}
+	//닉네임체크
+	@Override
+	public int nickNameCheck(String nickName) {
+		return 0;
+	}
 }

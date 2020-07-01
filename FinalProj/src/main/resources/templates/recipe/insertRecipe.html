@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title id='pageTitle'>레시피 등록</title>
 <th:block layout:fragment='css'>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<script src="/js/insertR.js"></script>
 <style>
@@ -21,24 +22,24 @@
 </head>
 <div layout:fragment='content'>
  <div class="container recipe_regi">  <!-- 레시피 div -->
-    <form id="insertRecipe" th:action="@{insertProc}" method="post" th:object="${recipeDTO}" action="recipe/insertProc" enctype="multipart/form-data">
+    <form id="insertRecipe" th:action="@{insertProc}" method="post" th:object="${recipeDTO}" action="#" enctype="multipart/form-data">
   <div class="regi_center"><!-- button전까지 -->
 	<div class="regi_title">
 	레시피 등록
 	</div>
        <div class="cont_box pad_l_60"><!-- recipe area -->
-        <!-- <div id="reicpe_typecat_area" th:text-align="cetner"> -->
-            <div id="divMainPhotoBox" is_over="0">
-            <div class="img_wrap">
-            		<img id="img" style="width: 250px; height: 250px; cursor:pointer;"/>
+       		<div id="divMainPhotoUpload" class="cont_pic2">
+                <div style="position:absolute; left:-3000px">
+                </div>
+                <div class="img_wrap">
+            		<img id="img" style="width: 250px; height: 250px;"/>
+            <input type="file" name="file" id="input_img" accept="jpeg,png,gif" 
+            	style="width:250px"/> 
             	</div>
-                <p class="rcpPic">레시피 사진</p>
-                <input type="file" name="file" id="input_img" 
-                accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" >
-            </div>
-
+            </div>   
             <div class="userId"><!-- 아이디 -->
-                <input type="text" th:field="*{recipeVO.userId}" placeholder="아이디">
+                <input type="text" th:field="*{recipeVO.userId}" value="1125@naver.com"
+                placeholder="1125@naver.com">
             </div>
             <div class="cont_line"><!-- 제목 -->
                 <p class="cont_tit4">레시피 제목</p>
@@ -51,7 +52,7 @@
                 th:field="*{recipeVO.rcpExpl}" placeholder="이 레시피의 소개글을 적어주세요"
 						style="height:100px; width:610px; resize:none;"></textarea>
             </div>
-            <div class="cont_line pad_b_25"><!-- 동영상 -->
+            <div class="cont_line pad_b_25" id="youTubePlayer1"><!-- 동영상 -->
                 <p class="cont_tit4">동영상</p>
                 <textarea name="recipeVO.video" id="cok_video_url" class="form-control step_cont"
                 th:field="*{recipeVO.video}" placeholder="동영상이 있으면 주소를 입력하세요."
@@ -118,25 +119,25 @@
                 <p class="cont_tit4">요리정보</p>
                 	인원  <select name="recipeVO.personnel" id="cok_portion" text="인원">
                     <option value="">인원</option>
-                    <option value="1">1인분</option>
-                    <option value="2">2인분</option>
-                    <option value="3">3인분</option>
-                    <option value="4">4인분</option>
-                    <option value="5">5인분</option>
-                    <option value="6">6인분이상</option>
+                    <option value="1인분">1인분</option>
+                    <option value="2인분">2인분</option>
+                    <option value="3인분">3인분</option>
+                    <option value="4인분">4인분</option>
+                    <option value="5인분">5인분</option>
+                    <option value="6인분">6인분이상</option>
                 </select>
                 <span class="pad_l_30">시간</span>
                 <select name="recipeVO.cookTime" id="cok_time" text="요리시간">
                     <option value="">시간</option>
-                    <option value="5">5분이내</option>
-                    <option value="10">10분이내</option>
-                    <option value="15">15분이내</option>
-                    <option value="20">20분이내</option>
-                    <option value="30">30분이내</option>
-                    <option value="60">60분이내</option>
-                    <option value="90">90분이내</option>
-                    <option value="120">2시간이내</option>
-                    <option value="999">2시간이상</option>
+                    <option value="5분이내">5분이내</option>
+                    <option value="10분이내">10분이내</option>
+                    <option value="15분이내">15분이내</option>
+                    <option value="20분이내">20분이내</option>
+                    <option value="30분이내">30분이내</option>
+                    <option value="60분이내">60분이내</option>
+                    <option value="90분이내">90분이내</option>
+                    <option value="2시간이내">2시간이내</option>
+                    <option value="2시간이상">2시간이상</option>
                 </select>
                 <span class="pad_l_30">난이도</span>
                 <select name="recipeVO.level" id="cok_degree" text="난이도">
@@ -149,14 +150,9 @@
             </div>
       </div><!-- recipe area end -->      
         
-        <div class="cont_box pad_l_60"><!-- ingr area -->
-        	<span class="guide mag_b_15" style="width:100%;">
-			      <input type="text" onsubmit="return false" title="재료를 검색하세요"
-         id="ingrSearchInRefri" name="ingrSearchInRefri" class="" placeholder="재료 검색"
-         onkeypress="enterkey(event);">
-          <button type="button" onclick="" id="btnIngrSearch">검색</button>
-        	</span>
-				<div class="mag_b_25 ui-sortable" id="divMaterialGroupArea">
+        <div class="cont_box pad_l_60"><!-- 재료 area -->
+        	<span class="guide mag_b_15" style="width:100%;">재료가 남거나 부족하지 않도록 정확한 계량정보를 적어주세요.</span>
+        	<div class="mag_b_25 ui-sortable" id="divMaterialGroupArea">
 					<li id="liMaterialGroup_1">
 						<p class="cont_tit6 st2 mag_r_15">
 							<input type="text" name="material_group_title_1" id="material_group_title_1"
@@ -205,31 +201,46 @@
 							</button>
 						</div>
 					</li>
-				</div>
+			</div>
 				<div class="noti">※ 양념, 양념장, 소스, 드레싱, 토핑, 시럽, 육수 밑간 등으로 구분해서 작성해주세요.
             <div class="noti_btn">
             	<button type="button" onclick="addMaterialGroup('',[],null,'1')" class="btn-lg btn-default">
             	<span class="glyphicon glyphicon-plus"></span> 재료/양념 묶음 추가</button>
 			</div>
         </div>  
-        </div><!-- ingr area end -->    
+        </div><!-- 재료 area end -->    
         <div class="cont_box pad_l_60"><!-- 요리정보 area -->
             <p class="cont_tit3">요리순서</p>
-            <div class="divStepItem_1">
-                <p><input type="number" min="1" max="99" th:field="*{rcpOrderVO.cookOrder}"></p>
-            	<div id="divStepText_1" class="cookCont" style="display:inline-block">
+           <div id="" class="">
+            <div class="">
+                <input type="number" min="1" max="99" th:field="*{rcpOrderVO.cookOrder}">
+            <div id="divStepText_1" style="display:inline-block">
             		<textarea name="step_text[]" id="step_text_1" class="form-control step_cont" 
             		th:field="*{rcpOrderVO.cookCont}" placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." 
             		style="height:160px; width:430px; resize:none;"></textarea>
+            </div>
+            <div id="divStepUpload_1" style="display:inline-block">
+            	<div style="position:absolute; left:-1000px">
             	</div>
-            	<div id="divStepUpload_1" style="display:inline-block">
-            		<div class="img_wrap">
-                  <img id="img" style="width: 100px; height: 100px; cursor:pointer;"/>
-            		</div>
-             <!--    <input type="file" name="file" id="input_img" th:field="*{rcpOrderVO.cookPic}"
-					accept="jpeg,png,gif" placeholder="요리 대표사진을 등록해주세요" > -->
+            	<div id="divStepPhotoBox_1" class="img_wrap">
+                  <img id="img2" style="width: 150px; height: 150px;"/>
+             	<input multiple="multiple" type="file" name="file2" id="input_img2"
+						accept="jpeg,png,gif" style="width:150px"/> 
+            	</div>
+            </div> 
+            <div id="divStepBtn_1" class="step_btn" style="display: inline-block;">
+                <a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-up moveUp"></span></a>
+                <a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-down moveDown"></span></a>
+                <a href="javascript:addStep(1)"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="javascript:delStep(1)"><span class="glyphicon glyphicon-remove"></span></a>
+            </div>
+           	</div>
+          
+            <div class="btn_add mag_b_25" style="padding:0 0 20px 180px; width:820px;">
+	            	<button type="button" id="btn_append" class="btn btn-default">
+    	        	<span class="glyphicon glyphicon-plus-sign"></span>순서추가</button>
             	</div>  
-            </div>  
+         </div> 
  		</div><!-- 요리정보 area end-->
         <div class="cont_box pad_l_60"><!-- tag area -->
                 <p class="cont_tit4">태그</p>
@@ -237,6 +248,7 @@
                 style="width:620px;">
         </div><!-- tag area end -->
 	</div><!-- button 전까지 end -->
+	<!-- regi_center -->
         <div class="regi_btm">
        		<input type="hidden" id="registerStatus" name="registerStatus" value="true">
 			<input type="button" class="submit" value="저장">

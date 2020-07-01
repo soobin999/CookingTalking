@@ -4,29 +4,27 @@
 	layout:decorator='~{layout/default}'>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title id='pageTitle'>레시피 최신목록</title>
+<title id='pageTitle'>레시피 랭킹목록</title>
 <th:block layout:fragment='css'>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <div layout:fragment='content'>
-	<ul class="nav nav-tab2 pull-right" style="position:relative;">
-		<li role="presentation" class="active">
-			<a>일간</a>
-		</li>
-		<li role="presentation" class="active">
-			<a>주간</a>
-		</li>
-		<li role="presentation" class="active">
-			<a>월간</a>
-		</li>
-	</ul>
+	<div id="refreshBtn">
+	<p>
+	<button type="button" class="btn btn-default active" aria-pressed="true"
+	onclick="location='/recipe/rankD'">일간</button>
+	<button type="button" class="btn btn-default active" aria-pressed="true"
+	onclick="location='/recipe/rankW'">주간</button>
+	<button type="button" class="btn btn-default active" aria-pressed="true"
+	onclick="location='/recipe/rankM'">월간</button>
+	</p>
+	</div>
 	<div>
-		
-		<div th:each="rank : ${rankList}">
+		<div th:each="rank : ${getRankM}">
 			<div th:text="${rank.recipeVO.rcpPic}"></div>
 			<div>
 				<a th:href="@{/recipe/view(rcpCode=${rank.recipeVO.rcpCode})}"
@@ -36,5 +34,5 @@
 			<div th:text="${rank.recipeVO.rcpDate}"></div>
 		</div>
 	</div>
-</div>
+</div><!-- layout end -->
 </html>

@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 @Repository
 public class UserDTO {
 
-	private Long id;
 
 	@NotEmpty(message = "닉네임은 필수 입력 값입니다.")
 	private String nickName;
@@ -54,17 +53,14 @@ public class UserDTO {
 	private boolean gender;
 
 	public static CharSequence getPassword() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void setPassword(String encode) {
-		// TODO Auto-generated method stub
 
 	}
 
 	public static void userJoin() {
-		// TODO Auto-generated method stub
 
 	}
 

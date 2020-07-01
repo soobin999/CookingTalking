@@ -23,7 +23,6 @@
 							<th>유저 아이디</th>
 							<th>유저 닉네임</th>
 							<th>유저 성별</th>
-							<th>유저 프로필 사진</th>
 							<th>레시피 업로드 개수</th>
 							<th>유저 팔로워 수</th>
 						</tr>
@@ -54,12 +53,12 @@
 
 				<tr th:each="user,index:${UserList}" th:id='${index.index}'>
 					<td><input
-						style="background-color: transparent; border: 0 solid black;"
+						style="background-color: transparent; border: 0 solid black;width: 100%"
 						type="text" th:class="C_enter_update_Id"
 						th:id="|enter_update_ID${index.index}|" name="userId"
 						th:value="${user.userId}" readonly></td>
 					<td><input
-						style="background-color: transparent; border: 0 solid black;"
+						style="background-color: transparent; border: 0 solid black; width: 70%"
 						type="text" th:id="|enter_update_nickName${index.index}|"
 						th:name="nickName" th:value="${user.nickName}">
 					<td th:text="${user.birth}">유저 생일</td>
@@ -130,7 +129,6 @@
 											+ user.nickName + '</td><td th:switch='+ user.gender +'>'+
 											'<i th:case="true">'+"남자"+'</i>'+'</td>'
 											+ user.gender + '</td><td>'
-											+ user.userPic + '</td><td>'
 											+ user.rcpUploads + '</td><td>'
 											+ user.followers + '</td>';
 										$("#searchUser").append(str);

@@ -55,6 +55,10 @@ $(document).ready(function(){
       myScrapSearch();
    });
    
+   
+   
+   
+   
    $('#btnComSearchInMy').on('click', function(){
 
 	  
@@ -138,6 +142,11 @@ $(document).ready(function(){
    });// $('#btnComSearchInMy').on('click', function(){   end
 
 
+   
+   
+   
+   
+ 
 function deleteMyRcp(){
 	var button = document.getElementsByName('deleteMyRcpBtn');
 	console.log(button);
