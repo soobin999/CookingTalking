@@ -12,7 +12,8 @@ public class FileTrancefer {
 		
 		try {
 			//basedir 주소 프로젝트 주소로 하면 배포 시 오류 생길 수 있음
-			String baseDir = "C:/Pictures"; 
+			String baseDir = "C:/Users/Pictures/"; 
+
 			baseDir+=path;
 			file.transferTo(new File(baseDir + file.getOriginalFilename()));
 
