@@ -6,15 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title id='pageTitle'>레시피 최신목록</title>
 <th:block layout:fragment='css'>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
 	 <!-- font awesome  -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 <style>
       .scrolltop {
-        display: none;
+        display: none;						
         position: fixed;
         right: 30px;
         bottom: 50px;
@@ -32,11 +31,12 @@
 </style>
 </head>
 <div layout:fragment='content'>
-	<div class="rcp_m_tit2"><!-- recipe area -->
 		<div class="m_list_tit"><!-- recipe counting -->
 		총 <b><span th:text="${recipeCount}"></span></b>개의 맛있는 레시피가 있습니다.
-	</div>
-	<div th:each="recipe : ${recipeList}">
+		</div>
+	<div class="rcp_m_tit2"><!-- recipe area -->
+	<div th:each="recipe, rcpStat : ${recipeList}" th:id='${rcpStat.index}'>
+		<p th:text="${'index:' + rcpStat.index}"></p>
 		<div th:text="${recipe.recipeVO.rcpPic}"></div>
 		<div>
 			<a th:href="@{/recipe/view(rcpCode=${recipe.recipeVO.rcpCode})}"
@@ -46,9 +46,13 @@
 		<div th:text="${recipe.recipeVO.rcpDate}"></div>
 	</div>
 	</div>
-
+		<!-- pagination -->	
+		<div th:class="Pagination_Li">
+			<div th:each="num: ${#numbers.sequence(1,recipeList.size()/20)}" th:class="page">
+				<a th:text="${num}" th:value="${num}" style="color: #FF8000;"></a>
+				</div>
+			</div>
 		<!-- pagination end -->
-	</div>
 <!-- scroll -->	
 <a id="backToTop" class="scrolltop" href="#">
 <i class="fas fa-chevron-circle-up"></i></a>
@@ -69,5 +73,5 @@ jQuery(document).ready(function () {
   });
 });
 </script>
-</div> <!-- layout end -->
+	</div><!-- layout end -->
 </html>

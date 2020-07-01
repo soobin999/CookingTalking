@@ -40,9 +40,13 @@ public interface RecipeDAO {
 	
 	//레시피 목록 조회+페이징
 	public List<RecipeDTO> getRecipeList();
-		
+	
+	public List<RecipeDTO> getRcpListPaiging(int pageNum);
+
 	//레시피 랭킹 조회
-	public List<RecipeDTO> getRankList();
+	public List<RecipeDTO> getRankD();
+	public List<RecipeDTO> getRankW();
+	public List<RecipeDTO> getRankM();
 	
 	//rcpViewsCode 자동생성
 	public int selectRcpViewCode();	
@@ -83,7 +87,7 @@ public interface RecipeDAO {
 	//레시피 수정
 	
 	//레시피 삭제
-
+	
 	
 }
 
