@@ -7,8 +7,9 @@
 </head>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/mypage.js?version=20200629"></script>
 
+
+	
 	<!-- 사진 및 계정 정보 -->
 	<div id="mypageMain">
 	<div th:class="uploadPicOfUser">
@@ -17,22 +18,22 @@
 	<a href="/userModify.html">회원 정보 수정</a>
 	
 	<div class="myMenu">
-	<button onclick="myRecipe()">레시피</button>
-	<button onclick="myFrequent()">즐겨찾기</button>
-	<button onclick="myActivity()">활동</button>
-	<button onclick="myInquiry()">문의 사항</button>
+	<button class="myRecipeBtn" >레시피</button>
+	<button class="myFrequentBtn" >즐겨찾기</button>
+	<button class ="myActivityBtn" >활동</button>
+	<button class="myInquiryBtn" >문의 사항</button>
 	</div>
 	
 	<div id="myActivity">
-		<button onclick="myActivity()">내가 작성한 글</button>
-		<button onclick="myCom()">내가 작성한 댓글</button>
+		<button class="myActivityBtn">내가 작성한 글</button>
+		<button class="myComBtn">내가 작성한 댓글</button>
 		
-		<div name="sorting">
+		<div th:class="comSorting" th:name="sorting">
 		<form>
 		<select name="com" id="comSelect">
-		<option id="allCom" value="allCom">-전체 댓글-</option>
+		<option id="allCom" th:value="allCom">-전체 댓글-</option>
 		<option id="onlyTalk" th:value="onlyTalk">토크에 단 댓글</option>
-		<option id="onlyRcp" value="onlyRcp">레시피에 단 댓글</option>
+		<option id="onlyRcp" th:value="onlyRcp">레시피에 단 댓글</option>
 		</select>	
 		</form>
 		</div>
@@ -41,12 +42,12 @@
 				<input type="text" onsubmit="return false" title="댓글검색"
 					id="comSearchInMy" name="comSearchInMy" placeholder="댓글을 검색하세요"
 					onkeypress="enterkey(event);">
-				<button type="button" onclick="myAllComSearch();" id="btnComSearchInMy">검색</button>
+				<button type="button" id="btnComSearchInMy">검색</button>
 			</form>
 		</div>
 
 	<div th:id="myActivitySub">
-	<div th:id="myAllComMain">
+	<div th:id="myMainResult">
 	<table>
 	<tbody>
 	<tr th:each="myAllCom : ${myAllCom}">
@@ -59,164 +60,7 @@
 	</div>
 	</div>
 	</div>
-	
-	<script>
-	
-	 Date.prototype.yyyymmdd = function() {
-	      var yyyy = this.getFullYear().toString();
-	      var mm = (this.getMonth() + 1).toString();
-	      var dd = this.getDate().toString();
-	      return  yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
-	  }
-	
-	$(document).ready(function(){
-		   $('#comSearchInMy').on('keydown', function(event){
-			      if(event.keyCode == 13){
-			    	  myAllComSearch();
-			         event.preventDefault();
-			      }
-			   });
-		});
-	
-	
-	function searchButtonClick(){
-
-
-		   $('#btnComSearchInMy').on('click', function(){
-			  myAllComSearch();
-		   });
-
-		}
-
-	function myAllComSearch(){
-		   var key = $('#comSearchInMy').val(); /*댓글 검색 키워드*/
-		   var selectedV = document.getElementById("comSelect").options[document.getElementById("comSelect").selectedIndex].value;
-		   
-		   if(selectedV == "onlyTalk"){
-				   
-			      $.ajax({
-			         type : "POST",
-			         url : "/searchMyTalkCom",
-			         data : {talkCom : key},
-			         success : function(data) {
-			            var searchedTalkCom = new Array();
-			            var result = $('#myActivitySub');
-			            var a,b;
-			            removeFunc();
-			            
-			            a = '<tr id="myAllComMain"><td>'
-			            b = '</td></tr><br>'
-			            $.each(data, function(index, value){
-			            	
-			            	var com_date = (new Date(data[index].talkComDate)).yyyymmdd();
-			            	console.log(com_date);
-			            	
-			               console.log(data);
-			               searchedTalkCom[index] = 
-			               '<a href="/talk/detail/'
-			               + data[index].talkCode + '">'
-			               + data[index].talkCom + '</a>'
-			               + '</td><td>' + com_date
-			               
-			               console.log("data.talkCom:"+value.talkCom);
-			               console.log("data.talkComDate:"+com_date);
-			            });
-			               result.append(a+searchedTalkCom+b);
-			         },
-			         error : function(){
-			            alert("searchedTalkCom Error");
-			         }
-			      });
-			   } else if(selectedV == "onlyRcp") {
-				   
-				      $.ajax({
-				         type : "POST",
-				         url : "/searchMyRcpCom",
-				         data : {rcpCom : key},
-				         success : function(data) {
-				            var searchedRcpCom = new Array();
-				            var result = $('#myActivitySub');
-				            var a,b;
-				            removeFunc();
-				            
-				            a = '<tr id="myAllComMain">'
-				            b = '</td></tr><br>'
-				            
-				            $.each(data, function(index, value){
-				            	
-				            	var com_date = (new Date(data[index].rcpComDate)).yyyymmdd();
-				            	console.log(com_date);
-				            	
-				               console.log(data);
-				               searchedRcpCom[index] =
-				            	'<a href="/recipe/view?rcpCode='
-				            	+ data[index].rcpCode + '">' 
-								+ data[index].rcpCom + '</a>'
-				               + '</td><td>' + com_date
-				              
-				               console.log("data.rcpCom:"+value.rcpCom);
-				               console.log("data.rcpComDate:"+com_date);
-				            });
-				               result.append(a+searchedRcpCom+b);
-				         },
-				         error : function(){
-				            alert("searchedRcpCom Error");
-				         }
-				      });
-				      
-				   } else {
-					   $.ajax({
-						      type : "POST",
-						      url : "/searchMyAllCom",
-						      data : {talkCom : key},
-						      success : function(data) {
-						         var searchedAllCom = new Array();
-						         var result = $('#myActivitySub');
-
-						            var a,b;
-						            removeFunc();
-						            
-						            a = '<tr id="myAllComMain">'
-						            b = '</td></tr><br>'
-						         
-						         $.each(data, function(index, value){
-						        	 
-						         	var com_date = (new Date(data[index].talkComDate)).yyyymmdd();
-						        	console.log(com_date);
-						        	 
-						            console.log(data);
-						            
-
-						            searchedAllCom[index] =
-						            '<td th:if="${#strings.startsWith('
-						            + data[index].talkCode + ',"T")}">'
-						            + '<a href="/talk/detail/'
-						            + data[index].talkCode + '">'
-						            + data[index].talkCom + '</a></td>'
-						            +'<td th:unless="${#strings.startsWith('
-						            + data[index].talkCode + ',"T")}">'
-						            + '<a href="/recipe/view?rcpCode='
-						            + data[index].talkCode + '">'
-						            + data[index].talkCom + '</a>'
-						            + '</td><td>' + com_date
-						            console.log("data.talkCom:"+value.talkCom);
-						            console.log("data.talkComDate:"+com_date);
-						         });
-						            result.append(a+searchedAllCom+b);
-						      },
-						      error : function(){
-						         alert("myAllComSearch Error");
-						      }
-						   });
-				   }
-		}
-	
-	function removeFunc(){
-		console.log("removeFunc");
-		$('#myAllComMain').remove();
-	}
-	
-	</script>
+	<script th:src="@{/js/mypage.js}" type="text/javascript"></script>
 	
 	
 </body>

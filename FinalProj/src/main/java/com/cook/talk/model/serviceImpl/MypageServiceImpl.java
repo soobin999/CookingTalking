@@ -26,6 +26,8 @@ import com.cook.talk.model.service.MypageService;
 @Service
 public class MypageServiceImpl implements MypageService{
 
+	private static final String String = null;
+
 	@Autowired(required = false)
 	private MypageDAO mypageDAO;
 	
@@ -39,94 +41,71 @@ public class MypageServiceImpl implements MypageService{
 	}
 	
 	
-	/*
-	 * //마이페이지 유저 사진 업로드 OR 수정
-	 * 
-	 * @Override public String modifyUserPic(String
-	 * userPic, @RequestParam("userPic") MultipartFile file) {
-	 * 
-	 * String save =
-	 * "C:/git/cookingtalking/FinalProj/src/main/resources/static/userImg/";
-	 * 
-	 * System.out.println("file:"+file);
-	 * 
-	 * 
-	 * try {
-	 * 
-	 * byte[] bytes = file.getBytes(); Path path = Paths.get(save +
-	 * file.getOriginalFilename()); Files.write(path, bytes);
-	 * 
-	 * } catch (IOException e) { e.printStackTrace(); }
-	 * 
-	 * mypageDAO.modifyUserPic(userPic); return "정상적으로 등록되었습니다"; }
-	 */
-
-	
 	//작성중인 레시피 가져오기
 	@Override
-	public List<MypageDTO> getMyRecipeIng() {
-		List<MypageDTO> getmyRecipeIng = mypageDAO.getMyRecipeIng();
+	public List<MypageDTO> getMyRecipeIng(String userId) {
+		List<MypageDTO> getmyRecipeIng = mypageDAO.getMyRecipeIng(userId);
 		return getmyRecipeIng;
 	}
 
 	
 	//작성완료된 레시피 가져오기
 	@Override
-	public List<MypageDTO> getMyRecipeWritten() {
-		List<MypageDTO> getMyRecipeWritten = mypageDAO.getMyRecipeWritten();
+	public List<MypageDTO> getMyRecipeWritten(String userId) {
+		List<MypageDTO> getMyRecipeWritten = mypageDAO.getMyRecipeWritten(userId);
 		return getMyRecipeWritten;
 	}
 
 	
 	//팔로우한 쉐프 목록 가져오기
 	@Override
-	public List<MypageDTO> getMyFollow() {
-		List<MypageDTO> getMyFollow = mypageDAO.getMyFollow();
+	public List<MypageDTO> getMyFollow(String userId) {
+		List<MypageDTO> getMyFollow = mypageDAO.getMyFollow(userId);
 		return getMyFollow;
 	}
 
 	
 	//스크랩한 레시피 목록 가져오기
 	@Override
-	public List<MypageDTO> getMyScrapedRecipe() {
-		List<MypageDTO> getMyScrapedRecipe = mypageDAO.getMyScrapedRecipe();
+	public List<MypageDTO> getMyScrapedRecipe(String userId) {
+		List<MypageDTO> getMyScrapedRecipe = mypageDAO.getMyScrapedRecipe(userId);
 		return getMyScrapedRecipe;
 	}
 
 	
 	//내가 작성한 토크 목록 가져오기
 	@Override
-	public List<MypageDTO> getMyTalk() {
-		List<MypageDTO> getMyTalk = mypageDAO.getMyTalk();
+	public List<MypageDTO> getMyTalk(String userId) {
+		List<MypageDTO> getMyTalk = mypageDAO.getMyTalk(userId);
 		return getMyTalk;
 	}
 	
 	
 	//내가 작성한 모든 댓글(RCP+TK) 가져오기
 	@Override
-	public List<MypageDTO> getAllMyCom() {
-		List<MypageDTO> getAllMyCom = mypageDAO.getAllMyCom();
+	public List<MypageDTO> getAllMyCom(String userId) {
+		List<MypageDTO> getAllMyCom = mypageDAO.getAllMyCom(userId);
 		return getAllMyCom;
 	}
 	
 	//내가 작성한 토크 댓글만 가져오기
 	@Override
-	public List<TalkComVO> getMyTalkCom() {
-		List<TalkComVO> getMyTalkCom = mypageDAO.getMyTalkCom();
+	public List<TalkComVO> getMyTalkCom(String userId) {
+		List<TalkComVO> getMyTalkCom = mypageDAO.getMyTalkCom(userId);
 		return getMyTalkCom;
 	}
 	
 	//내가 작성한 레시피 댓글만 가져오기
 	@Override
-	public List<MypageDTO> getMyRcpCom() {
-		List<MypageDTO> getMyRcpCom = mypageDAO.getMyRcpCom();
+	public List<MypageDTO> getMyRcpCom(String userId) {
+		List<MypageDTO> getMyRcpCom = mypageDAO.getMyRcpCom(userId);
 		return getMyRcpCom;
 	}
 	
 	//모든 댓글(RCP+TK) 검색하기
 	@Override
-	public List<MypageDTO> getSearchAllMyCom(String talkCom) {
-		List<MypageDTO> getSearchAllMyCom = mypageDAO.getSearchAllMyCom(talkCom);
+	public List<MypageDTO> getSearchAllMyCom(String talkCom, String userId) {
+		List<MypageDTO> getSearchAllMyCom = mypageDAO.getSearchAllMyCom(talkCom, userId);
 		return getSearchAllMyCom;
 	}
 
@@ -140,40 +119,41 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public List<QnAVO> getMyInq() {
-		List<QnAVO> getMyInq = mypageDAO.getmyInq(); 
+	public List<QnAVO> getMyInq(String userId) {
+		List<QnAVO> getMyInq = mypageDAO.getmyInq(userId); 
 		return getMyInq;
 	}
 
+	//팔로우한 쉐프 검색하기
 	@Override
-	public List<MypageDTO> getSearchMyFollow(String followChef) {
-		return mypageDAO.getSearchMyFollow(followChef);
+	public List<MypageDTO> getSearchMyFollow(String followChef, String userId) {
+		return mypageDAO.getSearchMyFollow(followChef, userId);
 	}
 
 	@Override
-	public List<MypageDTO> getSearchMyTalk(String talkCont) {
-		return mypageDAO.getSearchMyTalk(talkCont);
+	public List<MypageDTO> getSearchMyTalk(String talkCont, String userId) {
+		return mypageDAO.getSearchMyTalk(talkCont, userId);
 		
 	}
 
 	@Override
-	public List<MypageDTO> getSearchMyScraped(String rcpTitle) {
-		return mypageDAO.getSearchMyScraped(rcpTitle);
+	public List<MypageDTO> getSearchMyScraped(String rcpTitle, String userId) {
+		return mypageDAO.getSearchMyScraped(rcpTitle, userId);
 	}
 
 	@Override
-	public List<MypageDTO> getSearchTalkCom(String talkCom) {
-		return mypageDAO.getSearchTalkCom(talkCom);
+	public List<MypageDTO> getSearchTalkCom(String talkCom, String userId) {
+		return mypageDAO.getSearchTalkCom(talkCom, userId);
 	}
 
 	@Override
-	public List<MypageDTO> getSearchRcpCom(String rcpCom) {
-			return mypageDAO.getSearchRcpCom(rcpCom);
+	public List<MypageDTO> getSearchRcpCom(String rcpCom, String userId) {
+			return mypageDAO.getSearchRcpCom(rcpCom, userId);
 	}
 
 	@Transactional
-	public void deleteRcp(String rcpCode) {
-		mypageDAO.deleteRcp(rcpCode);
+	public void deleteRcp(String rcpCode, String userId) {
+		mypageDAO.deleteRcp(rcpCode, userId);
 	}
 
 }

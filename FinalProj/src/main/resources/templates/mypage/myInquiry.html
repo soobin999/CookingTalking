@@ -17,16 +17,16 @@
 		</div>     
 	<a href="/userModify.html">회원 정보 수정</a>
 	
-	<div class="myMenu">
-	<button onclick="myRecipe()">레시피</button>
-	<button onclick="myFrequent()">즐겨찾기</button>
-	<button onclick="myActivity()">활동</button>
-	<button onclick="myInquiry()">문의 사항</button>
+	<div th:class="myMenu">
+	<button th:class="myRecipeBtn">레시피</button>
+	<button th:class="myFrequentBtn">즐겨찾기</button>
+	<button th:class="myActivityBtn">활동</button>
+	<button th:class="myInquiryBtn">문의 사항</button>
 	</div>
 	
 	<div id="myInquiry">
-		<button onclick="myInquiry()">문의 하기</button>
-		<button onclick="myInquiryList()">나의 문의 사항</button>
+		<button th:class="myInquiryBtn">문의 하기</button>
+		<button th:class="myInquiryList">나의 문의 사항</button>
 		</div>
 
 	<div th:id="myInquirySub">

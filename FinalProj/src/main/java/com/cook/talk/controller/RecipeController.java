@@ -41,7 +41,7 @@ public class RecipeController {
 
 	
 	@PostMapping("/rcmmRecipe")
-	public String rcmmRecipe(Model model, @RequestParam("selectedIngr") List<String> selectedIngr, IngrVO ingrVO){
+	public String rcmmRecipe(Model model, @RequestParam(value="selectedIngr", required=false) List<String> selectedIngr, IngrVO ingrVO){
 		System.out.println("selectedIngr:"+selectedIngr);
 		System.out.println(selectedIngr);
 		
