@@ -84,30 +84,25 @@ function handleImgFileSelect(e){
 		
 		
 		</div>
-		<div id="mypageSubMain">
+		
 	<a href="/userModify.html">회원 정보 수정</a>
 	
-	<div class="myMenu">
-	<button onclick="myRecipe()">레시피</button>
-	<button onclick="myFrequent()">즐겨찾기</button>
-	<button onclick="myActivity()">활동</button>
-	<button onclick="myInquiry()">문의 사항</button>
+	<div th:class="myMenu">
+	<button th:class="myRecipeBtn">레시피</button>
+	<button th:class="myFrequentBtn">즐겨찾기</button>
+	<button th:class="myActivityBtn">활동</button>
+	<button th:class="myInquiryBtn">문의 사항</button>
+	</div>
 	
-	
-	<div th:class="myRecipeBasic">
+	<div th:class="myRecipe">
 		<button onclick="myRecipe()">진행중인 레시피</button>
 		<button onclick="myWritten()">작성완료된 레시피</button>
 	</div>
-	<div th:class="myWrittenMain"></div>
-	<div th:class="myFrequentMain"></div>
-	</div>
-	<div th:class="myRecipeIngMain">
+
+	<div th:id="myRecipeSub">
+	<div th:id="myRecipeResult">
 	<table>
 	<tbody>
-<!-- 		<div class="myRecipeIng_img">레시피 사진</div>
-		<div class="myRecipeIng_title">레시피 제목</div> -->
-	
-	
 	<tr th:each="myRecipeIng : ${myRecipeIng}" th:class="myRecipeIng" id="myRecipeIng">
 		<td th:text=${myRecipeIng.rcpTitle}></td>
 		<td th:text=${myRecipeIng.rcpPic}></td>

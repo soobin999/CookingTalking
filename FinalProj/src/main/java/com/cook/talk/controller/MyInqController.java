@@ -35,7 +35,9 @@ public class MyInqController {
 	
 	//마이페이지-문의사항-나의 문의사항 보기
 	@PostMapping("/mypage/inputInq")
-	public String myInquiryProc(@ModelAttribute QnAVO qnAVO, Model model) {
+	public String myInquiryProc(@ModelAttribute QnAVO qnAVO, Model model, Principal principal) {
+		qnAVO.setUserId(principal.getName());
+		
 		mypageService.rqMyInq(qnAVO);
 		System.out.println("mypageService.rqMyInq(qnAVO)");
 		
@@ -49,9 +51,6 @@ public class MyInqController {
 	public String myInquiryList(Model model, Principal principal, QnAVO qnAVO) {
 		
 		qnAVO.setUserId(principal.getName());
-		String qnaTitle = qnAVO.getQnaTitle();
-		String qnaCont = qnAVO.getQnaCont();
-		
 		System.err.println(qnAVO);
 		
 		List<QnAVO> lists = mypageDAO.getmyInq(principal.getName());
