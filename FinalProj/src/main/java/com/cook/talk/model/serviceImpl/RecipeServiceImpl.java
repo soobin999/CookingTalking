@@ -75,13 +75,7 @@ public class RecipeServiceImpl implements RecipeService {
 		List<RecipeDTO> recipeList = recipeDAO.getRecipeList();
 		return recipeList;
 	}
-	
-	//레시피 랭킹 조회
-	@Override
-	public List<RecipeDTO> getRankList() {
-		List<RecipeDTO> rankList = recipeDAO.getRankList();
-		return rankList;
-	}
+		
 	
 	//레시피 조회이력 저장
 	public void insertRcpViews(ViewsVO viewsVO, RecipeVO recipeVO) {
@@ -110,12 +104,6 @@ public class RecipeServiceImpl implements RecipeService {
 	//레시피 등록	
 	@Override
 	public void insertRecipeProc(boolean registerStatus, RecipeDTO recipeDTO){
-
-	/*
-	 * public void insertRecipeProc(@RequestParam("file") MultipartFile file,
-	 * boolean registerStatus, RecipeVO recipeVO, TypeCatVO typeCatVO, RcpIngrVO
-	 * rcpIngrVO, RcpOrderVO rcpOrderVO,TagVO tagVO){
-	 */
 		
 		 RecipeVO recipeVO = recipeDTO.getRecipeVO();
 		 TypeCatVO typeCatVO = recipeDTO.getTypeCatVO();

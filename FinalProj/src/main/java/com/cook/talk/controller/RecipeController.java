@@ -65,22 +65,36 @@ public class RecipeController {
 	@GetMapping("recipe/newList")
 	public String getRecipeList(Model model, ViewsVO viewsVO) {
 		List<RecipeDTO> recipeList = recipeService.getRecipeList();
+		List<RecipeDTO> recipeList2 = recipeDAO.getRcpListPaiging(1);
 		model.addAttribute("recipeList", recipeList);
-
+		model.addAttribute("recipeList2", Math.ceil(recipeDAO.recipeCount() / 20.0));
 		model.addAttribute("recipeCount", recipeDAO.recipeCount());
 		//레시피 조회이력 저장
-		
-		for (RecipeDTO dto : recipeList)
-		log.info("list==>" + dto);
+				
 		return "recipe/newList";
 	}
 	
-	@GetMapping("recipe/rankList")
-	public String getRankList(Model model) {
-		List<RecipeDTO> rankList = recipeService.getRankList();
-		model.addAttribute("rankList", rankList);
+	@GetMapping("recipe/rankD")
+	public String getRankD(Model model) {
+		model.addAttribute("getRankD", recipeDAO.getRankD());
+		log.info(recipeDAO.getRankD());
 		
-		return "recipe/rankList";
+		return "recipe/rankListD";
+	}
+	
+	@GetMapping("recipe/rankW")
+	public String getRankW(Model model) {
+		model.addAttribute("getRankW", recipeDAO.getRankW());
+		log.info(recipeDAO.getRankW());
+
+		return "recipe/rankListW";
+	}
+	@GetMapping("recipe/rankM")
+	public String getRankM(Model model) {
+		model.addAttribute("getRankM", recipeDAO.getRankM());
+		log.info(recipeDAO.getRankM());
+		
+		return "recipe/rankListM";
 	}
 
 	@GetMapping("recipe/view") 
@@ -100,22 +114,16 @@ public class RecipeController {
 
 }
 
-	@GetMapping("recipe/insert")
+	@GetMapping({"recipe/insert", "recipe/update"})
 	public String insertRecipe(@ModelAttribute RecipeDTO recipeDTO) {
 		return "recipe/insertRecipe";
 	}
 
-	@ResponseBody
+	
 	@PostMapping("recipe/insertProc")
 	public String insertRecipeProc(@RequestParam("file") MultipartFile file, 
 			boolean registerStatus, RecipeDTO recipeDTO) {
 		BasicConfigurator.configure(); //log4j 오류처리
-		
-		/*
-		 * recipeService.insertRecipeProc(file, registerStatus, recipeDTO.getRecipeVO(),
-		 * recipeDTO.getTypeCatVO(), recipeDTO.getRcpIngrVO(),
-		 * recipeDTO.getRcpOrderVO(), recipeDTO.getTagVO());
-		 */
 		
 		//rcpPic, cookPic 업로드
 		String rcpPic = FileTrancefer.requestFileTrancefer(file,"recipe/"); 
@@ -123,13 +131,9 @@ public class RecipeController {
 		
 		recipeService.insertRecipeProc(registerStatus, recipeDTO);
 		
-		return "recipe/insertRecipe";
+		return "redirect:/recipe/newList";
 	}
 
-	@PostMapping("recipe/update")
-	public String updateRecipe(RecipeDTO recipeDTO) {
-		return "";
-	}
 	
 	@GetMapping("recipe/delete")
 	public String deleteRecipe(String rcpCode ) {

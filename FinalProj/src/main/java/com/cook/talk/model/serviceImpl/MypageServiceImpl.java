@@ -141,7 +141,7 @@ public class MypageServiceImpl implements MypageService{
 
 	@Override
 	public List<QnAVO> getMyInq() {
-		List<QnAVO> getMyInq = mypageDAO.getmyInq(); 
+		List<QnAVO> getMyInq = mypageDAO.getmyInq();
 		return getMyInq;
 	}
 

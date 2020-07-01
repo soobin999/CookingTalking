@@ -6,14 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title id='pageTitle'>레시피 상세보기</title>
 <th:block layout:fragment='css'>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="/js/insertR.js"></script>
 </head>
 <div layout:fragment='content'>
 	<form th:method="post" action="#">
+	<div id="contents_area"><!-- contents area -->
 		<div th:each="recipe : ${recipeDTO}">
             <div th:text="${recipe.recipeVO.rcpPic}"></div>
             <div th:text="${recipe.recipeVO.rcpViews}"></div>
@@ -22,7 +22,7 @@
             <div th:text="${recipe.recipeVO.rcpTitle}"></div>
             <div th:text="${recipe.recipeVO.rcpDate}"></div>
             <div th:text="${recipe.recipeVO.rcpExpl}"></div>
-            <div th:text="${recipe.recipeVO.video}"></div>
+            <div class="iframe_wrap" th:text="${recipe.recipeVO.video}"></div>
             <div th:text="${recipe.typeCatVO.cookType}"></div>
             <div th:text="${recipe.typeCatVO.cookSituation}"></div>
             <div th:text="${recipe.typeCatVO.cookMethod}"></div>
@@ -43,15 +43,14 @@
         <div >
         <span></span><b>태그</b>
             <div ><a th:each="tag : ${tagView}" href="#" th:text="${tag.tag}"></a></div>
-        </div>       
+        </div>
+        </div><!-- contents area End -->
     </form>
     <div class="regi_btm"> 
-    <button type="button" onclick="" class="btn-lg btn-primary">수정</button> 
-    <button type="button" onclick="" class="btn-lg btn-primary">삭제</button>    
-    <button type="button" onclick="" class="btn-lg btn-primary">목록</button> 
-	<a th:href="@{newList}">글목록</a>
-	<a th:href="@{update}">글수정</a>
-	<a th:href="@{delete}">글삭제</a>
+    <button type="button" onclick="history.go(-1)" class="btn-lg btn-primary">이전</button> 
+    <button type="button" onclick="history.go(1)" class="btn-lg btn-primary">다음</button>    
+    <button type="button" onclick="goPage()" class="btn-lg btn-primary">목록</button> 
+
 	</div>
-</div>
+</div><!-- layout area -->
 </html>

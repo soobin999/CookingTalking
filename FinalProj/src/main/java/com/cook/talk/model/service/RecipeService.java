@@ -33,9 +33,6 @@ public interface RecipeService {
 	public List<RecipeDTO> getRecipeList();	
 	
 	
-	//레시피 랭킹 조회	
-	public List<RecipeDTO> getRankList();
-	
 	//레시피 조회이력 저장
 	public void insertRcpViews(ViewsVO viewsVO, RecipeVO recipeVO);
 
