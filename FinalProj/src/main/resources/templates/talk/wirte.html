@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>글 등록</title>
-
-
 <script type="text/javascript">
+
+
 $(document).ready(function){
 	$("btnSave").click(function){
 		var content=$("#talkCont").val();
@@ -21,10 +21,7 @@ $(document).ready(function){
 	document.}
 	
 }
-
-		
 </script>
-
 </head>
 <body>
 <head>
@@ -34,39 +31,30 @@ $(document).ready(function){
 <body>
 	<!-- <div th:insert="talk/header.html" id="header"></div> -->
 
-
-	<form class="form-horizontal" th:action="@{/talk/insert.do}"
-		th:object="${talkVO}" method="post" name="form"
-		onsubmit="return registerBoard(this)">
+	<form class="form-horizontal" th:action="@{/talk/insert.do}" th:object="${talkVO}" method="post" name="form" onsubmit="return registerBoard(this)">
 		<div class="form-group"> 
+
+			
 			<h5>내용</h5>
 		
-		
-			<td><textarea th:field="*{talkCont}" cols="10" placeholder="내용을 입력하세요" name="content"></textarea>
+			<td>
+			<textarea th:field="*{talkCont}" cols="10" placeholder="내용을 입력하세요" name="content"></textarea>
+			
+			
 			<th>파일 첨부</th> 
-		
-		
-			<input type="file" placeholder="사진을 선택하세요" id="talk-file" name="talkPic"
-			th:field="*{talkVideo}">
+			<input type="file" placeholder="사진을 선택하세요" id="talk-file" name="talkPic" th:field="*{talkVideo}">
 			
-			
-			 <img id="talk-img" th:data-img="${talkVO.talkVideo}" 
-			
-			
-			  th:src="${talkVideo}"
-			 style="width: 100px; height: 100px; margin-top: 10px;">
+			 <img id="talk-img" th:data-img="${talkVO.talkVideo}"  th:src="${talkVideo}"  style="width: 100px; height: 100px; margin-top: 10px;">
 			 
 			<br>
 			<p></p>
 			
 </div>
 
-			<td colspan="2"><input type="submit" value="등록"
-				onclick="btnSave"> <input type="button" value="취소"
-				onclick="">
+			<td colspan="2">
+			<input type="submit" value="등록" onclick="btnSave">
+			<input type="button" value="취소" onclick="">
 	</form>
-
-
 
 
 </body>

@@ -19,8 +19,11 @@ public interface UserDAO {
 	// 닉네임 중복 체크
 	public int nickNameCheck(String nickName);
 	
-	//업데이트 
-	public int updateUser(UserVO userVO);
+	//비밀 번호 업데이트 
+	public int updatePw(String userPw, String userId);
+	
+	//닉네임 바꾸기 
+	public int updateNick(String nickName,String userId);
 
 	//해당 아이디 찾기 
 	public UserVO findUserById(String id);
