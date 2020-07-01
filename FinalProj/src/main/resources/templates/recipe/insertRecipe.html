@@ -211,30 +211,29 @@
         </div><!-- 재료 area end -->    
         <div class="cont_box pad_l_60"><!-- 요리정보 area -->
             <p class="cont_tit3">요리순서</p>
-           <div id="divStepArea" class="ui-srotable">
-            <div class="divStepItem_1">
-                <p id="divStepNum_1" class="cont_tit2_1 ui-sortable-handle">
-                <input type="number" min="1" max="99" th:field="*{rcpOrderVO.cookOrder}"></p>
+           <div id="" class="">
+            <div class="">
+                <input type="number" min="1" max="99" th:field="*{rcpOrderVO.cookOrder}">
             <div id="divStepText_1" style="display:inline-block">
             		<textarea name="step_text[]" id="step_text_1" class="form-control step_cont" 
             		th:field="*{rcpOrderVO.cookCont}" placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요." 
             		style="height:160px; width:430px; resize:none;"></textarea>
             </div>
             <div id="divStepUpload_1" style="display:inline-block">
-            	<div style="position:absolute;left:-1000px">
-             		<input type="file" name="file2" multiple="multiple" id="input_img"
-						accept="jpeg,png,gif" style="width:150px"/> 
+            	<div style="position:absolute; left:-1000px">
             	</div>
             	<div id="divStepPhotoBox_1" class="img_wrap">
-                  <img id="img" style="width: 150px; height: 150px;"/>
+                  <img id="img2" style="width: 150px; height: 150px;"/>
+             	<input multiple="multiple" type="file" name="file2" id="input_img2"
+						accept="jpeg,png,gif" style="width:150px"/> 
             	</div>
-            	<div id="divStepBtn_1" class="step_btn" style="display: inline-block;">
+            </div> 
+            <div id="divStepBtn_1" class="step_btn" style="display: inline-block;">
                 <a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-up moveUp"></span></a>
                 <a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-down moveDown"></span></a>
                 <a href="javascript:addStep(1)"><span class="glyphicon glyphicon-plus"></span></a>
                 <a href="javascript:delStep(1)"><span class="glyphicon glyphicon-remove"></span></a>
-            	</div>
-            </div> 
+            </div>
            	</div>
           
             <div class="btn_add mag_b_25" style="padding:0 0 20px 180px; width:820px;">

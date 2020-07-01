@@ -109,7 +109,7 @@
 		SELECT rcpCode, rcpPic,
 		rcpTitle, nickName, rcpDate
 		FROM recipe.recipedto
-		LIMIT 0, 50
+		LIMIT #{pageNum}, 50
 	</select>
 	<!-- 레시피 총갯수 카운팅 -->
 	<select id="recipeCount" resultType="int">

@@ -32,11 +32,12 @@
 </head>
 <div layout:fragment='content'>
 		<div class="m_list_tit"><!-- recipe counting -->
-		총 <b><span th:text="${recipeCount}"></span></b>개의 맛있는 레시피가 있습니다.
+			총 <b><span th:text="${recipeCount}"></span></b>개의 맛있는 레시피가 있습니다.
 		</div>
+		
 	<div class="rcp_m_tit2"><!-- recipe area -->
-	<div th:each="recipe, rcpStat : ${recipeList}" th:id='${rcpStat.index}'>
-		<p th:text="${'index:' + rcpStat.index}"></p>
+	<div th:each="recipe, index : ${recipeList}" th:id='${index.index}'>
+		
 		<div th:text="${recipe.recipeVO.rcpPic}"></div>
 		<div>
 			<a th:href="@{/recipe/view(rcpCode=${recipe.recipeVO.rcpCode})}"
@@ -48,7 +49,7 @@
 	</div>
 		<!-- pagination -->	
 		<div th:class="Pagination_Li">
-			<div th:each="num: ${#numbers.sequence(1,recipeList.size()/20)}" th:class="page">
+			<div th:each="num: ${#numbers.sequence(1,recipeList)}" th:class="page">
 				<a th:text="${num}" th:value="${num}" style="color: #FF8000;"></a>
 				</div>
 			</div>
