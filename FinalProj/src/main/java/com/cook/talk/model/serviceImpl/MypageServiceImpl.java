@@ -39,28 +39,27 @@ public class MypageServiceImpl implements MypageService{
 	}
 	
 	
-	//마이페이지 유저 사진 업로드 OR 수정
-	@Override
-	public String modifyUserPic(String userPic, @RequestParam("userPic") MultipartFile file) {
-
-		String save = "C:/git/cookingtalking/FinalProj/src/main/resources/static/userImg/";
-		
-		System.out.println("file:"+file);
-		
-		
-		try {
-			
-			byte[] bytes = file.getBytes();
-			Path path = Paths.get(save + file.getOriginalFilename());
-			Files.write(path, bytes);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		mypageDAO.modifyUserPic(userPic);
-		return "정상적으로 등록되었습니다";
-	}
+	/*
+	 * //마이페이지 유저 사진 업로드 OR 수정
+	 * 
+	 * @Override public String modifyUserPic(String
+	 * userPic, @RequestParam("userPic") MultipartFile file) {
+	 * 
+	 * String save =
+	 * "C:/git/cookingtalking/FinalProj/src/main/resources/static/userImg/";
+	 * 
+	 * System.out.println("file:"+file);
+	 * 
+	 * 
+	 * try {
+	 * 
+	 * byte[] bytes = file.getBytes(); Path path = Paths.get(save +
+	 * file.getOriginalFilename()); Files.write(path, bytes);
+	 * 
+	 * } catch (IOException e) { e.printStackTrace(); }
+	 * 
+	 * mypageDAO.modifyUserPic(userPic); return "정상적으로 등록되었습니다"; }
+	 */
 
 	
 	//작성중인 레시피 가져오기
@@ -142,7 +141,7 @@ public class MypageServiceImpl implements MypageService{
 
 	@Override
 	public List<QnAVO> getMyInq() {
-		List<QnAVO> getMyInq = mypageDAO.getmyInq(); 
+		List<QnAVO> getMyInq = mypageDAO.getmyInq();
 		return getMyInq;
 	}
 

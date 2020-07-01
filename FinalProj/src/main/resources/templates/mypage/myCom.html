@@ -139,7 +139,7 @@
 				            var a,b;
 				            removeFunc();
 				            
-				            a = '<tr id="myAllComMain"><td>'
+				            a = '<tr id="myAllComMain">'
 				            b = '</td></tr><br>'
 				            
 				            $.each(data, function(index, value){
@@ -176,7 +176,7 @@
 						            var a,b;
 						            removeFunc();
 						            
-						            a = '<tr id="myAllComMain"><td>'
+						            a = '<tr id="myAllComMain">'
 						            b = '</td></tr><br>'
 						         
 						         $.each(data, function(index, value){
@@ -185,7 +185,19 @@
 						        	console.log(com_date);
 						        	 
 						            console.log(data);
-						            searchedAllCom[index] = data[index].talkCom
+						            
+
+						            searchedAllCom[index] =
+						            '<td th:if="${#strings.startsWith('
+						            + data[index].talkCode + ',"T")}">'
+						            + '<a href="/talk/detail/'
+						            + data[index].talkCode + '">'
+						            + data[index].talkCom + '</a></td>'
+						            +'<td th:unless="${#strings.startsWith('
+						            + data[index].talkCode + ',"T")}">'
+						            + '<a href="/recipe/view?rcpCode='
+						            + data[index].talkCode + '">'
+						            + data[index].talkCom + '</a>'
 						            + '</td><td>' + com_date
 						            console.log("data.talkCom:"+value.talkCom);
 						            console.log("data.talkComDate:"+com_date);
@@ -197,8 +209,6 @@
 						      }
 						   });
 				   }
-		   
-
 		}
 	
 	function removeFunc(){

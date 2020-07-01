@@ -5,25 +5,25 @@
     alert("완료되었습니다!");
     	
     $('#insertRecipe').submit();
-   			//document.location.href = 'recipe/newList'; //위치 잘 모르겠음
+
     	})
 	});
 
-	//취소 버튼
+	// 취소 버튼
  	$(document).ready(function(){
 		$("input.cancel").click(function(){
 			var result = confirm('취소하시겠습니까?');
 			
 			if(result) {
-				//예
-				location.replace('newList'); //글목록 페이지로 이동
+				// 예
+				location.replace('newList'); // 글목록 페이지로 이동
 			} else {
-				//아니오
+				// 아니오
 			}
 		});
 	}); 
  	
- 	//이미지 미리보기
+ 	// 이미지 미리보기
  	var sel_file;
  	
  	$(document).ready(function() {
@@ -50,3 +50,11 @@
  		});
 
  	}
+ 	
+ 	//요리순서 append
+ 	$(document).ready(function() {
+ 	 $("#btn_append").click("<li>Test3</li>" );
+ 	 	$("input").append("")
+ 	} );
+ 	
+ 
