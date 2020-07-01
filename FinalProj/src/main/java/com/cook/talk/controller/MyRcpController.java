@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dao.MypageDAO;
 import com.cook.talk.model.service.MypageService;
+import com.cook.talk.util.FileTrancefer;
 
 @Controller
 public class MyRcpController {
@@ -64,12 +65,20 @@ public class MyRcpController {
 		public String modifyUserPic(UserVO userVO, Model model, 
 				@RequestParam("file") MultipartFile multipartfile) {
 			
-			model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
-			System.out.println("multipart :: " + multipartfile.getOriginalFilename());
-			userVO.setUserPic(multipartfile.getOriginalFilename());
-			mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
+			/*
+			 * model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
+			 * System.out.println("multipart :: " + multipartfile.getOriginalFilename());
+			 * userVO.setUserPic(multipartfile.getOriginalFilename());
+			 * mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
+			 * System.out.println("추가된 파일명:" + multipartfile);
+			 * System.out.println("userPic:"+userVO.getUserPic());
+			 */
+			
+			String userPic = FileTrancefer.requestFileTrancefer(multipartfile, "userPic/");
+			userVO.setUserPic(userPic);
 			System.out.println("추가된 파일명:" + multipartfile);
-			System.out.println("userPic:"+userVO.getUserPic());
+			
+			mypageDAO.modifyUserPic(userPic);
 			
 			return "/mypage/myRecipeIng";
 		}

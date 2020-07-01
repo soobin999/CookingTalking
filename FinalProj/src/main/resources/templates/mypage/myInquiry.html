@@ -10,13 +10,11 @@
 	<script src="/js/mypage.js"></script>
 
 	<!-- 사진 및 계정 정보 -->
-
 	
-	<div id="myPageMain">
-	
+	<div id="mypageMain">
 	<div th:class="uploadPicOfUser">
 				<button onclick="window.open('/mypage/userPic','myPic','width=300px, height=300px, location=no, status=no, scrollbars=no');">사진변경하기</button>
-		</div>
+		</div>     
 	<a href="/userModify.html">회원 정보 수정</a>
 	
 	<div class="myMenu">
@@ -26,20 +24,46 @@
 	<button onclick="myInquiry()">문의 사항</button>
 	</div>
 	
-	<div id="inqBasic">
+	<div id="myInquiry">
 		<button onclick="myInquiry()">문의 하기</button>
 		<button onclick="myInquiryList()">나의 문의 사항</button>
+		</div>
 
-	</div>
-	
-	<div class="myInq">
+	<div th:id="myInquirySub">
+	<div th:id="myInquiryRquestMain">
 		<form th:action="@{/mypage/inputInq}" id="insertMyInq"
 			class="insertMyInq" name="" th:method="post">
-			<input type="text" name="qnaTitle" th:class="qnaTitle" id="qnaTitle" placeholder="제목을 입력하세요"> 
-			<input type="text" name="qnaCont" th:class="qnaCont" id="qnaCont" placeholder="내용을 입력하세요">
-			<button type="submit" th:class="sendInq">제출하기</button>
+			<input type="text" name="qnaTitle" th:class="qnaTitle" th:id="qnaTitle" th:value="${qnaTitle}" placeholder="제목을 입력하세요"> 
+			<input type="text" name="qnaCont" th:class="qnaCont" th:id="qnaCont" th:value="${qnaCont}" placeholder="내용을 입력하세요">
+			<button type="submit" th:class="sendInq" th:id="sendInq">제출하기</button>
 		</form>
 	</div>
 	</div>
+	</div>
+	
+	<script>
+	
+	$(document).ready(function(){
+	
+		 $('#sendInq').click(function(){
+		      
+		      var myInqTitle = $('#qnaTitle').val();
+		      var myInqCont = $('#qnaCont').val();
+		      
+		      if(myInqTitle && myInqCont != null){
+		    	  alert("정상적으로 접수되었습니다");
+		    	  return true
+		      } else{
+		    	  alert("제목과 내용 모두 입력해주세요");
+		    	  return false
+		      }
+		   });
+		
+	})
+	
+	
+	</script>
+	
+	
 </body>
 </html>

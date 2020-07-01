@@ -1,15 +1,17 @@
 $(function() {
 	updateTalk();
 	deleteTalk();
+
 	comment();
+
 	deleteCom();
 	talkSave();
+
 	/* com_Delete(); */
-	comUpdate();
+	// com_update();
 	comDelete();
-	// insertLike();
-	// deleteLike();
-	// showComUpdate();
+	//newCom();
+
 })
 
 // 게시판 삭제 기능
@@ -31,12 +33,12 @@ function updateTalk() {
 
 function comment() {
 	$('#btn_comment').on('click', function() {
-
+		console.log($('#talk-code').val());
 		$.ajax({
 			url : "/com/comInsert",
 			type : "POST",
 			data : {
-				talkCode : $('#talk_code').val(),
+				talkCode : $('#talk-code').val(),
 				talkComCode : $('#talkComCode').val(),
 				userId : $('#userId').val(),
 				talkCom : $('#talk-comment').val()
@@ -89,58 +91,24 @@ function talkSave() {
 		})
 	})
 }
-// 댓글 수정
-function showComUpdate(talkComCode) {
-	$.ajax({
-		type : "get",
-		url : "/talk/detail/",
-		success : function(result) {
-			$("#modifyCom").html(result);
-			$("#modifyCom").css("visibility", "visible");
-		}
-	})
-}
-// 댓글 수정
-function comUpdate() {
-
-	$("#com_update").click(function() {
-		$.ajax({
-			type : "put",
-			url : "/com/update /${talkComCode}",
-			headers : {
-				"Content-Type" : "application/json"
-			},
-			data : JSON.stringify,
-			dataType : "text",
-			success : function(result) {
-				if (result == "success") {
-					$("modifiyCom").css("visibility", "hidden");
-
-				}
-			}
-
-		});
-	});
-}
 
 function comDelete() {
 
-	$("#com_Delete").click(function() {
-		var com = $(this).attr('value');
-
+	$(".comment-delete-btn").click(function(e) {
+		var com = $(e.target).attr('value')
+		console.log(com)
 		if (confirm($(this).attr('value') + " 삭제하시겠습니까?")) {
 
 			$.ajax({
 				method : "post",
-				url : '/com/deletCom/${talkComCode}',
+				url : '/com/deletCom/' + com,
 				data : {
 					talkComCode : com
 				},
 				success : function(result) {
 					if (result == "success") {
 						alert("삭제되었습니다");
-						$("modifiyCom").css("visibility", "hidden");
-
+						location.reload();
 					}
 				}
 			})
@@ -150,39 +118,3 @@ function comDelete() {
 	})
 
 };
-
-/*
- * function insertLike(){ $('comLike_btn').on('click',function(event){
- * event.preventDefault(); var talkVO={
- * 
- * userId :'${user.userId}', talkCode:'${talk.talkCode}', }; $.ajax({
- * url:'/talk/' }) }) }
- */
-
-/*
- * function com_Delete(rno, callback, error) { $('#com_Delete').on('click',
- * function() {
- * 
- * $.ajax({ type : 'delete', url : '/com/deletCom/{talkComCode}', success :
- * function(deleteResult, status, xhr) { if (call back) {
- * callback(deleteResult); } }, error : function (xhr, status, er) { if (error) {
- * error(er); } }
- * 
- * }); }) }
- */
-/*
- * function updateCom(){ S('#com_update').click(function(){
- * if(confirm("수정하시겠습니까?")){ var talkCode = $("#talkCode").val(); var talkCont =
- * $("textarea#talkCont").text(); var userId = $("#userId").val(); var
- * talkComCode= $("#talkComCode").val(); // 변수에 저장 var curPage =
- * $("#curPage").val(); var search_option = $("#search_option").val(); var
- * keyword = $("#keyword").val();
- * 
- * document.form1.action="reply_update.do?rno="+rno+"&r_content="+encodeURI(r_content)+"&user_id="+user_id+"&member_bno="+member_bno+"&curPage="+curPage+"&search_option="+search_option+"&keyword="+keyword;
- * document.form1.submit();
- * 
- * 
- * alert("댓글이 수정되었습니다.") } }); } }) }
- * 
- * 
- */

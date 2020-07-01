@@ -1,5 +1,8 @@
 package com.cook.talk.controller;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,16 +39,24 @@ public class MyInqController {
 		mypageService.rqMyInq(qnAVO);
 		System.out.println("mypageService.rqMyInq(qnAVO)");
 		
-		model.addAttribute("myInqList", mypageDAO.getmyInq());
+		//model.addAttribute("myInqList", mypageDAO.getmyInq());
 		
-		return "/mypage/myInquiryList";
+		return "redirect:/mypage/myInquiryList";
 	}
 	
 	
 	@GetMapping("/mypage/myInquiryList")
-	public String myInquiryList(Model model) {
+	public String myInquiryList(Model model, Principal principal, QnAVO qnAVO) {
 		
-		model.addAttribute("myInqList", mypageDAO.getmyInq());
+		qnAVO.setUserId(principal.getName());
+		String qnaTitle = qnAVO.getQnaTitle();
+		String qnaCont = qnAVO.getQnaCont();
+		
+		System.err.println(qnAVO);
+		
+		List<QnAVO> lists = mypageDAO.getmyInq(principal.getName());
+		System.err.println(lists);
+		model.addAttribute("myInqList", lists);
 		return "/mypage/myInquiryList";
 	}
 	
