@@ -1,85 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <title id='pageTitle'>마이페이지(정민)</title>
 <style type="text/css"></style>
-</head>
-<div layout:fragment='content'>
 
-
-
-<div class="container sub_bg">
-<div id="contents_area" class="col-xs-9">
-
-<div id="viewFriendModal" class="modal" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" style="width:370px">
-    <div class="modal-content" style="padding:0;">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
-        <h4 class="modal-title" id="friendModalTitle"></h4>
-      </div>
-      <div class="modal-body" style="padding:0;">
-        <ul class="follw_list" id="friendModalList_1" style="height:420px;overflow:yes;overflow-x:hidden;">
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<input type="hidden" id="newProfileUrl" name="new_profile_url">
-<!-- <div id="vProfileImageModal" class="modal" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" style="width:570px">
-        <div class="modal-content" style="padding:0;">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
-            <h4 class="modal-title">프로필 사진 / 자기소개 편집</h4>
-          </div>
-          <div class="modal-body" style="padding:10px;text-align:center;">
-                      <img id="vProfileImageModalSrc" src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/11/d610cef7d1e8b5773e029ae6ba590c3d.jpg" style="max-width:550px;max-height:500px;">
-            <div style="margin-top:10px;">
-            <input type="file" name="file" id="file_1" style="display:none;">
-			<p><input type="text" name="self_intro" value="" class="input-sm" size="60" maxlength="100" placeholder="자기소개를 100자 이내로 작성해 주세요."></p>
-            <button type="button" onclick="document.getElementById('file_1').click();" class="btn btn-primary">프로필 사진 바꾸기</button>
-            <button type="button" id="profileSubmitBtn" onclick="doProfileImageSubmit()" class="btn btn-primary" disabled="disabled">저장</button>
-            </div>
-                    </div>
-        </div>
-      </div>
-    </div> -->
-
-<script type="text/javascript" src="https://recipe1.ezmember.co.kr/static/js/ez_dialog.min_20160430.js" charset="utf-8"></script>
-
-	<div class="my_tabs">
-
-	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
-	    
-	    
-	        <li role="presentation" class="active"><a th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-	        <li role="presentation"><a th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
-	        <li role="presentation"><a th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
-	        <li role="presentation"><a th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
-	        
-	    </ul>
-	</div>
-<form name="searchFrm">
-	<input type="hidden" name="mode" value="public">
-    <div class="chef_cont">
-
-
-      
-      <ul class="nav nav-tabs3" style="position:relative;">
-      
-      
-        <li role="presentation" class="active"><a th:class="myInquiryBtn">문의 하기</a></li>
-        <li role="presentation"><a th:class="myInquiryList">나의 문의 사항</a></li>
-
-            </ul>
-      <div class="cont_list">
-      
-      
-      	<div th:id="myInquirySub">
-	
 <style>
 .accordion {
   background-color: #eee;
@@ -106,24 +31,107 @@
 }
 </style>
 
+</head>
+<div layout:fragment='content'>
 
-	<div th:id="myInquiryListMain">
-		<table>
+
+
+<div class="container sub_bg">
+<div id="contents_area" class="col-xs-9">
+
+<div id="viewFriendModal" class="modal" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" style="width:370px">
+    <div class="modal-content" style="padding:0;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
+        <h4 class="modal-title" id="friendModalTitle"></h4>
+      </div>
+      <div class="modal-body" style="padding:0;">
+        <ul class="follw_list" id="friendModalList_1" style="height:420px;overflow:yes;overflow-x:hidden;">
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" id="newProfileUrl" name="new_profile_url">
+
+<script type="text/javascript" src="https://recipe1.ezmember.co.kr/static/js/ez_dialog.min_20160430.js" charset="utf-8"></script>
+
+	<div class="my_tabs">
+
+	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
+	    
+	    
+	        <li role="presentation" class="active"><a th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
+	        <li role="presentation"><a th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
+	        <li role="presentation"><a th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
+	        <li role="presentation"><a th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
+	        
+	    </ul>
+	</div>
+
+    
+
+
+      
+      <ul class="nav nav-tabs3" style="position:relative;">
+      
+      
+        <li role="presentation" class="active"><a th:class="myInquiryBtn">문의 하기</a></li>
+        <li role="presentation"><a th:class="myInquiryList">나의 문의 사항</a></li>
+
+            </ul>
+      <div class="cont_list">
+      
+      
+      	<div th:id="myInquirySub">
+
+
+
+		<div th:id="myInquiryListMain">
+	
+	
+	
+	<tr th:each="myInqList : ${myInqList}" class="myInq-list">
+	
+	
+	<button class="accordion">
+	
+	<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}></td>
+	<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
+	<td><a class="qnaAns" th:id="${myInqList.qnaCode}" th:data-id="${myInqList.qnaCode}" th:data-answer="${myInqList.answer}" style="cursor: pointer;"></a></td>
+	</button>
+<div class="panel">
+  <p><td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td>
+  
+  </p>
+   <p><td th:id="showAns" th:text="${myInqList.answer}"></td>	</p>
+  
+</div>
+
+
+</tr>
+
+	<!-- 
+	<table>
 	<tbody>
 	<tr th:each="myInqList : ${myInqList}" class="myInq-list">
 		<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}></td>
-		<td th:id="myQnATitle" th:class="myAccordion" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
-		<div th:class="panel"><p th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></p></div>
+		<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
+		<td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td>
 		<td><a class="qnaAns" th:id="${myInqList.qnaCode}" th:data-id="${myInqList.qnaCode}" th:data-answer="${myInqList.answer}" style="cursor: pointer;"></a></td>
 		<td th:id="showAns"></td>
 	</tr>
 	</tbody>
 	</table>
+ -->
+	
 	</div>
 </div>
       </div><!--/cont_list -->
-    </div><!--/chef_cont -->
-</form>
+   
+
   </div><!-- /contents_area -->
 
 
@@ -220,19 +228,7 @@
 	</div>
 
 	<div th:id="myInquirySub">
-	<div th:id="myInquiryListMain">
-	<table>
-	<tbody>
-	<tr th:each="myInqList : ${myInqList}" class="myInq-list">
-		<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}></td>
-		<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
-		<td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td>
-		<!-- <td><a class="qnaAns" th:id="${myInqList.qnaCode}" th:data-id="${myInqList.qnaCode}" th:data-answer="${myInqList.answer}" style="cursor: pointer;"></a></td> -->
-		<td th:id="showAns"></td>
-	</tr>
-	</tbody>
-	</table>
-	</div>
+
 	</div>
 	</div>
 	
