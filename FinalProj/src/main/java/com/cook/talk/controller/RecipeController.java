@@ -126,8 +126,10 @@ public class RecipeController {
 		BasicConfigurator.configure(); //log4j 오류처리
 		
 		//rcpPic, cookPic 업로드
-		String rcpPic = FileTrancefer.requestFileTrancefer(file,"recipe/"); 
+		String rcpPic = FileTrancefer.requestFileTrancefer(file, "recipe/"); 
+		String cookPic = FileTrancefer.requestFileTrancefer(file, "rcporder/");
 		recipeDTO.getRecipeVO().setRcpPic(rcpPic);
+		recipeDTO.getRcpOrderVO().setCookPic(cookPic);
 		
 		recipeService.insertRecipeProc(registerStatus, recipeDTO);
 		
