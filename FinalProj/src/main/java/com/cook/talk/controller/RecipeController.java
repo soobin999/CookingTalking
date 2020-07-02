@@ -139,5 +139,9 @@ public class RecipeController {
 	public String deleteRecipe(String rcpCode ) {
 		return "";
 	}
+	@GetMapping("recipe/update")
+	public String updateRecipe	(String rcpCode ) {
+		return "recipe/updateRecipe";
+	}
 
 }

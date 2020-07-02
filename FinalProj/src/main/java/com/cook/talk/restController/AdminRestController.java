@@ -98,6 +98,7 @@ public class AdminRestController {
 	public String insertReply(@ModelAttribute QnAVO qna) {
 		System.out.println(qna.getUserId() + "유저 아이디");
 		System.out.println(qna.getAnswer() + "답이 입력될거에요 ");
+		System.out.println(qna);
 		qnaDAO.insertReply(qna);
 		return "추가되었습니다.";
 	}

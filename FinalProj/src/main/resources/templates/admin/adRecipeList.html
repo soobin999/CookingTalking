@@ -5,6 +5,12 @@
 <title>레시피 모두 보기</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.w3-dropdown-hover:first-child, .w3-dropdown-click:hover{
+	background-color:#e2e6ea;
+	
+	}
+	</style>
 </head>
 
 <body>
@@ -66,7 +72,7 @@
 					<div th:each="num: ${#numbers.sequence(1,IngrList)}"
 						th:class="page">
 						<a th:text="${num}" th:value="${num}"
-							style="color: #FF8000; display: inline;"></a>
+							style="color: #FF8000; display: inline; cursor: pointer;" ></a>
 					</div>
 				</div>
 			</ul>
