@@ -1,5 +1,6 @@
 package com.cook.talk.restController;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.util.List;
 
@@ -27,73 +28,90 @@ public class MypageRestController {
 	@Autowired(required = false)
 	MypageService mypageService;
 	
-	
-	/*
-	 * @PostMapping("/mypage/modifyUserPic") public String modifyUserPic(UserVO
-	 * userVO, Model model,
-	 * 
-	 * @RequestParam("file") MultipartFile multipartfile) {
-	 * 
-	 * model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
-	 * System.out.println("multipart :: " + multipartfile.getOriginalFilename());
-	 * userVO.setUserPic(multipartfile.getOriginalFilename());
-	 * mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
-	 * System.out.println("추가된 파일명:" + multipartfile);
-	 * System.out.println("userPic:"+userVO.getUserPic());
-	 * 
-	 * return "/mypage/myRecipeIng"; }
-	 */
+
 	
 	@PostMapping("/searchMyFollow")
-	public List<MypageDTO> getSearchMyFollow(String followChef){
+	public List<MypageDTO> getSearchMyFollow(String followChef, MypageDTO mypageDTO, Principal principal){
+		
+		mypageDTO.setUserId(principal.getName());
+		
 		System.out.println(followChef);
-		System.out.println(mypageService.getSearchMyFollow(followChef));
+		System.out.println(mypageService.getSearchMyFollow(followChef, principal.getName()));
 
-		return mypageService.getSearchMyFollow(followChef);
+		return mypageService.getSearchMyFollow(followChef, principal.getName());
 
 	}
 	
 	@PostMapping("/searchMyTalk")
-	public List<MypageDTO> getSearchMyTalk(String talkCont) {
+	public List<MypageDTO> getSearchMyTalk(String talkCont, MypageDTO mypageDTO, Principal principal) {
+		mypageDTO.setUserId(principal.getName());
+		
 		System.out.println(talkCont);
-		List<MypageDTO>mypageDTOs=  mypageService.getSearchMyTalk(talkCont);
+		List<MypageDTO> mypageDTOs=  mypageService.getSearchMyTalk(talkCont, principal.getName());
 		Date  date =   mypageDTOs.get(0).getTalkDate();
 		
-		System.out.println(date.getTime()+"    mypageDTOs===="+mypageDTOs);
-		return mypageService.getSearchMyTalk(talkCont);
+		return mypageService.getSearchMyTalk(talkCont, principal.getName());
 	}
 	
 	
 	
 	@PostMapping("/searchMyScrap")
-	public List<MypageDTO> getSearchMyScraped(String rcpTitle){
+	public List<MypageDTO> getSearchMyScraped(String rcpTitle, MypageDTO mypageDTO, Principal principal){
+		mypageDTO.setUserId(principal.getName());
+		
 		System.out.println(rcpTitle);
-		System.out.println(mypageService.getSearchMyScraped(rcpTitle));
-		return mypageService.getSearchMyScraped(rcpTitle);
+		System.out.println(mypageService.getSearchMyScraped(rcpTitle, principal.getName()));
+		return mypageService.getSearchMyScraped(rcpTitle, principal.getName());
 	}
+	
+	
+	
+	
 	
 	@PostMapping("/searchMyAllCom")
-	public List<MypageDTO> getSearchAllMyCom(String talkCom){
-		System.out.println(talkCom);
-		System.out.println(mypageService.getSearchAllMyCom(talkCom));
-		return mypageService.getSearchAllMyCom(talkCom);
+	public List<MypageDTO> getSearchAllMyCom(String talkCom, MypageDTO mypageDTO, Principal principal){
+		mypageDTO.setUserId(principal.getName());
+		
+		System.out.println("searchMyAllCom==="+talkCom);
+		System.out.println(mypageService.getSearchAllMyCom(talkCom, principal.getName()));
+		return mypageService.getSearchAllMyCom(talkCom, principal.getName());
 	}
 	
+	
+	
+	
 	@PostMapping("/searchMyTalkCom")
-	public List<MypageDTO> getSearchTalkCom(String talkCom){
-		System.out.println(talkCom);
-		System.out.println(mypageService.getSearchTalkCom(talkCom));
-		return mypageService.getSearchTalkCom(talkCom);
+	public List<MypageDTO> getSearchTalkCom(String talkCom, MypageDTO mypageDTO, Principal principal){
+		mypageDTO.setUserId(principal.getName());
+		
+		System.out.println("=====searchMyTalkCom======"+talkCom);
+		List<MypageDTO> mypageDTOs= mypageService.getSearchTalkCom(talkCom, principal.getName());
+		for(MypageDTO dto:mypageDTOs)
+			System.out.println("mypageDTOs===>"+dto);
+		return mypageDTOs;
 	}
+	
+	
+	
+	
 	
 	
 	@PostMapping("/searchMyRcpCom")
-	public List<MypageDTO> getSearchRcpCom(String rcpCom) {
-		System.out.println(rcpCom);
-		System.out.println(mypageService.getSearchTalkCom(rcpCom));
-		return mypageService.getSearchRcpCom(rcpCom);
+	public List<MypageDTO> getSearchRcpCom(String rcpCom, MypageDTO mypageDTO, Principal principal) {
+		mypageDTO.setUserId(principal.getName());
+		
+		System.out.println("searchMyRcpCom"+rcpCom);
+		System.out.println(mypageService.getSearchTalkCom(rcpCom, principal.getName()));
+		return mypageService.getSearchRcpCom(rcpCom, principal.getName());
 	}
 	 
+	
+	
+	
+	
+	
+	
+	
 	
 	/*
 	 * @PostMapping("/mypage/ans/{qnaCode}") public String

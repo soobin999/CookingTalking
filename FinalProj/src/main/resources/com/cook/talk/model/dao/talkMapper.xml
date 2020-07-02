@@ -29,8 +29,7 @@
 		select *, (select u.nickName from user u where tc.userId = u.userId) as nickName from recipe.talkcom tc where tc.talkCode = #{talkCode}
 		</select>
 
-	<select id="getTalkList"
-		resultType="com.cook.talk.model.VO.TalkVO">
+	<select id="getTalkList" resultType="com.cook.talk.model.VO.TalkVO">
 		select * from talk<!-- ORDER BY talkCode DESC -->
 	</select>
 

@@ -1,0 +1,46 @@
+.chosung {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 1px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+.ingrButton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 1px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.ingrButton--selected {
+  background-color: #FF5733;
+  border: none;
+  color: white;
+  padding: 1px 1px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+
+.selectedIngr{
+	width: 430px;
+    margin: auto;
+    margin-top: 210px;
+    border: 2px solid #efeef1;
+}
+

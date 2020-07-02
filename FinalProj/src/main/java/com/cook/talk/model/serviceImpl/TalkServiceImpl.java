@@ -32,10 +32,11 @@ private static final String UploadDirectory=System.getProperty("user.dir")+ "\\s
 	@Override
 	public List<TalkVO> getTalkList(CriteriaVO cri) {
 		
-		
 		return talkDAO.getTalkList();
 	}
 
+
+	
 //수정 
 	@Override
 	public TalkVO update(TalkVO talkVO) {
@@ -93,19 +94,5 @@ private static final String UploadDirectory=System.getProperty("user.dir")+ "\\s
 	}
 
 
-
-//좋아요 추가 
-	@Override
-	public int insertLike(TalkVO talkLike) {
-		return 0;
-	}
-
-	//좋아요 취소 
-
-	@Override
-	public void deleteLike(TalkVO talkLike) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

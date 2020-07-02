@@ -23,7 +23,6 @@
 				<table class="table table-bordered" id="searchIngr" border="1" style="text-align:center;">
 					<thead>
 						<tr>
-							<th>재료 사진</th>
 							<th>재료 이름</th>
 							<th>재료 제철</th>
 							<th>재료 칼로리</th>
@@ -47,7 +46,6 @@
 			<thead>
 				<tr>
 					<th>재료 삭제</th>
-					<th>재료 사진</th>
 					<th>재료 이름</th>
 					<th>재료 제철</th>
 					<th>재료 칼로리</th>
@@ -61,7 +59,6 @@
 								aria-label="Checkbox for following text input"
 								th:class="checkRow" th:value="${Ingr.rcpingrCode}">
 						</div></td>
-					<td th:text="${Ingr.ingrPic}">재료 사진</td>
 					<td th:text="${Ingr.ingrName}">재료 이름</td>
 					<td th:text="${Ingr.ingrSeason}">재료 제철</td>
 					<td th:text="${Ingr.ingrCalorie}+Kcal">재료 칼로리</td>
@@ -127,7 +124,6 @@
 									$(".table123").remove();
 									$.each(data, function(index, ingr) {
 										var str = '<tr class="table123"><td>'
-												+ ingr.ingrPic + '</td><td>'
 												+ ingr.ingrName + '</td><td>'
 												+ ingr.ingrSeason + '</td><td>'
 												+ ingr.ingrCalorie + "Kcal"

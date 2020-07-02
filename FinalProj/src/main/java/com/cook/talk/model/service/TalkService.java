@@ -34,9 +34,5 @@ public interface TalkService {
 	// 이미지 업로드
 	public void upload(MultipartFile file);
 
-	// 좋아요
-	public int insertLike(TalkVO talkLike);
-
-	// 좋아요 취소
-	public void deleteLike(TalkVO talkLike);
+	
 }

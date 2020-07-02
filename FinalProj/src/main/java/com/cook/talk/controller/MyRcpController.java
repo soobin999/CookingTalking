@@ -1,5 +1,8 @@
 package com.cook.talk.controller;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
@@ -14,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dao.MypageDAO;
+import com.cook.talk.model.dto.MypageDTO;
 import com.cook.talk.model.service.MypageService;
 import com.cook.talk.util.FileTrancefer;
 
@@ -26,6 +30,7 @@ public class MyRcpController {
 	@Autowired
 	MypageService mypageService;
 	
+	
 	//마이페이지-사용자 개인 사진 수정페이지로 가기
 	@GetMapping("/mypage/userPic")
 	public String userPic() {
@@ -35,26 +40,35 @@ public class MyRcpController {
 	
 	//마이페이지-레시피-나의 작성중인 레시피
 	@GetMapping("/mypage/myRecipeIng")
-	public String myRecipeIng(Model model) {
-		model.addAttribute("myRecipeIng", mypageDAO.getMyRecipeIng());
-		System.out.println(mypageDAO.getMyRecipeIng());
+	public String myRecipeIng(Model model, MypageDTO mypageDTO, Principal principal) {
+		mypageDTO.setUserId(principal.getName());
+		
+		List<MypageDTO> lists = mypageDAO.getMyRecipeIng(principal.getName());
+		
+		model.addAttribute("myRecipeIng", lists);
+		System.err.println(lists);
 		return "/mypage/myRecipeIng";
 	}
 	
 	//마이페이지-레시피-나의 작성완료된 레시피
 	@GetMapping("/mypage/myWritten")
-	public String myWritten(Model model) {
-		model.addAttribute("myWritten", mypageDAO.getMyRecipeWritten());
-		System.out.println(mypageDAO.getMyRecipeWritten());
+	public String myWritten(Model model, MypageDTO mypageDTO, Principal principal) {
+		mypageDTO.setUserId(principal.getName());
+		
+		List<MypageDTO> lists = mypageDAO.getMyRecipeWritten(principal.getName());
+		
+		model.addAttribute("myWritten", lists);
+		System.err.println(lists);
 		return "/mypage/myWritten";
 	}
 	
 	
 	  @GetMapping("/deleteRcp/{rcpCode}") 
-	  public String deleteRcp(@PathVariable("rcpCode") String rcpCode) {
-	  System.out.println("deleteRcp 실행 : "); 
-	  mypageService.deleteRcp(rcpCode);
-	  System.out.println("dao 끝 ");
+	  public String deleteRcp(@PathVariable("rcpCode") String rcpCode, MypageDTO mypageDTO, Principal principal) {
+		  mypageDTO.setUserId(principal.getName());
+			System.out.println("deleteRcp 실행 : ");
+			mypageService.deleteRcp(rcpCode, principal.getName());
+			System.out.println("dao 끝 ");
 	  
 	  return "redirect:/mypage/myWritten"; 
 	  
@@ -63,24 +77,17 @@ public class MyRcpController {
 	  
 		@PostMapping("/mypage/modifyUserPic")
 		public String modifyUserPic(UserVO userVO, Model model, 
-				@RequestParam("file") MultipartFile multipartfile) {
+				@RequestParam("file") MultipartFile multipartfile, Principal principal) {
 			
-			/*
-			 * model.addAttribute("userPicMsg", "요청하신 사진으로 등록이 완료되었습니다");
-			 * System.out.println("multipart :: " + multipartfile.getOriginalFilename());
-			 * userVO.setUserPic(multipartfile.getOriginalFilename());
-			 * mypageService.modifyUserPic(userVO.getUserPic(), multipartfile);
-			 * System.out.println("추가된 파일명:" + multipartfile);
-			 * System.out.println("userPic:"+userVO.getUserPic());
-			 */
+			userVO.setUserId(principal.getName());
 			
 			String userPic = FileTrancefer.requestFileTrancefer(multipartfile, "userPic/");
 			userVO.setUserPic(userPic);
 			System.out.println("추가된 파일명:" + multipartfile);
 			
-			mypageDAO.modifyUserPic(userPic);
+			mypageDAO.modifyUserPic(userPic,principal.getName());
 			
-			return "/mypage/myRecipeIng";
+			return "redirect:/mypage/myRecipeIng";
 		}
 	 
 	

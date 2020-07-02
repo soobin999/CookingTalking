@@ -14,8 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Alias("userVO")
 @Configuration
 @Data
-public class UserVO {
-	
+public class UserVO { 
 	
 	private String userId;
 	private String userPw;
