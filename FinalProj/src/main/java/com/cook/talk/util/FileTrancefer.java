@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileTrancefer {
 
-	public static String requestFileTrancefer(MultipartFile file,String path) {
+	public static String requestFileTrancefer(MultipartFile file, String path) {
 		//rcpPic, cookPic 업로드
 		
 		try {
