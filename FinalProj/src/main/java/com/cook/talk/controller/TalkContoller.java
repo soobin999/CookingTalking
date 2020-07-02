@@ -67,13 +67,13 @@ public class TalkContoller {
 		return "talk/update";
 	}
 	
+	//수정하기
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateTalk(Principal principal, TalkVO talkVO) {
 		talkVO.setUserId(principal.getName());		
 		talkservice.updateTalk(talkVO);
 		return "redirect:/talk/list";
 	}
-
 
 	
 	
