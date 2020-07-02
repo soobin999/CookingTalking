@@ -5,6 +5,11 @@
 <title>회원정보</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+	.w3-dropdown-hover:first-child, .w3-dropdown-click:hover{
+	background-color:#f8f9fa;
+	}
+	</style>
 </head>
 <body>
 	<div class="chef_list4_in" id="allIngrPage">
@@ -75,7 +80,7 @@
 		<ul>
 			<div th:class="Pagination_Li">
 				<div th:each="num: ${#numbers.sequence(1,IngrList)}" th:class="page">
-					<a th:text="${num}" th:value="${num}" style="color: #FF8000;"></a>
+					<a th:text="${num}" th:value="${num}" style="color: #FF8000; cursor: pointer;"></a>
 				</div>
 			</div>
 		</ul>
