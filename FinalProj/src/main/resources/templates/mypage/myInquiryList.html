@@ -1,13 +1,211 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <title id='pageTitle'>마이페이지(정민)</title>
 <style type="text/css"></style>
+
+<style>
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+</style>
+
 </head>
-<body>
+<div layout:fragment='content'>
+
+
+
+<div class="container sub_bg">
+<div id="contents_area" class="col-xs-9">
+
+<div id="viewFriendModal" class="modal" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" style="width:370px">
+    <div class="modal-content" style="padding:0;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
+        <h4 class="modal-title" id="friendModalTitle"></h4>
+      </div>
+      <div class="modal-body" style="padding:0;">
+        <ul class="follw_list" id="friendModalList_1" style="height:420px;overflow:yes;overflow-x:hidden;">
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" id="newProfileUrl" name="new_profile_url">
+
+<script type="text/javascript" src="https://recipe1.ezmember.co.kr/static/js/ez_dialog.min_20160430.js" charset="utf-8"></script>
+
+	<div class="my_tabs">
+
+	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
+	    
+	    
+	        <li role="presentation" class="active"><a th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
+	        <li role="presentation"><a th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
+	        <li role="presentation"><a th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
+	        <li role="presentation"><a th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
+	        
+	    </ul>
+	</div>
+
+    
+
+
+      
+      <ul class="nav nav-tabs3" style="position:relative;">
+      
+      
+        <li role="presentation" class="active"><a th:class="myInquiryBtn">문의 하기</a></li>
+        <li role="presentation"><a th:class="myInquiryList">나의 문의 사항</a></li>
+
+            </ul>
+      <div class="cont_list">
+      
+      
+      	<div th:id="myInquirySub">
+
+
+
+		<div th:id="myInquiryListMain">
+	
+	
+	
+	<tr th:each="myInqList : ${myInqList}" class="myInq-list">
+	
+	
+	<button class="accordion">
+	
+	<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}></td>
+	<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
+	<td><a class="qnaAns" th:id="${myInqList.qnaCode}" th:data-id="${myInqList.qnaCode}" th:data-answer="${myInqList.answer}" style="cursor: pointer;"></a></td>
+	</button>
+<div class="panel">
+  <p><td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td>
+  
+  </p>
+   <p><td th:id="showAns" th:text="${myInqList.answer}"></td>	</p>
+  
+</div>
+
+
+</tr>
+
+	<!-- 
+	<table>
+	<tbody>
+	<tr th:each="myInqList : ${myInqList}" class="myInq-list">
+		<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}></td>
+		<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
+		<td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td>
+		<td><a class="qnaAns" th:id="${myInqList.qnaCode}" th:data-id="${myInqList.qnaCode}" th:data-answer="${myInqList.answer}" style="cursor: pointer;"></a></td>
+		<td th:id="showAns"></td>
+	</tr>
+	</tbody>
+	</table>
+ -->
+	
+	</div>
+</div>
+      </div><!--/cont_list -->
+   
+
+  </div><!-- /contents_area -->
+
+
+    <div id="right_area" class="col-xs-3">
+    <div class="myhome_main" style="margin-bottom:20px;">
+    <div class="myhome_main_t" style="background:url(https://recipe1.ezmember.co.kr/img/mobile/my_pic_d3.jpg) left top no-repeat; background-size:cover;"></div>
+    <div class="myhome_main_info">
+        <div class="info_pic">
+            <a href="javascript:void(0);" onclick="$('#vProfileImageModal').modal('show')"><img src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/11/383ef5b88cc5e16f5a5f3a3071dad9091.jpg"></a>
+            <a href="javascript:void(0);" class="info_set" onclick="$('#vProfileImageModal').modal('show')"><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_camera2.png" alt="사진변경"></a>
+        </div>
+        <div class="w3-container">
+  <h2>나의 계정 정보</h2>
+  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large">사진 변경하기</button>
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+       <!--  <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"> -->
+     <img id="img" style="width:30%"/> 
+     
+      </div>
+
+      <form class="w3-container" action="/mypage/modifyUserPic" method="POST" enctype="multipart/form-data">
+        <div class="w3-section">
+          <label><b>사진 등록</b></label>
+          <input id="input_img" class="w3-input w3-border" type="file" placeholder="사진을 등록하세요" name="file" accept="image/*" required>
+<!--           <input id="user_pw" type="text" placeholder="변경할 비밀번호" name="user_pw"><br>
+          <input id="user_nickName" type="text" placeholder="변경할 닉네임" name="user_nickName"> -->
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">등록하기</button>
+        </div>
+        
+
+        
+      </form>
+
+
+    </div>
+  </div>
+</div>
+        
+    </div>
+</div>
+
+
+
+    
+    </div><!-- /right_area -->
+    <div class="col-xs-12 sub_bg_btm"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/mypage.js?version=20200630"></script> 
+	<script th:src="@{/js/mypage.js}" type="text/javascript"></script>	
 
 	<!-- 사진 및 계정 정보 -->
 	
@@ -30,52 +228,11 @@
 	</div>
 
 	<div th:id="myInquirySub">
-	<div th:id="myInquiryListMain">
-	<table>
-	<tbody>
-	<tr th:each="myInqList : ${myInqList}" class="myInq-list">
-		<td th:value="${myInqList.qnaDate}" th:text=${myInqList.qnaDate}></td>
-		<td th:id="myQnATitle" onclick="showAns();" th:value="${myInqList.qnaTitle}" th:text=${myInqList.qnaTitle}></td>
-		<td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td>
-		<td><a class="qnaAns" th:id="${myInqList.qnaCode}" th:data-id="${myInqList.qnaCode}" th:data-answer="${myInqList.answer}" style="cursor: pointer;"></a></td>
-		<td th:id="showAns"></td>
-	</tr>
-	</tbody>
-	</table>
-	</div>
-	</div>
-	</div>
-	
-	<script>
-	
-	$(document).ready(function(){
-		
-		   $('.qnaAns').each(function(index){
 
-			      var ans = $(this).data('answer');
-			      var ansId = $(this).data('id');
-			      console.log(ans)
-			      
-			      if(ans != null){
-			         $('#' + ansId).append("답변완료");
-			      }
-			      
-			      showAns('#' + ansId)
-			   })
-		
-	});
+	</div>
+	</div>
 	
+
 	
-	function showAns(showTarget){
-		   $(showTarget).on('click', function(e){
-		      var showItem = $(e.target).closest('.myInq-list').find('#showAns');
-		      showItem.text($(e.target).data('answer'))
-		   })
-		};
-	
-	
-	</script>
-	
-	
-</body>
+</div>
 </html>

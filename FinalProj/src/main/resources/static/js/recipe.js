@@ -1,12 +1,10 @@
 $(function() {
-  /* selectedIngr();*/
 	abcd();
 	searchedIngr();
    chosung();
    $('#ingrSearchInRefri').on('change', ingrSearch);
    $('#btnIngrSearch').on('click', ingrSearch);
    enterkey();
-/*   clickOffVer1();*/
 })
 
 function chosung() {
@@ -20,12 +18,10 @@ function chosung() {
          url : "/chosung",
          data : {cs : value},
          success : function(data) {
-            //console.log(data);
             var result = $('#chosungNum');
             $('#searchedIngr').remove();
             $('#ingrList').remove();
 				var list = '<div id="ingrList" class="result-area">'
-					//console.log($('#selectedIngr > ingrButton').val);
 				$.each(data, function(index, value) {
 					if(!$('#selectedIngr > .'+value).val())
 						list = list + '<button class="ingrButton '+value+'" value="'+value+'">' + value + '</button>';
@@ -60,53 +56,8 @@ function searchedIngr() {
 	      
 	   })
 	}
-/*function selectedIngr() {
-	$('#chosungNum').on('click','.ingrButton', function(){
-		var chosen = $(event.target);
-		$('#selectedIngr').append(chosen);
-		$('#selectedIngrForm').append(
-				'<input type="hidden" id="'+$(event.target).val()+'" name="selectedIngr" value="'+$(event.target).val()+'">'
-		);		
-	})
-}*/
 
-/*$(function(){
-	var ingrName = $('.ingrButton').value;
-	var selectedIngr = $('#myIngr').value;
-	
-	console.log(selectedIngr);
-	
-	$.each(ingrName, function(index, value){
-		console.log($(this));
-		if(ingrName == selectedIngr){
-			console.log($(this));
-			$(this).addClass('ingrButton--selected');
-			
-			
-			
-		}
-	});
-	
 
-});*/
-
-function abcd(){
-	
-	var ingrName = $('.ingrButton').text();
-	var selectedIngr = $('#myIngr').text();
-	
-	
-	$.each(ingrName, function(index, value){
-		console.log($(this));
-		if(ingrName == selectedIngr){
-			console.log($(this));
-			$(this).addClass('ingrButton--selected');
-			
-			
-			
-		}
-	});
-}
 
 
 
@@ -138,36 +89,6 @@ $(document).on("click",".ingrButton", function(event){
 });
 
 
-
-
-
-/*function clickOffVer1(){
-	$('.selectedIngr').on('click','.ingrButton', function(){
-		var goBack = $(this).text();
-		var list ='<button class="ingrButton '+goBack+'" value='+goBack+'>'+goBack+'</button>';
-		$('#ingrList').append(list);
-		$('.selectedIngr > .'+goBack).remove();
-		$('#selectedIngrForm > #'+goBack).remove();
-	});
-	
-}*/
-/*
-function clickOffVer2(){
-	$('.selectedIngr').on('click', function(){
-		console.log("back to list on searching");
-		var goBack = $(event.target);
-		console.log(goBack);
-		var list ='<button class="ingrButton1 '+i+++'" value="'+value+'">' + value + '</button>';
-		$('#ingrList').append(list);
-	})
-}*/
-
-/*function sendRcmm(){
-	$('.goToRcmmRecipe').on('click',function(event){
-		
-		console.log($('input[name="selectedIngr"]').val());
-	})
-}*/
 
 
 	function enterkey() {
@@ -229,20 +150,7 @@ function clickOffVer2(){
 
 	
 
-
 	
 	
 	
-//	$('.ingrButton').on('click',function(event){
-//		$('#selectedIngrForm').append(
-//				'<input type="hidden" id="myIngr" name="selectedIngr" value="'+$(event.target).val()+'">'
-//		);
-//	})
-		//var selectedIngr = $('.selectedIngr .ingrButton').val();
-		//console.log(selectedIngr);
-		//$('#myIngr').val(selectedIngr);	
-
 	
-
-
-

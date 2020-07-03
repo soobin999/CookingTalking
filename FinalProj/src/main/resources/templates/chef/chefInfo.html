@@ -93,8 +93,9 @@ text-align:center;}
 						</div>
 				</a></li>
 				<div th:class='con'>
-				<div th:each="num: ${#numbers.sequence(1,totalPage)}" th:class="pagingNum"><a
-					th:text="${num}" th:href="'/chefInfo/'+${num}+'/'+${chefDetail.userVO.nickName}" th:value="${num}" style="color:#FF8000;"></a>
+				<div th:each="num: ${#numbers.sequence(1,totalPage)}" th:class="pagingNum">
+				<a th:text="${num}" th:href="'/chefInfo/'+${num}+'/'+${chefDetail.userVO.nickName}" 
+				th:value="${num}" style="color:#FF8000;"></a>
 				</div>
 				</div> 
 			</ul>

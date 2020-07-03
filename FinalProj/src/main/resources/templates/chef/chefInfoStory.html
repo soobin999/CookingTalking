@@ -100,10 +100,9 @@ body {
 						</div>
 				</a></li>
 				<div th:class='con'>
-					<div th:each="num: ${#numbers.sequence(1,count)}"
-						th:class="pagingNum">
+					<div th:each="num: ${#numbers.sequence(1,count)}" th:class="pagingNum">
 						<a th:text="${num}" th:value="${num}" th:class="paging"
-							style="color: #FF8000;"></a>
+							style="color: #FF8000; cursor:pointer"></a>
 					</div>
 				</div>
 			</ul>

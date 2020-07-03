@@ -4460,6 +4460,8 @@ transition:width .6s ease
 .media, .media-body {
 	zoom:1
 }
+
+
 .media-body {
 	width:10000px;
 	word-break:break-all; 
@@ -4471,9 +4473,11 @@ transition:width .6s ease
 	padding-left:10px;
 }
 .media-left, .media>.pull-left {
+	max-width: 50px;
 	padding-right:10px
 }
 .media-body, .media-left, .media-right {
+	max-width: 50px;
 	display:table-cell;
 	vertical-align:top
 }

@@ -11,9 +11,9 @@
 
 	<update id="insertReply" parameterType="qnAVO">
 		update qna
-		set answer =
-		#{answer}
-		where userId = #{userId}
+		set answer = #{answer}
+		where qnaCode = (select qnaCode from (select qnaCode from qna where qnaTitle=#{qnaTitle} 
+        and userId = #{userId}) as qnaCode)
 	</update>
 </mapper>
 	

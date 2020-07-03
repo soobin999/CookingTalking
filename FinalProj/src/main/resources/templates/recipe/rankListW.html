@@ -11,28 +11,79 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.scrolltop {
+display: none;						
+position: fixed;
+right: 30px;
+bottom: 50px;
+z-index: 1030;
+font-size: 1.875rem;
+color: #868e96;
+transition: all 0.5s ease-in-out;
+opacity: 0.8;
+}
+.scrolltop:hover,
+.scrolltop:focus {
+color: #dc3545;
+transition: all 0.5s ease-in-out;
+}  
+.rcp_m_list2 .thumbnail_over{
+left:16px;
+}
+</style>
 </head>
 <div layout:fragment='content'>
-	<div id="refreshBtn">
-	<p>
-	<button type="button" class="btn btn-default active" aria-pressed="true"
-	onclick="location='/recipe/rankD'">일간</button>
-	<button type="button" class="btn btn-default active" aria-pressed="true"
-	onclick="location='/recipe/rankW'">주간</button>
-	<button type="button" class="btn btn-default active" aria-pressed="true"
-	onclick="location='/recipe/rankM'">월간</button>
-	</p>		
-	</div>
-	<div>
-		<div th:each="rank : ${getRankW}">
-			<div th:text="${rank.recipeVO.rcpPic}"></div>
-			<div>
-				<a th:href="@{/recipe/view(rcpCode=${rank.recipeVO.rcpCode})}"
-					th:text="${rank.recipeVO.rcpTitle}"></a>
-			</div>
-			<div th:text="${rank.userVO.nickName}"></div>
-			<div th:text="${rank.recipeVO.rcpDate}"></div>
-		</div>
-	</div>
+		<div class="snb_nav">
+            <ul class="snb_nav_rcp" style="padding-left:200px;">
+                <li><a href="/recipe/newList" class="active">최신</a></li>
+                <li><a href="/recipe/rankD" >랭킹</a></li>
+            </ul>
+        </div>
+<div id="contents_area_full">
+ <div class="rcp_m_list2"><!-- rank -->
+	<ul class="nav nav-tabs2 pull-right" style="position:relative;">
+      <li role="presentation" class="active"><a th:href="@{/recipe/rankD}">일간</a></li>
+       <li role="presentation"><a th:href="@{/recipe/rankW}">주간</a></li>
+       <li role="presentation"><a th:href="@{/recipe/rankM}">월간</a></li>
+                    </ul>
+     <div>&nbsp;
+     &nbsp;
+     </div>
+  <div class="row" style="padding-top:40px;">                 
+	<div class="col-xs-3" th:each="rank,index : ${getRankW}" th:id='${index.index}'>
+    <a class="thumbnail" th:href="@{/recipe/view(rcpCode=${rank.recipeVO.rcpCode})}">
+       <p class="ranking_num st1"><b th:text="${index.index}+1"></b></p>
+         <span class="thumbnail_over">
+         <img src="https://recipe1.ezmember.co.kr/img/thumb_over.png"></span>
+             <img th:src="@{/img/산마늘.jpg}" style="width:275px; height:275px;">
+                <div class="caption">
+                  <h4 class="ellipsis_title2" th:text="${rank.recipeVO.rcpTitle}"></h4>
+                    by<span th:text="${rank.userVO.nickName}" ></span>-<span th:text="${rank.recipeVO.rcpDate}"></span>
+                        </div>
+                    </a>
+	</div> 
+ </div><!-- row end -->
+</div><!-- rank end -->
+</div><!-- content area end -->
+<!-- scroll -->	
+<a id="backToTop" class="scrolltop" href="#">
+<i class="fas fa-chevron-circle-up"></i></a>
+<script>
+//스크롤
+jQuery(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#backToTop').fadeIn(500);
+    } else {
+      $('#backToTop').fadeOut('slow');
+    }
+  });
+  $('#backToTop').click(function (e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop: 0}, 200);
+  });
+});
+</script>	
 </div><!-- layout end -->
 </html>
