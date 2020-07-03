@@ -43,22 +43,5 @@ public class TalkRestController {
 		talkDAO.insert(talkVO);
 	}
 
-	// 좋아요
-	@RequestMapping(value = "/insertLike.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-	public String insertLike(TalkVO talkLike) {
-		String msg = "";
-		int insertNum = service.insertLike(talkLike);
-		if (insertNum > 0)
-			msg = "success";
-		else
-			msg = "fail";
-		return msg;
-	}
-
-	@RequestMapping(value = "/deleteLike.do", method = RequestMethod.POST, produces = "application/json; charset=utf8")
-	public String deleteLike(TalkVO talkVO) {
-		service.deleteLike(talkVO);
-		return "success";
-	}
 
 }

@@ -15,7 +15,9 @@
 	<form th:method="post" action="#">
 	<div id="contents_area"><!-- contents area -->
 		<div th:each="recipe : ${recipeDTO}">
-            <div th:text="${recipe.recipeVO.rcpPic}"></div>
+            <div th:text="${recipe.recipeVO.rcpPic}">
+            </div>
+            
             <div th:text="${recipe.recipeVO.rcpViews}"></div>
             <div th:text="${recipe.userVO.userPic}"></div>
             <div th:text="${recipe.userVO.nickName}"></div>

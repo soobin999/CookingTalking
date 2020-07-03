@@ -41,7 +41,7 @@ public class RecipeController {
 
 	
 	@PostMapping("/rcmmRecipe")
-	public String rcmmRecipe(Model model, @RequestParam("selectedIngr") List<String> selectedIngr, IngrVO ingrVO){
+	public String rcmmRecipe(Model model, @RequestParam(value="selectedIngr", required=false) List<String> selectedIngr, IngrVO ingrVO){
 		System.out.println("selectedIngr:"+selectedIngr);
 		System.out.println(selectedIngr);
 		
@@ -126,8 +126,10 @@ public class RecipeController {
 		BasicConfigurator.configure(); //log4j 오류처리
 		
 		//rcpPic, cookPic 업로드
-		String rcpPic = FileTrancefer.requestFileTrancefer(file,"recipe/"); 
+		String rcpPic = FileTrancefer.requestFileTrancefer(file, "recipe/"); 
+		String cookPic = FileTrancefer.requestFileTrancefer(file, "rcporder/");
 		recipeDTO.getRecipeVO().setRcpPic(rcpPic);
+		recipeDTO.getRcpOrderVO().setCookPic(cookPic);
 		
 		recipeService.insertRecipeProc(registerStatus, recipeDTO);
 		
@@ -138,6 +140,10 @@ public class RecipeController {
 	@GetMapping("recipe/delete")
 	public String deleteRecipe(String rcpCode ) {
 		return "";
+	}
+	@GetMapping("recipe/update")
+	public String updateRecipe	(String rcpCode ) {
+		return "recipe/updateRecipe";
 	}
 
 }

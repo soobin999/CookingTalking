@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
 <title>추천 레시피</title>
 </head>
-<body>
+<div layout:fragment='content'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="/js/recipe.js"></script>
 	
@@ -23,5 +25,5 @@
 	</tbody>
 	</table>
 	
-</body>
+</div>
 </html>

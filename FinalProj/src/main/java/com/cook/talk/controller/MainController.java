@@ -41,6 +41,7 @@ public class MainController {
 	@GetMapping("/loginIndex")
 	public String loginIndex(Model model, String userId) {
 		model.addAttribute("rcpList", mainService.recipeList(userId));
+		System.out.println(mainService.recipeList(userId));
 		model.addAttribute("newRcpList", maindao.newRecipeList());
 		return "/main/loginIndex";
 	}

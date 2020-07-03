@@ -1,40 +1,29 @@
 package com.cook.talk.model.VO;
 
+import lombok.Data;
+
+@Data
+
 public class CriteriaVO {
 
-	private int page;
-	
-	//페이지 개수
-	private int perpageNum;
-	
-	
-	private int pageStart;
+	/** 현재 페이지 번호 */
+	private int currentPageNo;
+
+	/** 페이지당 출력할 데이터 개수 */
+	private int perPageNum;
+
+	/** 화면 하단에 출력할 페이지 사이즈 */
+	private int pageSize;
+
 
 	public CriteriaVO() {
-		this.page = 1;
-		this.perpageNum = 10;
+		this.currentPageNo = 1;
+		this.perPageNum = 10;
+		this.pageSize = 10;
 	}
 
-	public int getPage() {
-		return this.page;
+	public int getStartPage() {
+		return (currentPageNo - 1) * perPageNum;
 	}
-	
-	public void setPage(int page) {
-		if(page<=0) this.page=1;
-		else this.page=page;
-	}
-	public int getPageNum() {
-		return perpageNum;
-	}
-	
-	public void setperpageNum(int pageCount) {
-		int cnt= this.perpageNum;
-		if(pageCount != cnt) this.perpageNum=cnt;
-		else this.perpageNum=pageCount;
-	}
-	
-	public int getpageStart() {
-		return this.pageStart=(this.page-1)*perpageNum;
-	}
-	
+
 }

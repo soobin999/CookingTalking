@@ -3,17 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>건호 리스트 뿌리기</title>
-<link rel="stylesheet"
-   href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
    <style>
    .w3-dropdown-hover:first-child, .w3-dropdown-click:hover{
    background-color:#f8f9fa;
    }
    </style>
-</head>
-
-
 <div>
    <h1>고객센터 문의함</h1>
 </div>
@@ -21,31 +16,30 @@
 <body>
    <div id="basic">
 
-      <table class="table table-bordered" >
-         <thead style="text-align:center;">
-            <tr>
-               <th scope="col">문의사항제목</th>
-               <th scope="col">문의 내용</th>
-               <th scope="col">문의 날짜</th>
-               <th scope="col">유저</th>
-            </tr>
-         </thead>
-         <tbody th:each="qna, qnaStat:${adQnaList}" th:id='${qnaStat.index}'>
-            <tr>
-               <td scope="row" style="text-align:center;">
-                  <button type="button" class="btn" th:text="${qna.qnaTitle}"
-                     th:id="|btn_open${qnaStat.index}|" name="btn_qna" th:value="${qna.qnaTitle}"></button>
-               </td>
-               <td scope="row" style="text-align:center;">
-                  <div th:text="${qna.qnaCont}"></div>
-               </td>
-               <td scope="row" style="text-align:center;">
-                  <div th:text="${qna.qnaDate}"></div>
-               </td>
-               <td scope="row" style="text-align:center;">
-                  <div th:text="${qna.UserId}"></div>
-               </td>
-
+		<table class="table table-bordered" >
+			<thead style="text-align:center;">
+				<tr>
+					<th scope="col">문의사항제목</th>
+					<th scope="col">문의 내용</th>
+					<th scope="col">문의 날짜</th>
+					<th scope="col">유저</th>
+				</tr>
+			</thead>
+			<tbody th:each="qna, qnaStat:${adQnaList}" th:id='${qnaStat.index}'>
+				<tr>
+					<td scope="row" style="text-align:center;">
+						<button type="button" class="btn" th:text="${qna.qnaTitle}"
+							th:id="|btn_open${qnaStat.index}|" name="btn_qna" th:value="${qna.qnaTitle}"></button>
+					</td>
+					<td scope="row" style="text-align:center;">
+						<div th:text="${qna.qnaCont}"></div>
+					</td>
+					<td scope="row" style="text-align:center;">
+						<div th:text="${qna.qnaDate}"></div>
+					</td>
+					<td scope="row" style="text-align:center;">
+						<div th:text="${qna.UserId}"></div>
+					</td>
             </tr>
             <tr th:id="|open${qnaStat.index}|" class="collapse out bg-light"
                width="100%">
@@ -69,17 +63,16 @@
                            th:name="button_button" style="width:100%">답변하기</button>
                      </div>
                   </div></td>
-
-            </tr>
-         </tbody>
-      </table>
-      <ul>
-         <div th:class="Pagination_Li">
-            <div th:each="num: ${#numbers.sequence(1,IngrList)}" th:class="page">
-               <a th:text="${num}" th:value="${num}" style="color: #FF8000; cursor: pointer;"></a>
-            </div>
-         </div>
-      </ul>
+				</tr>
+			</tbody>
+		</table>
+		<ul>
+			<div th:class="Pagination_Li">
+				<div th:each="num: ${#numbers.sequence(1,IngrList)}" th:class="page">
+					<a th:text="${num}" th:value="${num}" style="color: #FF8000; cursor: pointer;"></a>
+				</div>
+			</div>
+		</ul>
 
    </div>
 </body>
@@ -142,4 +135,5 @@
       }
    });
 </script>
+
 </html>

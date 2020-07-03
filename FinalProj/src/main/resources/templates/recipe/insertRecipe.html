@@ -18,6 +18,7 @@
 .img_wrap img {
 	max-width : 100%;
 }
+
 </style>
 </head>
 <div layout:fragment='content'>
@@ -28,18 +29,19 @@
 	레시피 등록
 	</div>
        <div class="cont_box pad_l_60"><!-- recipe area -->
-       		<div id="divMainPhotoUpload" class="cont_pic2">
+       		<div id="divMainPhotoUpload" class="cont_pic2"><!-- 이미지 -->
                 <div style="position:absolute; left:-3000px">
                 </div>
-                <div class="img_wrap">
-            		<img id="img" style="width: 250px; height: 250px;"/>
-            <input type="file" name="file" id="input_img" accept="jpeg,png,gif" 
+                	<div class="img_wrap">
+            			<img id="img" style="width: 250px; height: 250px;"/>
+            		</div>
+            	<div>
+          		  <input type="file" name="file" id="input_img" accept="jpeg,png,gif" 
             	style="width:250px"/> 
-            	</div>
+            	</div>           	
             </div>   
             <div class="userId"><!-- 아이디 -->
-                <input type="text" th:field="*{recipeVO.userId}" value="1125@naver.com"
-                placeholder="1125@naver.com">
+                <input type="text" th:field="*{recipeVO.userId}" placeholder="1125@naver.com">
             </div>
             <div class="cont_line"><!-- 제목 -->
                 <p class="cont_tit4">레시피 제목</p>
@@ -51,16 +53,10 @@
                 <textarea name="recipeVO.rcpExpl" id="cok_intro" class="form-control step_cont" 
                 th:field="*{recipeVO.rcpExpl}" placeholder="이 레시피의 소개글을 적어주세요"
 						style="height:100px; width:610px; resize:none;"></textarea>
-            </div>
-            <div class="cont_line pad_b_25" id="youTubePlayer1"><!-- 동영상 -->
-                <p class="cont_tit4">동영상</p>
-                <textarea name="recipeVO.video" id="cok_video_url" class="form-control step_cont"
-                th:field="*{recipeVO.video}" placeholder="동영상이 있으면 주소를 입력하세요."
-						style="height:100px; width:380px; resize:none;"></textarea>
-            </div>    
+            </div>   
             <div class="cont_line"><!-- category -->
                 <p class="cont_tit4">카테고리</p>
-                <select name="typeCatVO.cookType" id="cok_sq_category_4" text="종류별">
+                <select name="typeCatVO.cookType" id="cok_sq_category_4">
                     <option value="">종류별</option>
                     <option value="밑반찬">밑반찬</option>
                     <option value="메인반찬">메인반찬</option>
@@ -80,7 +76,7 @@
                     <option value="차/음료/술">차/음료/술</option>
                     <option value="기타">기타</option>
                   </select>
-                <select name="typeCatVO.cookSituation" id="cok_sq_category_2" text="상황별">
+                <select name="typeCatVO.cookSituation" id="cok_sq_category_2">
                     <option value="">상황별</option>
                     <option value="일상">일상</option>
                     <option value="초스피드">초스피드</option>
@@ -97,7 +93,7 @@
                     <option value="이유식">이유식</option>
                     <option value="기타">기타</option>
                 </select>
-                <select name="typeCatVO.cookMethod" id="cok_sq_category_1" text="방법별" >
+                <select name="typeCatVO.cookMethod" id="cok_sq_category_1">
                     <option value="">방법별</option>
                     <option value="볶음">볶음</option>
                     <option value="끓이기">끓이기</option>
@@ -117,7 +113,7 @@
             </div>
             <div class="cont_line"><!-- 요리정보 -->
                 <p class="cont_tit4">요리정보</p>
-                	인원  <select name="recipeVO.personnel" id="cok_portion" text="인원">
+                	인원  <select name="recipeVO.personnel" id="cok_portion">
                     <option value="">인원</option>
                     <option value="1인분">1인분</option>
                     <option value="2인분">2인분</option>
@@ -127,7 +123,7 @@
                     <option value="6인분">6인분이상</option>
                 </select>
                 <span class="pad_l_30">시간</span>
-                <select name="recipeVO.cookTime" id="cok_time" text="요리시간">
+                <select name="recipeVO.cookTime" id="cok_time">
                     <option value="">시간</option>
                     <option value="5분이내">5분이내</option>
                     <option value="10분이내">10분이내</option>
@@ -140,7 +136,7 @@
                     <option value="2시간이상">2시간이상</option>
                 </select>
                 <span class="pad_l_30">난이도</span>
-                <select name="recipeVO.level" id="cok_degree" text="난이도">
+                <select name="recipeVO.level" id="cok_degree">
                     <option value="">난이도</option>
                     <option value="아무나">아무나</option>
                     <option value="초급">초급</option>
@@ -166,38 +162,28 @@
 						</p>
 						<ul id="divMaterialArea_1" class="ui-sortable">
 							<li id="liMaterial_1_1">
-							<a href="#" class="btn-lineup ui-sortable-handle" data-original-title="" title=""></a>
 							 <input type="text" name="cok_material_nm_1[]" id="cok_material_nm_1_1" class="form-control"
 								style="width: 330px;" th:field="*{rcpIngrVO.userIngr}" placeholder="예) 돼지고기"> 
 								<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_1" class="form-control"
 								style="width: 280px;" th:field="*{rcpIngrVO.ingrWeigh}" placeholder="예) 300g"> 
-								<a id="btnMaterialDel_1_1" href="javascript:delMaterial(1,1)"
-								class="btn-del" style="display: none;"></a>
 							</li>
 							<li id="liMaterial_1_2">
-							<a href="#" class="btn-lineup ui-sortable-handle" data-original-title="" title=""></a> 
 							<input type="text" name="cok_material_nm_1[]"
 								id="cok_material_nm_1_2" class="form-control" style="width: 330px;" placeholder="예) 양배추"> 
 								<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_2" class="form-control"
 								style="width: 280px;" placeholder="예) 1/2개"> 
-								<a id="btnMaterialDel_1_2" href="javascript:delMaterial(1,2)"
-								class="btn-del" style="display: none"></a>
 							</li>
 							<li id="liMaterial_1_3">
-							<a href="#" class="btn-lineup ui-sortable-handle" data-original-title="" title=""></a> 
 							<input type="text" name="cok_material_nm_1[]" id="cok_material_nm_1_3" class="form-control"
 								style="width: 330px;" placeholder="예) 참기름"> 
 								<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_3" class="form-control"
 								style="width: 280px;" placeholder="예) 1T"> 
-								<a id="btnMaterialDel_1_3" href="javascript:delMaterial(1,3)"
-								class="btn-del" style="display: none;"></a>
 							</li>
 						</ul>
 						<div class="btn_add"
 							style="padding: 0 0 20px 350px; width: 800px;">
-							<button type="button" onclick="addMaterial(1)"
-								class="btn btn-default">
-								<span class="glyphicon glyphicon-plus-sign"></span>추가
+							<button type="button" value="Add" id="btn_add">
+								추가
 							</button>
 						</div>
 					</li>
@@ -222,20 +208,12 @@
             <div id="divStepUpload_1" style="display:inline-block">
             	<div style="position:absolute; left:-1000px">
             	</div>
-            	<div id="divStepPhotoBox_1" class="img_wrap">
-                  <img id="img2" style="width: 150px; height: 150px;"/>
-             	<input multiple="multiple" type="file" name="file2" id="input_img2"
-						accept="jpeg,png,gif" style="width:150px"/> 
+            	  <input type="file" name="file_0" id="input_imgs"
+						accept="jpeg,png,gif" style="width:200px"/> 
+                  <div>	
             	</div>
             </div> 
-            <div id="divStepBtn_1" class="step_btn" style="display: inline-block;">
-                <a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-up moveUp"></span></a>
-                <a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-down moveDown"></span></a>
-                <a href="javascript:addStep(1)"><span class="glyphicon glyphicon-plus"></span></a>
-                <a href="javascript:delStep(1)"><span class="glyphicon glyphicon-remove"></span></a>
-            </div>
            	</div>
-          
             <div class="btn_add mag_b_25" style="padding:0 0 20px 180px; width:820px;">
 	            	<button type="button" id="btn_append" class="btn btn-default">
     	        	<span class="glyphicon glyphicon-plus-sign"></span>순서추가</button>

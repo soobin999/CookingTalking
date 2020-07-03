@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
 <title>냉장고 파먹기(정민)</title>
 <style type="text/css">
 </style>
+<link th:href="@{css/recipe/rcp.css}" rel="stylesheet">
 </head>
-<body>
+<div layout:fragment='content'>
 
 
    <!-- 냉장고 파먹기 재료 검색창 -->
@@ -44,9 +47,9 @@
 				<table>
 					<tbody th:id="result">
 						<tr th:each="ingrs : ${ingrs}">
-							<td><button th:class="ingrButton" th:id='${ingrs.ingrName}'
+<!-- 							<td><button th:class="ingrButton" th:id='${ingrs.ingrName}'
 									th:value='${ingrs.ingrName}' th:text="${ingrs.ingrName}"
-									data-area=""></button></td>
+									data-area=""></button></td> -->
 						</tr>
 					</tbody>
 				</table>
@@ -54,14 +57,17 @@
 		</div>
 	</form>
 	<!-- 선택한 재료 담는 곳 -->
-	<div th:class="selectedIngr" id="selectedIngr" value=""></div>
+	<!-- <div th:class="selectedIngr" th:id="selectedIngr" value=""></div> -->
 	
 	<form id="selectedIngrForm" th:action="@{/rcmmRecipe}" th:method="POST">
 		<!-- <input type="hidden" id="myIngr" name="selectedIngr" value="${selectedIngr}"> -->
+		<div th:class="selectedIngr" th:id="selectedIngr" >
+		
+		</div>
 		<button type="submit" th:class="goToRcmmRecipe" th:id="goToRcmmRecipe">레시피 검색하러 가기</button>
 	</form>
 	
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
 		<script src="/js/recipe.js"></script>
-</body>
+</div>
 </html>

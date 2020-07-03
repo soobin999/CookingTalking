@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" class>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -14,7 +15,6 @@
 <title>쿠킹토킹</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-
 
 
 <style type="text/css">
@@ -45,6 +45,7 @@ iframe
 							<button class="btn btn-default" type="button"
 								onclick="$('#frmTopRecipeSearch').submit();">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+								
 							</button>
 						</span>
 					</div>
@@ -53,13 +54,14 @@ iframe
 			<ul class="gnb_right">
 				<li><a href="/user/login.html"> <img
 						src="img/user_icon.png" alt="유저"></a></li>
-				<li><a href="#"
-					style="display: block; width: 44px; height: 44px;"> <img
-						src="img/login_icon.png" alt="로그인"></a></li>
+				<li><a th:href= "@{/index/logout}" style="display: block; width: 44px; height: 44px;"> 
+					<img src="img/login_icon.png" alt="로그인"></a></li>
 				<li><a id="btnTopWrite" href="/recipe/insert"
 					data-toggle="tooltip" data-placement="top" title="레시피등록"
 					data-original-title="레시피등록"><img
+			
 						src="img/recipe_write_icon.png"></a></li>
+
 			</ul>
 
 		</div>

@@ -23,7 +23,7 @@
 		});
 	}); 
  	
- 	// 이미지 미리보기
+	// 이미지 미리보기
  	var sel_file;
  	
  	$(document).ready(function() {
@@ -48,13 +48,31 @@
  			}
  			reader.readAsDataURL(f);
  		});
-
  	}
- 	
- 	//요리순서 append
- 	$(document).ready(function() {
- 	 $("#btn_append").click("<li>Test3</li>" );
- 	 	$("input").append("")
- 	} );
- 	
  
+	
+/*	//요리순서 append
+ $(document).ready(function() {
+ 		$("#btn_add").click(function() {
+ 			$("ul").append(
+ 		"<li>
+ 		<input type="text" name="cok_material_nm_1[]" id="cok_material_nm_1_1" class="form-control"
+	style="width: 330px;" th:field="*{rcpIngrVO.userIngr}" placeholder="예) 돼지고기"/> 
+	<input type="text" name="cok_material_amt_1[]" id="cok_material_amt_1_1" class="form-control"
+	style="width: 280px;" th:field="*{rcpIngrVO.ingrWeigh}" placeholder="예) 300g"/>
+	</li>");	
+ 			
+ 		});
+ 	}); */
+ 	
+ 	
+ 	
+ 	function fn_addFile() {
+ 		var str = "<p><input type='file' name='file_"+(gfv_count++)+"'>" +
+ 				"<a href='#this' class='btn' name='delete'>삭제</a></p>"; 
+ 		$("#fileDiv").append(str); 
+ 		$("a[name='delete']").on("click", function(e){ //삭제 버튼 
+ 			e.preventDefault(); 
+ 			fn_deleteFile($(this)); 
+ 			});
+ 		}
