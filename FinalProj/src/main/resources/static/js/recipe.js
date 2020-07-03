@@ -1,5 +1,5 @@
 $(function() {
-	abcd();
+	/*abcd();*/
 	searchedIngr();
    chosung();
    $('#ingrSearchInRefri').on('change', ingrSearch);

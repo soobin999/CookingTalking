@@ -57,10 +57,10 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
 	    
 	    
-	        <li role="presentation" class="active"><a th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-	        <li role="presentation"><a th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
-	        <li role="presentation"><a th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
-	        <li role="presentation"><a th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
+	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
+	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
+	        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
 	        
 	    </ul>
 	</div>
@@ -73,8 +73,8 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
       <ul class="nav nav-tabs3" style="position:relative;">
       
       
-        <li role="presentation" class="active"><a th:class="myActivityBtn">내가 작성한 글</a></li>
-        <li role="presentation"><a th:class="myComBtn">내가 작성한 댓글</a></li>
+        <li role="presentation" class="active"><a href="/mypage/myTalk" th:class="myActivityBtn">내가 작성한 글</a></li>
+        <li role="presentation"><a href="/mypage/myCom" th:class="myComBtn">내가 작성한 댓글</a></li>
 		
 			<form onsubmit="return false">
 				<input type="text" onsubmit="return false" title="토크검색"

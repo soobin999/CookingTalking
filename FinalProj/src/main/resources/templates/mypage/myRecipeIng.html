@@ -9,8 +9,8 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 <style type="text/css"></style>
 
 </head>
-<div layout:fragment='content'>
-	
+ <div layout:fragment='content'> 
+	<div id="mypageMain">
 	
 	<div class="container sub_bg">
     
@@ -24,10 +24,10 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
 	    
 	    
-	        <li role="presentation" class="active"><a th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-	        <li role="presentation"><a th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
-	        <li role="presentation"><a th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
-	        <li role="presentation"><a th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
+	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
+	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
+	        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
 	        
 	    </ul>
 	</div>
@@ -39,8 +39,8 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
       <ul class="nav nav-tabs3" style="position:relative;">
       
       
-        <li role="presentation" class="active"><a th:class="myRecipeBtn">작성중인 레시피</a></li>
-        <li role="presentation"><a th:class="myWrittenBtn">작성완료된 레시피</a></li>
+        <li role="presentation" class="active"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn">작성중인 레시피</a></li>
+        <li role="presentation"><a href="/mypage/myWritten" th:class="myWrittenBtn">작성완료된 레시피</a></li>
 
             </ul>
       <div class="cont_list">
@@ -48,13 +48,6 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
       
       	<div th:id="myRecipeSub">
 	
-	
-      
-<!--     <div class="result_none"><img src="https://recipe1.ezmember.co.kr/img/none_recipe.png">
-        <p>레시피를 직접 올려보세요!</p>
-        자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br>
-        <button type="button" onclick="location.href='/inbox/insert.html';" class="btn-lg btn-primary">레시피 등록하기</button>
-    </div> -->
 
 <!-- 
 
@@ -76,7 +69,7 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	<table>
 	<tbody>
 	<tr th:each="myRecipeIng : ${myRecipeIng}" th:class="myRecipeIng" id="myRecipeIng">
-		<div class="media-left"><td> <img th:class="myRcpIngImg" th:src="'/img/' + ${myRecipeIng.rcpPic}"></td></div>
+		<div class="media-left"><td> <img th:class="myRcpIngImg" th:src="'/img/' + ${myRecipeIng.rcpPic}" data-holder-rendered="true" style="width:180px; height:180px;"></td></div>
 		<div class="media-body"><td><h4 class="media-heading" id="top-aligned-media" th:text=${myRecipeIng.rcpTitle}></h4></td></div>
 		<td> <!-- <form th:id="modifyMyRcpForm" th:action="" method=""> 나중에 쓸지도 몰라서 남겨둠 -->
         <!-- <input type="hidden" th:name="rcpCode" th:value="delete"/> 나중에 쓸지도 몰라서 남겨둠 -->
@@ -195,6 +188,7 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	</div>
 	</div>
 	</div> -->
+	</div>
 	</div> <!-- layout end -->
 
 </html>

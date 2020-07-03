@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <title id='pageTitle'>마이페이지(정민)</title>
@@ -63,10 +65,10 @@
 	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
 	    
 	    
-	        <li role="presentation" class="active"><a th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-	        <li role="presentation"><a th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
-	        <li role="presentation"><a th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
-	        <li role="presentation"><a th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
+	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
+	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
+	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
 	        
 	    </ul>
 	</div>
@@ -78,8 +80,8 @@
       <ul class="nav nav-tabs3" style="position:relative;">
       
       
-        <li role="presentation" class="active"><a th:class="myInquiryBtn">문의 하기</a></li>
-        <li role="presentation"><a th:class="myInquiryList">나의 문의 사항</a></li>
+        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn">문의 하기</a></li>
+        <li role="presentation" class="active"><a href="/mypage/myInquiryList" th:class="myInquiryList">나의 문의 사항</a></li>
 
             </ul>
       <div class="cont_list">
@@ -106,6 +108,7 @@
   <p><td th:id="myQnACont" th:value="${myInqList.qnaCont}" th:text=${myInqList.qnaCont}></td>
   
   </p>
+
    <p><td th:id="showAns" th:text="${myInqList.answer}"></td>	</p>
   
 </div>

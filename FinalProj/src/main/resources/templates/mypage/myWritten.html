@@ -59,10 +59,10 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
 	    
 	    
-	        <li role="presentation" class="active"><a th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-	        <li role="presentation"><a th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
-	        <li role="presentation"><a th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
-	        <li role="presentation"><a th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
+	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
+	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
+	        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
 	        
 	    </ul>
 	</div>
@@ -74,8 +74,8 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
       <ul class="nav nav-tabs3" style="position:relative;">
       
       
-        <li role="presentation" class="active"><a th:class="myRecipeBtn">작성중인 레시피</a></li>
-        <li role="presentation"><a th:class="myWrittenBtn">작성완료된 레시피</a></li>
+        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn">작성중인 레시피</a></li>
+        <li role="presentation" class="active"><a href="/mypage/myWritten" th:class="myWrittenBtn">작성완료된 레시피</a></li>
 
             </ul>
       <div class="cont_list">
