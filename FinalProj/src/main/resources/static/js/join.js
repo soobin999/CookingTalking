@@ -175,7 +175,7 @@ $(document).ready(function() {
 			userId : {
 				required : true,
 				minlength : 3,
-				remote : "Validate"
+			//	remote : "Validate"
 			},
 			userPw : "required",
 			userPw2 : {
@@ -185,6 +185,9 @@ $(document).ready(function() {
 			nickName : {
 				required : true
 			},
+			birth : {
+				required : true
+			},
 			gender : {
 				required : true
 			}
@@ -192,20 +195,20 @@ $(document).ready(function() {
 		},
 		messages : {
 			userId : {
-				required : "아이디를 입력하시오.",
-				minlength : jQuery.format("아이디는 {0}자 이상 입력해주세요!"),
-				remote : jQuery.format("입력하신 {0}는 이미존재하는 아이디입니다. ")
+				required : "아이디를 입력해주세요.",
 			},
-			userPw : "암호를 입력하시오.",
+			userPw : "비밀번호를 입력해주세요.",
 			userPw2 : {
-				required : "암호확인를 입력하시오.",
-				equalTo : "암호를 다시 확인하세요"
+				required : "비밀번호 확인를 입력해주세요.",
+				equalTo : "비밀번호를 다시 확인해주세요"
 			},
 
 			nickName : {
-				required : "닉네임을 입력하시오."
+				required : "닉네임을 입력해주세요."
 			},
-
+			birth : {
+				required : "생년월일을 입력해주세요."
+			},
 			gender : {
 				required : "성별을 선택해 주세요 ."
 			}
@@ -213,9 +216,6 @@ $(document).ready(function() {
 		submitHandler : function(frm) {
 			frm.submit(); //유효성 검사를 통과시 전송
 
-		},
-		success : function(e) {
-			//
 		}
 
 	});

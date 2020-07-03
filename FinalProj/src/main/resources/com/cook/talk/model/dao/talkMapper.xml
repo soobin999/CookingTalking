@@ -27,6 +27,9 @@
 		</select>
 		<select id="getCommentListById" resultType="com.cook.talk.model.VO.TalkComVO">
 		select *, (select u.nickName from user u where tc.userId = u.userId) as nickName from recipe.talkcom tc where tc.talkCode = #{talkCode}
+		
+		
+		
 		</select>
 
 	<select id="getTalkList" resultType="com.cook.talk.model.VO.TalkVO">

@@ -7,40 +7,39 @@
 <title>게시글 목록</title>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#btnWrite").click(function() {
-			location.href = "${path}/talk/wirte";
-		});
-	});
+   $(document).ready(function() {
+      $("#btnWrite").click(function() {
+         location.href = "${path}/talk/wirte";
+      });
+   });
 </script>
 </head>
 <body>
-	<button type="button" id=btnWrite>글쓰기</button>
+   <button type="button" id=btnWrite>글쓰기</button>
 
-	<a th:href="@{/talk/insert}">글쓰기</a>
+   <a th:href="@{/talk/insert}">글쓰기</a>
 
 
+   <table border="1" width="600px">
+      <thead>
+         <tr>
+            <th>번호</th>
+            <th>내용</th>
+            <th>아이디</th>
+            <th>날짜</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr th:each="talk : ${list}">
+            <td th:text="${talk.talkCode}"></td>
+            <td><a
+               th:href="@{/talk/detail/{talkCode}(talkCode=${talk.talkCode})}"
+               th:text="${talk.talkCont}"></td>
+            <td th:text="${talk.userId}"></td>
+            <td th:text="${talk.talkDate}"></td>
+         </tr>
+      </tbody>
 
-	<table border="1" width="600px">
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>내용</th>
-				<th>아이디</th>
-				<th>날짜</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="talk : ${list}">
-				<td th:text="${talk.talkCode}"></td>
-				<td><a
-					th:href="@{/talk/detail/{talkCode}(talkCode=${talk.talkCode})}"
-					th:text="${talk.talkCont}"></td>
-				<td th:text="${talk.userId}"></td>
-				<td th:text="${talk.talkDate}"></td>
-			</tr>
-		</tbody>
-
-	</table>
+   </table>
 </body>
 </html>
