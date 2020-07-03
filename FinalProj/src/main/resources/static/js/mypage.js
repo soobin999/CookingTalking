@@ -1,4 +1,62 @@
 
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+	
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    console.log("acc");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+var sel_file;
+
+$(document).ready(function(){
+	$('#input_img').on("change", handleImgFileSelect);
+});
+
+function handleImgFileSelect(e){
+	var files = e.target.files;
+	var file = $('#input_img')[0].files[0];
+	console.log(files);
+	var filesArr = Array.prototype.slice.call(files);
+
+		filesArr.forEach(function(f){
+			if(!f.type.match("image.*")){
+				alert("확장 가능한 이미지 파일이 아닙니다");
+				return false;
+				
+			}
+			sel_file = f;
+			
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#img').attr("src", e.target.result);
+				
+			}
+			reader.readAsDataURL(f);
+		});
+		
+	
+}
+
+
 $(document).ready(function(){
 
 	
@@ -11,58 +69,216 @@ $(document).ready(function(){
 	
 	}	
 	
-   $('#comSearchInMy').on('keydown', function(event){
-	   if(event.keyCode == 13){
-		   myAllComSearch();
-		   event.preventDefault();
-		}
+	
+	
+	
+	
+
+	$(document).ready(function(){
+		
+		   $('.qnaAns').each(function(index){
+
+			      var ans = $(this).data('answer');
+			      var ansId = $(this).data('id');
+			      console.log(ans)
+			      
+			      if(ans != null){
+			         $('#' + ansId).append("답변완료");
+			      }
+			      console.log(index)
+			      showAns('#' + ansId)
+			  })
+		
 	});
+	
+	
+	
+	
+	
+	
+	
+	function showAns(showTarget){
+		   $(showTarget).on('click', function(e){
+		      var showItem = $(e.target).closest('.myInq-list').find('#showAns');
+		      showItem.text($(e.target).data('answer'))
+		   })
+		};
+		
+		
+		
 
-   /*쉐프 검색하기 via 엔터*/
-   $('#chefSearchInMy').on('keydown', function(event){
-      if(event.keyCode == 13){
-         chefSearch();
-         event.preventDefault();
-      };
-   });
-   
-   
-   /*스크랩 검색하기 via 엔터*/
-   $('#scrapedSearchInMy').on('keydown', function(event){
-      if(event.keyCode == 13){
-         myScrapSearch();
-         event.preventDefault();
-      }
-   });
-   
-   /*모든 코멘트 검색하기 via 엔터*/
-   $('#comSearchInMy').on('keydown', function(event){
-      if(event.keyCode == 13){
-    	 /*$('#myAllComMain').remove();*/
-         myAllComSearch();
-         event.preventDefault();
-      }
-   })
-   
+	$('#chefSearchInMy').on('keydown', function(event){ 
+		if(event.keyCode == 13){
+			chefSearch();
+		    event.preventDefault();
+		};
+	});
+	
 
-
-
-   $('#btnChefSearchInMy').on('click', function(){
-      chefSearch();
-   });
-   
-   $('#btnScrapedSearchInMy').on('click', function(){
-      myScrapSearch();
-   });
-   
-   
-   
-   
-   
-   $('#btnComSearchInMy').on('click', function(){
-
-	  
+   $('#btnChefSearchInMy').on('click', chefSearch);
+		   
+		   
+function chefSearch(){
+	   var inputSearchKey = $('#chefSearchInMy').val();
 	   
+	   $.ajax({
+		      type : "POST",
+		      url : "/searchMyFollow",
+		      data : {followChef : inputSearchKey},
+		      success : function(data) {
+		      $('#myFollowResult').empty();
+			  $('#myFollowResult').append('<table><br><tbody>');
+			  
+			  var searchedChef = new Array();
+			  
+			  var nickName, followC;
+
+			  $.each(data, function(index, value){
+				  
+				  nickName = data[index].nickName;
+				  followC = data[index].followC;
+				  
+				  searchedChef[index] = '<tr id="myFollowMain"><td><a href="/chefInfo/1/'+ nickName + '">' + nickName + '</a></td><td>' + followC
+			            
+		         });
+			  $('#myFollowResult').append(searchedChef);
+		      },
+		      error : function(){
+		         alert("chefSearch Error");
+		      }
+		   });
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$('#scrapedSearchInMy').on('keydown', function(event){
+    if(event.keyCode == 13){
+       myScrapedSearch();
+       event.preventDefault();
+    }
+ });
+
+
+   $('#btnScrapedSearchInMy').on('click', myScrapedSearch);
+   
+   
+   function myScrapedSearch(){
+	   var inputSearchKey = $('#scrapedSearchInMy').val();
+	   
+	   $.ajax({
+		      type : "POST",
+		      url : "/searchMyScrap",
+		      data : {rcpTitle : inputSearchKey},
+		      success : function(data) {
+		      $('#myScrapedResult').empty();
+			  $('#myScrapedResult').append('<table><br><tbody>');
+			  
+			  var searchedScrap = new Array();
+			  
+			  var rcpCode;
+
+			  $.each(data, function(index, value){
+				  
+				  var scrap_date = (new Date(data[index].scrapDate)).yyyymmdd();
+				  
+				  rcpCode = data[index].rcpCode;
+				  
+				  searchedScrap[index] = '<tr id="myAllComMain"><td><a href="/recipe/view?rcpCode='+ rcpCode + '">' + data[index].rcpPic + '</a></td><td><a href="/recipe/view?rcpCode=' + 
+				  rcpCode + '">' + data[index].rcpTitle + '</a></td><td>' + scrap_date
+			            
+		         });
+			  $('#myScrapedResult').append(searchedScrap);
+		      },
+		      error : function(){
+		         alert("scrapedSearch Error");
+		      }
+		   });
+	   
+   }
+   
+   
+   
+   
+   
+   
+   
+   $('#talkSearchInMy').on('keydown', function(event){
+	    if(event.keyCode == 13){
+	       talkSearch();
+	       event.preventDefault();
+	    }
+	 });
+
+
+	   $('#btnTalkSearchInMy').on('click', talkSearch);
+	   
+	   
+	   function talkSearch(){
+		   var inputSearchKey = $('#talkSearchInMy').val();
+		   
+		   $.ajax({
+			      type : "POST",
+			      url : "/searchMyTalk",
+			      data : {talkCont : inputSearchKey},
+			      success : function(data) {
+			      $('#myTalkResult').empty();
+				  $('#myTalkResult').append('<table><br><tbody>');
+				  
+				  var searchedTalk = new Array();
+				  
+				  $.each(data, function(index, value){
+					  
+					  var talk_date = (new Date(data[index].talkDate)).yyyymmdd();
+					  
+					  searchedTalk[index] = '<tr id="myTalkMain"><td><a href="/talk/detail/'+ data[index].talkCode + '">' + data[index].talkCont + '</a></td><td>' + talk_date;
+				            
+			         });
+				  $('#myTalkResult').append(searchedTalk);
+			      },
+			      error : function(){
+			         alert("talkSearch Error");
+			      }
+			   });
+		   
+	   }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+	$('#comSearchInMy').on('keydown', function(event){ 
+		if(event.keyCode == 13){
+			allComSearch();
+		    event.preventDefault();
+		};
+	});
+   
+
+   $('#btnComSearchInMy').on('click', allComSearch);
+		
+		
+   
+   function allComSearch(){
+
 	   var inputSearchKey = $('#comSearchInMy').val(); 
 	   var selectedV = document.getElementById("comSelect").options[document.getElementById("comSelect").selectedIndex].value;
 	   
@@ -83,64 +299,47 @@ $(document).ready(function(){
 		   
 	   }
 		   
-	   console.dir(paramData);
-	  
 	  $.ajax({
 	     type : "POST",
 	     url : ctrlUrl,
 	     data : paramData,
 	     success : function(data) {
-	    	 $('#myMainResult').empty();
-	    	 $('#myMainResult').append('<table><br><tbody>'); 
+	    	 $('#myComResult').empty();
+	    	 $('#myComResult').append('<table><br><tbody>'); 
 	    	 
-	    	 var temp = new Array();
+	    	 var searchedCom = new Array();
 	           
 	         var talkCode,talkCom;
 	         $.each(data, function(index, value){
 	        	 
 	         	var com_date = (new Date(data[index].talkComDate)).yyyymmdd();
 	         	
-	        	console.log(com_date);
-	        	 
-	            console.log(data);
-	            
 	            talkCode = data[index].talkCode;
 	            talkCom = data[index].talkCom;
-	            console.log( data[index].talkCode+"==      talkCode=====>"+talkCode+"  type  "+(typeof selectedV));
 	            
 	            if(selectedV == "onlyTalk"){
-	            	 console.log("onlyTalk========>");
-	            	 temp[index] = '<tr id="myAllComMain"><td><a href="/talk/detail/' + talkCode + '">'  + talkCom + '</a></td><td>' + com_date ;
-	     		 
-	            	 
-	     	   }else if(selectedV == "onlyRcp"){
-	     		  console.log("onlyRcp========>");
-	     		 com_date =  (new Date(data[index].rcpComDate)).yyyymmdd(); 
-	     		     temp[index] = '<tr id="myAllComMain"><td><a href="/recipe/view?rcpCode=' + data[index].rcpCode + '">'  + data[index].rcpCom + '</a></td><td>' + com_date ;
-	     	   } else{
-	     		  if(talkCode.startsWith("T")){
-	     			 console.log("T========>");
-	     			 temp[index] = '<tr id="myAllComMain"><td><a href="/talk/detail/' + talkCode + '">'  + talkCom + '</a></td><td>' + com_date ;
-		          }else if(talkCode.startsWith("R")){
-		        	  console.log("R========>");
-		        	 temp[index] = '<tr id="myAllComMain"><td><a href="/recipe/view?rcpCode=' + talkCode + '">'  + talkCom + '</a></td><td>' + com_date ;	
-		          } 
-	     	   }
-	     		   
-	         }); 
+	            	searchedCom[index] = '<tr id="myAllComMain"><td><a href="/talk/detail/' + talkCode + '">'  + talkCom + '</a></td><td>' + com_date;
+
+	            }else if(selectedV == "onlyRcp"){
+	     		   com_date =  (new Date(data[index].rcpComDate)).yyyymmdd();
+	     		   searchedCom[index] = '<tr id="myAllComMain"><td><a href="/recipe/view?rcpCode=' + data[index].rcpCode + '">'  + data[index].rcpCom + '</a></td><td>' + com_date;
+	     	   
+	            } else{
+	            	if(talkCode.startsWith("T")){
+	            		searchedCom[index] = '<tr id="myAllComMain"><td><a href="/talk/detail/' + talkCode + '">'  + talkCom + '</a></td><td>' + com_date;
+	            		}else if(talkCode.startsWith("R")){
+	            			searchedCom[index] = '<tr id="myAllComMain"><td><a href="/recipe/view?rcpCode=' + talkCode + '">'  + talkCom + '</a></td><td>' + com_date;
+	            			} 
+	            	}
+	            }); 
 	           
-	            
-	          
-	         $('#myMainReslut').append(temp);
+	         $('#myComResult').append(searchedCom);
 	     },//success
 	     error : function(){
 	        alert("searchedTalkCom Error");
 	         }
 	    });
-	  
-			  
-   });// $('#btnComSearchInMy').on('click', function(){   end
-
+   };
 
    
    
@@ -154,62 +353,82 @@ function deleteMyRcp(){
 	console.log("key : " + key);
 }
 
-$('.myRecipeBtn').on('click', function(){
+
+
+
+
+/*$('.myRecipeBtn').on('click', function(){
+	window.location.reload();
 	$('#mypageMain').load("/mypage/myRecipeIng");
 	console.log("myRecipeIng");
-});
+});*/
 
 
 
-$('.myFrequentBtn').on('click', function(){
+/*$('.myFrequentBtn').on('click', function(){
    $('#mypageMain').load("/mypage/myFollow");
    console.log("myFrequentBtn");
-});
+});*/
 
 
 
-$('.myActivityBtn').on('click', function(){
+/*$('.myActivityBtn').on('click', function(){
 	$('#mypageMain').load("/mypage/myTalk");
 	console.log("myActivityBtn");
-});
+});*/
 
 
-$('.myInquiryBtn').on('click', function(){
+/*$('.myInquiryBtn').on('click', function(){
 	$('#mypageMain').load("/mypage/myInquiry");
 	console.log("myInquiryBtn");
-});
+});*/
 
 
-$('.myComBtn').on('click', function(){
+/*$('.myComBtn').on('click', function(){
 	$('#mypageMain').load("/mypage/myCom");
 	console.log("myComBtn");
-});
+});*/
 
 
 
-$('.myInquiryList').on(click, function(){
+/*$('.myInquiryList').on('click', function(){
 	$('#mypageMain').load("/mypage/myInquiryList");
 	console.log("myInquiryList");
+});*/
+
+
+/*$('.myWrittenBtn').on('click', function(){
+	$('#mypageMain').load("/mypage/myWritten");
+	console.log("myWritten");
+});*/
+
+
+/*$('.myScrapedBtn').on('click', function(){
+	$('#mypageMain').load("/mypage/myScraped");
+	console.log("myScraped");
+});*/
+
+
+
+
+$(document).ready(function(){
+	
+	 $('#sendInq').click(function(){
+	      
+	      var myInqTitle = $('#qnaTitle').val();
+	      var myInqCont = $('#qnaCont').val();
+	      
+	      if(myInqTitle && myInqCont != null){
+	    	  alert("정상적으로 접수되었습니다");
+	    	  return true
+	      } else{
+	    	  alert("제목과 내용 모두 입력해주세요");
+	    	  return false
+	      }
+	   });
+	
 })
 
-
-function myWritten(){
-   $('#mypageMain').load("/mypage/myWritten");
-   console.log("myWritten");
-}
-
-function myScraped(){
-   $('#mypageMain').load("/mypage/myScraped");
-   console.log("myScraped");
-}
-
-
-
-
-function removeFunc(){
-	console.log("removeFunc");
-	$('#myAllComMain').remove();
-}
 
 
 });

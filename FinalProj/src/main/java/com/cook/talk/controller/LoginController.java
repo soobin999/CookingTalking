@@ -17,6 +17,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,7 +71,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login/userUpdate", method = { RequestMethod.GET, RequestMethod.POST })
 	public String userUpdate(String nickName, Principal principal) {
-	service.updateNick(nickName, principal.getName());
+		service.updateNick(nickName, principal.getName());
 		return "/login/userUpdate";
 	}
 
@@ -79,14 +80,14 @@ public class LoginController {
 		return "/login/login";
 	}
 
-	/*
-	 * // 로그아웃
-	 * 
-	 * @RequestMapping(value = "/logout", method = { RequestMethod.GET,
-	 * RequestMethod.POST }) public String logout(HttpSession session) throws
-	 * IOException { System.out.println("여기는 logout"); session.invalidate(); return
-	 * "redirect:index"; }
-	 */
+	// 로그아웃
+
+	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+	public String logout(HttpSession session) throws IOException {
+		System.out.println("여기는 logout");
+		session.invalidate();
+		return "redirect:index";
+	}
 
 	@GetMapping("/admin")
 	public String adminPage(@AuthenticationPrincipal User user, Map<String, Object> model) {
@@ -117,8 +118,7 @@ public class LoginController {
 	}// 화면보여주는 것.
 
 	@PostMapping("/join")
-	@ResponseBody
-	public String execJoin(@Valid UserVO userVO, Errors errors, Model model) {
+	public String execJoin(UserVO userVO, Errors errors, Model model) {
 		userServiceImpl.joinUser(userVO);
 		System.out.println(userVO.getUserId());
 		encryption.encryption(userVO.getUserId());
