@@ -21,7 +21,7 @@ public class Intercepter extends HandlerInterceptorAdapter{
 							 Object handler) {
 		HttpSession session=request.getSession();
 		session.setAttribute("total", maindao.totalSelect());
-		
+		session.setAttribute("id", "");
 		return true;
 	}
 	
