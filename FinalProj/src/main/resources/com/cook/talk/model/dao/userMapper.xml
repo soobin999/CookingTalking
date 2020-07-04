@@ -32,8 +32,8 @@ values (#{userId}, #{userPw}, #{nickName}, #{birth}, #{gender})
 SELECT * FROM USER WHERE userId=#{userId}
 </select>
 
-<update id="updateUser" parameterType="com.cook.talk.model.VO.UserVO">
-UPDATE user set nickName={nickName} where user userId=#{userId}
+<update id="updateNick" parameterType="com.cook.talk.model.VO.UserVO">
+UPDATE user set nickName=#{nickName} where user.userId=#{userId}
 </update>
 
 <update id="updatePw">

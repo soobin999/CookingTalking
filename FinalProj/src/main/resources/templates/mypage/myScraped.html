@@ -4,13 +4,25 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
-<title id='pageTitle'>마이페이지</title>
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/bootstrap_20200413.css">
+<link rel="stylesheet" type="text/css" href="/static/css/font.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/ez_recipe_20200605.css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-hires.png" rel="icon" sizes="192x192">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-normal.png" rel="icon" sizes="128x128">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
 <style type="text/css"></style>
 </head>
 
 
 <div layout:fragment='content'>
-
 
 <div class="container sub_bg">
     
@@ -48,8 +60,7 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	        
 	    </ul>
 	</div>
-<form name="searchFrm">
-	<input type="hidden" name="mode" value="public">
+
     <div class="chef_cont">
 
       
@@ -58,6 +69,11 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
       
         <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn">팔로우</a></li>
         <li role="presentation" class="active"><a href="/mypage/myScraped" th:class="myScrapedBtn">스크랩한 레시피</a></li>
+        <form onsubmit="return false">
+				<input type="text" onsubmit="return false" title="레시피검색"
+					id="scrapedSearchInMy" name="scrapedSearchInMy" placeholder="레시피를 검색하세요">
+				<button type="button" id="btnScrapedSearchInMy">검색</button>
+			</form>
 
             </ul>
       <div class="cont_list">
@@ -67,26 +83,7 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	
 	
       
-<!--     <div class="result_none"><img src="https://recipe1.ezmember.co.kr/img/none_recipe.png">
-        <p>레시피를 직접 올려보세요!</p>
-        자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br>
-        <button type="button" onclick="location.href='/inbox/insert.html';" class="btn-lg btn-primary">레시피 등록하기</button>
-    </div> -->
 
-<!-- 
-
-<div class="media">
-          <div class="media-left">
-            <a href="/inbox/insert.html?seq=191418"><img class="media-object" src="https://recipe1.ezmember.co.kr/cache/recipe/2020/07/02/a1c2d1d88c600ee92e7972b6dee254f51_m.jpg" data-holder-rendered="true" style="width:180px; height:180px;"></a>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading" id="top-aligned-media"><a href="/inbox/insert.html?seq=191418">1</a></h4>
-                      </div>
-        </div>
-
-나중에 쓸지도 몰라서 남겨둠
-
- -->
 
 
 <div th:id="myScrapedResult">
@@ -103,7 +100,6 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 </div>
       </div><!--/cont_list -->
     </div><!--/chef_cont -->
-</form>
   </div><!-- /contents_area -->
 
 
@@ -129,18 +125,24 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
      
       </div>
 
-      <form class="w3-container" action="/mypage/modifyUserPic" method="POST" enctype="multipart/form-data">
-        <div class="w3-section">
-          <label><b>사진 등록</b></label>
-          <input id="input_img" class="w3-input w3-border" type="file" placeholder="사진을 등록하세요" name="file" accept="image/*" required>
-<!--           <input id="user_pw" type="text" placeholder="변경할 비밀번호" name="user_pw"><br>
-          <input id="user_nickName" type="text" placeholder="변경할 닉네임" name="user_nickName"> -->
-          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">등록하기</button>
-        </div>
-        
+     <form class="w3-container" action="/mypage/modifyUserPic"
+										method="POST" enctype="multipart/form-data">
+										<div class="w3-section">
+											<label><b>사진 등록</b></label> <input id="input_img"
+												class="w3-input w3-border" type="file"
+												placeholder="사진을 등록하세요" name="file" accept="image/*">
+											<input required="required" name="userPw" type="password"
+												placeholder="Enter you new password"> <input
+												id="userNickName" type="text" placeholder="변경할 닉네임"
+												name="userNickName">
+											<button
+												class="w3-button w3-block w3-green w3-section w3-padding"
+												type="submit">등록하기</button>
+										</div>
 
-        
-      </form>
+
+
+									</form>
 
 
     </div>
@@ -157,61 +159,9 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
     <div class="col-xs-12 sub_bg_btm"></div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/mypage.js"></script>
+	
 
-	<!-- 사진 및 계정 정보 -->
-	
-	<div id="mypageMain">
-	<div th:class="uploadPicOfUser">
-				<button onclick="window.open('/mypage/userPic','myPic','width=300px, height=300px, location=no, status=no, scrollbars=no');">사진변경하기</button>
-		</div>     
-	<a href="/userModify.html">회원 정보 수정</a>
-	
-	<div class="myMenu">
-	<button th:class="myRecipeBtn">레시피</button>
-	<button th:class="myFrequentBtn">즐겨찾기</button>
-	<button th:class="myActivityBtn">활동</button>
-	<button th:class="myInquiryBtn">문의 사항</button>
-	</div>
-	
-	<div id="myFrequent">
-		<button th:class="myFrequentBtn">팔로우</button>
-		<button th:class="myScrapedBtn">스크랩한 레시피</button>
-			<form onsubmit="return false">
-				<input type="text" onsubmit="return false" title="쉐프검색"
-					id="scrapedSearchInMy" name="scrapedSearchInMy" placeholder="레시피를 검색하세요">
-				<button type="button" id="btnScrapedSearchInMy">검색</button>
-			</form>
-		</div>
-
-	<div th:id="myFrequentSub">
-	<div th:id="myScrapedResult">
-	<table>
-	<tbody>
-	<tr th:each="myScraped : ${myScraped}">
-		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpPic}" th:text=${myScraped.rcpPic}></a></td>
-		<td> <a th:href="@{/recipe/view(rcpCode=${myScraped.rcpCode})}" th:value="${myScraped.rcpTitle}" th:text=${myScraped.rcpTitle}></a></td>
-		<td th:value="${myScraped.scrapDate}" th:text=${myScraped.scrapDate}></td>
-	</tr>
-	</tbody>
-	</table>
-	</div>
-	</div>
-	</div>
 	
 	<script th:src="@{/js/mypage.js}" type="text/javascript"></script>
 </div>

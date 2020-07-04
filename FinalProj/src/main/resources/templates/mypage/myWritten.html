@@ -1,251 +1,201 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
-<title id='pageTitle'>마이페이지</title>
-<style type="text/css"></style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/css/login/login.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/bootstrap_20200413.css">
+<link rel="stylesheet" type="text/css" href="/static/css/font.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/ez_recipe_20200605.css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-hires.png" rel="icon" sizes="192x192">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-normal.png" rel="icon" sizes="128x128">
+<title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
+<style type="text/css">
+.cont_list .media-heading {
+	font-size: 25px;
+	width: 590px;
+	line-height: 35px;
+	padding-top: 20px;
+}
+
+.deleteMyRcpBtn {
+  background-color: #FF8000;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
 </head>
 
 
 <div layout:fragment='content'>
 
+		<div class="container sub_bg">
+			<div id="contents_area" class="col-xs-9">
+				<div class="my_tabs">
+					<ul class="nav nav-tabs nav-justified" style="position: relative;">
 
-	<div class="container sub_bg">
-    
-<div id="contents_area" class="col-xs-9">
+						<li role="presentation" class="active"><a
+							href="/mypage/myRecipeIng" th:class="myRecipeBtn"
+							style="cursor: pointer;"><span
+								class=""></span>레시피</a></li>
+						<li role="presentation"><a href="/mypage/myFollow"
+							th:class="myFrequentBtn"><span
+								class=""></span>즐겨찾기</a></li>
+						<li role="presentation"><a href="/mypage/myTalk"
+							th:class="myActivityBtn"><span
+								class=""></span>활동</a></li>
+						<li role="presentation"><a href="/mypage/myInquiry"
+							th:class="myInquiryBtn"><span
+								class=""></span>문의사항</a></li>
 
-<div id="viewFriendModal" class="modal" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" style="width:370px">
-    <div class="modal-content" style="padding:0;">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
-        <h4 class="modal-title" id="friendModalTitle"></h4>
-      </div>
-      <div class="modal-body" style="padding:0;">
-        <ul class="follw_list" id="friendModalList_1" style="height:420px;overflow:yes;overflow-x:hidden;">
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<input type="hidden" id="newProfileUrl" name="new_profile_url">
-<!-- <div id="vProfileImageModal" class="modal" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" style="width:570px">
-        <div class="modal-content" style="padding:0;">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
-            <h4 class="modal-title">프로필 사진 / 자기소개 편집</h4>
-          </div>
-          <div class="modal-body" style="padding:10px;text-align:center;">
-                      <img id="vProfileImageModalSrc" src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/11/d610cef7d1e8b5773e029ae6ba590c3d.jpg" style="max-width:550px;max-height:500px;">
-            <div style="margin-top:10px;">
-            <input type="file" name="file" id="file_1" style="display:none;">
-			<p><input type="text" name="self_intro" value="" class="input-sm" size="60" maxlength="100" placeholder="자기소개를 100자 이내로 작성해 주세요."></p>
-            <button type="button" onclick="document.getElementById('file_1').click();" class="btn btn-primary">프로필 사진 바꾸기</button>
-            <button type="button" id="profileSubmitBtn" onclick="doProfileImageSubmit()" class="btn btn-primary" disabled="disabled">저장</button>
-            </div>
-                    </div>
-        </div>
-      </div>
-    </div> -->
-
-<script type="text/javascript" src="https://recipe1.ezmember.co.kr/static/js/ez_dialog.min_20160430.js" charset="utf-8"></script>
-
-	<div class="my_tabs">
-
-	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
-	    
-	    
-	        <li role="presentation" class="active"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
-	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
-	        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
-	        
-	    </ul>
-	</div>
-<form name="searchFrm">
-	<input type="hidden" name="mode" value="public">
-    <div class="chef_cont">
-
-      
-      <ul class="nav nav-tabs3" style="position:relative;">
-      
-      
-        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn">작성중인 레시피</a></li>
-        <li role="presentation" class="active"><a href="/mypage/myWritten" th:class="myWrittenBtn">작성완료된 레시피</a></li>
-
-            </ul>
-      <div class="cont_list">
-      
-      
-      	<div th:id="myRecipeSub">
-	
-	
-      
-<!--     <div class="result_none"><img src="https://recipe1.ezmember.co.kr/img/none_recipe.png">
-        <p>레시피를 직접 올려보세요!</p>
-        자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br>
-        <button type="button" onclick="location.href='/inbox/insert.html';" class="btn-lg btn-primary">레시피 등록하기</button>
-    </div> -->
-
-<!-- 
-
-<div class="media">
-          <div class="media-left">
-            <a href="/inbox/insert.html?seq=191418"><img class="media-object" src="https://recipe1.ezmember.co.kr/cache/recipe/2020/07/02/a1c2d1d88c600ee92e7972b6dee254f51_m.jpg" data-holder-rendered="true" style="width:180px; height:180px;"></a>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading" id="top-aligned-media"><a href="/inbox/insert.html?seq=191418">1</a></h4>
-                      </div>
-        </div>
-
-나중에 쓸지도 몰라서 남겨둠
-
- -->
+					</ul>
+				</div><!-- my_tabs -->
 
 
-<div th:id="myRecipeResult">
-	<table>
-	<tbody>
-	<tr th:each="myWritten, a : ${myWritten}" th:class="myWritten" id="myWritten">
-		<td th:text="${a.count}"></td>
-		<td> <a th:href="@{/recipe/view(rcpCode=${myWritten.rcpCode})}" th:text=${myWritten.rcpTitle}></a></td>
-		<td> <a th:href="@{/recipe/view(rcpCode=${myWritten.rcpCode})}" th:text=${myWritten.rcpPic}></a></td>
-		<!-- <td><button type="button" th:name="deleteMyRcpBtn" th:id="deleteMyRcpBtn+${a.count}" onclick="deleteMyRcp();" th:value="${myWritten.rcpCode}">삭제</button></td> -->
-		<td>
-	
-	    <form th:id="deleteMyRcpForm" th:action="@{'/deleteRcp/'+ ${myWritten.rcpCode}}" method="GET">
-        <!-- <input type="hidden" th:name="rcpCode" th:value="delete"/> -->
-        <input type="submit" th:id="deleteMyRcpBtn" value="삭제">
-    </form>
-</td>	
-		<!-- <input type="hidden" onclick="deleteMyRcp();"  th:id="deleteMyRcpBtn" th:value="${myWritten.rcpCode}"> -->
-		
-	</tr> 
-	</tbody>
-	</table>
-	</div>
-</div>
-      </div><!--/cont_list -->
-    </div><!--/chef_cont -->
-</form>
-  </div><!-- /contents_area -->
+				<div class="chef_cont">
+
+					<ul class="nav nav-tabs3" style="position: relative;">
+						<li role="presentation"><a href="/mypage/myRecipeIng"
+							th:class="myRecipeBtn">작성중인 레시피</a></li>
+						<li role="presentation" class="active"><a
+							href="/mypage/myWritten" th:class="myWrittenBtn">작성완료된 레시피</a></li>
+
+					</ul>
+					
+					<div class="cont_list">
+						<div th:id="myRecipeSub">
+							<div th:id="myRecipeResult">
+								<table>
+									<tbody>
+										<tr th:each="myWritten, a : ${myWritten}" th:class="myWritten"
+											id="myWritten" style="border-bottom: 1px solid #e6e7e8;">
+											<!-- <td th:text="${a.count}"></td> -->
+											<div class="media-left">
+											<td><a th:href="@{/recipe/view(rcpCode=${myWritten.rcpCode})}">
+											<img th:class="myRcpWrittenImg"
+												th:src="'/img/' + ${myWritten.rcpPic}"
+												data-holder-rendered="true"
+												style="width: 180px; height: 180px; padding:10px;"> </a></td>
+											</div>
+											<div class="media-body">
+											<td class="media-heading" id="top-aligned-media" style="padding-top: 0px; padding-bottom: 90px; padding-left: 10px;"><a
+												th:href="@{/recipe/view(rcpCode=${myWritten.rcpCode})}"
+												th:text=${myWritten.rcpTitle}></a></td>
+											</div>
+											<td style="padding-top: 130px;">
+												<form th:id="deleteMyRcpForm"
+													th:action="@{'/deleteRcp/'+ ${myWritten.rcpCode}}"
+													method="GET">
+													<!-- <input type="hidden" th:name="rcpCode" th:value="delete"/> -->
+													<input type="submit" th:class="deleteMyRcpBtn" value="삭제">
+												</form>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- myRecipeResult -->
+						</div>
+						<!-- myRecipeSub -->
+					</div>
+					<!--/cont_list -->
+				</div>
+				<!--/chef_cont -->
+			</div>
+			<!-- /contents_area -->
 
 
-    <div id="right_area" class="col-xs-3">
-    <div class="myhome_main" style="margin-bottom:20px;">
-    <div class="myhome_main_t" style="background:url(https://recipe1.ezmember.co.kr/img/mobile/my_pic_d3.jpg) left top no-repeat; background-size:cover;"></div>
-    <div class="myhome_main_info">
-        <div class="info_pic">
-            <a href="javascript:void(0);" onclick="$('#vProfileImageModal').modal('show')"><img src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/11/383ef5b88cc5e16f5a5f3a3071dad9091.jpg"></a>
-            <a href="javascript:void(0);" class="info_set" onclick="$('#vProfileImageModal').modal('show')"><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_camera2.png" alt="사진변경"></a>
-        </div>
-        <div class="w3-container">
-  <h2>나의 계정 정보</h2>
-  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large">사진 변경하기</button>
+			<div id="right_area" class="col-xs-3">
+				<div class="myhome_main" style="margin-bottom: 20px;">
+					<div class="myhome_main_t"
+						style="background: url(https://recipe1.ezmember.co.kr/img/mobile/my_pic_d3.jpg) left top no-repeat; background-size: cover;"></div>
+					<div class="myhome_main_info">
+						<div class="info_pic">
+							<a href="javascript:void(0);"
+								onclick="$('#vProfileImageModal').modal('show')"><img
+								src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/11/383ef5b88cc5e16f5a5f3a3071dad9091.jpg"></a>
+						
+						</div>
+						<div class="w3-container">
+							<h2>나의 계정 정보</h2>
+							<button
+								onclick="document.getElementById('id01').style.display='block'"
+								class="w3-button w3-green w3-large">사진 변경하기</button>
 
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+							<div id="id01" class="w3-modal">
+								<div class="w3-modal-content w3-card-4 w3-animate-zoom"
+									style="max-width: 600px">
 
-      <div class="w3-center"><br>
-        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-       <!--  <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"> -->
-     <img id="img" style="width:30%"/> 
-     
-      </div>
+									<div class="w3-center">
+										<br> <span
+											onclick="document.getElementById('id01').style.display='none'"
+											class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+											title="Close Modal">&times;</span> <img id="img"
+											style="width: 30%" />
 
-      <form class="w3-container" action="/mypage/modifyUserPic" method="POST" enctype="multipart/form-data">
-        <div class="w3-section">
-          <label><b>사진 등록</b></label>
-          <input id="input_img" class="w3-input w3-border" type="file" placeholder="사진을 등록하세요" name="file" accept="image/*" required>
-<!--           <input id="user_pw" type="text" placeholder="변경할 비밀번호" name="user_pw"><br>
-          <input id="user_nickName" type="text" placeholder="변경할 닉네임" name="user_nickName"> -->
-          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">등록하기</button>
-        </div>
-        
+									</div>
 
-        
-      </form>
-
-
-    </div>
-  </div>
-</div>
-        
-    </div>
-</div>
+									<form class="w3-container" action="/mypage/modifyUserPic"
+										method="POST" enctype="multipart/form-data">
+										<div class="w3-section">
+											<label><b>사진 등록</b></label> <input id="input_img"
+												class="w3-input w3-border" type="file"
+												placeholder="사진을 등록하세요" name="file" accept="image/*">
+											<input required="required" name="userPw" type="password"
+												placeholder="Enter you new password"> <input
+												id="userNickName" type="text" placeholder="변경할 닉네임"
+												name="userNickName">
+											<button
+												class="w3-button w3-block w3-green w3-section w3-padding"
+												type="submit">등록하기</button>
+										</div>
 
 
 
-    
-    </div><!-- /right_area -->
-    <div class="col-xs-12 sub_bg_btm"></div>
-</div>
+									</form>
+
+
+								</div>
+							</div>
+						</div>
+						<!-- w3-container -->
+
+					</div>
+				</div>
 
 
 
 
-
-
-
-
-
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
-
-	<!-- 사진 및 계정 정보 -->
-	<div id="mypageMain">
-	
-	
-	<div th:class="myMenu">
-	<button th:class="myRecipeBtn">레시피</button>
-	<button th:class="myFrequentBtn">즐겨찾기</button>
-	<button th:class="myActivityBtn">활동</button>
-	<button th:class="myInquiryBtn">문의 사항</button>
-	</div>
-	
-	<div th:class="myRecipe">
-		<button th:class="myRecipeBtn">진행중인 레시피</button>
-		<button th:class="myWrittenBtn">작성완료된 레시피</button>
-	</div>
-	<div th:id="myRecipeSub">
-	<div th:id="myRecipeResult">
-	<table>
-	<tbody>
-	
-	
-	<tr th:each="myWritten, a : ${myWritten}" th:class="myWritten" id="myWritten">
-		<td th:text="${a.count}"></td>
-		<td> <a th:href="@{/recipe/view(rcpCode=${myWritten.rcpCode})}" th:text=${myWritten.rcpTitle}></a></td>
-		<td> <a th:href="@{/recipe/view(rcpCode=${myWritten.rcpCode})}" th:text=${myWritten.rcpPic}></a></td>
-		<!-- <td><button type="button" th:name="deleteMyRcpBtn" th:id="deleteMyRcpBtn+${a.count}" onclick="deleteMyRcp();" th:value="${myWritten.rcpCode}">삭제</button></td> -->
-		<td>
-	
-	    <form th:id="deleteMyRcpForm" th:action="@{'/deleteRcp/'+ ${myWritten.rcpCode}}" method="GET">
-        <!-- <input type="hidden" th:name="rcpCode" th:value="delete"/> -->
-        <input type="submit" th:id="deleteMyRcpBtn" value="삭제">
-    </form>
-</td>	
-		<!-- <input type="hidden" onclick="deleteMyRcp();"  th:id="deleteMyRcpBtn" th:value="${myWritten.rcpCode}"> -->
-		
-	</tr>
-	
-	</tbody>
-	</table>
-	</div>
-	</div>
-	</div>
-	<!-- 		<td>
-		<div class="deleteMyRcp">
-		<input type="button" onclick="deleteMyRcp();" th:id="deleteMyRcpBtn" value="${myWritten.rcpCode}">
+			</div>
+			<!-- /right_area -->
+			<div class="col-xs-12 sub_bg_btm"></div>
 		</div>
-		</td> -->
-		
-		<script th:src="@{/js/mypage.js}" type="text/javascript"></script>
 
-</div> <!-- layout end -->
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<script th:src="@{/js/mypage.js}" type="text/javascript"></script>
+	</div>
+
+<!-- layout end -->
 </html>
