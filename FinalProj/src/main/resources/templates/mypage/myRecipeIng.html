@@ -22,6 +22,7 @@
 <link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
 <link href="https://recipe1.ezmember.co.kr/img/icons/icon-hires.png" rel="icon" sizes="192x192">
 <link href="https://recipe1.ezmember.co.kr/img/icons/icon-normal.png" rel="icon" sizes="128x128">
+<link rel="stylesheet" href="/css/mypage/mypage.css">
 <title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
 <style type="text/css">
 .cont_list .media-heading {
@@ -47,13 +48,39 @@
   margin: 4px 2px;
   cursor: pointer;
 }
+
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+
+}
+
 </style>
 
 </head>
 <div layout:fragment='content'>
 
 
-		<div class="container sub_bg">
+		<div class="container sub_bg" th:each="myRecipeIng : ${myRecipeIng}">
 
 			<div id="contents_area" class="col-xs-9">
 
@@ -137,15 +164,15 @@
 					<div class="myhome_main_info">
 						<div class="info_pic">
 							<a href="javascript:void(0);"
-								onclick="$('#vProfileImageModal').modal('show')"><img
-								src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/11/383ef5b88cc5e16f5a5f3a3071dad9091.jpg"></a>
+								><img
+								src="'/img/'+{myRecipeIng.userPic}"></a>
 						
 						</div>
-						<div class="w3-container">
-							<h2>나의 계정 정보</h2>
-							<button
+						<div class="w3-container" style="padding-top: 50px">
+							
+							<button 
 								onclick="document.getElementById('id01').style.display='block'"
-								class="w3-button w3-green w3-large">사진 변경하기</button>
+								class="modal-start-btn">정보 수정하기</button>
 
 							<div id="id01" class="w3-modal">
 								<div class="w3-modal-content w3-card-4 w3-animate-zoom"
@@ -163,16 +190,18 @@
 									<form class="w3-container" action="/mypage/modifyUserPic"
 										method="POST" enctype="multipart/form-data">
 										<div class="w3-section">
-											<label><b>사진 등록</b></label> <input id="input_img"
+											<!-- <label><b>사진 등록</b></label> --> <input id="input_img"
 												class="w3-input w3-border" type="file"
 												placeholder="사진을 등록하세요" name="file" accept="image/*">
+												<label value="변경할 비밀번호" style="text-align: center;"></label>
 											<input required="required" name="userPw" type="password"
-												placeholder="Enter you new password"> <input
+												placeholder="변경할 비밀번호"> 
+												<input
 												id="userNickName" type="text" placeholder="변경할 닉네임"
 												name="userNickName">
 											<button
-												class="w3-button w3-block w3-green w3-section w3-padding"
-												type="submit">등록하기</button>
+												class="modal-submit-btn"
+												type="submit">변경하기</button>
 										</div>
 
 

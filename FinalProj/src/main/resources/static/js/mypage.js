@@ -84,6 +84,8 @@ $(document).ready(function(){
 			      
 			      if(ans != null){
 			         $('#' + ansId).append("답변완료");
+			      } else{
+			    	 
 			      }
 			      console.log(index)
 			      showAns('#' + ansId)

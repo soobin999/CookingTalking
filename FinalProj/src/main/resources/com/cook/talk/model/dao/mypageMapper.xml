@@ -8,8 +8,9 @@
 	UPDATE user SET userPic = #{userPic} WHERE userId=#{userId}
 	</select>
 
-	<select id="getMyRecipeIng" parameterType="String" resultType="RecipeVO">
-	SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp WHERE userId=#{userId} AND registerStatus=0
+	<select id="getMyRecipeIng" parameterType="String" resultType="mypageDTO">
+	SELECT DISTINCT userPic, rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.user AS u
+	ON r.userId=u.userId WHERE u.userId=#{userId} AND registerStatus=0
 	</select>
 	
 	<select id="getMyRecipeWritten" parameterType="String" resultType="MypageDTO">

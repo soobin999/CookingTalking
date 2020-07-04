@@ -22,7 +22,25 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 <title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
 <style type="text/css">
 
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 </style>
 </head>
 <div layout:fragment='content'>
@@ -98,18 +116,22 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
   </div><!-- /contents_area -->
 
 
-    <div id="right_area" class="col-xs-3">
-    <div class="myhome_main" style="margin-bottom:20px;">
-    <div class="myhome_main_t" style="background:url(https://recipe1.ezmember.co.kr/img/mobile/my_pic_d3.jpg) left top no-repeat; background-size:cover;"></div>
-    <div class="myhome_main_info">
-        <div class="info_pic">
-            <a href="javascript:void(0);" onclick="$('#vProfileImageModal').modal('show')"><img src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/11/383ef5b88cc5e16f5a5f3a3071dad9091.jpg"></a>
-        </div>
-        <div class="w3-container">
-							<h2>나의 계정 정보</h2>
-							<button
+  	<div id="right_area" class="col-xs-3">
+				<div class="myhome_main" style="margin-bottom: 20px;">
+					<div class="myhome_main_t"
+						style="background: url(https://recipe1.ezmember.co.kr/img/mobile/my_pic_d3.jpg) left top no-repeat; background-size: cover;"></div>
+					<div class="myhome_main_info">
+						<div class="info_pic">
+							<a href="javascript:void(0);"
+								><img
+								src="'/img/'+{myRecipeIng.userPic}"></a>
+						
+						</div>
+						<div class="w3-container" style="padding-top: 50px">
+							
+							<button 
 								onclick="document.getElementById('id01').style.display='block'"
-								class="w3-button w3-green w3-large">사진 변경하기</button>
+								class="modal-start-btn">정보 수정하기</button>
 
 							<div id="id01" class="w3-modal">
 								<div class="w3-modal-content w3-card-4 w3-animate-zoom"
@@ -127,16 +149,18 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 									<form class="w3-container" action="/mypage/modifyUserPic"
 										method="POST" enctype="multipart/form-data">
 										<div class="w3-section">
-											<label><b>사진 등록</b></label> <input id="input_img"
+											<!-- <label><b>사진 등록</b></label> --> <input id="input_img"
 												class="w3-input w3-border" type="file"
 												placeholder="사진을 등록하세요" name="file" accept="image/*">
+												<label value="변경할 비밀번호" style="text-align: center;"></label>
 											<input required="required" name="userPw" type="password"
-												placeholder="Enter you new password"> <input
+												placeholder="변경할 비밀번호"> 
+												<input
 												id="userNickName" type="text" placeholder="변경할 닉네임"
 												name="userNickName">
 											<button
-												class="w3-button w3-block w3-green w3-section w3-padding"
-												type="submit">등록하기</button>
+												class="modal-submit-btn"
+												type="submit">변경하기</button>
 										</div>
 
 
@@ -147,14 +171,15 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 								</div>
 							</div>
 						</div>
-        
-    </div>
-</div>
+						<!-- w3-container -->
+
+					</div>
+				</div>
 
 
 
-    
-    </div><!-- /right_area -->
+
+			</div><!-- /right_area -->
     <div class="col-xs-12 sub_bg_btm"></div>
 </div>
 
