@@ -2,6 +2,9 @@ package com.cook.talk.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +24,7 @@ public class ChefController {
 	@Autowired
 	MainDAO maindao;
 	@GetMapping("/chefRank/{status}")
-	public String chefRank(Model model, @PathVariable String status) {
+	public String chefRank(Model model, @PathVariable String status,HttpServletRequest request) {
 		status=(status!=null)? status:"rcpUploads";
 		model.addAttribute("status",status);
 		model.addAttribute("chefList", chefDAO.allSelectChef(status));
@@ -35,7 +38,6 @@ public class ChefController {
 		model.addAttribute("chefInfo",chefDAO.selectRecipe(chefId,(page-1)*12));
 		model.addAttribute("chefDetail",chefDAO.selectChefDetail(chefId));
 		model.addAttribute("totalPage",Math.ceil(chefDAO.recipeCount(chefId)/12.0));
-		System.out.println(chefDAO.recipeCount(chefId));
 		return "chef/chefInfo";
 	}
 	@PostMapping("/chefsearch")
