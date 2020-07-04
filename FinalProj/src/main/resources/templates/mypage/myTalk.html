@@ -4,8 +4,26 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
-<title id='pageTitle'>마이페이지</title>
-<style type="text/css"></style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/bootstrap_20200413.css">
+<link rel="stylesheet" type="text/css" href="/static/css/font.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://recipe1.ezmember.co.kr/static/css/ez_recipe_20200605.css">
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon.png" rel="apple-touch-icon">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-hires.png" rel="icon" sizes="192x192">
+<link href="https://recipe1.ezmember.co.kr/img/icons/icon-normal.png" rel="icon" sizes="128x128">
+<link rel="stylesheet" href="/css/mypage/mypage.css">
+
+<title id='pageTitle'>쿠킹토킹 ::: 마이페이지</title>
+<style type="text/css">
+
+
+</style>
 </head>
 <div layout:fragment='content'>
 
@@ -14,43 +32,6 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
     
 <div id="contents_area" class="col-xs-9">
 
-<div id="viewFriendModal" class="modal" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" style="width:370px">
-    <div class="modal-content" style="padding:0;">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
-        <h4 class="modal-title" id="friendModalTitle"></h4>
-      </div>
-      <div class="modal-body" style="padding:0;">
-        <ul class="follw_list" id="friendModalList_1" style="height:420px;overflow:yes;overflow-x:hidden;">
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<input type="hidden" id="newProfileUrl" name="new_profile_url">
-<!-- <div id="vProfileImageModal" class="modal" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" style="width:570px">
-        <div class="modal-content" style="padding:0;">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기"></span></button>
-            <h4 class="modal-title">프로필 사진 / 자기소개 편집</h4>
-          </div>
-          <div class="modal-body" style="padding:10px;text-align:center;">
-                      <img id="vProfileImageModalSrc" src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/11/d610cef7d1e8b5773e029ae6ba590c3d.jpg" style="max-width:550px;max-height:500px;">
-            <div style="margin-top:10px;">
-            <input type="file" name="file" id="file_1" style="display:none;">
-			<p><input type="text" name="self_intro" value="" class="input-sm" size="60" maxlength="100" placeholder="자기소개를 100자 이내로 작성해 주세요."></p>
-            <button type="button" onclick="document.getElementById('file_1').click();" class="btn btn-primary">프로필 사진 바꾸기</button>
-            <button type="button" id="profileSubmitBtn" onclick="doProfileImageSubmit()" class="btn btn-primary" disabled="disabled">저장</button>
-            </div>
-                    </div>
-        </div>
-      </div>
-    </div> -->
-
-<script type="text/javascript" src="https://recipe1.ezmember.co.kr/static/js/ez_dialog.min_20160430.js" charset="utf-8"></script>
 
 	<div class="my_tabs">
 
@@ -64,8 +45,7 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	        
 	    </ul>
 	</div>
-<form name="searchFrm">
-	<input type="hidden" name="mode" value="public">
+
     <div class="chef_cont">
 
 
@@ -76,46 +56,37 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
         <li role="presentation" class="active"><a href="/mypage/myTalk" th:class="myActivityBtn">내가 작성한 글</a></li>
         <li role="presentation"><a href="/mypage/myCom" th:class="myComBtn">내가 작성한 댓글</a></li>
 		
-			<form onsubmit="return false">
-				<input type="text" onsubmit="return false" title="토크검색"
-					id="talkSearchInMy" name="talkSearchInMy" placeholder="토르를 검색하세요">
-				<button type="button" id="btnTalkSearchInMy">검색</button>
-			</form>
+		<div class="list_sort">
+				<div class="chef_search">
+				<form onsubmit="return false">
+					<input type="text" onsubmit="return false" id="talkSearchInMy" 
+					name="talkSearchInMy" class="form-control" placeholder="토크를 검색하세요">
+						<span class="glyphicon glyphicon-search fas fa-search"></span>
+					<button type="button" id="btnTalkSearchInMy" class="btn search">검색</button>
+				</form>
+				</div>
+			</div>
+		
+
             </ul>
       <div class="cont_list">
       
       
       	<div th:id="myActivitySub">
-	
-	
-      
-<!--     <div class="result_none"><img src="https://recipe1.ezmember.co.kr/img/none_recipe.png">
-        <p>레시피를 직접 올려보세요!</p>
-        자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br>
-        <button type="button" onclick="location.href='/inbox/insert.html';" class="btn-lg btn-primary">레시피 등록하기</button>
-    </div> -->
-
-<!-- 
-
-<div class="media">
-          <div class="media-left">
-            <a href="/inbox/insert.html?seq=191418"><img class="media-object" src="https://recipe1.ezmember.co.kr/cache/recipe/2020/07/02/a1c2d1d88c600ee92e7972b6dee254f51_m.jpg" data-holder-rendered="true" style="width:180px; height:180px;"></a>
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading" id="top-aligned-media"><a href="/inbox/insert.html?seq=191418">1</a></h4>
-                      </div>
-        </div>
-
-나중에 쓸지도 몰라서 남겨둠
-
- -->
 
 
 <div th:id="myTalkResult">
-	<table>
+	<table th:id="myTalkTable">
+	 <thead>
+        <tr>
+          <th>토크 내용</th>
+          <th >날짜</th>
+
+        </tr>
+      </thead>
 	<tbody>
 	<tr th:each="myTalk : ${myTalk}">
-		<td> <a th:href="@{/talk/detail/{talkCode}(talkCode=${myTalk.talkCode})}"  th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></a></td>
+		<td> <div th:class="story-list"><a th:href="@{/talk/detail/{talkCode}(talkCode=${myTalk.talkCode})}"  th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></a></div></td>
 		<td th:value="${myTalk.talkDate}" th:text=${myTalk.talkDate}></td>
 	</tr>
 	</tbody>
@@ -124,7 +95,6 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 </div>
       </div><!--/cont_list -->
     </div><!--/chef_cont -->
-</form>
   </div><!-- /contents_area -->
 
 
@@ -134,39 +104,49 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
     <div class="myhome_main_info">
         <div class="info_pic">
             <a href="javascript:void(0);" onclick="$('#vProfileImageModal').modal('show')"><img src="https://recipe1.ezmember.co.kr/cache/rpf/2020/05/11/383ef5b88cc5e16f5a5f3a3071dad9091.jpg"></a>
-            <a href="javascript:void(0);" class="info_set" onclick="$('#vProfileImageModal').modal('show')"><img src="https://recipe1.ezmember.co.kr/img/mobile/icon_camera2.png" alt="사진변경"></a>
         </div>
         <div class="w3-container">
-  <h2>나의 계정 정보</h2>
-  <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large">사진 변경하기</button>
+							<h2>나의 계정 정보</h2>
+							<button
+								onclick="document.getElementById('id01').style.display='block'"
+								class="w3-button w3-green w3-large">사진 변경하기</button>
 
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+							<div id="id01" class="w3-modal">
+								<div class="w3-modal-content w3-card-4 w3-animate-zoom"
+									style="max-width: 600px">
 
-      <div class="w3-center"><br>
-        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-       <!--  <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"> -->
-     <img id="img" style="width:30%"/> 
-     
-      </div>
+									<div class="w3-center">
+										<br> <span
+											onclick="document.getElementById('id01').style.display='none'"
+											class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+											title="Close Modal">&times;</span> <img id="img"
+											style="width: 30%" />
 
-      <form class="w3-container" action="/mypage/modifyUserPic" method="POST" enctype="multipart/form-data">
-        <div class="w3-section">
-          <label><b>사진 등록</b></label>
-          <input id="input_img" class="w3-input w3-border" type="file" placeholder="사진을 등록하세요" name="file" accept="image/*" required>
-<!--           <input id="user_pw" type="text" placeholder="변경할 비밀번호" name="user_pw"><br>
-          <input id="user_nickName" type="text" placeholder="변경할 닉네임" name="user_nickName"> -->
-          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">등록하기</button>
-        </div>
-        
+									</div>
 
-        
-      </form>
+									<form class="w3-container" action="/mypage/modifyUserPic"
+										method="POST" enctype="multipart/form-data">
+										<div class="w3-section">
+											<label><b>사진 등록</b></label> <input id="input_img"
+												class="w3-input w3-border" type="file"
+												placeholder="사진을 등록하세요" name="file" accept="image/*">
+											<input required="required" name="userPw" type="password"
+												placeholder="Enter you new password"> <input
+												id="userNickName" type="text" placeholder="변경할 닉네임"
+												name="userNickName">
+											<button
+												class="w3-button w3-block w3-green w3-section w3-padding"
+												type="submit">등록하기</button>
+										</div>
 
 
-    </div>
-  </div>
-</div>
+
+									</form>
+
+
+								</div>
+							</div>
+						</div>
         
     </div>
 </div>
@@ -181,62 +161,8 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	<!-- 사진 및 계정 정보 -->
-	
-	<div id="mypageMain">
-	<div th:class="uploadPicOfUser">
-				<button onclick="window.open('/mypage/userPic','myPic','width=300px, height=300px, location=no, status=no, scrollbars=no');">사진변경하기</button>
-		</div>     
-	<a href="/userModify.html">회원 정보 수정</a>
-	
-	<div class="myMenu">
-	<button th:class="myRecipeBtn">레시피</button>
-	<button th:class="myFrequentBtn">즐겨찾기</button>
-	<button th:class="myActivityBtn">활동</button>
-	<button th:class="myInquiryBtn">문의 사항</button>
-	</div>
-	
-	<div id="myActivity">
-		<button th:class="myActivityBtn">내가 작성한 글</button>
-		<button th:class="myComBtn">내가 작성한 댓글</button>
-		
-			<form onsubmit="return false">
-				<input type="text" onsubmit="return false" title="토크검색"
-					id="talkSearchInMy" name="talkSearchInMy" placeholder="토르를 검색하세요">
-				<button type="button" id="btnTalkSearchInMy">검색</button>
-			</form>
-		</div>
-
-	<div th:id="myActivitySub">
-	<div th:id="myTalkResult">
-	<table>
-	<tbody>
-	<tr th:each="myTalk : ${myTalk}">
-		<td> <a th:href="@{/talk/detail/{talkCode}(talkCode=${myTalk.talkCode})}"  th:value="${myTalk.talkCont}" th:text=${myTalk.talkCont}></a></td>
-		<td th:value="${myTalk.talkDate}" th:text=${myTalk.talkDate}></td>
-	</tr>
-	</tbody>
-	</table>
-	</div>
-	</div>
-	</div>
 
 	
 	<script th:src="@{/js/mypage.js}" type="text/javascript"></script>
