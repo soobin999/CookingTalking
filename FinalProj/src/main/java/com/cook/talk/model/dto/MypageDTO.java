@@ -9,6 +9,7 @@ public class MypageDTO {
 	
 	private String userId;
 	private String nickName;
+	private String userPic;
 	
 	private String rcpTitle;
 	private String rcpPic;

@@ -19,6 +19,7 @@ import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.dao.MypageDAO;
 import com.cook.talk.model.dto.MypageDTO;
 import com.cook.talk.model.service.MypageService;
+import com.cook.talk.model.service.UserService;
 import com.cook.talk.util.FileTrancefer;
 
 @Controller
@@ -30,6 +31,8 @@ public class MyRcpController {
 	@Autowired
 	MypageService mypageService;
 	
+	@Autowired
+	private UserService service;
 	
 	//마이페이지-사용자 개인 사진 수정페이지로 가기
 	@GetMapping("/mypage/userPic")
@@ -76,7 +79,7 @@ public class MyRcpController {
 	  
 	  
 		@PostMapping("/mypage/modifyUserPic")
-		public String modifyUserPic(UserVO userVO, Model model, 
+		public String modifyUserPic(UserVO userVO, Model model, @RequestParam String userNickName, @RequestParam String userPw,
 				@RequestParam("file") MultipartFile multipartfile, Principal principal) {
 			
 			userVO.setUserId(principal.getName());
@@ -85,7 +88,9 @@ public class MyRcpController {
 			userVO.setUserPic(userPic);
 			System.out.println("추가된 파일명:" + multipartfile);
 			
-			mypageDAO.modifyUserPic(userPic,principal.getName());
+			mypageDAO.modifyUserPic(userPic, principal.getName());
+			service.updateNick(userNickName, principal.getName());
+			service.updatePw(userPw, principal.getName());
 			
 			return "redirect:/mypage/myRecipeIng";
 		}

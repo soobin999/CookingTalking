@@ -48,7 +48,7 @@ public class MypageRestController {
 		
 		System.out.println(talkCont);
 		List<MypageDTO> mypageDTOs=  mypageService.getSearchMyTalk(talkCont, principal.getName());
-		Date  date =   mypageDTOs.get(0).getTalkDate();
+		/* Date date = mypageDTOs.get(0).getTalkDate(); */
 		
 		return mypageService.getSearchMyTalk(talkCont, principal.getName());
 	}

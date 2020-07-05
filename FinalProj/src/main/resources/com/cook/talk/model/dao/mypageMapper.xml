@@ -5,17 +5,12 @@
 <mapper namespace="com.cook.talk.model.dao.MypageDAO">
 	
 	<select id="modifyUserPic" parameterType="String">
-
 	UPDATE user SET userPic = #{userPic} WHERE userId=#{userId}
 	</select>
-	
-	
-	<select id="modifyUserInfo" parameterType="String">
-	UPDATE user SET userPw = #{userPw}, nickName = #{nickName} WHERE userId=#{userId}
-	</select>
-	
-	<select id="getMyRecipeIng" parameterType="String" resultType="RecipeVO">
-	SELECT DISTINCT rcpTitle, rcpPic FROM recipe.rcp WHERE userId=#{userId} AND registerStatus=0
+
+	<select id="getMyRecipeIng" parameterType="String" resultType="mypageDTO">
+	SELECT DISTINCT userPic, rcpTitle, rcpPic FROM recipe.rcp AS r INNER JOIN recipe.user AS u
+	ON r.userId=u.userId WHERE u.userId=#{userId} AND registerStatus=0
 	</select>
 	
 	<select id="getMyRecipeWritten" parameterType="String" resultType="MypageDTO">
@@ -27,7 +22,7 @@
 	</delete>
 	
 	<select id="getSearchMyFollow" parameterType="String" resultType="MypageDTO">
-	SELECT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
+	SELECT userPic, nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
 	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r ON r.userId = f.followChef
 	WHERE f.userId=#{userId} AND nickName LIKE CONCAT('%', #{followChef},'%') group by nickName
 	</select>
@@ -38,13 +33,9 @@
 	</select>
 
 	<select id="getMyFollow" parameterType="String" resultType="MypageDTO">
-<!-- 	SELECT DISTINCT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
+	SELECT userPic, nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
 	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r ON r.userId = f.followChef
-	WHERE f.userId='kkk@naver.com'  -->
-	
-	SELECT nickName, count(r.rcpCode) AS followC FROM recipe.user AS u INNER JOIN recipe.follow AS f 
-	ON u.userId = f.followChef INNER JOIN recipe.rcp AS r ON r.userId = f.followChef
-	WHERE f.userId=#{userId} group by nickName
+	WHERE f.userId=#{userId} GROUP BY nickName
 	
 	</select>
 	

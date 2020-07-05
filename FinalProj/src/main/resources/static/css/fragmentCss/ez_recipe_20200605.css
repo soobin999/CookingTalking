@@ -312,7 +312,7 @@ body {min-width: 1240px;}
 .gnb_right {display:inline-block; padding:16px 0 0 50px; vertical-align:top; position:relative;}
 .gnb_right li {list-style:none; padding:0 3px; display:inline-block;}
 .gnb_right li a {height:30px;}
-.gnb_right li a img {width:35px}
+/* .gnb_right li a img {width:35px} */
 .gnb_right .mem_layer {position:absolute; left:22px; top:51px; width:182px; z-index:1000000;}
 .gnb_right .mem_layer_m a {height:auto;}
 .gnb_right .write_layer { position:absolute; right:-4px; top:50px; width:372px;}
@@ -918,12 +918,24 @@ margin-bottom:-1px !important;
 .footer.st2 .btm_stats_5 {background:url(//recipe1.ezmember.co.kr/img/btm_icon5.png) center no-repeat;}
 .footer.st2 .btm_mail {background:url(//recipe1.ezmember.co.kr/img/btm_img1.png) left top no-repeat; padding:12px 0 0 108px; display:inline-block; margin-left:10px;}
 
+
+
+
+
+
+
+
+
+
 .chef_search { padding-top:4px; margin:0 -10px 0 0;}
 .chef_search .form-control {border-radius:0 !important; width:240px; height:34px; background:#fff; padding:0 0 0 32px; display:inline-block; vertical-align:middle;}
 .chef_search .glyphicon {position:absolute; left:8px; top:10px; z-index:100; font-size:20px; color:#ccc;}
 .chef_search .btn.search {background:#f7f7f7; border:1px solid #ccc;; width:60px; height:34px; padding:0 0 1px 0 ; margin:1px 5px 0 -6px; color:#333; font-size:14px; font-weight:bold; text-align:center; border-radius:0 3px 03px 0;}
 .chef_search .btn.apply {font-size:14px; color:#000; padding:0 20px; border:1px solid #d3d3d3; background:#fff; height:34px;}
 .chef_search .btn.apply b {background:url(//recipe1.ezmember.co.kr/img/mobile/icon_confirm2.png) left top no-repeat; background-size:16px; padding-left:20px;}
+
+
+
 
 .chef_list3 { padding-top:15px;}
 .chef_list3 .media {padding:25px 50px 20px; margin:0 0 8px 0; border-bottom:1px solid #d5d6d7;}

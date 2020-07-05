@@ -22,6 +22,9 @@ for (i = 0; i < acc.length; i++) {
 
 
 
+
+
+
 var sel_file;
 
 $(document).ready(function(){
@@ -81,6 +84,8 @@ $(document).ready(function(){
 			      
 			      if(ans != null){
 			         $('#' + ansId).append("답변완료");
+			      } else{
+			    	 
 			      }
 			      console.log(index)
 			      showAns('#' + ansId)
@@ -354,55 +359,56 @@ function deleteMyRcp(){
 
 
 
-$('.myRecipeBtn').on('click', function(){
+/*$('.myRecipeBtn').on('click', function(){
+	window.location.reload();
 	$('#mypageMain').load("/mypage/myRecipeIng");
 	console.log("myRecipeIng");
-});
+});*/
 
 
 
-$('.myFrequentBtn').on('click', function(){
+/*$('.myFrequentBtn').on('click', function(){
    $('#mypageMain').load("/mypage/myFollow");
    console.log("myFrequentBtn");
-});
+});*/
 
 
 
-$('.myActivityBtn').on('click', function(){
+/*$('.myActivityBtn').on('click', function(){
 	$('#mypageMain').load("/mypage/myTalk");
 	console.log("myActivityBtn");
-});
+});*/
 
 
-$('.myInquiryBtn').on('click', function(){
+/*$('.myInquiryBtn').on('click', function(){
 	$('#mypageMain').load("/mypage/myInquiry");
 	console.log("myInquiryBtn");
-});
+});*/
 
 
-$('.myComBtn').on('click', function(){
+/*$('.myComBtn').on('click', function(){
 	$('#mypageMain').load("/mypage/myCom");
 	console.log("myComBtn");
-});
+});*/
 
 
 
-$('.myInquiryList').on('click', function(){
+/*$('.myInquiryList').on('click', function(){
 	$('#mypageMain').load("/mypage/myInquiryList");
 	console.log("myInquiryList");
-});
+});*/
 
 
-$('.myWrittenBtn').on('click', function(){
+/*$('.myWrittenBtn').on('click', function(){
 	$('#mypageMain').load("/mypage/myWritten");
 	console.log("myWritten");
-});
+});*/
 
 
-$('.myScrapedBtn').on('click', function(){
+/*$('.myScrapedBtn').on('click', function(){
 	$('#mypageMain').load("/mypage/myScraped");
 	console.log("myScraped");
-});
+});*/
 
 
 

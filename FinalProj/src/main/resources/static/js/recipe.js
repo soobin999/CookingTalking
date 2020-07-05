@@ -1,5 +1,5 @@
 $(function() {
-	abcd();
+	/*abcd();*/
 	searchedIngr();
    chosung();
    $('#ingrSearchInRefri').on('change', ingrSearch);
@@ -24,7 +24,7 @@ function chosung() {
 				var list = '<div id="ingrList" class="result-area">'
 				$.each(data, function(index, value) {
 					if(!$('#selectedIngr > .'+value).val())
-						list = list + '<button class="ingrButton '+value+'" value="'+value+'">' + value + '</button>';
+						list = list + '<button class="ingrButton '+value+'" value="'+value+'">' + value + '</button>　';
 				});
 				
 				list = list + '</div>';

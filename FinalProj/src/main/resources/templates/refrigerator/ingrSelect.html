@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
-<title>냉장고 파먹기(정민)</title>
+<title>쿠킹토킹:::냉장고파먹기</title>
 <style type="text/css">
 </style>
+
+
 <link th:href="@{css/recipe/rcp.css}" rel="stylesheet">
 </head>
-<body>
+<div layout:fragment='content'>
 
 
+<div th:class="search-main">
    <!-- 냉장고 파먹기 재료 검색창 -->
-   <form onsubmit="return false">
-      <input type="text" onsubmit="return false" title="재료를 검색하세요"
-         id="ingrSearchInRefri" name="ingrSearchInRefri" class="" placeholder="재료 검색"
-         onkeypress="enterkey(event);">
-      <button type="button" class="" id="btnIngrSearch">검색</button>
-      <ul id="searchedIngr" th:class="searchedIngr"></ul> <!-- 검색한 재료가 나오는 영역 -->
+ 
 
+ 
+   <form onsubmit="return false"  style="padding-top: 20px;">
+      <input type="text" onsubmit="return false" title="재료를 검색하세요"
+         id="ingrSearchInRefri" name="ingrSearchInRefri" class="ingrSearchInRefri" placeholder="재료를 검색하세요"
+         onkeypress="enterkey(event);"  style="margin-left: 70px;">
+      <button type="button" class="btn search" id="btnIngrSearch">검색</button>
+      <ul id="searchedIngr" th:class="searchedIngr"></ul> <!-- 검색한 재료가 나오는 영역 -->
+<div th:class="chosung1">
       <!-- chosung -->   
       <button class="chosung" th:value="0">ㄱ</button>
       <button class="chosung" th:value="1">ㄴ</button>
@@ -33,15 +41,17 @@
       <button class="chosung" th:value="11">ㅍ</button>
       <button class="chosung" th:value="12">ㅌ</button>
       <button class="chosung" th:value="13">ㅎ</button>
-
+</div>
 
    </form>
-   <!-- 재료 리스트 가져오기 -->
+</div>
 
+   <!-- 재료 리스트 가져오기 -->
    <form onsubmit="return false">
 
 		<div th:id="chosungNum">
 			<div th:class="result-area" th:id="ingrList">
+			<div th:class="ingr-list">
 				<table>
 					<tbody th:id="result">
 						<tr th:each="ingrs : ${ingrs}">
@@ -51,12 +61,15 @@
 						</tr>
 					</tbody>
 				</table>
+				</div>
 			</div>
 		</div>
 	</form>
 	<!-- 선택한 재료 담는 곳 -->
 	<!-- <div th:class="selectedIngr" th:id="selectedIngr" value=""></div> -->
 	
+	<div>
+	<h2 th:class="my">나의 냉장고</h2>
 	<form id="selectedIngrForm" th:action="@{/rcmmRecipe}" th:method="POST">
 		<!-- <input type="hidden" id="myIngr" name="selectedIngr" value="${selectedIngr}"> -->
 		<div th:class="selectedIngr" th:id="selectedIngr" >
@@ -64,8 +77,9 @@
 		</div>
 		<button type="submit" th:class="goToRcmmRecipe" th:id="goToRcmmRecipe">레시피 검색하러 가기</button>
 	</form>
-	
+	</div>
 		<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
-		<script src="/js/recipe.js?version=20200701"></script>
-</body>
+		<script src="/js/recipe.js"></script>
+
+</div>
 </html>

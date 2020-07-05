@@ -2,6 +2,7 @@ package com.cook.talk.model.serviceImpl;
 
 import java.util.List;
 
+import org.elasticsearch.common.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import com.cook.talk.model.VO.RcpIngrVO;
 import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TagVO;
+import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.VO.TypeCatVO;
 import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dao.RecipeDAO;
@@ -137,18 +139,39 @@ public class RecipeServiceImpl implements RecipeService {
 		
 		
 		//3. rcpIngr 테이블 생성
-		int cncNum = recipeDAO.selectConnectCode() +1;
-		rcpIngrVO.setConnectCode("RM-" +cncNum);
+				
 		//rcpCode를 rcpIngr의 rcpCode에 set한다
-		rcpIngrVO.setRcpCode(recipeVO.getRcpCode());		
-		recipeDAO.insertRcpingrProc(rcpIngrVO);
+		String [] strings2 = rcpIngrVO.getIngrCat().trim().split(",");
+		String [] strings3 = rcpIngrVO.getUserIngr().trim().split(",");
+		String [] strings4 = rcpIngrVO.getIngrWeigh().trim().split(",");
+		int type = 0;
+		for(int i = 0; i < strings3.length; i++) {
+			int g = strings3.length/2;
+			int cncNum = recipeDAO.selectConnectCode() +1;
+			rcpIngrVO.setConnectCode("RM-" +cncNum);
+			if(i==g) type +=1;
+			rcpIngrVO.setIngrCat(strings2[type]);
 		
+			rcpIngrVO.setUserIngr(strings3[i]);
+			rcpIngrVO.setIngrWeigh(strings4[i]);
+			rcpIngrVO.setRcpCode(recipeVO.getRcpCode());		
+			recipeDAO.insertRcpingrProc(rcpIngrVO);
+		}
+				
 		log.info(rcpIngrVO);		
 		
 		//4. rcporder 테이블 생성
 		//rcpCode를 rcpOrder의 rcpCode에 set한다
-		rcpOrderVO.setRcpCode(recipeVO.getRcpCode());		
-		recipeDAO.insertRcporderProc(rcpOrderVO);
+		String [] strings5 = rcpOrderVO.getCookOrder().trim().split(",");
+		String [] strings6 = rcpOrderVO.getCookCont().trim().split(",");
+		
+		for(int i = 0; i < strings6.length; i++) {
+			rcpOrderVO.setRcpCode(recipeVO.getRcpCode());		
+			rcpOrderVO.setCookOrder(strings5[i]);
+			rcpOrderVO.setCookCont(strings6[i]);
+		
+			recipeDAO.insertRcporderProc(rcpOrderVO);
+		}
 		
 		log.info(rcpOrderVO);
 		
@@ -171,7 +194,28 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipeDAO.rcpViewsUpdate(rcpCode);
 		
 	}
+
 	
-}
+	//레시피 수정
+//	@Override
+//	public RecipeDTO updateRecipe(RecipeDTO recipeDTO) {
+//		return recipeDAO.updateRecipe(recipeDTO);
+//	}
+//	
+//	@Override
+//	public void updateRecipeProc(RecipeDTO recipeDTO) {
+//		recipeDAO.updateRecipeProc(recipeDTO);
+//	}
+//		
+		
+	//레시피 삭제
+	@Override
+	public String deleteRecipe(String rcpCode) {
+	return recipeDAO.deleteRecipe(rcpCode);
+	}
+
+	}
+
+
 
 

@@ -1,27 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
+	layout:decorator='~{layout/default}'>
 <head>
 <meta charset="UTF-8">
 <title>추천 레시피</title>
+<th:block layout:fragment='css'>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/recipe.js"></script>
-	
-	<!-- 추천 레시피 -->
-	<table>
-	<thead>
-	<tr>
-	<th>레시피 제목</th>
-	<th>레시피 사진</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr th:each="rcmmList : ${rcmmList}">
-	<td> <a th:href="@{/recipe/view(rcpCode=${rcmmList.rcpCode})}" th:text="${rcmmList.rcpTitle}"></a></td>
-	<td th:text="${rcmmList.rcpPic}"></td>
-	</tbody>
-	</table>
-	
-</body>
+<style>
+.rcp_m_list2 .thumbnail_over{
+left:16px;
+}
+</style>
+
+<div layout:fragment='content'>
+		<div class="snb_nav">
+
+        </div>
+	<div class="rcp_m_list2"  style="padding-left: 150px;">
+	<h2 style="padding-left: 10px">추천 레시피</h2>
+
+		
+		<div class="rcp_m_tit"><!-- recipe area -->
+	 	 <div class="row" style=" padding-top: 50px;">
+		 	<div class="col-xs-3" th:each="rcmmList : ${rcmmList}">
+		 	  <a class="thumbnail" 
+		 	  th:href="@{/recipe/view(rcpCode=${rcmmList.rcpCode})}">
+			            <span class="thumbnail_over">
+			            <img src="https://recipe1.ezmember.co.kr/img/thumb_over.png" style="
+    padding-left: 10px;
+    width: 285px;
+"></span>
+            <img th:src="@{/img/산마늘.jpg}" style="width:275px; height:275px;" >
+          	<div class="caption">
+            <h4 class="ellipsis_title2" th:text="${rcmmList.rcpTitle}"></h4>
+          </div>
+        </a>
+               
+		
+	</div><!-- row end -->
+	</div><!-- index end -->
+	</div><!-- recipe area end -->
+	</div><!-- recipe list end -->
+		<!-- pagination -->	
+		<div th:class="Pagination_Li">
+	<!-- 		<div th:each="num: ${#numbers.sequence(1, (#lists.size(recipeList)/50)+1 )}" th:class="page">
+				<a class="page" th:text="${num}" th:value="${num}" style="color: #FF8000;"></a>
+				</div> -->
+		</div>
+		<!-- pagination end -->
+<!-- scroll -->	
+<a id="backToTop" class="scrolltop" href="#">
+<i class="fas fa-chevron-circle-up"></i></a>
+<!-- script -->
+
+	</div><!-- layout end -->
+
+
+
+
+
 </html>
