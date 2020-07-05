@@ -1,6 +1,7 @@
 package com.cook.talk.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.cook.talk.model.VO.CriteriaVO;
 import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.dao.TalkDAO;
+import com.cook.talk.model.dto.RecipeDTO;
 import com.cook.talk.model.service.TalkService;
 
 import lombok.AllArgsConstructor;
@@ -32,8 +32,11 @@ public class TalkContoller {
 
 //목록 
 	@GetMapping("/list")
-	public String list(Model model, CriteriaVO cri) {
-		model.addAttribute("list", talkservice.getTalkList(cri));
+	public String list(Model model) {
+		List<TalkVO> talkList2 = talkDAO.getTalkListPaiging(1);
+		model.addAttribute("list", talkservice.getTalkList());
+		model.addAttribute("talkList2", Math.ceil(talkDAO.talkCount()/ 10.0));
+		model.addAttribute("talkCount", talkDAO.talkCount());
 		return "talk/list";
 	}
 

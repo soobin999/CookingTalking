@@ -6,7 +6,6 @@
 
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -132,9 +131,9 @@
 						<div class="story_view_top_name">
 
 
-							<strong> <a href="#" th:text="${listCom.nickName}"
-								style="font-size: 25px"></strong> <img src=""></a> <br> <br>
-							<span class="story_view_top_date" th:text="${listCom.talkDate}"></span>
+							<strong> <a href="#" th:text="${listCom.nickName}"></strong>
+							<img src=""></a> <br> <br> <span
+								class="story_view_top_date" th:text="${listCom.talkDate}"></span>
 						</div>
 						</h4>
 
@@ -169,8 +168,7 @@
 						<br> <br>
 
 
-						<div class="story_view_cont_txt"
-							style="padding-left: 80px; font-size: 22px">
+						<div class="story_view_cont_txt" style="padding-left: 80px;">
 							<span th:text="${listCom.talkCont}"></span>
 						</div>
 					</div>
@@ -194,62 +192,31 @@
 					<div class="reply_write">
 						<div class="view_reply">
 
-							<div class="reply_tit"><b th:text="${comCount}"></b>
+							<div class="reply_tit">
 								댓글 <span> </span>
 							</div>
 
 							<div id="prev_comment"></div>
 
 							<div id="reply_list_2486198" class="media reply_list"
-								style="margin-top: 15px;" th:each="com : ${listCom.talkComs}">
+								style="margin-top: 15px;">
+
 								<div class="media-left">
-									
-									<div id="reply_nick">
-										<a href="/profile/index.html?uid=kionlau">
-										 <img
-											class="media-object"
-											src="'/img/' + ${com.userPic}"
-											data-holder-rendered="true"></a>
-									</div>
+									<a href="/profile/index.html?uid=kionlau"> <img
+										class="media-object"
+										src="https://recipe1.ezmember.co.kr/cache/rpf/2020/06/28/f69790c0f4f28c83e45f6b5e0a29c32a1.f60395418df37a0ca3e32e3eb2883cc6"
+										data-holder-rendered="true"></a>
 								</div>
 
-								<div class="media-body" style="position: relative;" >
+								<div class="media-body" style="position: relative;">
 
-									<h4 class="media-heading" style="padding: 735x21;width: 220px;">
+									<h4 class="media-heading" style="padding: 735x21" >
 										<b class="info_name_f"
-											th:text="${com.nickName}"
-											style="cursor: pointer;"> 아르르띠</b><span style="color: #808080;" th:text="${com.talkComDate}"></span> <span>|</span>
-									<p th:text="${com.talkCom}"></p>
-									
-									
+											onclick="set_reply_id('f','kionlau','아르르띠')"
+											style="cursor: pointer;"> 아르르띠</b>2020-07-01 12:22:06 <span>|</span>
 									</h4>
 								</div>
-								
-								
-								
-								<div id="docs_comment_list_area">
-									<!-- <div class="comment-div" style="padding-left: 60px;"> -->
-
-										<input class="comment-code" type="hidden"
-											th:value="${com.talkComCode}"><!-- 지우기 <span
-											th:text="${com.talkCom}" class="comment-form"></span> -->
-
-										<div
-											th:if="${#authentication.principal.username} == ${com.userId}">
-
-											<div class="comment-btn" style="padding-left: 530px;">
-
-												<button class="comment-update-btn" type="button"
-													id="com_update" th:value='${com.talkComCode}'>수정</button>
-
-												<button class="comment-delete-btn" type="button"
-													id="com_Delete" th:value='${com.talkComCode}'>삭제</button>
-											</div>
-										</div>
-									</div>
-								</div>
 								<!--/media reply_list -->
-						
 							</div>
 						</div>
 
@@ -261,40 +228,36 @@
 							<div id="reply_list" class="media reply_list"
 								style="margin-top: 15px;" th:each="com : ${listCom.talkComs}">
 
-								<!-- <div class="media-left">
+								<div class="media-left">
 									<a href="/profile/index.html?uid=97285424"> <img
 										class="media-object" src="" data-holder-rendered="true"></a>
-								</div> -->
+								</div>
 
-								<!-- <div class="media-body"
-									style="padding-left: 20px; display: inline; position: relative;">
+								<div class="media-body" style="padding-left: 20px;">
 
 									<div class="media-heading">
-												<h4 class="media-heading">
+										<!-- 		<h4 class="media-heading"> -->
 										<p>
 											<b class="info_name_f" th:text="${com.nickName}"
 												style="cursor: pointer;"></b>
 										</p>
-										<div th:text="${com.talkComDate}">2020-07-01 16:11:29</div>
-										<span></span>
+										<span th:text="${com.talkComDate}">2020-07-01 16:11:29</span>
+										<span>|</span>
 									</div>
-
-
-
-												</h4>
-								</div> -->
+									<!-- 			</h4> -->
+								</div>
 
 								<div id="docs_comment_list_area">
 									<div class="comment-div" style="padding-left: 60px;">
 
-										<!-- <input class="comment-code" type="hidden"
+										<input class="comment-code" type="hidden"
 											th:value="${com.talkComCode}"> <span
-											th:text="${com.talkCom}" class="comment-form"></span> -->
+											th:text="${com.talkCom}" class="comment-form"></span>
 
 										<div
 											th:if="${#authentication.principal.username} == ${com.userId}">
 
-											<div class="comment-btn" style="padding-left: 530px;">
+											<div class="comment-btn">
 
 												<button class="comment-update-btn" type="button"
 													id="com_update" th:value='${com.talkComCode}'>수정</button>
@@ -330,12 +293,9 @@
 										class="form-control" placeholder=""
 										style="height: 100px; width: 100%; resize: none;"></textarea>
 									<span class="input-group-btn">
-									<strong><button id="btn_comment" class="btn btn_comment" type="button"
-											style="height: 100px;  width: 100px; background: #FF8000 " >
-											<p style="padding-top: 15px; color:#FFFFFF; font-size: 18px" >
-
-											등 록</p></button>
-								</strong>		</span>
+										<button id="btn_comment" class="btn btn_comment" type="button"
+											style="height: 100px; width: 100px;">등록</button>
+									</span>
 								</div>
 							</div>
 						</div>

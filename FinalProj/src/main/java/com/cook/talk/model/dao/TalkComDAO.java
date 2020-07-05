@@ -28,7 +28,7 @@ public interface TalkComDAO {
 	public int selectTalkComCode();
 	
 	//개수
-	public int count (int talkComCode);
+	public int comCount();
 
 	
 

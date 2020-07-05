@@ -25,18 +25,25 @@
 		(select u.nickName from user u where t.userId = u.userId) as nickName 
 		from talk t where t.talkCode = #{talkCode}
 		</select>
-		<select id="getCommentListById" resultType="com.cook.talk.model.VO.TalkComVO">
-		select *, (select u.nickName from user u where tc.userId = u.userId) as nickName from recipe.talkcom tc where tc.talkCode = #{talkCode}
-		
-		
-		
+		<select id="getCommentListById" resultType="com.cook.talk.model.VO.TalkComVO" parameterType="String">
+		  select userPic, nickName, talkCom, talkComDate from user as u inner join talkCom as tc on u.userId=tc.userId where 
+        tc.talkCode=#{talkCode};
 		</select>
 
 	<select id="getTalkList" resultType="com.cook.talk.model.VO.TalkVO">
-		select * from talk<!-- ORDER BY talkCode DESC -->
+SELECT talkDate,talkCont,talkCode,talkVideo ,nickName 
+FROM talk AS t 
+INNER JOIN 
+user AS u 
+ON t.userId = u.userId 
+ORDER BY talkDate DESC
 	</select>
 
-
+<!-- 
+	<select id="getTalkList" resultType="com.cook.talk.model.VO.TalkVO">
+	   SELECT * FROM talk AS t INNER JOIN user AS u ON t.userId = u.userId WHERE u.nickName=#{nickName}
+	</select>
+ -->
 
 	<!-- 게시글 작성 -->
 	<insert id="insert"
@@ -76,5 +83,21 @@
 		talkCode from talk order by talkCode desc
 		limit 1), 3);
 	</select>
+	
+
+	<!-- 레시피 총갯수 카운팅 -->
+		<select id="talkCount" resultType="int">
+	select count(*)
+		from talk
+	</select>
+	
+	<select id="getTalkListPaiging" resultType="talkVO">
+		select talkCode, talkCode, talkCont, talkDate, talkVideo, userId 
+		from talk 
+		limit #{pageNum},12
+	</select>
+	
+	
+	
 
 </mapper>

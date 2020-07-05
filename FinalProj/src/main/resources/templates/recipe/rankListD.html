@@ -56,6 +56,7 @@ transition: all 0.5s ease-in-out;
      <div>&nbsp;
      &nbsp;
      </div>
+ 
   <div class="row" style="padding-top:40px;">                 
 	<div class="col-xs-3" th:each="rank,index : ${getRankD}" th:id='${index.index}'>
     <a class="thumbnail" th:href="@{/recipe/view(rcpCode=${rank.recipeVO.rcpCode})}">
@@ -69,7 +70,9 @@ transition: all 0.5s ease-in-out;
                         </div>
                     </a>
 	</div> 
- </div><!-- row end -->
+ </div>
+ 
+ <!-- row end -->
 </div><!-- rank end -->
 </div><!-- content area end -->
 </div><!-- container end -->

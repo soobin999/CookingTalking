@@ -22,7 +22,6 @@ values (#{userId}, #{userPw}, #{nickName}, #{birth}, #{gender}, #{access}, #{aut
 		SELECT COUNT(*) FROM user WHERE nickName=#{nickName}
 </select>
 
-
 <insert id="login">
 insert into user(userId, userPw, nickName, birth, gender)
 values (#{userId}, #{userPw}, #{nickName}, #{birth}, #{gender})
@@ -39,8 +38,6 @@ UPDATE user set nickName=#{nickName} where user.userId=#{userId}
 <update id="updatePw">
 	UPDATE user SET userPw=#{userPw} WHERE userId=#{userId}
 </update>
-
-
 
 <delete id="deleteUser" parameterType="com.cook.talk.model.VO.UserVO">
 delete from user where userId=#{userId}

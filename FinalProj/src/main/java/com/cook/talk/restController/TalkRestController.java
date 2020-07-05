@@ -37,8 +37,8 @@ public class TalkRestController {
 
 	// 이미지 업로드
 	@PostMapping("talk/upload")
-	public void talkImg(@RequestParam("talkPic") MultipartFile file, TalkVO talkVO) {
-		String talkPicture = FileTrancefer.requestFileTrancefer(file, "talkPic/");
+	public void talkImg(@RequestParam("talkPic") MultipartFile multipartfile, TalkVO talkVO) {
+		String talkPicture = FileTrancefer.requestFileTrancefer(multipartfile, "talkPic/");
 		talkVO.setTalkVideo(talkPicture);
 		talkDAO.insert(talkVO);
 	}
