@@ -36,7 +36,7 @@ h5{text-align:right;}
 							<div class="row">
 								<div class="col-md-3" th:each='num:${#numbers.sequence(0,3)}'>
 									<div class="thumbnail">
-										<img th:src="@{'/img1/'+${rcpList[num].rcpPic}}" alt="Slide0" style="width:300;height:200px">
+										<img th:src="${rcpList[num].rcpPic}" alt="Slide0" style="width:300;height:200px">
 										<div class="caption">
 											<p th:text='${rcpList[num].rcpTitle}'></p>
 											<h5 th:text='${rcpList[num].nickName}'></h5>
@@ -50,7 +50,7 @@ h5{text-align:right;}
 							<div class="row">
 								<div class="col-md-3" th:each='num:${#numbers.sequence(4,7)}'>
 									<div class="thumbnail">
-										<img th:src="@{'/img1/'+${rcpList[num].rcpPic}}" alt="Slide1" style="width:300;height:200px">
+										<img th:src="${rcpList[num].rcpPic}" alt="Slide1" style="width:300;height:200px">
 										<div class="caption">
 											<p th:text='${rcpList[num].rcpTitle}'></p>
 											<h5 th:text='${rcpList[num].nickName}'></h5>
@@ -63,7 +63,7 @@ h5{text-align:right;}
 							<div class="row">
 								<div class="col-md-3" th:each='num:${#numbers.sequence(8,9)}'>
 									<div class="thumbnail">
-										<img th:src="@{'/img1/'+${rcpList[num].rcpPic}}" alt="Slide1" style="width:300;height:200px">
+										<img th:src="${rcpList[num].rcpPic}" alt="Slide1" style="width:300;height:200px">
 										<div class="caption">
 											<p th:text='${rcpList[num].rcpTitle}'></p>
 											<h5 th:text='${rcpList[num].nickName}'></h5>
