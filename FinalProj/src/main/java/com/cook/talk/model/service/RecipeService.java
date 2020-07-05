@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.VO.RecipeVO;
+import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dto.RecipeDTO;
 
@@ -44,8 +45,9 @@ public interface RecipeService {
 	
 	//레시피 조회수 증가
 	public int rcpViewsUpdate(String rcpCode);
+	
 
-		
-
+	// 삭제
+	public String deleteRecipe(String rcpCode);
 
 }

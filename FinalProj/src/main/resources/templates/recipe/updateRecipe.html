@@ -33,7 +33,7 @@ input[type=button] {
 </head>
 <div layout:fragment='content'>
  <div class="container recipe_regi">  <!-- 레시피 div -->
-    <form id="insertRecipe" th:action="@{insertProc}" method="post" th:object="${recipeDTO}" action="#" enctype="multipart/form-data">
+    <form id="insertRecipe" th:action="@{updateProc}" method="post" th:object="${recipeDTO}" action="#" enctype="multipart/form-data">
   <div class="regi_center"><!-- button전까지 -->
 	<div class="regi_title">
 	레시피 등록

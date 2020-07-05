@@ -11,6 +11,7 @@ import com.cook.talk.model.VO.RcpIngrVO;
 import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TagVO;
+import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.VO.TypeCatVO;
 import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dto.RecipeDTO;
@@ -85,9 +86,13 @@ public interface RecipeDAO {
 
 			
 	//레시피 수정
+	public RecipeDTO updateRecipe(String rcpCode);
+
+	// 수정 버튼
+	public int updateRecipeProc(RecipeDTO recipeDTO);
 	
-	//레시피 삭제
-	
+	//레시피 삭제	
+	public String deleteRecipe(String rcpCode);
 	
 }
 
