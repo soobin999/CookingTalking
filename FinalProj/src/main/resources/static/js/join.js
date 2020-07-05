@@ -115,36 +115,30 @@ $(function() {
 	});
 });
 
+// 비밀번호 검사
 
-
-
-
-//비밀번호 검사 
-
-$(document).ready(function(){
+$(document).ready(function() {
 	$("#userPw").change(function() {
-		
-		checkPassword($('#userPw').val(),
-						$('#userId').val());
-});
+
+		checkPassword($('#userPw').val(), $('#userId').val());
+	});
 
 });
 
 function checkPassword(userPw, userId) {
 
-	if (!/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/
-			.test(userPw)) {
+	if (!/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/.test(userPw)) {
 		alert('숫자+영문자 조합으로 8자리 이상 사용해야 합니다.');
-		
+
 		$('#userPw').val('').focus();
 		return false;
 	}
-	
+
 	var checkNumber = userPw.search(/[0-9]/g);
 	var checkEnglish = userPw.search(/[a-z]/ig);
 	if (checkNumber < 0 || checkEnglish < 0) {
 		alert("숫자와 영문자를 혼용하여야 합니다.");
-	
+
 		$('#userPw').val('').focus();
 		return false;
 	}
@@ -162,20 +156,18 @@ function checkPassword(userPw, userId) {
 	return true;
 }
 
-
-
 $(document).ready(function() {
-	//기본형태
-	//$('#registerForm').validate(); //유효성 검사를 적용
+	// 기본형태
+	// $('#registerForm').validate(); //유효성 검사를 적용
 
 	// validate signup form on keyup and submit
-	//확장옵션
+	// 확장옵션
 	$('#registerForm').validate({
 		rules : {
 			userId : {
 				required : true,
 				minlength : 3,
-			//	remote : "Validate"
+			// remote : "Validate"
 			},
 			userPw : "required",
 			userPw2 : {
@@ -189,6 +181,9 @@ $(document).ready(function() {
 				required : true
 			},
 			gender : {
+				required : true
+			},
+			check : {
 				required : true
 			}
 		//
@@ -211,12 +206,81 @@ $(document).ready(function() {
 			},
 			gender : {
 				required : "성별을 선택해 주세요 ."
+			},
+			check : {
+				required : "약관에 동의해 주세요 ."
 			}
+
 		},
 		submitHandler : function(frm) {
-			frm.submit(); //유효성 검사를 통과시 전송
+			frm.submit(); // 유효성 검사를 통과시 전송
 
 		}
 
 	});
-}); //end ready()
+}); // end ready()
+
+// 약관 동의
+
+$(".check_box").on("click", "#chk", function() {
+	var checked = $(this).is(":checked");
+	if (checked) {
+		$(this).parents(".check_box").find('input').prop("checked", true);
+	} else {
+
+		$(this).parents(".check_box").find('input').prop("checked", false);
+	}
+});
+
+
+
+
+
+/*function allCheck() {
+    $(".checkBox").prop("checked",true); 
+}// 모두 체크하기
+*/
+$(document).ready(function() {
+	$("#chk").click(function() {
+		$("input[type=checkbox]").prop('checked', $(this).prop('checked'));
+
+	});
+});
+
+function oneCheck(a)
+{
+var allChkBox = $("[name=check1]");
+var chkBoxName = $(a).attr("name");
+
+if( $(a).prop("checked") )
+{
+    checkBoxLength = $("[name="+ chkBoxName +"]").length;
+     //전체체크박스 수(모두동의하기 체크박스 제외)
+    checkedLength = $("[name="+ chkBoxName +"]:checked").length;
+    //체크된 체크박스 수 
+    if( checkBoxLength == checkedLength ) {
+        allChkBox.prop("checked", true);
+        //전체체크박스수 == 체크된 체크박스 수 같다면 모두체크
+
+    } else {
+        allChkBox.prop("checked", false);
+        
+    }
+}
+else
+{
+    allChkBox.prop("checked", false);
+}
+}
+
+$(function(){
+$("[name=check1]").click(function(){
+    allCheck(this);
+    //모두동의하기 체크박스 클릭시
+});
+$("[name=check2]").each(function(){
+    $(this).click(function(){
+        oneCheck(this);
+    });
+});
+});

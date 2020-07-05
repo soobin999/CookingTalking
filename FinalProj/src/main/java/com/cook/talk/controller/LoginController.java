@@ -69,7 +69,7 @@ public class LoginController {
 		return "join";
 	}
 
-	@RequestMapping(value = "/login/userUpdate", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/userUpdate", method = { RequestMethod.GET, RequestMethod.POST })
 	public String userUpdate(String nickName, Principal principal) {
 		service.updateNick(nickName, principal.getName());
 		return "/login/userUpdate";
@@ -111,7 +111,6 @@ public class LoginController {
 	}
 
 	private UserServiceImpl userServiceImpl;
-
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join(UserVO userVO) {
 		return "join/join";

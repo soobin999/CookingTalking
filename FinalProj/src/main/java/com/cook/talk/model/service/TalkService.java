@@ -4,14 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.cook.talk.model.VO.CriteriaVO;
 import com.cook.talk.model.VO.TalkComVO;
 import com.cook.talk.model.VO.TalkVO;
 
 public interface TalkService {
 	// 목록 가져오기
-	public List<TalkVO> getTalkList(@Param("criteriaVO") CriteriaVO cri);
+	public List<TalkVO> getTalkList();
 
 	// 추가
 	public void insert(TalkVO talkVO);
@@ -34,5 +32,7 @@ public interface TalkService {
 	// 이미지 업로드
 	public void upload(MultipartFile file);
 
+	//갯수
+	public int talkCount();
 	
 }

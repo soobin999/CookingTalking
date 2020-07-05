@@ -4,14 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.tomcat.util.http.fileupload.UploadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.cook.talk.model.VO.CriteriaVO;
-import com.cook.talk.model.VO.TalkComVO;
 import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.dao.TalkDAO;
 import com.cook.talk.model.service.TalkService;
@@ -30,8 +25,7 @@ private static final String UploadDirectory=System.getProperty("user.dir")+ "\\s
 
 //목록
 	@Override
-	public List<TalkVO> getTalkList(CriteriaVO cri) {
-		
+	public List<TalkVO> getTalkList() {
 		return talkDAO.getTalkList();
 	}
 
@@ -91,6 +85,12 @@ private static final String UploadDirectory=System.getProperty("user.dir")+ "\\s
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int talkCount() {
+int talkCount = talkDAO.talkCount();
+		return talkCount();
 	}
 
 

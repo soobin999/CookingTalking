@@ -2,18 +2,11 @@ package com.cook.talk.model.serviceImpl;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.cook.talk.model.VO.CriteriaVO;
 import com.cook.talk.model.VO.TalkComVO;
-import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.dao.TalkComDAO;
 import com.cook.talk.model.service.TalkComService;
-
-import lombok.AllArgsConstructor;
 import lombok.Setter;
 
 @Service
@@ -49,8 +42,9 @@ public class TalkComServiceImpl implements TalkComService {
 	// 목록
 
 	@Override
-	public int comcount(String talkCode) {
-		return 0;
+	public int comCount() {
+	int comCount=comDAO.comCount();
+		return comCount();
 	}
 
 	@Override
@@ -58,4 +52,5 @@ public class TalkComServiceImpl implements TalkComService {
 		return talkComService.searchComment(talkCode);
 	}
 
+	
 }

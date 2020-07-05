@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.cook.talk.model.VO.TalkVO;
+import com.cook.talk.model.dto.RecipeDTO;
 
 @Mapper
 public interface TalkDAO {
@@ -35,5 +36,13 @@ public interface TalkDAO {
 
 	//이미지 업로드 
 	public void upload(TalkVO talkVO);
+	
+	// 총갯수 카운팅
+	public int talkCount();
+		
+	//페이징
+	public List<TalkVO> getTalkListPaiging(int pageNum);
+	
+	
 
 }

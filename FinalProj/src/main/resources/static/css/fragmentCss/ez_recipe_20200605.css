@@ -644,7 +644,7 @@ body {min-width: 1240px;}
 }
 .reply_tit {font-size:24px; font-weight:bold; padding-bottom:15px; border-bottom:1px solid #e6e7e8; margin-bottom:10px;}
 .reply_tit span {color:#74b243;}
-.reply_list {border-bottom:1px solid #e6e7e8; padding-bottom:20px; padding-top:5px;}
+.reply_list {/* border-bottom:1px solid #e6e7e8; */ padding-bottom:20px; padding-top:5px;}
 .reply_list .media-left img {width:50px; height:50px;  border-radius:50%;}
 .reply_list .media-heading {color:#999; font-size:14px; position:relative;}
 .reply_list .media-heading b {font-size:17px; margin-right:10px; font-weight: normal;}

@@ -5,7 +5,7 @@
 
 <!-- 해당 댓글  -->
 <select id="searchComment" resultType="com.cook.talk.model.VO.TalkComVO">
-select * form recipe.talkcom  where talkComCode=#{talkComCode} order by talkComDate desc
+select * from recipe.talkcom  where talkComCode=#{talkComCode} order by talkComDate desc
 LIMIT #{CriteriaVO.pageStart},#{CriteriaVO.perpageNum}
 </select>
 
@@ -26,10 +26,13 @@ select substring((select talkComCode from
 
 <!-- 댓글 목록 -->
 	<select id="getCom" parameterType="com.cook.talk.model.VO.TalkComVO"> 
-	select count(*) from talkcom where talkComCode=#{talkComCode}
+	select count(*) from talkcom where talkComCode=#{talkComCode} 
 	</select>
 	
-
+<select id="comCount" resultType="int">
+	select count(*)
+		from talkcom
+	</select>
 
 <!-- 삭제  -->
 <delete id="deleteCom" parameterType="com.cook.talk.model.VO.TalkComVO">

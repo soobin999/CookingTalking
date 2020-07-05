@@ -119,4 +119,38 @@ function comDelete() {
 
 };
 
+//페이징
+$(document).ready(function() {
 
+	var cc = 120;
+	for (var i = 50; i < cc; i++) {
+		$('#' + i).hide();
+	}
+});
+
+$('.page').click(function(event) {
+	var k = event.target.text;
+	console.log(k);
+	for (var i = 0; i < $('.page').last().text()*50; i++) {
+		$('#' + i).hide();
+	}
+	for (var i = 0; i < 50; i++) {
+		$('#' + ((parseInt(k) - 1) * 50 + parseInt(i))).show();
+		console.log(k + i);
+	}
+});
+
+//스크롤
+jQuery(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#backToTop').fadeIn(500);
+    } else {
+      $('#backToTop').fadeOut('slow');
+    }
+  });
+  $('#backToTop').click(function (e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop: 0}, 200);
+  });
+});
