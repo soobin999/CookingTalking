@@ -231,8 +231,50 @@
 	</update>
 
    <!-- 레시피 수정 -->
-   
+   <update id="updateRcp" parameterType="recipeVO">
+   	UPDATE rcp 
+   	SET 
+   	rcpTitle=#{rcpTitle}, rcpPic=#{rcpPic}, rcpExpl=#{rcpExpl}, 
+   	video=#{video}, personnel=#{personnel}, cookTime=#{cookTime}, level=#{level}
+   	WHERE userId=#{userId} and rcpCode=#{rcpCode}
+   	</update>
+   	
+   	<update id="updateTypecat" parameterType="typeCatVO">
+   	UPDATE typecat 
+   	SET 
+   	cookType=#{cookType}, cookSituation=#{cookSituation}, cookMethod=#{cookMethod}
+   	WHERE userId=#{userId} and typeCode=#{typeCode}
+   	</update>
+   	
+	<update id="updateRcpingr" parameterType="rcpIngrVO">
+	UPDATE rcpingr
+	SET
+	ingrCat=#{ingrCat}, userIngr=#{userIngr}, ingrWeigh=#{ingrWeigh},
+	WHERE userId=#{userId} and connectCode=#{connectCode}
+	and rcpCode=#{rcpCode}
+	</update>
+
+	<update id="updateRcporder" parameterType="rcpOrderVO">
+	UPDATE rcporder
+	SET
+	cookOrder=#{cookOrder}, cookCont={cookCont}, cookPic={cookPic}
+	WHERE userId=#{userId} and rcpCode=#{rcpCode}
+	</update>
+
+	<update id="updateTag" parameterType="tagVO">
+	UPDATE tag
+	SET
+	tag=#{tag}
+	WHERE rcpTagCode=#{rcpTagCode}
+	</update>
+
    <!-- 레시피 삭제 -->
-
-
+	<delete id="deleteRcpinortag" parameterType="recipeVO">
+	DELETE FROM rcp 
+	WHERE rcpCode = #{rcpCode} 
+	</delete>
+	<delete id="deletetp" parameterType="typecatVO">
+	DELETE FROM typecat
+	WHERE typeCode = #{typeCode}
+</delete>
 </mapper>

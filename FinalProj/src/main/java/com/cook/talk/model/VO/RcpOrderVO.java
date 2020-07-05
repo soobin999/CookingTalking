@@ -9,7 +9,7 @@ import lombok.Data;
 public class RcpOrderVO {
 
 	private String rcpCode;
-	private int cookOrder;
+	private String cookOrder;
 	private String cookCont;
 	private String cookPic;
 }

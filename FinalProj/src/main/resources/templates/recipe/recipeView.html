@@ -9,50 +9,94 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<script src="/js/insertR.js"></script>
 </head>
 <div layout:fragment='content'>
-	<form th:method="post" action="#">
-	<div id="contents_area"><!-- contents area -->
-		<div th:each="recipe : ${recipeDTO}">
-            <div th:text="${recipe.recipeVO.rcpPic}">
-            </div>
-            
-            <div th:text="${recipe.recipeVO.rcpViews}"></div>
-            <div th:text="${recipe.userVO.userPic}"></div>
-            <div th:text="${recipe.userVO.nickName}"></div>
-            <div th:text="${recipe.recipeVO.rcpTitle}"></div>
-            <div th:text="${recipe.recipeVO.rcpDate}"></div>
-            <div th:text="${recipe.recipeVO.rcpExpl}"></div>
-            <div class="iframe_wrap" th:text="${recipe.recipeVO.video}"></div>
-            <div th:text="${recipe.typeCatVO.cookType}"></div>
-            <div th:text="${recipe.typeCatVO.cookSituation}"></div>
-            <div th:text="${recipe.typeCatVO.cookMethod}"></div>
-            <div th:text="${recipe.recipeVO.personnel}"></div>
-            <div th:text="${recipe.recipeVO.cookTime}"></div>
-            <div th:text="${recipe.recipeVO.level}"></div>
- 		</div>
-        <div th:each="rcpIngr : ${rcpIngrView}">
-            <div th:text="${rcpIngr.ingrCat}"></div>
-            <div th:text="${rcpIngr.userIngr}"></div>
-            <div th:text="${rcpIngr.ingrWeigh}"></div>
-        </div>
-        <div th:each="rcpOrder : ${rcpOrderView}">         
-            <div th:text="${rcpOrder.cookOrder}"></div>
-            <div th:text="${rcpOrder.cookCont}"></div>
-            <div th:text="${rcpOrder.cookPic}"></div>
-        </div>
-        <div >
-        <span></span><b>태그</b>
-            <div ><a th:each="tag : ${tagView}" href="#" th:text="${tag.tag}"></a></div>
-        </div>
-        </div><!-- contents area End -->
-    </form>
-    <div class="regi_btm"> 
-    <button type="button" onclick="history.go(-1)" class="btn-lg btn-primary">이전</button> 
-    <button type="button" onclick="history.go(1)" class="btn-lg btn-primary">다음</button>    
-    <button type="button" onclick="goPage()" class="btn-lg btn-primary">목록</button> 
-
+<div class="container sub_bg">
+	<div id="contents_area" class="col-xs-9">
+		<form th:method="post" action="#">
+			<div th:each="recipe : ${recipeDTO}">
+				<div class="view2_pic">
+					<div class="view_cate st2" style="z-index: 10;">
+						<div class="view_cate_num">
+							<span class="hit font_num" th:text="${recipe.recipeVO.rcpViews}"></span>
+						</div>
+					</div>
+					<div class="centeredcrop">
+						<img id="main_thumbs" th:src="@{/img/산딸기.jpg}" alt="main thumb">
+					</div>
+					<div class="user_info2">
+						<a class="app_block_link_remove user_info2_pic"
+							href="/profile/index.html?uid=msjin95212"> <img
+							src="https://recipe1.ezmember.co.kr/cache/rpf/2020/06/25/a86e566efb15338eb921f0b197389e311.jpg"></a>
+						<span class="user_info2_name" th:text="${recipe.userVO.nickName}"></span>
+					</div>
+				</div>
+				<div class="view2_summary"> <!--recipe summary-->
+					<h3 th:text="${recipe.recipeVO.rcpTitle}"></h3>
+					<div class="view2_summary_in" id="recipeIntro">
+						<span class="view2_summary_in_m1"><img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_marks1.png"></span>
+						<div th:text="${recipe.recipeVO.rcpExpl}"></div>
+						<span class="view2_summary_in_m2"><img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_marks2.png"></span>
+					</div>
+					<div class="view2_summary_info">
+						<span class="view2_summary_info1"
+							th:text="${recipe.recipeVO.personnel}"></span> <span
+							class="view2_summary_info2" th:text="${recipe.recipeVO.cookTime}"></span>
+						<span class="view2_summary_info3"
+							th:text="${recipe.recipeVO.level}"></span>
+					</div>
+				</div>
+			</div>	<!-- recipe area -->
+			<div class="blank_bottom"></div>
+			<div class="cont_ingre2">	<!--rcpingr area-->
+				<div class="best_tit">
+					<b>재료</b><span>Ingredients</span>
+					<div class="ready_ingre3" id="divConfirmedMaterialArea"
+						th:each="rcpIngr : ${rcpIngrView}">
+						<ul class="case1">
+							<div> <span th:text="${rcpIngr.ingrCat}"></span>
+							</div>
+							<li>
+								<div th:text="${rcpIngr.userIngr}"></div> <span
+								class="ingre_unit" th:text="${rcpIngr.ingrWeigh}"></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="blank_bottom"></div>
+			<!--rcporder area-->
+			<div class="view_step">	
+				<div class="best_tit" >
+					<b>조리순서</b><span>Steps</span>
+				</div>
+				<div th:each="rcpOrder: ${rcpOrderView}">
+					<div th:text="${rcpOrder.cookOrder}">			
+					</div>
+						<div id="stepdescr1" class="media-body" th:text="${rcpOrder.cookCont}"></div>
+						<div id="stepimg1" class="media-right"></div>
+						<img th:src="@{/img/사과.jpg}">
+				</div>
+			</div>
+			<div class="blank_bottom"></div>
+			<!--tag area-->
+			<div class="view_step" th:each="tag : ${tagView}">
+				<div class="view_tag">
+					<a href="#" th:text="${tag.tag}"></a>
+				</div>
+			</div>
+		</form>
+	</div> <!--contents area end-->
+</div>
+	<div class="regi_btm">
+	<!-- 	<button type="submit" class="btn-lg btn-danger" 
+		th:formaction ="@{/recipe/update/{rcpCode}(rcpCode=${view.rcpCode})}'">수정</button>
+		<button type="button" class="btn-lg btn-danger" 
+		onclick="location.href='/update/${detail.bno}'">삭제</button>
+		<button type="button" class="btn-lg btn-primary" 
+		onclick="location.href='/recipe/newList'">목록</button> -->
 	</div>
-</div><!-- layout area -->
+</div><!-- fragment area -->
 </html>

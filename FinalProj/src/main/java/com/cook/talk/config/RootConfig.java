@@ -21,6 +21,10 @@ public class RootConfig implements WebMvcConfigurer {
 		  .addResourceLocations("classpath:/static/img/");
 		  registry.addResourceHandler("/img1/**")
           .addResourceLocations("file:/c:/Pictures/");
+			/*
+			 * registry.addResourceHandler("/uploadImg/**")
+			 * .addResourceLocations("file:C:/Users/Pictures/rcporder/");
+			 */
 		 
     }
 }
