@@ -1,18 +1,81 @@
 .chosung {
-  background-color: #4CAF50;
+  background-color: #808080;
   border: none;
+  border-radius: 4px;
   color: white;
   padding: 1px 1px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 15px;
+  font-size: 21px;
   cursor: pointer;
+  
 }
 
+.chosung-selected{
+	
+	
+}
+
+.ingrSearchInRefri{
+	
+	
+}
+
+.search-main { padding-top:4px; margin:0 -10px 0 0;}
+.search-main .ingrSearchInRefri {
+	border-radius:0 !important; 
+	border-color: #f7f7f7;
+	width:240px; 
+	height:34px; 
+	background:#fff; 
+	padding:0 0 0 10px; 
+	/* display:inline-block; */ 
+	vertical-align:middle;
+	}
+.search-main .glyphicon {position:absolute; left:8px; top:10px; z-index:100; font-size:20px; color:#ccc;}
+.search-main .btn.search {background:#f7f7f7; border:1px solid #ccc;; width:60px; height:34px; padding:0 0 1px 0 ; margin:1px 5px 0 -6px; color:#333; font-size:14px; font-weight:bold; text-align:center; border-radius:0 3px 03px 0;}
+.search-main .btn.apply {font-size:14px; color:#000; padding:0 20px; border:1px solid #d3d3d3; background:#fff; height:34px;}
+.search-main .btn.apply b {background:url(//recipe1.ezmember.co.kr/img/mobile/icon_confirm2.png) left top no-repeat; background-size:16px; padding-left:20px;}
+
+
+.result-area{
+   width: 450px;
+background-color: #ddd;
+border-radius: 0px 0px 10px 10px;
+overflow: scroll auto;
+	
+}
+
+.chosung1{
+	padding-top: 20px;
+	 padding-left: 50px;
+  padding-bottom: 20px;
+}
+
+.ingr-list{
+	padding-top: 5px;
+	 height: 405px;
+	
+}
+
+.search-main{
+ width: 450px;
+    margin-left: 400px;
+    margin-top: 150px;
+    background-color: #ddd;
+    border-radius: 10px 10px 0% 0%;
+}
+
+#chosungNum{
+	    margin-left: 400px;
+	    width: 450px;
+	
+}
 
 .ingrButton {
-  background-color: #4CAF50;
+  background-color: #808080;
+  border-radius: 4px;
   border: none;
   color: white;
   padding: 1px 1px;
@@ -21,10 +84,12 @@
   display: inline-block;
   font-size: 15px;
   cursor: pointer;
+  margin: 5px;
+  align-content: center;
 }
 
 .ingrButton--selected {
-  background-color: #FF5733;
+  background-color: #FFd650;
   border: none;
   color: white;
   padding: 1px 1px;
@@ -35,12 +100,68 @@
   cursor: pointer;
 }
 
+#ingrList{
+	padding-bottom: 100px;
+	    background-color: #ddd;
+    border-radius: 0% 0% 10px 10px;
+     width: 450px;
+    	padding-top: 5px;
+	 padding-left: 25px;
+	 padding-right: 25px;
+  padding-bottom: 5px;
+  height: 405px;
+/*          margin-left: 500px;
+    margin-top: 150px; */
+}
 
 
 .selectedIngr{
-	width: 430px;
-    margin: auto;
-    margin-top: 210px;
-    border: 2px solid #efeef1;
+    /* border: 2px solid #efeef1; */
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 450px;
+    position: absolute;
+    right: 400px;
+    top: 400px;
+    background-color: #ddd;
+    border-radius: 0px 0px 10px 10px;
+    padding: 20px;
+    font-size: 18px;
+     padding-bottom: 100px;
 }
 
+.my{
+	background-color: #ddd;
+	/* border: 2px solid #efeef1; */
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 450px;
+    position: absolute;
+    right: 400px;
+    top: 305px;
+    border-radius: 10px 10px 0px 0px;
+    text-decoration: underline;
+    padding: 20px;
+    padding-bottom: 40px;
+
+  
+	
+}
+
+.goToRcmmRecipe{
+	border-color: #ff8800;
+	 margin-left: 1300px;
+    margin-bottom: 150px;
+	position: relative;
+	  background-color: #ff8800;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
