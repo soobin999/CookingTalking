@@ -11,6 +11,7 @@ import lombok.Data;
 @Alias("talkVO")
 public class TalkVO {
 
+	private String userPic;
 	private String talkCode;// 코드
 	private String talkCont;// 내용
 	private Date talkDate;// 날짜

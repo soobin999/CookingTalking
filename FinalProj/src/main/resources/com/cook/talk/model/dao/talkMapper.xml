@@ -6,6 +6,7 @@
 <!-- 게시물별 댓글 가져오기 -->
 <resultMap type="com.cook.talk.model.VO.TalkVO" id="talkResult">
 		<result property="userId" column="USERID"/>
+		<result property="userPic" column="USERPIC"/>
 		<result property="talkCode" column="TALKCODE"/>
 		<result property="talkCont" column="TALKCONT"/>
 		<result property="nickName" column="NICKNAME"/>
@@ -16,17 +17,18 @@
 	</resultMap>
 	
 		<select id="getBoardById" parameterType="String" resultMap="talkResult">
-		select t.userId as userId,
+		select u.userPic as userPic,
+		 t.userId as userId,
 		t.talkCode as talkCode,
 		t.talkCont as talkCont,
 		t.talkDate as talkDate,
 		t.talkLike as talkLike,
 		t.talkVideo as talkVideo,
 		(select u.nickName from user u where t.userId = u.userId) as nickName 
-		from talk t where t.talkCode = #{talkCode}
+		from talk t inner join user u on t.userId=u.userId where t.talkCode = #{talkCode}
 		</select>
 		<select id="getCommentListById" resultType="com.cook.talk.model.VO.TalkComVO" parameterType="String">
-		  select userPic, nickName, talkCom, talkComDate from user as u inner join talkCom as tc on u.userId=tc.userId where 
+		  select tc.talkComCode, userPic, nickName, talkCom, talkComDate from user as u inner join talkCom as tc on u.userId=tc.userId where 
         tc.talkCode=#{talkCode};
 		</select>
 
@@ -55,8 +57,8 @@ ORDER BY talkDate DESC
 
 	<!-- 게시글 상세보기 -->
 	<select id="detail" resultType="com.cook.talk.model.VO.TalkVO">
-		select * from talk where
-		talkCode=#{talkCode}
+		select * from talk 
+		where talkCode=#{talkCode}
 	</select>
 
 	<select id="update" resultType="com.cook.talk.model.VO.TalkVO">
@@ -65,12 +67,13 @@ ORDER BY talkDate DESC
 	</select>
 
 	<!-- 게시글 수정 처리 -->
-	<update id="updateTalk"
-		parameterType="com.cook.talk.model.VO.TalkVO">
-		update talk
+	<update id="updateTalk" parameterType="com.cook.talk.model.VO.TalkVO">
+		update 
+			talk
 		set
-		talkCont=#{talkCont} where
-		userId=#{userId} and talkCode=#{talkCode}
+			talkCont=#{talkCont} ,talkVideo=#{talkVideo}
+		where
+			userId=#{userId} and talkCode=#{talkCode}
 	</update>
 
 	<delete id="delete"
@@ -90,14 +93,14 @@ ORDER BY talkDate DESC
 	select count(*)
 		from talk
 	</select>
-	
+<!-- 	
 	<select id="getTalkListPaiging" resultType="talkVO">
 		select talkCode, talkCode, talkCont, talkDate, talkVideo, userId 
 		from talk 
 		limit #{pageNum},12
 	</select>
 	
-	
+	 -->
 	
 
 </mapper>

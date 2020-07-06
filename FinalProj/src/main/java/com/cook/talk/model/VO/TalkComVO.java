@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class TalkComVO {
 
-	
+	private String userPic;
 	private String talkCode;
 	private String talkComCode;
 	private String talkCom;

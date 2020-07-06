@@ -10,7 +10,7 @@ $(function() {
 	/* com_Delete(); */
 	// com_update();
 	comDelete();
-	//newCom();
+	// newCom();
 
 })
 
@@ -119,7 +119,7 @@ function comDelete() {
 
 };
 
-//페이징
+// 페이징
 $(document).ready(function() {
 
 	var cc = 120;
@@ -131,7 +131,7 @@ $(document).ready(function() {
 $('.page').click(function(event) {
 	var k = event.target.text;
 	console.log(k);
-	for (var i = 0; i < $('.page').last().text()*50; i++) {
+	for (var i = 0; i < $('.page').last().text() * 50; i++) {
 		$('#' + i).hide();
 	}
 	for (var i = 0; i < 50; i++) {
@@ -140,17 +140,19 @@ $('.page').click(function(event) {
 	}
 });
 
-//스크롤
-jQuery(document).ready(function () {
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
-      $('#backToTop').fadeIn(500);
-    } else {
-      $('#backToTop').fadeOut('slow');
-    }
-  });
-  $('#backToTop').click(function (e) {
-    e.preventDefault();
-    $('html, body').animate({scrollTop: 0}, 200);
-  });
+// 스크롤
+jQuery(document).ready(function() {
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 100) {
+			$('#backToTop').fadeIn(500);
+		} else {
+			$('#backToTop').fadeOut('slow');
+		}
+	});
+	$('#backToTop').click(function(e) {
+		e.preventDefault();
+		$('html, body').animate({
+			scrollTop : 0
+		}, 200);
+	});
 });

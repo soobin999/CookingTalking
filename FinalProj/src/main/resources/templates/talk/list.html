@@ -17,7 +17,7 @@
 			location.href = "${path}/talk/wirte";
 		});
 	});
-
+/* 
 	//페이징
 	$(document).ready(function() {
 
@@ -53,7 +53,7 @@
 				scrollTop : 0
 			}, 200);
 		});
-	});
+	}); */
 </script>
 </head>
 
@@ -94,7 +94,8 @@
 
 
 								<div class="story_list_thumb">
-									<img th:src="@{/img/산딸기.jpg}">
+									<img th:src="'/img/' + ${talk.talkVideo}">
+<!-- 									<img th:src="@{/img/산딸기.jpg}"> -->
 								</div>
 							</a>
 							<div class="story_list_caption">
@@ -127,14 +128,14 @@
 
 				<ul>
 					
-						
-						<!-- pagination -->	
+					<!-- 	
+						pagination	
 		<div th:class="Pagination_Li">
 			<div th:each="num: ${#numbers.sequence(1, (#lists.size(list)/20)+1 )}" th:class="page">
 				<a class="page" th:text="${num}" th:value="${num}" style="color: #FF8000; cursor: pointer;"></a>
 				</div>
 		</div>
-		<!-- pagination end -->
+		pagination end -->
 						
 				
 				</ul>
@@ -144,7 +145,7 @@
 			</div>
 		</div>
 
-
+<!-- 
 		<button type="button" id=btnWrite>글쓰기</button>
 
 
@@ -170,7 +171,7 @@
 				</tr>
 			</tbody>
 
-		</table>
+		</table> -->
 
 
 

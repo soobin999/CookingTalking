@@ -232,14 +232,26 @@ $(".check_box").on("click", "#chk", function() {
 	}
 });
 
+$('.chkAll').on('click', function() {
+	var valueCheck = $('.chkAll:checked').val(); // 체크된 Radio 버튼의 값을 가져옵니다.
+});
 
+$('.chkAll').on('click', function() {
 
+	var valueCheck = $('.chkAll:checked').val(); // 체크된 Radio 버튼의 값을 가져옵니다.
 
+	if (valueCheck == 'yes') {
+		$('.fpmgBt2').attr('disabled', false); // 과일 종류를 입력하는 input 을 활성화합니다.
+		$('.fpmgBt2').focus(); // 과일 종류를 입력하는 input 에 커서를 이동시킵니다.
+	} else {
+		$('.fpmgBt2').val(''); // 입력된 과일 종류 값이 있으면, 초기화합니다.
+		$('.fpmgBt2').attr('disabled', true); // 과일 종류를 입력하는 input 을 비활성화합니다.
+	}
+});
 
-/*function allCheck() {
-    $(".checkBox").prop("checked",true); 
-}// 모두 체크하기
-*/
+/*
+ * function allCheck() { $(".checkBox").prop("checked",true); }// 모두 체크하기
+ */
 $(document).ready(function() {
 	$("#chk").click(function() {
 		$("input[type=checkbox]").prop('checked', $(this).prop('checked'));
@@ -247,40 +259,36 @@ $(document).ready(function() {
 	});
 });
 
-function oneCheck(a)
-{
-var allChkBox = $("[name=check1]");
-var chkBoxName = $(a).attr("name");
+function oneCheck(a) {
+	var allChkBox = $("[name=check1]");
+	var chkBoxName = $(a).attr("name");
 
-if( $(a).prop("checked") )
-{
-    checkBoxLength = $("[name="+ chkBoxName +"]").length;
-     //전체체크박스 수(모두동의하기 체크박스 제외)
-    checkedLength = $("[name="+ chkBoxName +"]:checked").length;
-    //체크된 체크박스 수 
-    if( checkBoxLength == checkedLength ) {
-        allChkBox.prop("checked", true);
-        //전체체크박스수 == 체크된 체크박스 수 같다면 모두체크
+	if ($(a).prop("checked")) {
+		checkBoxLength = $("[name=" + chkBoxName + "]").length;
+		// 전체체크박스 수(모두동의하기 체크박스 제외)
+		checkedLength = $("[name=" + chkBoxName + "]:checked").length;
+		// 체크된 체크박스 수
+		if (checkBoxLength == checkedLength) {
+			allChkBox.prop("checked", true);
+			// 전체체크박스수 == 체크된 체크박스 수 같다면 모두체크
 
-    } else {
-        allChkBox.prop("checked", false);
-        
-    }
-}
-else
-{
-    allChkBox.prop("checked", false);
-}
+		} else {
+			allChkBox.prop("checked", false);
+
+		}
+	} else {
+		allChkBox.prop("checked", false);
+	}
 }
 
-$(function(){
-$("[name=check1]").click(function(){
-    allCheck(this);
-    //모두동의하기 체크박스 클릭시
-});
-$("[name=check2]").each(function(){
-    $(this).click(function(){
-        oneCheck(this);
-    });
-});
+$(function() {
+	$("[name=check1]").click(function() {
+		allCheck(this);
+		// 모두동의하기 체크박스 클릭시
+	});
+	$("[name=check2]").each(function() {
+		$(this).click(function() {
+			oneCheck(this);
+		});
+	});
 });
