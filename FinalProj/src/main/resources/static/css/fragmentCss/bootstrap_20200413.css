@@ -4477,7 +4477,7 @@ transition:width .6s ease
 	padding-right:10px
 }
 .media-body, .media-left, .media-right {
-	max-width: 50px;
+	max-width: 1000px;
 	display:table-cell;
 	vertical-align:top
 }

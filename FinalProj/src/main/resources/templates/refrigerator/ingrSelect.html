@@ -70,7 +70,9 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 	
 	<div>
 	<h2 th:class="my">나의 냉장고</h2>
-	<form id="selectedIngrForm" th:action="@{/rcmmRecipe}" th:method="POST">
+	<form id="selectedIngrForm" th:action="@{/rcmmRecipe}" th:method="POST" style="
+    padding-left: 400px;
+">
 		<!-- <input type="hidden" id="myIngr" name="selectedIngr" value="${selectedIngr}"> -->
 		<div th:class="selectedIngr" th:id="selectedIngr" >
 		

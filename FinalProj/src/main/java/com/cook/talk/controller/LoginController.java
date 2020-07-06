@@ -54,7 +54,6 @@ public class LoginController {
 	// 로그인 기능
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, HttpServletRequest req, HttpSession session) {
-
 		String naverAuthUrl = NaverLoginBO.getAuthorizationUrl(session);
 		// 네이버 아이디로 인증 url를 생성하기 위해 메소드 호출
 		// 생성한 인증 url를 view로 전달
@@ -98,6 +97,7 @@ public class LoginController {
 	@RequestMapping(value = "/gologin", method = RequestMethod.GET)
 	public String gologin(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
+		System.out.println("aslihifcuoasshfvoih");
 		// re가 null이 아니거나 refer가 null 이 아닌 경우
 		if (request.getRequestURL() != null && request.getHeader("referer") != null) {
 			// 이전 페이지가 로그인겟 이거나 직접 로그인 url에 접속하지 않았을 경우 referer 저장

@@ -62,10 +62,10 @@ input[type=password], select {
 	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
 	    
 	    
-	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-	        <li role="presentation" class="active"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
-	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
-	        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
+	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;">레시피</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myFollow" th:class="myFrequentBtn">즐겨찾기</a></li>
+	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn">활동</a></li>
+	        <li role="presentation"><a href="/mypage/myInquiry" th:class="myInquiryBtn">문의사항</a></li>
 	        
 	    </ul>
 	</div><!-- my_tabs -->
@@ -83,7 +83,6 @@ input[type=password], select {
 					<input type="text" onsubmit="return false" id="chefSearchInMy" title="쉐프검색"
 					name="chefSearchInMy" class="form-control" placeholder="쉐프를 검색하세요">
 					
-						<span class="glyphicon glyphicon-search fas fa-search"></span>
 					<button type="button" id="btnChefSearchInMy" class="btn search">검색</button>
 				</form>
 				</div>
@@ -112,7 +111,7 @@ input[type=password], select {
 	
 	
 	<td>  <a th:href="@{'/chefInfo/1/'+${myFollow.nickName}}">
-	<img th:class="myFollowImg" th:src="'/img/' + ${myFollow.userPic}"
+	<img th:class="myFollowImg" th:src="${myFollow.userPic}"
 	data-holder-rendered="true"
 	style="width: 80px; height: 80px; padding:10px; border-radius: 50px">
 	
@@ -136,9 +135,8 @@ input[type=password], select {
 						style="background: url(https://recipe1.ezmember.co.kr/img/mobile/my_pic_d3.jpg) left top no-repeat; background-size: cover;"></div>
 					<div class="myhome_main_info">
 						<div class="info_pic">
-							<a href="javascript:void(0);"
-								><img
-								src="'/img/'+{myRecipeIng.userPic}"></a>
+							<a href="javascript:void(0);">
+							<img th:src="${session.userPic11}"></a>
 						
 						</div>
 						<div class="w3-container" style="padding-top: 50px">

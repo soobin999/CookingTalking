@@ -45,7 +45,6 @@ public class MyRcpController {
 	@GetMapping("/mypage/myRecipeIng")
 	public String myRecipeIng(Model model, MypageDTO mypageDTO, Principal principal) {
 		mypageDTO.setUserId(principal.getName());
-		
 		List<MypageDTO> lists = mypageDAO.getMyRecipeIng(principal.getName());
 		
 		model.addAttribute("myRecipeIng", lists);

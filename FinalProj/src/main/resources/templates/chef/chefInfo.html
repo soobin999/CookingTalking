@@ -84,7 +84,7 @@ text-align:center;}
 			<ul class="cont_list st3">
 				<li><a th:href="'/recipe/view?rcpCode='+${recipe.rcpCode}" class="thumbnail"
 					th:each='recipe:${chefInfo}'> <img
-						src="http://placehold.it/198x130/"
+						th:src="${recipe.rcpPic}"
 						style="width: 200px; height: 130px;"> <!-- ${recipe.rcpTitle} -->
 						<div class="caption">
 							<h4 th:text='${recipe.rcpTitle}'></h4>

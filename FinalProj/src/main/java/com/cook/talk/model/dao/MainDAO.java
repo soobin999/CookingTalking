@@ -28,4 +28,5 @@ public interface MainDAO {
 	public void followChef(String userId,String chefNick);
 	public void unfollowChef(String userId,String chefNick);
 	public String userRecommend(String userId);
+	public String selectUserPic(String userId);
 }

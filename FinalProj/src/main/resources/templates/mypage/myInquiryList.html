@@ -14,7 +14,7 @@ xmlns:layout='http://www.ultraq.net.nz/thymeleaf/layout'
 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
 <link rel="stylesheet" href="/css/mypage/mypage.css">
 <link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon.png" rel="apple-touch-icon">
-<link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+<!-- <link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76"> -->
 <link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
 <link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
 <link href="https://recipe1.ezmember.co.kr/img/icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
@@ -93,10 +93,10 @@ font: 15px;
 	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
 	    
 	    
-	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
-	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
-	        <li role="presentation" class="active"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
+	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class=""></span>레시피</a></li>
+	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class=""></span>즐겨찾기</a></li>
+	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class=""></span>활동</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class=""></span>문의사항</a></li>
 	        
 	    </ul>
 	</div>
@@ -161,7 +161,7 @@ font: 15px;
 						<div class="info_pic">
 							<a href="javascript:void(0);"
 								><img
-								src="'/img/'+{myRecipeIng.userPic}"></a>
+								th:src="${session.userPic11}"></a>
 						
 						</div>
 						<div class="w3-container" style="padding-top: 50px">

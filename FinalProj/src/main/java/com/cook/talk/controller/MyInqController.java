@@ -27,7 +27,7 @@ public class MyInqController {
 	//마이페이지-문의사항-문의사항 입력하기
 	@GetMapping("/mypage/myInquiry")
 	public String myInquiry(Model model, String qnaTitle, String qnaCont) {
-		
+		model.addAttribute("sss",mypageDAO.getMyRecipeIng("11121@naver.com"));
 		return "/mypage/myInquiry";
 	}
 	

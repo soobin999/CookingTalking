@@ -31,7 +31,7 @@
 					<li th:if="${session.state !=null}"><a
 						th:href="@{/mypage/myRecipeIng}" style="width: 35px; border-radius: 0px;">
 						<img
-							th:src="@{/img/+{mypage.userPic}}" style="width: 35px; border-radius: 0px;">
+						th:src="${session.userPic11}" style="width: 35px; border-radius: 0px;">
 						</a>
 					<li th:if="${session.state !=null}"><a th:href="@{/logout}"> <img
 							th:src="@{/img/login_icon.png}" alt="로그아웃" style="width: 35px; border-radius: 0px;"></a></li>

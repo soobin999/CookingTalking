@@ -98,4 +98,8 @@
 	</if>
 	order by viewDate desc ,rcpViewCode desc limit 1 
 </select>
+
+<select id="selectUserPic" resultType="String">
+select userPic from user where userId=#{userId}
+</select>
 </mapper>

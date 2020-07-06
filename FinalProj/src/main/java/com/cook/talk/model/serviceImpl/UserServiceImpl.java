@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -34,7 +36,6 @@ public class UserServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UserDAO userDAO;
-
 	// 회원가입시 유효성 체크
 	public static Map<String, String> validateHandling(Errors errors) {
 		Map<String, String> validatorResult = new HashMap<>();
@@ -65,11 +66,6 @@ public class UserServiceImpl implements UserDetailsService {
 	}
 
 	
-	
-	
-
-	
-	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// loadUserByUsername 상세 정보 조회 메서드 , 계정정보와 권한을 갖는 UserDetails 인터페이스를 반환
@@ -77,7 +73,6 @@ public class UserServiceImpl implements UserDetailsService {
 		System.out.println(" 아이디:    " + username);
 		UserVO userEntity = userDAO.findUserById(username);
 		System.out.println(userEntity);
-
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		if (userEntity != null) {
 			authorities.add(new SimpleGrantedAuthority(

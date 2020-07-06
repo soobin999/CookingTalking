@@ -67,10 +67,10 @@ input[type=submit]:hover {
 	    <ul class="nav nav-tabs nav-justified" style="position:relative;">
 	    
 	    
-	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><span class="glyphicon glyphicon-cutlery"></span>레시피</a></li>
-	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class="glyphicon glyphicon-star"></span>즐겨찾기</a></li>
-	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class="glyphicon glyphicon-comment"></span>활동</a></li>
-	        <li role="presentation" class="active"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class="glyphicon glyphicon-user"></span>문의사항</a></li>
+	        <li role="presentation"><a href="/mypage/myRecipeIng" th:class="myRecipeBtn" style="cursor: pointer;"><i class=""></i>레시피</a></li>
+	        <li role="presentation"><a href="/mypage/myFollow" th:class="myFrequentBtn"><span class=""></span>즐겨찾기</a></li>
+	        <li role="presentation"><a href="/mypage/myTalk" th:class="myActivityBtn"><span class=""></span>활동</a></li>
+	        <li role="presentation" class="active"><a href="/mypage/myInquiry" th:class="myInquiryBtn"><span class=""></span>문의사항</a></li>
 	        
 	    </ul>
 	</div>
@@ -136,7 +136,7 @@ input[type=submit]:hover {
 						<div class="info_pic">
 							<a href="javascript:void(0);"
 								><img
-								src="'/img/'+{myRecipeIng.userPic}"></a>
+								th:src="${session.userPic11}"></a>
 						
 						</div>
 						<div class="w3-container" style="padding-top: 50px">

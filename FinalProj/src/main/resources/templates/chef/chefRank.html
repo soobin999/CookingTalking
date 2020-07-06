@@ -89,7 +89,7 @@ margin-bottom:10px;
 				</div>
 				<div class="list_mem3">
 					<a th:href="'/chefInfo/1/'+${chef.userVO.nickName}" class="mem_pic"><img
-						src="http://placehold.it/70x70/"></a>
+						th:src="${chef.userVO.userPic}"></a>
 				</div>
 				<div class="list_cont4">
 					<b> <a th:href="'/chefInfo/1/'+${chef.userVO.nickName}"

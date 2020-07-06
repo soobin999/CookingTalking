@@ -182,7 +182,28 @@ $('#scrapedSearchInMy').on('keydown', function(event){
 		      type : "POST",
 		      url : "/searchMyScrap",
 		      data : {rcpTitle : inputSearchKey},
-		      success : function(data) {
+		      success : function(data) 
+		     {
+			      $('#myScrapedResult').empty();
+				$('#myScrapedResult').append('<ul class="cont_list st3 st3_1"></ul>');
+				  
+				  var searchedTalk = new Array();
+				  
+				  $.each(data, function(index, value){
+					  
+					  var scrap_date = (new Date(data[index].scrapDate)).yyyymmdd();
+					  
+					  searchedTalk[index] = '<li style="width:250px;"><a class="thumbnail" href="/recipe/view?rcpCode='+data[index].rcpCode + '"><div class="thumbs_hb">'
+					  +'<img class="myScrapedImg" src="' + data[index].rcpPic + '"data-holder-rendered="true" style="width:198px;height:120px;"></div>'
+					  +'<div class="caption"><h4><span class="jq_elips2">'+data[index].rcpTitle+'</span></h4>'	
+					  +'<div class="home_review"> <p class="date">'+ scrap_date+'</p></div></div></a></li>';
+				            
+			         });
+				  $('#myScrapedResult > ul').append(searchedTalk);
+			      } ,
+		      
+		      
+		      /*{
 		      $('#myScrapedResult').empty();
 			  $('#myScrapedResult').append('<table><br><tbody>');
 			  
@@ -201,7 +222,7 @@ $('#scrapedSearchInMy').on('keydown', function(event){
 			            
 		         });
 			  $('#myScrapedResult').append(searchedScrap);
-		      },
+		      },*/
 		      error : function(){
 		         alert("scrapedSearch Error");
 		      }
@@ -234,8 +255,8 @@ $('#scrapedSearchInMy').on('keydown', function(event){
 			      url : "/searchMyTalk",
 			      data : {talkCont : inputSearchKey},
 			      success : function(data) {
-			      $('#myTalkResult').empty();
-				  $('#myTalkResult').append('<table><br><tbody>');
+			      $('#myTalkResult > table').remove();
+				$('#myTalkResult').append('<table id="myTalkTable"><thead><tr><th>토크 내용</th><th>날짜</th></tr></thead><br><tbody>');
 				  
 				  var searchedTalk = new Array();
 				  
@@ -243,10 +264,10 @@ $('#scrapedSearchInMy').on('keydown', function(event){
 					  
 					  var talk_date = (new Date(data[index].talkDate)).yyyymmdd();
 					  
-					  searchedTalk[index] = '<tr id="myTalkMain"><td><a href="/talk/detail/'+ data[index].talkCode + '">' + data[index].talkCont + '</a></td><td>' + talk_date;
+					  searchedTalk[index] = '<tr id="myTalkMain"><td><div class="story-list"><a href="/talk/detail/'+ data[index].talkCode + '">' + data[index].talkCont + '</a></div></td><td>' + talk_date+'</td>';
 				            
 			         });
-				  $('#myTalkResult').append(searchedTalk);
+				  $('#myTalkResult > table > tbody').append(searchedTalk);
 			      },
 			      error : function(){
 			         alert("talkSearch Error");

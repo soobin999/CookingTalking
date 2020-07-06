@@ -140,7 +140,7 @@ input[type=password], select {
 											<div class="media-left">
 											<td><a th:href="@{/recipe/view(rcpCode=${myWritten.rcpCode})}">
 											<img th:class="myRcpWrittenImg"
-												th:src="'/img/' + ${myWritten.rcpPic}"
+												th:src="${myWritten.rcpPic}"
 												data-holder-rendered="true"
 												style="width: 180px; height: 180px; padding:10px;"> </a></td>
 											</div>
@@ -180,7 +180,7 @@ input[type=password], select {
 						<div class="info_pic">
 							<a href="javascript:void(0);"
 								><img
-								src="'/img/'+{myRecipeIng.userPic}"></a>
+								th:src="${session.userPic11}"></a>
 						
 						</div>
 						<div class="w3-container" style="padding-top: 50px">
