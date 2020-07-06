@@ -32,13 +32,8 @@ public class MainController {
 	@Autowired(required = false)
 	private MypageService myPageService;
 
+  
 	@GetMapping("/index")
-	public String index(Model model) {
-		model.addAttribute("total", maindao.totalSelect());
-		return "/main/index";
-	}
-
-	@GetMapping("/loginIndex")
 	public String loginIndex(Model model, String userId) {
 		model.addAttribute("rcpList", mainService.recipeList(userId));
 		System.out.println(mainService.recipeList(userId));

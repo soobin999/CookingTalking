@@ -21,7 +21,17 @@ iframe
 	opacity: 0 !important;
 	pointer-events: none !important;
 }
-h5{text-align:right;}
+body{
+padding:0;
+}
+p{
+text-align:left;
+color: #999;
+}
+h4{
+text-align:left;
+
+}
 </style>
 <div layout:fragment='content'>
 
@@ -38,8 +48,8 @@ h5{text-align:right;}
 									<div class="thumbnail">
 										<img th:src="${rcpList[num].rcpPic}" alt="Slide0" style="width:300;height:200px">
 										<div class="caption">
-											<p th:text='${rcpList[num].rcpTitle}'></p>
-											<h5 th:text='${rcpList[num].nickName}'></h5>
+											<h4 th:text='${rcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
 										</div>
 									</div>
 								</div>
@@ -52,8 +62,8 @@ h5{text-align:right;}
 									<div class="thumbnail">
 										<img th:src="${rcpList[num].rcpPic}" alt="Slide1" style="width:300;height:200px">
 										<div class="caption">
-											<p th:text='${rcpList[num].rcpTitle}'></p>
-											<h5 th:text='${rcpList[num].nickName}'></h5>
+											<h4 th:text='${rcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
 										</div>
 									</div>
 								</div>
@@ -65,8 +75,8 @@ h5{text-align:right;}
 									<div class="thumbnail">
 										<img th:src="${rcpList[num].rcpPic}" alt="Slide1" style="width:300;height:200px">
 										<div class="caption">
-											<p th:text='${rcpList[num].rcpTitle}'></p>
-											<h5 th:text='${rcpList[num].nickName}'></h5>
+											<h4 th:text='${rcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
 										</div>
 									</div>
 								</div>
@@ -101,10 +111,10 @@ h5{text-align:right;}
 							<div class="row">
 								<div class="col-md-3" th:each='num:${#numbers.sequence(0,3)}'>
 									<div class="thumbnail">
-										<img src="http://placehold.it/300x200/" alt="Slide0">
+										<img th:src="${newRcpList[num].rcpPic}" alt="Slide0" style="width:300px; height:200px;">
 										<div class="caption">
-											<p th:text='${newRcpList[num].rcpTitle}'></p>
-											<h5 th:text='${newRcpList[num].nickName}'></h5>
+											<h4 th:text='${newRcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
 										</div>
 									</div>
 								</div>
@@ -115,10 +125,10 @@ h5{text-align:right;}
 							<div class="row">
 								<div class="col-md-3" th:each='num:${#numbers.sequence(4,7)}'>
 									<div class="thumbnail">
-										<img src="http://placehold.it/300x200/" alt="Slide1">
+										<img th:src="${newRcpList[num].rcpPic}" alt="Slide1" style="width:300px; height:200px;">
 										<div class="caption">
-											<p th:text='${newRcpList[num].rcpTitle}'></p>
-											<h5 th:text='${newRcpList[num].nickName}'></h5>
+											<h4 th:text='${newRcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
 										</div>
 									</div>
 								</div>
@@ -128,10 +138,10 @@ h5{text-align:right;}
 							<div class="row">
 								<div class="col-md-3" th:each='num:${#numbers.sequence(8,11)}'>
 									<div class="thumbnail">
-										<img src="http://placehold.it/300x200/" alt="Slide1">
+										<img th:src="${newRcpList[num].rcpPic}" alt="Slide1" style="width:300px; height:200px;">
 										<div class="caption">
-											<p th:text='${newRcpList[num].rcpTitle}'></p>
-											<h5 th:text='${newRcpList[num].nickName}'></h5>
+											<h4 th:text='${newRcpList[num].rcpTitle}'></h4>
+											<p th:text="'by '+${rcpList[num].nickName}"></p>
 										</div>
 									</div>
 								</div>

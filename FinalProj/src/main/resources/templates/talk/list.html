@@ -7,7 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/css/talk/talkList.css">
-
+<style>
+div p{
+text-align:left;
+color: #999;
+width:100%;
+}
+</style>
 
 <title>게시글 목록</title>
 
@@ -99,17 +105,15 @@
 							</a>
 							<div class="story_list_caption">
 								<div class="story_list_caption_tit">
-									<a th:text="${talk.talkCont}"> </a>
 								</div>
 								<div class="story_list_caption_name">
 
 									<div class="story_list_caption_name_l">
-										<a href="/profile/index.html?uid=28488984"
-											th:text="${talk.nickName}"> <img
-											src="https://recipe1.ezmember.co.kr/cache/rpf/2018/02/18/3ac5968c19cd3ccb7612eade85be98d41.jpg">
-											학과진
+										<a href="/profile/index.html?uid=28488984"> 
 										</a>
-
+										<h4 th:text="${talk.talkCont}"></h4>
+										<p th:text="'by '+${talk.nickName}"></p>
+										
 									</div>
 
 									<!-- 	<div class="story_list_caption_name_r">

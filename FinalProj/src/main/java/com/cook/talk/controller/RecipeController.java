@@ -84,6 +84,7 @@ public class RecipeController {
 		model.addAttribute("recipeList2", Math.ceil(recipeDAO.recipeCount() / 20.0));
 		model.addAttribute("recipeCount", recipeDAO.recipeCount());
 		//레시피 조회이력 저장
+		System.out.println(recipeList2);
 				
 		return "recipe/newList";
 	}

@@ -61,7 +61,7 @@ left:16px;
        <p class="ranking_num st1"><b th:text="${index.index}+1"></b></p>
          <span class="thumbnail_over">
          <img src="https://recipe1.ezmember.co.kr/img/thumb_over.png"></span>
-             <img th:src="@{/img/산마늘.jpg}" style="width:275px; height:275px;">
+             <img th:src="${rank.recipeVO.rcpPic}" style="width:275px; height:275px;">
                 <div class="caption">
                   <h4 class="ellipsis_title2" th:text="${rank.recipeVO.rcpTitle}"></h4>
                     <p>by<span th:text="${rank.userVO.nickName}" ></span>-<span th:text="${rank.recipeVO.rcpDate}"></span></p>

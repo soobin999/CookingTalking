@@ -69,7 +69,7 @@
 								th:href="@{/recipe/view(rcpCode=${recipe.recipeVO.rcpCode})}">
 								<span class="thumbnail_over"> <img
 									src="https://recipe1.ezmember.co.kr/img/thumb_over.png"></span>
-								<img th:src="@{/img/산마늘.jpg}"
+								<img th:src="${recipe.recipeVO.rcpPic}"
 								style="width: 275px; height: 275px;">
 								<div class="caption">
 									<h4 class="ellipsis_title2"
