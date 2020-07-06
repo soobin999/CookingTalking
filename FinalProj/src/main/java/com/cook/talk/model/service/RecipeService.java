@@ -46,8 +46,9 @@ public interface RecipeService {
 	//레시피 조회수 증가
 	public int rcpViewsUpdate(String rcpCode);
 	
+	//수정
+	public void updateRecipeProc(RecipeDTO recipeDTO);
 
-	// 삭제
-	public String deleteRecipe(String rcpCode);
+
 
 }

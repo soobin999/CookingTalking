@@ -29,12 +29,16 @@ opacity: 0.8;
 color: #dc3545;
 transition: all 0.5s ease-in-out;
 }  
+.snb_nav_rcp li a.active {
+	color: #6ba73c;
+	font-weight: bold;
+}
 .nav-tabs2>li.active>a, .nav-tabs2>li.active>a:focus, .nav-tabs2>li.active>a:hover {
 	cursor:default;
 	background-color:#44b6b5;
 	border-bottom-color:transparent;
 	color:#fff;
-
+}
 </style>
 </head>
 <div layout:fragment='content'>
@@ -49,7 +53,7 @@ transition: all 0.5s ease-in-out;
 <div id="contents_area_full">
  <div class="rcp_m_list2"><!-- rank -->
 	<ul class="nav nav-tabs2 pull-right" style="position:relative;">
-      <li role="presentation"><a th:href="@{/recipe/rankD}" >일간</a></li>
+      <li role="presentation" class="active"><a th:href="@{/recipe/rankD}" >일간</a></li>
        <li role="presentation"><a th:href="@{/recipe/rankW}" >주간</a></li>
        <li role="presentation"><a th:href="@{/recipe/rankM}" >월간</a></li>
     </ul>

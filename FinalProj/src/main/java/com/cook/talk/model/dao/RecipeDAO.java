@@ -86,13 +86,14 @@ public interface RecipeDAO {
 
 			
 	//레시피 수정
-	public RecipeDTO updateRecipe(String rcpCode);
-
-	// 수정 버튼
-	public int updateRecipeProc(RecipeDTO recipeDTO);
+	public void updateRecipeProc(RecipeDTO recipeDTO);
+	void updateRcp(RecipeVO recipeVO);
+	void updateTypecat(TypeCatVO typeCatVO);
+	void updateRcpingr(RcpIngrVO rcpIngrVO);
+	void updateRcporder(RcpOrderVO rcpOrderVO);
+	void updateTag(TagVO tagVO);
 	
-	//레시피 삭제	
-	public String deleteRecipe(String rcpCode);
+	
 	
 }
 
