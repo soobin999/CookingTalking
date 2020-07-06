@@ -36,10 +36,6 @@ $(document).ready(function){
 		th:object="${talkVO}" method="post" name="form"
 		onsubmit="return registerBoard(this)">
 
-
-		<h5>내용</h5>
-
-
 		<div class="container sub_bg">
 
 			<div id="contents_area_full">
@@ -92,9 +88,11 @@ $(document).ready(function){
 					</div>
 					
 					
-					<div class="write_btn" style="padding-left: 530px;">
+					<div class="write_btn" >
 						<input type="submit" value="등록" id="submit_btn"
-							class="btn-lg btn-primary" onclick="btnSave">
+							class="btn-lg btn-primary" style=" width: 95px;" onclick="btnSave">
+						
+						
 						<button type="button" class="btn-lg btn-default"
 							data-dismiss="modal"
 							onclick="location.href='/talk/list.html?bid=5'">취소</button>
@@ -102,10 +100,10 @@ $(document).ready(function){
 				</div>
 			</div>
 		</div>
-
+<!-- 
 		<td><textarea th:field="*{talkCont}" cols="10"
 				placeholder="내용을 입력하세요" name="content"></textarea>
-		<th>파일 첨부</th>
+		<th>파일 첨부</th> -->
 
 
 		<!-- <input type="file" placeholder="사진을 선택하세요" id="talk-file"
@@ -118,8 +116,8 @@ $(document).ready(function){
 
 		<br>
 		<p></p>
-		<td colspan="2"><input type="submit" value="등록" onclick="btnSave">
-			<input type="button" value="취소" onclick="">
+		<!-- <td colspan="2"><input type="submit" value="등록" onclick="btnSave">
+			<input type="button" value="취소" onclick=""> -->
 	</form>
 </div>
 

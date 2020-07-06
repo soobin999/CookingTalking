@@ -33,8 +33,8 @@ text-align:left;
 
 }
 </style>
+</head>
 <div layout:fragment='content'>
-
 <br><br><br>
 	<div class="container">
 		<div class="row">
@@ -141,7 +141,7 @@ text-align:left;
 										<img th:src="${newRcpList[num].rcpPic}" alt="Slide1" style="width:300px; height:200px;">
 										<div class="caption">
 											<h4 th:text='${newRcpList[num].rcpTitle}'></h4>
-											<p th:text="'by '+${rcpList[num].nickName}"></p>
+											<p th:text="'by '+${newRcpList[num].nickName}"></p>
 										</div>
 									</div>
 								</div>
@@ -165,11 +165,9 @@ text-align:left;
 		</div>
 	</div>
 	<script th:src="@{//code.jquery.com/jquery-1.11.1.min.js}"></script>
-	<script th:src="@{/js/soobin/index.js}"></script>
+
 	<script
 		src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
-	
+			<script th:src="@{/js/soobin/index.js}"></script>
 	</div>
-	
-</body>
 </html>
