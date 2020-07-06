@@ -4,13 +4,13 @@
 	layout:decorator='~{layout/default}'>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title id='pageTitle'>레시피 등록</title>
+<title id='pageTitle'>레시피 수정</title>
 <th:block layout:fragment='css'>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/js/insertR.js" type="text/javascript"></script>
+	
 <style>
 .img_wrap {
 	width: 300px;
@@ -33,10 +33,10 @@ input[type=button] {
 </head>
 <div layout:fragment='content'>
  <div class="container recipe_regi">  <!-- 레시피 div -->
-    <form id="insertRecipe" th:action="@{updateProc}" method="post" th:object="${recipeDTO}" action="#" enctype="multipart/form-data">
+    <form id="updateRecipe" th:action="@{/updateRecipeProc}" th:method="post" th:object="${recipeDTO}" action="#" enctype="multipart/form-data">
   <div class="regi_center"><!-- button전까지 -->
 	<div class="regi_title">
-	레시피 등록
+	레시피 수정
 	</div>
        <div class="cont_box pad_l_60"><!-- recipe area -->
        		<div id="divMainPhotoUpload" class="cont_pic2"><!-- 이미지 -->
@@ -50,13 +50,13 @@ input[type=button] {
             	style="width:250px"/> 
             	</div>           	
             </div>   
-            <div class="userId"><!-- 아이디 -->
-                <input type="text" th:field="*{recipeVO.userId}" placeholder="1125@naver.com">
-            </div>
+<!--             <div class="userId">아이디
+                <input type="text" th:text="*{recipeVO.userId}" placeholder="1125@naver.com">
+            </div> -->
             <div class="cont_line"><!-- 제목 -->
                 <p class="cont_tit4">레시피 제목</p>
                 <input type="text" name="recipeVO.rcpTitle" id="cok_title" class="form-control"
-                placeholder="예)소고기 미역국 끓이기" style="width:610px;">
+                style="width:610px;" th:field="*{recipeVO.rcpTitle}" >
             </div>
             <div class="cont_line pad_b_25"><!-- 요리소개 -->
                 <p class="cont_tit4">요리소개</p>
@@ -67,7 +67,7 @@ input[type=button] {
             <div class="cont_line"><!-- category -->
                 <p class="cont_tit4">카테고리</p>
                 <select name="typeCatVO.cookType" id="cok_sq_category_4">
-                    <option value="">종류별</option>
+                    <option value="" th:text="*{typeCatVO.cookType}">종류별</option>
                     <option value="밑반찬">밑반찬</option>
                     <option value="메인반찬">메인반찬</option>
                     <option value="국/탕">국/탕</option>
@@ -87,7 +87,7 @@ input[type=button] {
                     <option value="기타">기타</option>
                   </select>
                 <select name="typeCatVO.cookSituation" id="cok_sq_category_2">
-                    <option value="">상황별</option>
+                    <option value="" th:text="*{typeCatVO.cookSituation}">상황별</option>
                     <option value="일상">일상</option>
                     <option value="초스피드">초스피드</option>
                     <option value="손님접대">손님접대</option>
@@ -104,7 +104,7 @@ input[type=button] {
                     <option value="기타">기타</option>
                 </select>
                 <select name="typeCatVO.cookMethod" id="cok_sq_category_1">
-                    <option value="">방법별</option>
+                    <option value="" th:text="*{typeCatVO.cookMethod}">방법별</option>
                     <option value="볶음">볶음</option>
                     <option value="끓이기">끓이기</option>
                     <option value="부침">부침</option>
@@ -124,7 +124,7 @@ input[type=button] {
             <div class="cont_line"><!-- 요리정보 -->
                 <p class="cont_tit4">요리정보</p>
                 	인원  <select name="recipeVO.personnel" id="cok_portion">
-                    <option value="">인원</option>
+                    <option value="" th:text="*{recipeVO.personnel}">인원</option>
                     <option value="1인분">1인분</option>
                     <option value="2인분">2인분</option>
                     <option value="3인분">3인분</option>
@@ -134,7 +134,7 @@ input[type=button] {
                 </select>
                 <span class="pad_l_30">시간</span>
                 <select name="recipeVO.cookTime" id="cok_time">
-                    <option value="">시간</option>
+                    <option value="" th:text="*{recipeVO.cookTime}">시간</option>
                     <option value="5분이내">5분이내</option>
                     <option value="10분이내">10분이내</option>
                     <option value="15분이내">15분이내</option>
@@ -147,7 +147,7 @@ input[type=button] {
                 </select>
                 <span class="pad_l_30">난이도</span>
                 <select name="recipeVO.level" id="cok_degree">
-                    <option value="">난이도</option>
+                    <option value="" th:text="*{recipeVO.level}">난이도</option>
                     <option value="아무나">아무나</option>
                     <option value="초급">초급</option>
                     <option value="중급">중급</option>
@@ -157,15 +157,15 @@ input[type=button] {
       </div>
       <!-- recipe area end -->      
         <!-- 재료 area -->
-        <div class="cont_box pad_l_60">
+        <div class="cont_box pad_l_60" >
         	<span class="guide mag_b_15" style="width:100%;">재료가 남거나 부족하지 않도록 정확한 계량정보를 적어주세요.</span>
         	<div class="mag_b_25 ui-sortable" id="divMaterialGroupArea">
         	<ul>
 					<li id="liMaterialGroup_1">
 						<p class="cont_tit6 st2 mag_r_15">
 							<input type="text" name="material_group_title_1" id="material_group_title_1"
-								th:field="*{rcpIngrVO.ingrCat}" placeholder="재료" class="form-control"
-								style="font-weight: bold; font-size: 18px; width: 210px;">						
+								th:field="*{rcpIngrVO.ingrCat}" class="form-control" placeholder="재료"
+								style="font-weight: bold; font-size: 18px; width: 210px;" />						
 	  	 	 	 	 	</p>
 						<ul id="divMaterialArea_1" class="ui-sortable">
 							<li id="liMaterial_1_1">
@@ -313,19 +313,45 @@ input[type=button] {
         <!-- tag area -->
         <div class="cont_box pad_l_60">
                 <p class="cont_tit4">태그</p>
-                <input type="text" th:field="*{tagVO.tag}" class="ui-widget-content ui-autocomplete-input"
+                <input type="text" name="tagVO.tag" th:field="*{tagVO.tag}" class="ui-widget-content ui-autocomplete-input"
                 style="width:620px;">
         </div>
        <!-- tag area end -->
 	</div><!-- button 전까지 end -->
 	<!-- regi_center -->
         <div class="regi_btm">
-       		<input type="hidden" id="registerStatus" name="registerStatus" value="true">
-			<input type="button" class="submit" value="저장">
-			<input type="button" class="submit" value="등록">
+        	<input type="hidden" name="rcpCode" value="${rcpCode}"/>
+			<input type="button" class="submit" value="수정">			
 			<input type="button" class="cancel" value="취소">
 		</div>
 </form>
 </div> <!-- 레시피 div end -->
+
+<script type="text/javascript">
+//취소 버튼
+$(document).ready(function() {
+	$("input.cancel").click(function() {
+		var result = confirm('취소하시겠습니까?');
+
+		if (result) {
+			// 예
+			location.replace('/recipe/newList'); // 글목록 페이지로 이동
+		} else {
+			// 아니오
+		}
+	});
+});
+
+$(document).ready(function() {
+	$("input.submit").click(function() {
+		
+		alert("완료되었습니다!");
+
+		$('#updateRecipe').submit();
+
+	})
+});
+
+</script>
 </div><!-- fragment end -->
 </html>

@@ -9,10 +9,15 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.container {
+padding-left: 0px;
+}
+</style>
 </head>
 <div layout:fragment='content'>
-<div class="container sub_bg">
-	<div id="contents_area" class="col-xs-9">
+<div class="container sub_bg" style="width:1000px;">
+	<div id="contents_area" class="col-xs-9" style="border-top: 0px;">
 		<form th:method="post" action="#">
 			<div th:each="recipe : ${recipeDTO}">
 				<div class="view2_pic">
@@ -82,21 +87,24 @@
 			</div>
 			<div class="blank_bottom"></div>
 			<!--tag area-->
-			<div class="view_step" th:each="tag : ${tagView}">
+			<div class="view_step" >
 				<div class="view_tag">
-					<a href="#" th:text="${tag.tag}"></a>
+					<span th:each="tag : ${tagView}"><a href="#" th:text="${tag.tag}"></a>
+					</span>
 				</div>
 			</div>
 		</form>
 	</div> <!--contents area end-->
 </div>
 	<div class="regi_btm">
-	<!-- 	<button type="submit" class="btn-lg btn-danger" 
-		th:formaction ="@{/recipe/update/{rcpCode}(rcpCode=${view.rcpCode})}'">수정</button>
-		<button type="button" class="btn-lg btn-danger" 
-		onclick="location.href='/update/${detail.bno}'">삭제</button>
-		<button type="button" class="btn-lg btn-primary" 
-		onclick="location.href='/recipe/newList'">목록</button> -->
+		<span>
+		<button class="btn-lg btn-warning" value="수정">
+		<a th:href="@{'/recipe/update/'+${recipeDTO.rcpCode}}">수정</a></button>
+		<input type="hidden" name="delete" value="delete" /></span>
+
+
 	</div>
+
+
 </div><!-- fragment area -->
 </html>

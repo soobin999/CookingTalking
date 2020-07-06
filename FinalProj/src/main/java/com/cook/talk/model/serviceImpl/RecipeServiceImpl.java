@@ -2,7 +2,6 @@ package com.cook.talk.model.serviceImpl;
 
 import java.util.List;
 
-import org.elasticsearch.common.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,6 @@ import com.cook.talk.model.VO.RcpIngrVO;
 import com.cook.talk.model.VO.RcpOrderVO;
 import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TagVO;
-import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.VO.TypeCatVO;
 import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dao.RecipeDAO;
@@ -197,22 +195,26 @@ public class RecipeServiceImpl implements RecipeService {
 
 	
 	//레시피 수정
-//	@Override
-//	public RecipeDTO updateRecipe(RecipeDTO recipeDTO) {
-//		return recipeDAO.updateRecipe(recipeDTO);
-//	}
-//	
-//	@Override
-//	public void updateRecipeProc(RecipeDTO recipeDTO) {
-//		recipeDAO.updateRecipeProc(recipeDTO);
-//	}
-//		
-		
-	//레시피 삭제
 	@Override
-	public String deleteRecipe(String rcpCode) {
-	return recipeDAO.deleteRecipe(rcpCode);
+	public void updateRecipeProc(RecipeDTO recipeDTO) {
+		
+		 RecipeVO recipeVO = recipeDTO.getRecipeVO();
+		 TypeCatVO typeCatVO = recipeDTO.getTypeCatVO();
+		 RcpIngrVO rcpIngrVO = recipeDTO.getRcpIngrVO();
+		 RcpOrderVO rcpOrderVO = recipeDTO.getRcpOrderVO();
+		 TagVO tagVO = recipeDTO.getTagVO();
+		 
+		recipeDAO.updateRcp(recipeVO);
+		recipeDAO.updateTypecat(typeCatVO);
+		recipeDAO.updateRcpingr(rcpIngrVO);
+		recipeDAO.updateRcporder(rcpOrderVO);
+		recipeDAO.updateTag(tagVO);
+
+		
+		recipeDAO.updateRecipeProc(recipeDTO);
 	}
+		
+		
 
 	}
 

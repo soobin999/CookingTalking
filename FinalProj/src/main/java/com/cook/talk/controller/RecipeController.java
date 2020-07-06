@@ -11,6 +11,7 @@ import javax.validation.constraints.PastOrPresent;
 
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cook.talk.model.VO.IngrVO;
 import com.cook.talk.model.VO.TalkVO;
+import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.VO.ViewsVO;
 import com.cook.talk.model.dao.RecipeDAO;
 import com.cook.talk.model.dto.RecipeDTO;
@@ -111,7 +113,7 @@ public class RecipeController {
 		return "recipe/rankListM";
 	}
 
-	@GetMapping("recipe/view") 
+	@GetMapping("recipe/view/") 
 	public String getRecipeView(String rcpCode, Model model) {
 		model.addAttribute("recipeDTO", recipeDAO.selectRcptpView(rcpCode));
 		log.info(recipeDAO.selectRcptpView(rcpCode));
@@ -144,34 +146,30 @@ public class RecipeController {
 		 
 		return "redirect:/recipe/newList";
 	}
+
 	
 	
-	@GetMapping("recipe/update")
-	public String updateRecipe(Model model, RecipeDTO recipeDTO, String rcpCode) {
-		model.addAttribute("updateRcptp", recipeDAO.selectRcptpView(rcpCode));
-		model.addAttribute("updateRcpIngr", recipeDAO.selectRcpIngrView(rcpCode));
-		model.addAttribute("updateRcpOrder", recipeDAO.selectRcpOrderView(rcpCode));
-		model.addAttribute("updatetag", recipeDAO.SelectTagView(rcpCode));
+	@GetMapping("recipe/update/{rcpCode}")
+	public String updateRecipeProc(@PathVariable String rcpCode, Principal pricipal, RecipeDTO recipeDTO, Model model) {
+		model.addAttribute("recipeDTO", recipeDAO.selectRcptpView(rcpCode));
+		log.info(recipeDAO.selectRcptpView(rcpCode));
+		model.addAttribute("rcpIngrView", recipeDAO.selectRcpIngrView(rcpCode));
+		log.info(recipeDAO.selectRcpIngrView(rcpCode));
+		model.addAttribute("rcpOrderView", recipeDAO.selectRcpOrderView(rcpCode));
+		log.info(recipeDAO.selectRcpOrderView(rcpCode));
+		model.addAttribute("tagView", recipeDAO.SelectTagView(rcpCode));
+		log.info(recipeDAO.SelectTagView(rcpCode));
 		
-		return "recipe/updateRecipe";
-	}
-		
-	
-	@PostMapping("recipe/updateProc")
-	public String updateRecipeProc(Principal pricipal, RecipeDTO recipeDTO) {
-		recipeDTO.getUserVO().setUserId(pricipal.getName());
-	//	recipeService.updateRecipeProc(recipeDTO);
-		
-		return "redirect:/recipe/view";
+		return "/recipe/updateRecipe";
 	}		
 	
-
-	@GetMapping("recipe/delete/{rcpCode}")
-	public String deleteRecipe(@PathVariable("rcpCode") String rcpCode) {
-		recipeService.deleteRecipe(rcpCode);
+	@PostMapping("recipe/updateProc")
+	public String updateRecipe(@ModelAttribute RecipeDTO recipeDTO, Model model) {
+	
+		recipeDAO.updateRecipeProc(recipeDTO);
+		
 		return "redirect:/recipe/newList";
 	}
 
-	
-	
 }
+

@@ -268,13 +268,4 @@
 	WHERE rcpTagCode=#{rcpTagCode}
 	</update>
 
-   <!-- 레시피 삭제 -->
-	<delete id="deleteRcpinortag" parameterType="recipeVO">
-	DELETE FROM rcp 
-	WHERE rcpCode = #{rcpCode} 
-	</delete>
-	<delete id="deletetp" parameterType="typecatVO">
-	DELETE FROM typecat
-	WHERE typeCode = #{typeCode}
-</delete>
 </mapper>
