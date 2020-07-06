@@ -86,3 +86,10 @@ element.style {
 .info_name_f {
     color: #de4830;
 }
+
+.comment-div button{
+	display:none;
+}
+.comment-div button.active{
+	display:inline-block;
+}

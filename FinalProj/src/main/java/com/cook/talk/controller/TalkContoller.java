@@ -33,9 +33,9 @@ public class TalkContoller {
 //목록 
 	@GetMapping("/list")
 	public String list(Model model) {
-		List<TalkVO> talkList2 = talkDAO.getTalkListPaiging(1);
+	//	List<TalkVO> talkList2 = talkDAO.getTalkListPaiging(1);
 		model.addAttribute("list", talkservice.getTalkList());
-		model.addAttribute("talkList2", Math.ceil(talkDAO.talkCount()/ 10.0));
+	//	model.addAttribute("talkList2", Math.ceil(talkDAO.talkCount()/ 10.0));
 		model.addAttribute("talkCount", talkDAO.talkCount());
 		return "talk/list";
 	}
@@ -59,20 +59,26 @@ public class TalkContoller {
 	@RequestMapping(value = "/detail/{talkCode}", method = RequestMethod.GET)
 	public String detail(@PathVariable String talkCode, Model model) {
 		model.addAttribute("talkCode", talkservice.detail(talkCode));
-		model.addAttribute("listCom", talkservice.getBoardById(talkCode));
+		TalkVO talk = talkservice.getBoardById(talkCode);
+		System.err.println(talk);
+		model.addAttribute("listCom", talk);
 		return "talk/talkDetail";
 	}
 
 	// 수정페이지 이동
 	@RequestMapping(value = "/updatePage", method = RequestMethod.GET)
 	public String updatePage(TalkVO talkVO, Model model) {
-		model.addAttribute("talkupdate", talkservice.detail(talkVO.getTalkCode()));
+		System.err.println(talkVO);
+		TalkVO talk = talkservice.detail(talkVO.getTalkCode());
+		System.err.println(talk);
+		model.addAttribute("talkupdate", talk);
 		return "talk/update";
 	}
 	
 	//수정하기
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateTalk(Principal principal, TalkVO talkVO) {
+		System.err.println(talkVO);
 		talkVO.setUserId(principal.getName());		
 		talkservice.updateTalk(talkVO);
 		return "redirect:/talk/list";

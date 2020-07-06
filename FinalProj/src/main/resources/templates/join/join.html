@@ -11,9 +11,7 @@
 	color: red;
 }
 </style>
-<title>회원가입</title>
-</head>
-<body>
+
 	<script src="http://code.jquery.com/jquery-1.3.2.min.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -38,9 +36,11 @@
 		<form name="form_insert" method="post" id="registerForm"
 			th:action="@{/join}">
 			<tbody>
-				<div>
+				<div><br>
+<br>
 					<h2>회원가입</h2>
-
+<br>
+<br>
 
 					<input type="email" id="userId" name="userId"
 						placeholder="이메일 @까지 입력해주세요" class="form-control"> <input
@@ -48,6 +48,7 @@
 					<!-- <span id="idStatus" class="glyphicon form-control-feedback glyphicon-remove" aria-hidden="true"></span> -->
 				</div>
 				<tr>
+				
 					<td colspan=3 id="idCheck"></td>
 				</tr>
 
@@ -57,18 +58,17 @@
 
 				<input type="password" name="userPw2" id="userPw2" maxlength="12"
 					class="form-control" placeholder="비밀번호 확인" required />
-				<br>
+		
 
 				<div class="text-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
 				<div class="text-danger" id="alert-success">비밀번호가 일치합니다.</div>
-				<tr>
+				<tr><br>
 
 					<div>
 						<input type="text" name="nickName" placeholder="닉네임" id="nickName"
 							class="form-control"> <span th:text="${valid_nickName}"></span>
 						<input type="button" id="nick_btn" value="중복확인" /></br>
 					</div>
-
 					<div>
 						<input type="date" name="birth" class="form-control" /><br>
 					</div>
@@ -83,113 +83,13 @@
 						남성
 					</div>
 
-<!-- 약관 동의 창 -->
-<div class="w3-container">
+<br>
+<div>
 
-  <button onclick="document.getElementById('id01').style.display='block'" name="check" class="w3-button w3-green w3-large">약관 동의</button>
-
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-
-      <div class="w3-center"><br>
-        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
-       <!--  <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"> -->
-     <img id="img" style="width:30%"/> 
-     
-      </div>
-
-    <!--   <form class="w3-container" action="/mypage/modifyUserPic" method="POST" enctype="multipart/form-data">   -->
-    
-
-    
-        <div class="w3-section">
-       <div class="check_box">
-   
-          <label><b>약관 동의</b></label>
-          <form action="" id="joinForm">
-            <ul class="join_box">
-                <li class="checkBox check01">
-                    <ul class="clearfix">
-                        <li>이용약관, 개인정보 수집 및 이용,
-                            위치정보 이용약관(선택), 프로모션 안내
-                            메일 수신(선택)에 모두 동의합니다.</li>
-                        <li class="checkAllBtn">
-                            <input type="checkbox" name="chkAll" id="chk" class="chkAll">
-                        </li>
-                    </ul>
-                </li>
-                <li class="checkBox check02">
-                    <ul class="clearfix">
-                        <li>이용약관 동의(필수)</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" name="chk"> 
-                        </li>
-                    </ul>
-                    <textarea name="" id="">여러분을 환영합니다.
-쿠킹토킹 및 제품(이하 ‘쿠킹토킹’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 쿠킹토킹 서비스의 이용과 관련하여 네이버 서비스를 제공하는 쿠킹토킹 주식회사(이하 ‘쿠킹토킹’)와 이를 이용하는 쿠킹토킹 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 쿠킹토킹서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
-       </textarea>
-                </li>
-                <li class="checkBox check03">
-                    <ul class="clearfix">
-                        <li>개인정보 수집 및 이용에 대한 안내(필수)</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" name="chk">
-                        </li>
-                    </ul>
- 
-                    <textarea name="" id="">여러분을 환영합니다.
-쿠킹토킹 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 쿠킹토킹서비스의 이용과 관련하여 네이버 서비스를 제공하는 쿠킹토킹 주식회사(이하 ‘쿠킹토킹’)와 이를 이용하는 쿠킹토킹 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 ㅍ비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
-       </textarea>
-                </li>
-                <li class="checkBox check03">
-                    <ul class="clearfix">
-                        <li>위치정보 이용약관 동의(선택)</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" name="chk">
-                        </li>
-                    </ul>
-    <textarea name="" id="">여러분을 환영합니다.
-네이버 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 네이버 서비스의 이용과 관련하여 네이버 서비스를 제공하는 네이버 주식회사(이하 ‘네이버’)와 이를 이용하는 네이버 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 네이버 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
-       </textarea>
-                </li>
-               
-             <li class="checkBox check04">
-                    <ul class="clearfix">
-                        <li>이벤트 등 프로모션 알림 메일 수신(선택</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" name="chk">
-                        </li>
-                    </ul>
- 
-                </li>
-
-            <ul class="footBtwrap clearfix">
-            
-            
-                <li><button class="fpmgBt1" >비동의</button></li>
-                <li><button class="fpmgBt2" type="submit" name="agree" >동의</button></li>
-            
-            
-            </ul>
-            
-            
-    
-           
-        </form>
-        </div>
-        
-        
-        </div>
-      </form>
-    </div>
-  </div>
+<button onclick="document.getElementById('id01').style.display='block'" name="check" >약관 동의 </button> <input type="checkbox" name="check">
 
 
 </div>
-
-
-	
-
 			</tbody>
 
 					<div>
@@ -197,16 +97,6 @@
 			<input type="submit" id="join" value="회원가입"
 				class="btn-primary btn-lg btn-block">
 	</div>
-
-
-
-
-
-
-
-
-
-
 
 
 

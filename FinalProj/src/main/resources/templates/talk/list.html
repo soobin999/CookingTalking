@@ -15,7 +15,7 @@ width:100%;
 }
 </style>
 
-<title>게시글 목록</title>
+<title id='pageTitle'>게시글 목록</title>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -23,7 +23,7 @@ width:100%;
 			location.href = "${path}/talk/wirte";
 		});
 	});
-
+/* 
 	//페이징
 	$(document).ready(function() {
 
@@ -59,7 +59,7 @@ width:100%;
 				scrollTop : 0
 			}, 200);
 		});
-	});
+	}); */
 </script>
 </head>
 
@@ -131,14 +131,14 @@ width:100%;
 
 				<ul>
 					
-						
-						<!-- pagination -->	
+					<!-- 	
+						pagination	
 		<div th:class="Pagination_Li">
 			<div th:each="num: ${#numbers.sequence(1, (#lists.size(list)/20)+1 )}" th:class="page">
 				<a class="page" th:text="${num}" th:value="${num}" style="color: #FF8000; cursor: pointer;"></a>
 				</div>
 		</div>
-		<!-- pagination end -->
+		pagination end -->
 						
 				
 				</ul>
@@ -148,7 +148,7 @@ width:100%;
 			</div>
 		</div>
 
-
+<!-- 
 		<button type="button" id=btnWrite>글쓰기</button>
 
 
@@ -174,7 +174,7 @@ width:100%;
 				</tr>
 			</tbody>
 
-		</table>
+		</table> -->
 
 
 
