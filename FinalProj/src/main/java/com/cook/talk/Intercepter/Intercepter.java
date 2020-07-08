@@ -27,6 +27,7 @@ public class Intercepter extends HandlerInterceptorAdapter{
 		session.setAttribute("total", maindao.totalSelect());
 		if(SecurityContextHolder.getContext().getAuthentication()!=null) {
 			String userID=SecurityContextHolder.getContext().getAuthentication().getName();
+			session.setAttribute("userIDD", userID);
 			session.setAttribute("userPic11", maindao.selectUserPic(userID));
 			System.out.println("asldjasjdlasjd여기"+maindao.selectUserPic(userID));
 		}

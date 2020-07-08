@@ -41,7 +41,7 @@ public interface RecipeService {
 	public int recipeCount();
 	
 	// 레시피 글등록
-	public void insertRecipeProc(boolean registerStatus, RecipeDTO recipeDTO);
+	public void insertRecipeProc(boolean registerStatus, RecipeDTO recipeDTO, String userId);
 	
 	//레시피 조회수 증가
 	public int rcpViewsUpdate(String rcpCode);

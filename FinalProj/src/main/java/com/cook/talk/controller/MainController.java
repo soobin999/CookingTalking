@@ -1,5 +1,7 @@
 package com.cook.talk.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +38,6 @@ public class MainController {
 	@GetMapping("/index")
 	public String loginIndex(Model model, String userId) {
 		model.addAttribute("rcpList", mainService.recipeList(userId));
-		System.out.println(mainService.recipeList(userId));
 		model.addAttribute("newRcpList", maindao.newRecipeList());
 		return "/main/loginIndex";
 	}

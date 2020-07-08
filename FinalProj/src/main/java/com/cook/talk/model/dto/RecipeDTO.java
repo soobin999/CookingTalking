@@ -18,6 +18,10 @@ public class RecipeDTO {
 
 	private String rcpCode;
 	
+	
+
+	private String userId;
+	
 	@Autowired(required = false)
 	private RecipeVO recipeVO;
 	

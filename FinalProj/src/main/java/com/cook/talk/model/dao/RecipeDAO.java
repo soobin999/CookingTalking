@@ -33,7 +33,7 @@ public interface RecipeDAO {
 	
 	public List<RecipeDTO> getRcmmList(List<String> selectedIngr);
 	
-	
+	public void empty();
 	
 	
 	//레시피 재료 상세페이지 조회
@@ -74,7 +74,7 @@ public interface RecipeDAO {
 	public int selectConnectCode();
 
 	//레시피 등록
-	public void insertRecipeProc(MultipartFile file, RecipeDTO recipeDTO);
+	public void insertRecipeProc(MultipartFile file, RecipeDTO recipeDTO, String userId);
 	void insertRcpProc(RecipeVO recipeVO);
 	void insertTypecatProc(TypeCatVO typeCatVO);
 	void insertRcpingrProc(RcpIngrVO rcpIngrVO);

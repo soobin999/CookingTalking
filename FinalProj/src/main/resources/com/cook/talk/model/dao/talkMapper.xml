@@ -52,7 +52,7 @@ ORDER BY talkDate DESC
 		parameterType="com.cook.talk.model.VO.TalkVO">
 		insert into talk (talkCode,talkCont, userId ,talkDate,talkVideo,talkLike)
 		values
-		(#{talkCode},#{talkCont},#{userId},(select curdate()),#{talkVideo},#{talkLike})
+		(#{talkCode},#{talkCont},#{userId},(select curdate()),'http://localhost:8080/talkPic/KakaoTalk_20200707_114652157.jpg',#{talkLike})
 	</insert>
 
 	<!-- 게시글 상세보기 -->
@@ -71,7 +71,7 @@ ORDER BY talkDate DESC
 		update 
 			talk
 		set
-			talkCont=#{talkCont} ,talkVideo=#{talkVideo}
+			talkCont=#{talkCont} ,talkVideo='http://localhost:8080/talkPic/KakaoTalk_20200707_114652157.jpg'
 		where
 			userId=#{userId} and talkCode=#{talkCode}
 	</update>

@@ -2,6 +2,8 @@ package com.cook.talk.model.serviceImpl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -83,11 +85,14 @@ public class RecipeServiceImpl implements RecipeService {
 		//1. rcpViewsCode 자동생성
 		int rcpVnum = recipeDAO.selectRcpViewCode() +1;
 		viewsVO.setRcpViewCode("RV-" +rcpVnum);
-		recipeDAO.insertRcpViews(viewsVO);		
+		System.out.println("voewsajfaliij"+viewsVO);
+			
 		//2. 레시피 상세 조회 시 viewDate는 mapper에서 NOW()로 insert한다
 		
 		//3. 해당 레시피의 rcpCode set한다
-		viewsVO.setRcpCode(recipeVO.getRcpCode()); 				
+		viewsVO.setRcpCode(recipeVO.getRcpCode()); 	
+		recipeDAO.insertRcpViews(viewsVO);	
+		recipeDAO.empty();
 		//4. userId는 세션처리
 		
 	}
@@ -103,7 +108,7 @@ public class RecipeServiceImpl implements RecipeService {
 	
 	//레시피 등록	
 	@Override
-	public void insertRecipeProc(boolean registerStatus, RecipeDTO recipeDTO){
+	public void insertRecipeProc(boolean registerStatus, RecipeDTO recipeDTO, String userId){
 		
 		 RecipeVO recipeVO = recipeDTO.getRecipeVO();
 		 TypeCatVO typeCatVO = recipeDTO.getTypeCatVO();
@@ -128,7 +133,6 @@ public class RecipeServiceImpl implements RecipeService {
 		recipeVO.setTypeCode(typeCatVO.getTypeCode()); 
 		//registerStatus의 값을 set한다
 		recipeVO.setRegisterStatus(registerStatus); 	
-		
 		
 		recipeDAO.insertRcpProc(recipeVO);
 		

@@ -165,6 +165,6 @@ public class LoginController {
 		model.addAttribute("total", maindao.totalSelect());
 		System.out.println(accessCode);
 		encryption.Decrypt(accessCode);
-		return "main/index";
+		return "redirect:/index";
 	}
 }

@@ -3,6 +3,9 @@ package com.cook.talk.model.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -13,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import com.cook.talk.model.dao.MainDAO;
 import com.cook.talk.model.dto.IndexDTO;
 import com.cook.talk.model.service.MainService;
+import com.nimbusds.oauth2.sdk.Request;
 
 @Service
 public class MainServiceImpl implements MainService {
@@ -22,7 +26,6 @@ public class MainServiceImpl implements MainService {
 
 	@Override
 	public List<IndexDTO> recipeList(String expl) {
-
 		List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>();
 		converters.add(new FormHttpMessageConverter());
 		converters.add(new StringHttpMessageConverter());

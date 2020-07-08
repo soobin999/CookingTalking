@@ -90,14 +90,14 @@ $(function() {
 				console.log(data);
 				if (data == 1) {
 
-					alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+					alert("닉네임이 존재합니다. 다른 닉네임을 입력해주세요.");
 					// 아이디가 존재할 경우 빨강으로 , 아니면 파랑으로 처리하는 디자인
 					$("#divInputNick").addClass("has-error")
 					$("#divInputNick").removeClass("has-success")
 					$("#nickName").focus();
 
 				} else {
-					alert("사용가능한 아이디입니다.");
+					alert("사용가능한 닉네임입니다.");
 					// 아이디가 존재할 경우 빨강으로 , 아니면 파랑으로 처리하는 디자인
 					$("#divInputNick").addClass("has-success")
 					$("#divInputNick").removeClass("has-error")

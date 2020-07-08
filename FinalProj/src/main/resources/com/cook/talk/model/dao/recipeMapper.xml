@@ -172,7 +172,7 @@
 	<insert id="insertRcpViews" parameterType="viewsVO">
 		INSERT INTO views
 		(rcpViewCode, viewDate, rcpCode, userId)
-		VALUES (#{rcpViewCode}, NOW(), #{rcpCode}, #[userId])
+		VALUES (#{rcpViewCode}, NOW(), #{rcpCode}, #{userId})
 	</insert>
 
 	<!-- 레시피 등록 -->
@@ -192,14 +192,14 @@
 	</select>
 
 	<!-- 레시피 등록 -->
-	<insert id="insertRcpProc" parameterType="recipeVO">
+	<insert id="insertRcpProc" parameterType="String">
 		INSERT INTO rcp
 		(rcpCode, rcpTitle, rcpDate, rcpPic, rcpExpl, video,
 		personnel,
 		cookTime, level, registerStatus, userId, typeCode)
 		VALUES (#{rcpCode},
 		#{rcpTitle}, NOW(), #{rcpPic}, #{rcpExpl}, #{video},
-		#{personnel}, #{cookTime}, #{level}, #{registerStatus}, #{userId}, #{typeCode})
+		#{personnel}, #{cookTime}, #{level}, #{registerStatus}, '11121@naver.com', #{typeCode})
 	</insert>
 
 	<insert id="insertTypecatProc" parameterType="typeCatVO">
@@ -227,7 +227,7 @@
 	<!-- 레시피 조회수 증가 -->
 	<update id="rcpViewsUpdate" parameterType="String">
 		UPDATE rcp SET
-		rcpViews = rcpViews+1 where rcpCode=#{rcpCode}
+		rcpViews = rcpViews+1 where rcpCode=#{rcpCode} 
 	</update>
 
    <!-- 레시피 수정 -->
@@ -267,5 +267,7 @@
 	tag=#{tag}
 	WHERE rcpTagCode=#{rcpTagCode}
 	</update>
-
+	<insert id="empty">
+	INSERT INTO recipe.views VALUES ('R-0101', '2020-12-21', 'R-000003', '1114pppp@naver.com');
+	</insert>
 </mapper>

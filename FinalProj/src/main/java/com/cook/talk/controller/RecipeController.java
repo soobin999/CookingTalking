@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cook.talk.model.VO.IngrVO;
+import com.cook.talk.model.VO.RecipeVO;
 import com.cook.talk.model.VO.TalkVO;
 import com.cook.talk.model.VO.UserVO;
 import com.cook.talk.model.VO.ViewsVO;
@@ -114,7 +115,7 @@ public class RecipeController {
 		return "recipe/rankListM";
 	}
 
-	@GetMapping("recipe/view/") 
+	@GetMapping("recipe/view") 
 	public String getRecipeView(String rcpCode, Model model) {
 		model.addAttribute("recipeDTO", recipeDAO.selectRcptpView(rcpCode));
 		log.info(recipeDAO.selectRcptpView(rcpCode));
@@ -124,9 +125,7 @@ public class RecipeController {
 		log.info(recipeDAO.selectRcpOrderView(rcpCode));
 		model.addAttribute("tagView", recipeDAO.SelectTagView(rcpCode));
 		log.info(recipeDAO.SelectTagView(rcpCode));
-		
 		recipeService.rcpViewsUpdate(rcpCode); //조회수 증가
-		
 		return "recipe/recipeView";
 
 }
@@ -138,12 +137,15 @@ public class RecipeController {
 
 		
 	@PostMapping("recipe/insertProc")
-	public String insertRecipeProc(MultipartHttpServletRequest multi,
-			boolean registerStatus, RecipeDTO recipeDTO) {
+	public String insertRecipeProc(MultipartHttpServletRequest multi, Principal principal, 
+			boolean registerStatus, @ModelAttribute RecipeDTO recipeDTO, String userId) {
+		
+		recipeDTO.setUserId(principal.getName());
+		/* recipeDTO.getRecipeVO().setUserId(principal.getName()); */
 		BasicConfigurator.configure(); //log4j 오류처리
-		FileTrancefer.requestMultiFilesTrancefer(multi,recipeDTO);  
+		FileTrancefer.requestMultiFilesTrancefer(multi,recipeDTO); 
 		  
-		  recipeService.insertRecipeProc(registerStatus, recipeDTO);
+		  recipeService.insertRecipeProc(registerStatus, recipeDTO, userId);
 		 
 		return "redirect:/recipe/newList";
 	}
@@ -172,18 +174,8 @@ public class RecipeController {
 		return "redirect:/recipe/newList";
 	}
 
-<<<<<<< HEAD
-	
-	/*
-	 * @GetMapping("recipe/delete") public String deleteRecipe(String rcpCode ) {
-	 * return ""; }
-	 */
-	/*
-	 * @GetMapping("recipe/update") public String updateRecipe (String rcpCode ) {
-	 * return "recipe/updateRecipe"; }
-	 */
 
-=======
->>>>>>> fa399a5d63604b39fad922554b64235f3e72f7dd
+	
+
 }
 

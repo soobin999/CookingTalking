@@ -2,6 +2,8 @@ package com.cook.talk.model.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.cook.talk.model.dto.IndexDTO;
 
 public interface MainService {
